@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --check:*)",
+      "Bash(node -e:*)",
+      "Bash(node test-archetypes.js:*)",
+      "Bash(node /Users/fruithedge/fruithedge/test-archetypes.js:*)",
+      "Bash(node /Users/fruithedge/fruithedge/test-recommendations.js:*)",
+      "Bash(node test-recommendations.js:*)",
+      "Bash(node /Users/fruithedge/fruithedge/test-journals.js:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

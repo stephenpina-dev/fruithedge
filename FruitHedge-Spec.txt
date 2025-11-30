@@ -1,0 +1,765 @@
+# FruitHedge v3.0 — Technical Specification
+
+## FOR CLAUDE CODE: READ THIS ENTIRE DOCUMENT BEFORE BUILDING
+
+This specification describes exactly how to build the FruitHedge web application. Do not deviate from these requirements. Every feature, design decision, and data structure is documented here.
+
+---
+
+# 1. PROJECT OVERVIEW
+
+## What It Is
+FruitHedge is a creative career measurement tool that calculates three scores (Autonomy, Resonance, Intensity) and a composite Creative Alpha Index. Based on these scores, it provides personalized recommendations, wellness protocols, and insights.
+
+## Core Principle
+This is NOT a generic self-help tool. It's styled like a Bloomberg terminal meets indie creative studio — professional, slightly irreverent, data-driven but human.
+
+## File Structure
+Build as FOUR separate files:
+- `index.html` — Structure only
+- `styles.css` — All styling
+- `data.js` — All data (recommendations, wellness, questions, archetypes)
+- `app.js` — All logic and interactivity
+
+---
+
+# 2. DESIGN SYSTEM
+
+## Color Palette (Dark Mode - Default)
+```css
+--bg-primary: #0a0e14;      /* Main background */
+--bg-secondary: #131921;    /* Cards, elevated surfaces */
+--bg-tertiary: #1a2332;     /* Hover states */
+--bg-elevated: #212b3d;     /* Modals, dropdowns */
+--accent-lime: #c4ff61;     /* Primary accent - autonomy */
+--accent-peach: #ff9b71;    /* Secondary accent - resonance */
+--accent-berry: #ff6b9d;    /* Tertiary accent - intensity */
+--accent-cyan: #61dafb;     /* Links, interactive */
+--accent-gold: #ffd700;     /* Premium, achievement */
+--text-primary: #e6edf3;    /* Main text */
+--text-secondary: #8b949e;  /* Muted text */
+--text-muted: #484f58;      /* Disabled, hints */
+--border: #30363d;          /* Borders */
+--red: #ff6b6b;             /* Error, critical */
+--yellow: #ffd93d;          /* Warning */
+--green: #6bcf7f;           /* Success */
+```
+
+## Color Palette (Light Mode)
+```css
+--bg-primary: #ffffff;
+--bg-secondary: #f6f8fa;
+--bg-tertiary: #eaeef2;
+--bg-elevated: #ffffff;
+--accent-lime: #2d5016;     /* Darker for contrast */
+--accent-peach: #c45a2c;
+--accent-berry: #8b2d5c;
+--accent-cyan: #0969da;
+--accent-gold: #9a6700;
+--text-primary: #1f2328;
+--text-secondary: #656d76;
+--text-muted: #8b949e;
+--border: #d0d7de;
+--red: #cf222e;
+--yellow: #9a6700;
+--green: #1a7f37;
+```
+
+## Typography
+```css
+/* Headers */
+font-family: 'Playfair Display', serif;
+/* Body */
+font-family: 'IBM Plex Sans', sans-serif;
+/* Code/Data */
+font-family: 'JetBrains Mono', monospace;
+```
+
+Import from Google Fonts:
+```html
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+```
+
+## Visual Effects
+- Grain overlay on body (subtle noise texture)
+- Subtle gradients on accent elements
+- Glow effects on primary actions
+- Smooth transitions (0.2s ease)
+
+---
+
+# 3. LAYOUT STRUCTURE
+
+## Header
+- Logo: "FruitHedge" in Playfair Display with gradient
+- Tagline badge: "Creative Portfolio Manager" 
+- Status indicator: Green dot with pulse animation
+- Dark/Light mode toggle (sun/moon icon)
+
+## Navigation Tabs
+Five main tabs:
+1. **Calculator** — Main tool with sliders
+2. **Results** — Scores, archetype, recommendations
+3. **Theory** — Formula explanations with proper math notation
+4. **History** — Progress tracking over time
+5. **Export** — Share/download results
+
+## Main Content Area
+- Max width: 1400px
+- Padding: 2rem
+- Responsive grid for law cards
+
+## Footer
+- Minimal
+- "FruitHedge Research Team • v3.0"
+- Link to whitepaper (optional)
+
+---
+
+# 4. TAB 1: CALCULATOR
+
+## Hero Section
+- Title: "Measure What Matters"
+- Subtitle: "Three laws. Three scores. One number that tells you if you're building something real."
+- Tagline: "STOP CHASING VIRAL. START BUILDING VALUE."
+
+## Three Law Cards
+Each law gets its own card with:
+- Law number and name
+- Tagline (e.g., "Freedom Creates Output")
+- Color indicator (lime/peach/berry)
+- Sliders for each variable
+- Reflection question that changes based on slider value
+- Live score display
+
+### Law I: Autonomy Quotient (AQ)
+Color: --accent-lime
+
+Sliders:
+1. **Energy Surplus (E)** — Range: 1-10
+   - Label: "Energy Surplus"
+   - Reflection questions by range:
+     - 1-3: "You're running on fumes. What's draining you most?"
+     - 4-6: "Functional but not thriving. Where does energy leak?"
+     - 7-10: "Strong reserves. How do you protect this?"
+
+2. **Mental Space (S)** — Range: 1-10
+   - Label: "Mental Space"
+   - Reflection questions:
+     - 1-3: "Your mind is full. What thought keeps intruding?"
+     - 4-6: "Some clarity, some noise. What creates peace?"
+     - 7-10: "Clear head. What practices maintain this?"
+
+3. **Optionality (O)** — Range: 1-10
+   - Label: "Optionality"
+   - Reflection questions:
+     - 1-3: "Feeling trapped. What door could you open?"
+     - 4-6: "Some options. Which unused option matters most?"
+     - 7-10: "Many paths available. Are you using this freedom?"
+
+4. **Constraint Load (C)** — Range: 1-10 (INVERTED - high is bad)
+   - Label: "Constraint Load"
+   - Reflection questions:
+     - 1-3: "Light obligations. Protect this."
+     - 4-6: "Moderate load. What's non-essential?"
+     - 7-10: "Heavy constraints. What must change first?"
+
+Formula: AQ = 10 × ∛[(E × S × O) / (C × 100)]
+
+### Law II: Resonance Index (Ri)
+Color: --accent-peach
+
+Sliders:
+1. **Emotional Impact (I)** — Range: 1-10
+   - Label: "Emotional Impact"
+   - Reflection questions:
+     - 1-3: "Forgettable work. When did you last move someone?"
+     - 4-6: "Some impact. What made your best work hit?"
+     - 7-10: "Deep resonance. How do you maintain authenticity at scale?"
+
+2. **Identity Fit (Id)** — Range: 1-10
+   - Label: "Identity Fit"
+   - Reflection questions:
+     - 1-3: "Generic appeal. Who specifically needs YOUR work?"
+     - 4-6: "Some specificity. Could you niche down further?"
+     - 7-10: "Perfect fit. Your audience feels seen."
+
+3. **Artistic Boldness (B)** — Range: 1-10
+   - Label: "Artistic Boldness"
+   - Reflection questions:
+     - 1-3: "Playing safe. What would you make if no one judged?"
+     - 4-6: "Some risks. What's the scary project you're avoiding?"
+     - 7-10: "Fearless. Remember why you started taking risks."
+
+4. **Audience Size (A)** — Range: 100 to 10,000,000 (logarithmic slider)
+   - Label: "Audience Size"
+   - Display as formatted number (1K, 10K, 100K, 1M, etc.)
+   - This is a DILUTION FACTOR — larger audiences dilute resonance
+
+Formula: Ri = (I × Id × B) / [1 + ln(A / 1000)]
+- Note: When A < 1000, the denominator becomes < 1, which AMPLIFIES resonance
+- Cap minimum at Ri = 10
+
+### Law III: Craft Intensity (Ci)
+Color: --accent-berry
+
+Sliders (Numerator - Creative Fuel):
+1. **Flow Hours (F)** — Range: 1-60 (hours per week)
+   - Label: "Flow Hours / Week"
+   - Reflection questions:
+     - 1-10: "Minimal flow. What interrupts you most?"
+     - 11-25: "Decent focus. Could you protect 2 more hours?"
+     - 26-60: "Deep immersion. Are you also resting?"
+
+2. **Skill Evolution (Ev)** — Range: 1-10
+   - Label: "Skill Evolution"
+   - Reflection questions:
+     - 1-3: "Stagnant. What skill would change everything?"
+     - 4-6: "Growing. Where's your next edge?"
+     - 7-10: "Rapid evolution. Document what's working."
+
+3. **Creative Risk (R)** — Range: 1-10
+   - Label: "Creative Risk"
+   - Reflection questions:
+     - 1-3: "Too safe. What experiment could you run?"
+     - 4-6: "Some experimentation. Push one boundary this week."
+     - 7-10: "Bold moves. Balance risk with completion."
+
+Sliders (Denominator - Creative Drag):
+4. **Admin Load (A)** — Range: 1-60 (hours per week)
+   - Label: "Admin Hours / Week"
+   - Reflection questions:
+     - 1-10: "Lean operations. Keep it this way."
+     - 11-25: "Moderate admin. What could you automate?"
+     - 26-60: "Drowning in logistics. Hire help or cut scope."
+
+5. **Distraction (D)** — Range: 1-60 (hours per week)
+   - Label: "Distraction Hours / Week"
+   - Reflection questions:
+     - 1-10: "Focused. What boundaries protect this?"
+     - 11-25: "Some leakage. Check your screen time report."
+     - 26-60: "Major distraction problem. Your phone is the enemy."
+
+6. **Stagnation (St)** — Range: 1-10
+   - Label: "Stagnation"
+   - Reflection questions:
+     - 1-3: "Shipping regularly. Momentum is your friend."
+     - 4-6: "Some paralysis. What's blocking the current project?"
+     - 7-10: "Frozen. Start with the smallest possible action."
+
+Formula: Ci = 10 × ∛[(F/6 × Ev × R) / (A/6 × D/6 × St)]
+
+### Composite: Creative Alpha Index (α)
+Formula: α = ∛(AQ × Ri × Ci)
+- Geometric mean of all three laws
+- Output range: 0-10
+
+## Calculate Button
+- Large, prominent
+- Gradient background (lime to peach)
+- Text: "CALCULATE CREATIVE ALPHA"
+- On click: Calculate all scores, switch to Results tab
+
+---
+
+# 5. TAB 2: RESULTS
+
+## Score Display Section
+
+### Three Score Cards (horizontal on desktop, stacked on mobile)
+Each card shows:
+- Law name
+- Score (large number, 1 decimal place)
+- Score bar (visual representation)
+- Status label (Critical/Struggling/Functional/Healthy/Excellent)
+- Color coding based on score
+
+Score interpretation:
+- 0-1.9: Critical (red)
+- 2-3.9: Struggling (orange)
+- 4-5.9: Functional (yellow)
+- 6-7.9: Healthy (green)
+- 8-10: Excellent (lime/gold)
+
+### Composite Score (Alpha)
+- Large, centered display
+- Circular gauge or prominent number
+- Label: "Creative Alpha Index"
+- Greek letter α styled nicely
+
+## Archetype Section
+Based on score patterns, display one of 14 archetypes:
+
+1. **The Burnout** — All scores < 4
+2. **The Hustler** — Low AQ + High Ci
+3. **The Underground Gem** — High Ri + Low AQ
+4. **The Algorithm Slave** — High Ci + Low Ri
+5. **The Paralyzed Dreamer** — High AQ + Low Ci
+6. **The Emerging Artist** — All scores 4-6
+7. **The Craftsperson** — High Ci, moderate others
+8. **The Cult Leader** — High Ri, moderate others
+9. **The Free Agent** — High AQ, moderate others
+10. **The Professional** — All scores 6-7
+11. **The Thriving Creator** — All scores 7+
+12. **The Legacy Builder** — Alpha 8+
+13. **The Comeback Arc** — Mixed with improvement signals
+14. **The Explorer** — Default/transitional
+
+Each archetype includes:
+- Name
+- Subtitle
+- Profile description (2-3 sentences)
+- Key insight (actionable advice)
+
+## Recommendation Section
+Display ONE primary recommendation based on score patterns.
+
+### Matching Logic:
+1. Identify weakest law
+2. Identify score patterns (e.g., High Ci + Low Ri)
+3. Select recommendation from data.js that matches pattern
+4. Display:
+   - Resource type icon (book/video/podcast/etc.)
+   - Title
+   - Creator
+   - Type badge
+   - Duration
+   - "Why This For You" explanation (personalized based on their scores)
+   - Link button (opens in new tab)
+
+### Secondary Recommendations
+Show 2-3 more relevant recommendations in smaller cards below.
+
+## Wellness Protocol Section
+Display ONE wellness protocol based on:
+1. Weakest law
+2. Specific deficits
+3. Random selection within matching protocols
+
+Show:
+- Protocol name
+- Prescription
+- Why it helps
+- Emoji icon
+
+---
+
+# 6. TAB 3: THEORY
+
+## Purpose
+Explain the formulas in proper mathematical notation.
+
+## Content Structure
+
+### Introduction
+Brief explanation of why these three laws and why they compound.
+
+### Law I: Autonomy Quotient
+- Tagline: "Freedom Creates Output"
+- Explanation of each variable (2-3 sentences each)
+- Formula displayed in proper math notation (use CSS/HTML for fractions and radicals)
+- Score interpretation table
+
+### Law II: Resonance Index
+- Tagline: "Depth Beats Breadth"
+- Explanation of each variable
+- Explanation of logarithmic dilution
+- Formula in math notation
+- Score interpretation table
+
+### Law III: Craft Intensity
+- Tagline: "Flow Is the Measure of Mastery"
+- Explanation of numerator (fuel) variables
+- Explanation of denominator (drag) variables
+- Formula in math notation
+- Score interpretation table
+
+### The Composite: Creative Alpha
+- Explanation of geometric mean
+- Why it punishes weaknesses
+- Why diminishing returns on strengths
+- Formula in math notation
+
+## Math Notation Styling
+Use CSS to create proper fractions and radicals:
+```css
+.formula {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+}
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fraction-top {
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 0.2em;
+}
+.fraction-bottom {
+  padding-top: 0.2em;
+}
+.radical {
+  /* Use √ symbol with proper sizing */
+}
+```
+
+---
+
+# 7. TAB 4: HISTORY
+
+## Purpose
+Track scores over time using localStorage.
+
+## Features
+
+### Save Current Scores
+- Button: "Save Today's Scores"
+- Stores: date, AQ, Ri, Ci, Alpha, all slider values
+
+### History Table
+Columns:
+- Date
+- AQ (with delta from previous)
+- Ri (with delta)
+- Ci (with delta)
+- Alpha (with delta)
+- Actions (view details, delete)
+
+### Trend Visualization
+Simple line chart showing Alpha over time.
+Use canvas or simple CSS bars — no heavy charting library needed.
+
+### Insights
+- "Your Alpha has improved 1.2 points since last month"
+- "Your weakest law has shifted from Autonomy to Intensity"
+- Identify patterns
+
+### Data Management
+- Export history as JSON
+- Clear all history (with confirmation)
+
+## localStorage Schema
+```javascript
+{
+  "fruithedge_history": [
+    {
+      "id": "uuid",
+      "date": "2024-01-15T10:30:00Z",
+      "scores": {
+        "aq": 5.4,
+        "ri": 6.2,
+        "ci": 4.8,
+        "alpha": 5.4
+      },
+      "inputs": {
+        "energy": 6,
+        "space": 5,
+        "optionality": 7,
+        "constraint": 4,
+        // ... all slider values
+      }
+    }
+  ],
+  "fruithedge_settings": {
+    "theme": "dark",
+    "lastCalculated": "2024-01-15T10:30:00Z"
+  }
+}
+```
+
+---
+
+# 8. TAB 5: EXPORT
+
+## Purpose
+Share or save results.
+
+## Features
+
+### Generate Shareable Image
+Create a canvas-based image showing:
+- FruitHedge branding
+- Three scores with visual bars
+- Alpha score prominently
+- Archetype name
+- Date
+- Styled to match app aesthetic
+
+Download as PNG.
+
+### Generate PDF Report
+More detailed export including:
+- All scores
+- Archetype profile
+- Top recommendation
+- Wellness protocol
+- Historical comparison (if available)
+
+### Copy Link (Optional)
+If you implement URL-based state:
+- Encode scores in URL parameters
+- Share link that recreates the calculation
+
+### Social Sharing
+Pre-formatted text for Twitter/X:
+"My Creative Alpha: [score] — I'm a [archetype]. Measured with FruitHedge."
+
+---
+
+# 9. FEATURES ACROSS ALL TABS
+
+## Dark/Light Mode Toggle
+- Default: Dark mode
+- Toggle in header
+- Preference saved to localStorage
+- Smooth transition between modes
+
+## Mobile Responsiveness
+- Breakpoints: 768px (tablet), 480px (mobile)
+- Stack cards vertically on mobile
+- Collapsible sections
+- Touch-friendly slider handles
+- Tab bar becomes scrollable or icon-only on mobile
+
+## Keyboard Navigation
+- Tab through interactive elements
+- Enter to activate buttons
+- Arrow keys for sliders
+
+## Animations
+- Subtle fade-in on tab switch
+- Score numbers count up when calculated
+- Progress bars animate to final position
+- Hover states on all interactive elements
+
+---
+
+# 10. DATA STRUCTURES
+
+## All data lives in data.js
+
+### Recommendations Array
+See separate data file for complete list of 61 recommendations.
+
+Structure:
+```javascript
+const recommendations = [
+  {
+    id: 1,
+    title: "The War of Art",
+    creator: "Steven Pressfield",
+    type: "book", // book, video, podcast, ted, essay, documentary, film
+    link: "https://amazon.com/...",
+    duration: "190 pages",
+    patterns: ["low_aq", "low_ci", "paralyzed"],
+    why: "Your pattern text here..."
+  },
+  // ... 60 more
+];
+```
+
+### Wellness Protocols Array
+See separate data file for complete list of 45 protocols.
+
+Structure:
+```javascript
+const protocols = [
+  {
+    id: 1,
+    name: "Morning Walk",
+    category: "physical", // physical, mental, creative, constraint, fruit
+    prescription: "15-minute walk within 1 hour of waking. No phone.",
+    why: "Movement clears mental fog and builds energy before demands hit.",
+    patterns: ["low_aq", "low_energy"]
+  },
+  // ... 44 more
+];
+```
+
+### Archetypes Array
+```javascript
+const archetypes = [
+  {
+    id: "burnout",
+    name: "The Burnout",
+    subtitle: "System Failure",
+    check: (scores) => scores.aq < 4 && scores.ri < 4 && scores.ci < 4,
+    profile: "Everything is failing simultaneously...",
+    insight: "Stop everything. Recovery is the only priority."
+  },
+  // ... 13 more
+];
+```
+
+### Reflection Questions Object
+```javascript
+const reflectionQuestions = {
+  energy: {
+    low: "You're running on fumes. What's draining you most?",
+    mid: "Functional but not thriving. Where does energy leak?",
+    high: "Strong reserves. How do you protect this?"
+  },
+  // ... for each slider
+};
+```
+
+---
+
+# 11. CALCULATION LOGIC
+
+## In app.js
+
+### Calculate AQ
+```javascript
+function calculateAQ(e, s, o, c) {
+  const numerator = e * s * o;
+  const denominator = c * 100;
+  const ratio = numerator / denominator;
+  const cubeRoot = Math.cbrt(ratio);
+  const aq = 10 * cubeRoot;
+  return Math.min(10, Math.max(0, aq));
+}
+```
+
+### Calculate Ri
+```javascript
+function calculateRi(i, id, b, a) {
+  const numerator = i * id * b;
+  const denominator = 1 + Math.log(a / 1000);
+  // Handle small audiences (< 1000)
+  const adjustedDenom = Math.max(0.1, denominator);
+  const ri = numerator / adjustedDenom;
+  return Math.min(10, Math.max(0, ri));
+}
+```
+
+### Calculate Ci
+```javascript
+function calculateCi(f, ev, r, a, d, st) {
+  const fuel = (f / 6) * ev * r;
+  const drag = (a / 6) * (d / 6) * st;
+  const ratio = fuel / Math.max(0.01, drag);
+  const cubeRoot = Math.cbrt(ratio);
+  const ci = 10 * cubeRoot;
+  return Math.min(10, Math.max(0, ci));
+}
+```
+
+### Calculate Alpha
+```javascript
+function calculateAlpha(aq, ri, ci) {
+  const product = aq * ri * ci;
+  const alpha = Math.cbrt(product);
+  return Math.min(10, Math.max(0, alpha));
+}
+```
+
+### Match Archetype
+```javascript
+function matchArchetype(scores) {
+  for (const arch of archetypes) {
+    if (arch.check(scores)) {
+      return arch;
+    }
+  }
+  return archetypes.find(a => a.id === "explorer");
+}
+```
+
+### Match Recommendation
+```javascript
+function matchRecommendation(scores) {
+  const patterns = [];
+  
+  if (scores.aq < 4) patterns.push("low_aq");
+  if (scores.ri < 4) patterns.push("low_ri");
+  if (scores.ci < 4) patterns.push("low_ci");
+  if (scores.aq >= 7 && scores.ci < 4) patterns.push("paralyzed");
+  if (scores.ci >= 6 && scores.ri < 4) patterns.push("craftsperson_no_message");
+  if (scores.ri >= 6 && scores.aq < 4) patterns.push("underground_gem");
+  if (scores.aq >= 7 && scores.ri >= 7 && scores.ci >= 7) patterns.push("protect_magic");
+  if (scores.aq >= 4 && scores.aq <= 6 && scores.ri >= 4 && scores.ri <= 6 && scores.ci >= 4 && scores.ci <= 6) patterns.push("plateau");
+  
+  // Find recommendations matching any pattern
+  const matches = recommendations.filter(r => 
+    r.patterns.some(p => patterns.includes(p))
+  );
+  
+  // Prioritize by number of matching patterns
+  matches.sort((a, b) => {
+    const aMatches = a.patterns.filter(p => patterns.includes(p)).length;
+    const bMatches = b.patterns.filter(p => patterns.includes(p)).length;
+    return bMatches - aMatches;
+  });
+  
+  return matches[0] || recommendations[0];
+}
+```
+
+---
+
+# 12. IMPLEMENTATION NOTES FOR CLAUDE CODE
+
+## Order of Implementation
+1. Create index.html with semantic structure
+2. Create styles.css with complete design system
+3. Create data.js with all data arrays
+4. Create app.js with all logic
+5. Test each tab independently
+6. Test mobile responsiveness
+7. Test dark/light mode
+8. Test localStorage persistence
+
+## Do NOT:
+- Use any external JavaScript frameworks (React, Vue, etc.)
+- Use any CSS frameworks (Tailwind, Bootstrap)
+- Use any charting libraries
+- Deviate from the color palette
+- Change the fonts
+- Simplify the formulas
+- Skip any feature listed here
+
+## DO:
+- Use vanilla JavaScript (ES6+)
+- Use CSS Grid and Flexbox for layout
+- Use CSS custom properties for theming
+- Use semantic HTML5 elements
+- Include proper ARIA labels for accessibility
+- Comment code clearly
+- Handle edge cases in calculations
+
+---
+
+# 13. TESTING CHECKLIST
+
+Before considering the build complete:
+
+- [ ] All three laws calculate correctly
+- [ ] Alpha composite calculates correctly
+- [ ] Sliders work with proper ranges
+- [ ] Reflection questions change based on slider value
+- [ ] Tab navigation works
+- [ ] Results display correctly
+- [ ] Archetype matching works
+- [ ] Recommendation matching works
+- [ ] Wellness protocol matching works
+- [ ] History saves to localStorage
+- [ ] History displays correctly
+- [ ] Export generates downloadable image
+- [ ] Dark/light mode toggles correctly
+- [ ] Theme preference persists
+- [ ] Mobile layout works at 768px
+- [ ] Mobile layout works at 480px
+- [ ] All buttons have hover states
+- [ ] All interactive elements are keyboard accessible
+- [ ] No console errors
+- [ ] Calculations handle edge cases (zeros, max values)
+
+---
+
+END OF SPECIFICATION

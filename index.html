@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FruitHedge - Creative Portfolio Manager. Measure your Autonomy, Resonance, and Craft Intensity to calculate your Creative Alpha Index.">
+  <title>FruitHedge — Creative Portfolio Manager</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header (Sticky) -->
+  <header class="header">
+    <div class="header-left">
+      <h1 class="logo">FruitHedge</h1>
+      <div class="tagline-badge">Creative Portfolio Manager</div>
+    </div>
+    <div class="header-right">
+      <div class="status-bar">
+        <span class="status-dot"></span>
+        <span class="status-text">Ready</span>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+        <span class="theme-icon">☀️</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-content container">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1 class="hero-title">The 3 Laws of <span>Creative Alpha</span></h1>
+      <p class="hero-subtitle">A performance measurement system to analyze the true health of your creativity. Built for artists who manage their craft like a hedge fund manages capital.</p>
+      <div class="hero-tagline">STOP CHASING VOLATILE TRENDS. INVEST IN UNDERLYING CREATIVE FUNDAMENTALS.</div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+
+      <!-- Law I: Autonomy Quotient -->
+      <article class="law-card autonomy">
+        <div class="law-header">
+          <div>
+            <div class="law-number">Law I</div>
+            <div class="law-title">Creative Autonomy</div>
+            <div class="law-tagline">"Freedom Creates Output"</div>
+          </div>
+          <div class="law-score-box" id="aq-box">—</div>
+        </div>
+        <p class="law-desc">Creativity requires surplus energy, mental space, and optionality. The Autonomy Quotient measures your capacity to create without being strangled by obligation.</p>
+
+        <div class="calc-section">
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Energy Surplus</span>
+              <span class="input-val" id="value-energy">5</span>
+            </div>
+            <div class="reflection-q">"If an exciting opportunity appeared now, could I engage fully?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-energy">
+            <div class="slider-range"><span>Depleted</span><span>Moderate</span><span>Abundant</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Mental Space</span>
+              <span class="input-val" id="value-space">5</span>
+            </div>
+            <div class="reflection-q">"How many minutes before my mind wanders to worries?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-space">
+            <div class="slider-range"><span>Cluttered</span><span>Manageable</span><span>Clear</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Optionality</span>
+              <span class="input-val" id="value-optionality">5</span>
+            </div>
+            <div class="reflection-q">"If I wanted to pivot my direction tomorrow, what would stop me?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-optionality">
+            <div class="slider-range"><span>Trapped</span><span>Some Choice</span><span>Full Freedom</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Constraint Load</span>
+              <span class="input-val" id="value-constraint">5</span>
+            </div>
+            <div class="reflection-q">"What % of my week is spent on things I'd eliminate if I could?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider inverse" id="slider-constraint">
+            <div class="slider-range"><span>Minimal</span><span>Moderate</span><span>Crushing</span></div>
+          </div>
+
+          <button class="calc-btn" id="calculate-aq-btn">Calculate AQ</button>
+
+          <div class="result-box" id="aq-result">
+            <div class="result-label">Autonomy Quotient</div>
+            <div class="result-num" id="aq-num">—</div>
+            <div class="result-status" id="aq-status">—</div>
+            <div class="result-explain" id="aq-explain">—</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Law II: Resonance Index -->
+      <article class="law-card resonance">
+        <div class="law-header">
+          <div>
+            <div class="law-number">Law II</div>
+            <div class="law-title">Resonant Work</div>
+            <div class="law-tagline">"Depth Beats Breadth"</div>
+          </div>
+          <div class="law-score-box" id="ri-box">—</div>
+        </div>
+        <p class="law-desc">Success depends not on audience size but on emotional depth. The Resonance Index separates real art from algorithm noise.</p>
+
+        <div class="calc-section">
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Emotional Impact</span>
+              <span class="input-val" id="value-impact">5</span>
+            </div>
+            <div class="reflection-q">"Has anyone said my work changed how they see the world?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-impact">
+            <div class="slider-range"><span>Forgettable</span><span>Engaging</span><span>Life-Changing</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Identity Fit</span>
+              <span class="input-val" id="value-identity">5</span>
+            </div>
+            <div class="reflection-q">"If I stopped creating, how many would genuinely mourn?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-identity">
+            <div class="slider-range"><span>Generic</span><span>Relatable</span><span>"Made for Me"</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Artistic Boldness</span>
+              <span class="input-val" id="value-boldness">5</span>
+            </div>
+            <div class="reflection-q">"When did I last make something that scared me to publish?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-boldness">
+            <div class="slider-range"><span>Safe</span><span>Interesting</span><span>Fearless</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Audience Size</span>
+              <span class="input-val" id="value-audience">32K</span>
+            </div>
+            <div class="reflection-q">"Do I know my audience deeply, or just their metrics?"</div>
+            <input type="range" min="0" max="100" value="50" class="slider" id="slider-audience">
+            <div class="slider-range"><span>100</span><span>100K</span><span>10M+</span></div>
+          </div>
+
+          <button class="calc-btn" id="calculate-ri-btn">Calculate Ri</button>
+
+          <div class="result-box" id="ri-result">
+            <div class="result-label">Resonance Index</div>
+            <div class="result-num" id="ri-num">—</div>
+            <div class="result-status" id="ri-status">—</div>
+            <div class="result-explain" id="ri-explain">—</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Law III: Craft Intensity -->
+      <article class="law-card intensity">
+        <div class="law-header">
+          <div>
+            <div class="law-number">Law III</div>
+            <div class="law-title">Craft Intensity</div>
+            <div class="law-tagline">"Flow Is the Measure of Mastery"</div>
+          </div>
+          <div class="law-score-box" id="ci-box">—</div>
+        </div>
+        <p class="law-desc">Great art requires time in flow—not admin, chaos, or fear. This operational audit measures how "alive" your craft is.</p>
+
+        <div class="calc-section">
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Flow Hours (weekly)</span>
+              <span class="input-val" id="value-flow">15</span>
+            </div>
+            <div class="reflection-q">"How many hours did I lose track of time in deep work?"</div>
+            <input type="range" min="1" max="60" value="15" class="slider" id="slider-flow">
+            <div class="slider-range"><span>1h</span><span>30h</span><span>60h</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Skill Evolution</span>
+              <span class="input-val" id="value-evolution">5</span>
+            </div>
+            <div class="reflection-q">"What skill am I noticeably better at than 6 months ago?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-evolution">
+            <div class="slider-range"><span>Stagnant</span><span>Learning</span><span>Rapid Growth</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Creative Risk</span>
+              <span class="input-val" id="value-risk">5</span>
+            </div>
+            <div class="reflection-q">"What experiment am I running that might fail?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider" id="slider-risk">
+            <div class="slider-range"><span>Playing Safe</span><span>Experimenting</span><span>Bold Risks</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Admin Load (weekly)</span>
+              <span class="input-val" id="value-admin">15</span>
+            </div>
+            <div class="reflection-q">"What operational task eats time I'd rather spend creating?"</div>
+            <input type="range" min="1" max="60" value="15" class="slider inverse" id="slider-admin">
+            <div class="slider-range"><span>1h</span><span>30h</span><span>60h</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Distraction (weekly)</span>
+              <span class="input-val" id="value-distraction">15</span>
+            </div>
+            <div class="reflection-q">"What does my screen time report say? How much was intentional?"</div>
+            <input type="range" min="1" max="60" value="15" class="slider inverse" id="slider-distraction">
+            <div class="slider-range"><span>1h</span><span>30h</span><span>60h</span></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-header">
+              <span class="input-name">Stagnation Level</span>
+              <span class="input-val" id="value-stagnation">5</span>
+            </div>
+            <div class="reflection-q">"What project am I avoiding out of fear? How long has it waited?"</div>
+            <input type="range" min="1" max="10" value="5" class="slider inverse" id="slider-stagnation">
+            <div class="slider-range"><span>Fearless</span><span>Some Blocks</span><span>Paralyzed</span></div>
+          </div>
+
+          <button class="calc-btn" id="calculate-ci-btn">Calculate Ci</button>
+
+          <div class="result-box" id="ci-result">
+            <div class="result-label">Craft Intensity</div>
+            <div class="result-num" id="ci-num">—</div>
+            <div class="result-status" id="ci-status">—</div>
+            <div class="result-explain" id="ci-explain">—</div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- The Compounding Engine Section -->
+    <section class="synthesis">
+      <h2 class="synthesis-title">The Compounding Engine</h2>
+      <p class="synthesis-subtitle">The three laws form a synergistic feedback loop. When Autonomy, Resonance, and Intensity feed each other, creative returns compound exponentially.</p>
+
+      <div class="composite-box">
+        <div class="composite-label">Creative Alpha Index</div>
+        <div class="composite-num" id="composite-num">—</div>
+        <div class="composite-status" id="composite-status">Calculate all three laws to unlock your creative profile</div>
+      </div>
+
+      <!-- Archetype Card -->
+      <div class="archetype-card" id="archetype-card">
+        <div class="archetype-badge">YOUR CREATIVE ARCHETYPE</div>
+        <h3 class="archetype-name" id="archetype-name">—</h3>
+        <div class="archetype-subtype" id="archetype-subtitle">—</div>
+
+        <div class="archetype-section">
+          <div class="archetype-section-label">Psychological Profile</div>
+          <div class="archetype-section-content" id="archetype-profile">—</div>
+        </div>
+
+        <div class="archetype-section">
+          <div class="archetype-section-label">Strategic Insight</div>
+          <div class="archetype-section-content" id="archetype-insight">—</div>
+        </div>
+      </div>
+
+      <!-- Recommendations -->
+      <div class="recs-section" id="recs-section">
+        <h3>Personalized Action Plan</h3>
+        <div id="recs-content"></div>
+      </div>
+    </section>
+
+    <!-- Export Actions -->
+    <section class="export-section">
+      <h2 class="section-title">Save & Share</h2>
+      <div class="export-actions">
+        <button class="btn btn-secondary" id="save-scores-btn">
+          <span>💾</span> Save to History
+        </button>
+        <button class="btn btn-secondary" id="export-image-btn">
+          <span>🖼️</span> Download Image
+        </button>
+        <button class="btn btn-secondary" id="export-pdf-btn">
+          <span>📄</span> Download Journal
+        </button>
+        <button class="btn btn-secondary" id="copy-link-btn">
+          <span>🔗</span> Copy Link
+        </button>
+        <button class="btn btn-secondary" id="share-twitter-btn">
+          <span>𝕏</span> Share
+        </button>
+      </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section" id="history-section">
+      <h2 class="section-title">Your History</h2>
+
+      <div class="history-actions">
+        <button class="btn btn-secondary" id="export-history-btn">Export JSON</button>
+        <button class="btn btn-danger" id="clear-history-btn">Clear All</button>
+      </div>
+
+      <div class="history-table-wrapper">
+        <table class="history-table" id="history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>AQ</th>
+              <th>Ri</th>
+              <th>Ci</th>
+              <th>Alpha</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody">
+            <!-- Populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="history-empty">
+        <div class="empty-state-icon">📊</div>
+        <p class="empty-state-text">No history yet. Calculate and save your scores to track progress.</p>
+      </div>
+    </section>
+
+    <!-- Theory Section (Visible) -->
+    <section class="theory-section">
+      <h2 class="theory-title">The Math Behind FruitHedge</h2>
+      <p class="theory-intro">All three metrics are normalized to a 0-10 scale for easy comparison. The formulas are designed to reward balance and punish extremes.</p>
+
+      <div class="theory-laws">
+        <!-- Law I -->
+        <div class="theory-law autonomy">
+          <h3><span class="theory-law-num">Law I:</span> Autonomy Quotient (AQ)</h3>
+          <p class="theory-tagline">"Freedom Creates Output"</p>
+          <div class="formula">
+            AQ = 10 × ∛[(E × S × O) / (C × 100)]
+          </div>
+          <div class="formula-vars">
+            <p><strong>E</strong> = Energy Surplus (1-10)</p>
+            <p><strong>S</strong> = Mental Space (1-10)</p>
+            <p><strong>O</strong> = Optionality (1-10)</p>
+            <p><strong>C</strong> = Constraint Load (1-10)</p>
+          </div>
+          <p class="formula-explain">The cube root ensures that all three positive factors must be present — you can't compensate for zero energy with maximum optionality.</p>
+        </div>
+
+        <!-- Law II -->
+        <div class="theory-law resonance">
+          <h3><span class="theory-law-num">Law II:</span> Resonance Index (Ri)</h3>
+          <p class="theory-tagline">"Depth Beats Breadth"</p>
+          <div class="formula">
+            Ri = [(I × Id × B) / (1 + ln(A/1000))] / 100
+          </div>
+          <div class="formula-vars">
+            <p><strong>I</strong> = Emotional Impact (1-10)</p>
+            <p><strong>Id</strong> = Identity Fit (1-10)</p>
+            <p><strong>B</strong> = Artistic Boldness (1-10)</p>
+            <p><strong>A</strong> = Audience Size (100 to 10M+)</p>
+          </div>
+          <p class="formula-explain">The logarithmic dilution factor penalizes large audiences — 10x more followers only increases dilution marginally, but 10x less depth is devastating.</p>
+        </div>
+
+        <!-- Law III -->
+        <div class="theory-law intensity">
+          <h3><span class="theory-law-num">Law III:</span> Craft Intensity (Ci)</h3>
+          <p class="theory-tagline">"Flow Is the Measure of Mastery"</p>
+          <div class="formula">
+            Ci = 10 × ∛[(F/6 × Ev × R) / (A/6 × D/6 × St)]
+          </div>
+          <div class="formula-vars">
+            <p><strong>F</strong> = Flow Hours (1-60)</p>
+            <p><strong>Ev</strong> = Skill Evolution (1-10)</p>
+            <p><strong>R</strong> = Creative Risk (1-10)</p>
+            <p><strong>A</strong> = Admin Load (1-60)</p>
+            <p><strong>D</strong> = Distraction (1-60)</p>
+            <p><strong>St</strong> = Stagnation Level (1-10)</p>
+          </div>
+          <p class="formula-explain">The ratio of fuel to drag determines intensity. High flow with low admin = compounding mastery. Low flow with high distraction = creative atrophy.</p>
+        </div>
+
+        <!-- Composite -->
+        <div class="theory-law composite">
+          <h3>Creative Alpha Index (α)</h3>
+          <p class="theory-tagline">"The geometric mean of sustainable creativity"</p>
+          <div class="formula">
+            α = ∛(AQ × Ri × Ci)
+          </div>
+          <p class="formula-explain">The geometric mean punishes weaknesses — you can't compensate for burnout with intensity. A 2 in any law drags down the entire composite.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>FRUITHEDGE v3.0 // CREATIVE PORTFOLIO MANAGER // NORMALIZED 0-10 SCALE</p>
+    <p>Stop chasing volatile trends. Invest in underlying creative fundamentals.</p>
+  </footer>
+
+  <!-- Modal for Confirmations -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Confirm Action</h3>
+        <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-message">Are you sure you want to proceed?</p>
+      </div>
+      <div class="modal-actions flex gap-md mt-lg">
+        <button class="btn btn-secondary" id="modal-cancel">Cancel</button>
+        <button class="btn btn-danger" id="modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Canvas for Image Generation -->
+  <canvas id="export-canvas" style="display: none;"></canvas>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

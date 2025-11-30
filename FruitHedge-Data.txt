@@ -1,0 +1,1245 @@
+// ============================================================
+// FRUITHEDGE DATA FILE v3.0
+// All recommendations, wellness protocols, archetypes, questions
+// ============================================================
+
+// ============================================================
+// RECOMMENDATIONS (61 total)
+// ============================================================
+
+const recommendations = [
+  // === BOOKS (28) ===
+  {
+    id: 1,
+    title: "The War of Art",
+    creator: "Steven Pressfield",
+    type: "book",
+    link: "https://www.amazon.com/dp/1936891026",
+    duration: "190 pages",
+    patterns: ["low_aq", "low_ci", "paralyzed"],
+    why: "\"Resistance\" is Pressfield's name for the force that keeps you from doing your work. If you're feeling burned out or blocked every time you sit down to create, this short kick-in-the-pants book will help you conquer procrastination and self-doubt."
+  },
+  {
+    id: 2,
+    title: "Deep Work",
+    creator: "Cal Newport",
+    type: "book",
+    link: "https://www.amazon.com/dp/1455586692",
+    duration: "304 pages",
+    patterns: ["low_ci", "plateau"],
+    why: "You're grinding hard but scatter your energy on emails and social media. Newport shows you how to reclaim your focus and build periods of intense, undistracted creation into your routine."
+  },
+  {
+    id: 3,
+    title: "So Good They Can't Ignore You",
+    creator: "Cal Newport",
+    type: "book",
+    link: "https://www.amazon.com/dp/1455509124",
+    duration: "304 pages",
+    patterns: ["underground_gem", "low_aq"],
+    why: "If your work deeply touches people but you're struggling with freedom or finances, Newport's research-backed approach will guide you to focus on building rare skills that grant you more options and autonomy."
+  },
+  {
+    id: 4,
+    title: "Real Artists Don't Starve",
+    creator: "Jeff Goins",
+    type: "book",
+    link: "https://www.amazon.com/dp/0718086260",
+    duration: "240 pages",
+    patterns: ["underground_gem", "low_aq"],
+    why: "You've created something special and resonant, but the \"starving artist\" myth haunts you. Goins debunks that myth and offers practical strategies to turn your creative passions into a sustainable living."
+  },
+  {
+    id: 5,
+    title: "Keep Going",
+    creator: "Austin Kleon",
+    type: "book",
+    link: "https://www.amazon.com/dp/0525537832",
+    duration: "224 pages",
+    patterns: ["burnout", "protect_magic", "plateau"],
+    why: "Whether you're burned out, starting out, or wildly successful, this illustrated guide dishes out 10 simple, playful practices to help you maintain your creative spark."
+  },
+  {
+    id: 6,
+    title: "The Practice: Shipping Creative Work",
+    creator: "Seth Godin",
+    type: "book",
+    link: "https://www.amazon.com/dp/0593328972",
+    duration: "272 pages",
+    patterns: ["paralyzed", "low_ci", "untapped"],
+    why: "If you have trouble actually finishing and sharing your work – maybe from fear or perfectionism – The Practice will nudge you to start shipping your art regularly."
+  },
+  {
+    id: 7,
+    title: "Essentialism",
+    creator: "Greg McKeown",
+    type: "book",
+    link: "https://www.amazon.com/dp/0804137382",
+    duration: "272 pages",
+    patterns: ["low_aq", "low_ci", "plateau"],
+    why: "If your Autonomy score is low because you say \"yes\" to everything and feel stretched in a million directions, this book will teach you to set boundaries and simplify your commitments."
+  },
+  {
+    id: 8,
+    title: "Rest: Why You Get More Done When You Work Less",
+    creator: "Alex Soojung-Kim Pang",
+    type: "book",
+    link: "https://www.amazon.com/dp/0465074871",
+    duration: "352 pages",
+    patterns: ["low_aq", "burnout", "low_ci"],
+    why: "Counterintuitive but true: working ever harder isn't the answer when you're depleted. This book shows that deliberate rest is part of doing great work – not the opposite of it."
+  },
+  {
+    id: 9,
+    title: "Burnout: The Secret to Unlocking the Stress Cycle",
+    creator: "Emily Nagoski & Amelia Nagoski",
+    type: "book",
+    link: "https://www.amazon.com/dp/1984818324",
+    duration: "304 pages",
+    patterns: ["low_aq", "burnout"],
+    why: "If you've felt overwhelmed and exhausted by everything you have to do, yet still worried you weren't doing enough – this book will help you complete the stress cycle and regain energy."
+  },
+  {
+    id: 10,
+    title: "Flow: The Psychology of Optimal Experience",
+    creator: "Mihaly Csikszentmihalyi",
+    type: "book",
+    link: "https://www.amazon.com/dp/0061339202",
+    duration: "336 pages",
+    patterns: ["low_ci", "plateau", "low_ri"],
+    why: "If you've been feeling disengaged or distracted, this classic can help you redesign your work process to invite more flow – that magical state where time flies and you do your best work."
+  },
+  {
+    id: 11,
+    title: "Art & Fear",
+    creator: "David Bayles & Ted Orland",
+    type: "book",
+    link: "https://www.amazon.com/dp/0961454733",
+    duration: "122 pages",
+    patterns: ["paralyzed", "low_ci", "low_ri"],
+    why: "This slim, compassionate book explores the difficulties that cause so many artists to give up along the way. If you have plenty of freedom but find yourself not using it because you're scared, this is the gentle kick you need."
+  },
+  {
+    id: 12,
+    title: "The Dip",
+    creator: "Seth Godin",
+    type: "book",
+    link: "https://www.amazon.com/dp/1591841666",
+    duration: "80 pages",
+    patterns: ["plateau", "low_ci"],
+    why: "Ever hit that monotonous middle of a project where progress stalls? This ultra-short read helps you identify whether you're in a Dip worth pushing through, or a cul-de-sac you should quit."
+  },
+  {
+    id: 13,
+    title: "Ego Is the Enemy",
+    creator: "Ryan Holiday",
+    type: "book",
+    link: "https://www.amazon.com/dp/1591847818",
+    duration: "256 pages",
+    patterns: ["protect_magic", "plateau", "craftsperson_no_message"],
+    why: "Sometimes the biggest threat to a creative career is your own ego. If you've been doing great and want to ensure you don't sabotage it, this book will inspire humility and continuous learning."
+  },
+  {
+    id: 14,
+    title: "Show Your Work!",
+    creator: "Austin Kleon",
+    type: "book",
+    link: "https://www.amazon.com/dp/076117897X",
+    duration: "224 pages",
+    patterns: ["low_ri", "craftsperson_no_message", "low_aq"],
+    why: "If you're putting out work that no one seems to notice, or holding back because you're shy, this book will nudge you into the light and show you how to build an audience by sharing your process."
+  },
+  {
+    id: 15,
+    title: "Big Magic",
+    creator: "Elizabeth Gilbert",
+    type: "book",
+    link: "https://www.amazon.com/dp/1594634718",
+    duration: "288 pages",
+    patterns: ["paralyzed", "low_ci", "low_ri"],
+    why: "Gilbert tackles the fear that often accompanies creativity – fear of rejection, of not being original – and gently dismantles it. You'll come away ready to live a creative life on your own terms."
+  },
+  {
+    id: 16,
+    title: "Bird by Bird",
+    creator: "Anne Lamott",
+    type: "book",
+    link: "https://www.amazon.com/dp/0385480016",
+    duration: "272 pages",
+    patterns: ["paralyzed", "low_ci", "low_ri"],
+    why: "Lamott hilariously eviscerates perfectionism and gives you permission to create something imperfect and honest – which is better than nothing at all."
+  },
+  {
+    id: 17,
+    title: "The Big Leap",
+    creator: "Gay Hendricks",
+    type: "book",
+    link: "https://www.amazon.com/dp/0061735361",
+    duration: "224 pages",
+    patterns: ["protect_magic", "plateau"],
+    why: "When you're thriving, often you unconsciously pull back or create drama. Hendricks calls this the 'Upper Limit Problem' and shows you how to break through self-imposed limits."
+  },
+  {
+    id: 18,
+    title: "The Artist's Way",
+    creator: "Julia Cameron",
+    type: "book",
+    link: "https://www.amazon.com/dp/0143129252",
+    duration: "222 pages",
+    patterns: ["low_ci", "burnout", "paralyzed"],
+    why: "This legendary 12-week course in book form has unblocked millions of creatives. If you aren't creating at all due to perfectionism or fear, this is a nurturing, structured way to get moving again."
+  },
+  {
+    id: 19,
+    title: "Steal Like an Artist",
+    creator: "Austin Kleon",
+    type: "book",
+    link: "https://www.amazon.com/dp/0761169253",
+    duration: "160 pages",
+    patterns: ["plateau", "untapped", "low_ri"],
+    why: "This modern classic will free you from the myth of originality. By following your interests and learning from others, you'll inject more YOU into your art."
+  },
+  {
+    id: 20,
+    title: "Creative Confidence",
+    creator: "Tom Kelley & David Kelley",
+    type: "book",
+    link: "https://www.amazon.com/dp/038534936X",
+    duration: "304 pages",
+    patterns: ["low_ri", "low_ci", "paralyzed"],
+    why: "Written by the founders of IDEO, this book helps you rebuild your creative self-esteem and recover the fearless creativity you had as a child."
+  },
+  {
+    id: 21,
+    title: "Peak: Secrets from the New Science of Expertise",
+    creator: "Anders Ericsson & Robert Pool",
+    type: "book",
+    link: "https://www.amazon.com/dp/0544456238",
+    duration: "336 pages",
+    patterns: ["plateau", "craftsperson_no_message", "low_ci"],
+    why: "Ever feel like you're putting in hours but not getting better? This book reveals how deliberate practice can break you out of plateaus – it's not about practicing more, but practicing better."
+  },
+  {
+    id: 22,
+    title: "Daily Rituals: How Artists Work",
+    creator: "Mason Currey",
+    type: "book",
+    link: "https://www.amazon.com/dp/0307273601",
+    duration: "304 pages",
+    patterns: ["plateau", "low_ci", "low_aq"],
+    why: "161 famous creatives' daily routines – from Kafka to Maya Angelou. You'll realize there's no one 'right' way, and struggling with balance and discipline is totally normal."
+  },
+  {
+    id: 23,
+    title: "Die Empty",
+    creator: "Todd Henry",
+    type: "book",
+    link: "https://www.amazon.com/dp/1591846994",
+    duration: "240 pages",
+    patterns: ["plateau", "craftsperson_no_message", "protect_magic"],
+    why: "Don't go to your grave with your best ideas still in you. If you have a nagging feeling you're capable of more, this book is the shove you need to make today the day."
+  },
+  {
+    id: 24,
+    title: "The Creative Act: A Way of Being",
+    creator: "Rick Rubin",
+    type: "book",
+    link: "https://www.amazon.com/dp/0593652886",
+    duration: "432 pages",
+    patterns: ["protect_magic", "plateau", "low_aq"],
+    why: "Like sitting around a cosmic campfire with Rick Rubin. This spiritual guide to cultivating a creative state of mind will help you sustain your Creative Alpha by grounding it in something deeper than metrics."
+  },
+  {
+    id: 25,
+    title: "The Almanack of Naval Ravikant",
+    creator: "Eric Jorgenson (compiling Naval Ravikant)",
+    type: "book",
+    link: "https://www.amazon.com/dp/1544514212",
+    duration: "244 pages",
+    patterns: ["low_aq", "underground_gem", "plateau"],
+    why: "Naval's philosophy on building wealth without selling your time is essential for any creative feeling financially trapped. His concept of 'specific knowledge' reframes how to monetize creativity without burnout."
+  },
+  {
+    id: 26,
+    title: "The Mamba Mentality",
+    creator: "Kobe Bryant",
+    type: "book",
+    link: "https://www.amazon.com/dp/0374201234",
+    duration: "208 pages",
+    patterns: ["craftsperson_no_message", "low_ci", "plateau"],
+    why: "Kobe's obsessive approach to mastery is both inspiring and cautionary. If your Craft Intensity is low because you lack structure or discipline, this is a blueprint for relentless improvement."
+  },
+  {
+    id: 27,
+    title: "Creativity, Inc.",
+    creator: "Ed Catmull",
+    type: "book",
+    link: "https://www.amazon.com/dp/0812993012",
+    duration: "368 pages",
+    patterns: ["plateau", "low_ci", "protect_magic"],
+    why: "Ed Catmull built Pixar into the most consistently excellent creative studio in history. Essential reading for anyone who wants to sustain creative excellence over decades."
+  },
+  {
+    id: 28,
+    title: "Turning Pro",
+    creator: "Steven Pressfield",
+    type: "book",
+    link: "https://www.amazon.com/dp/1936891034",
+    duration: "146 pages",
+    patterns: ["low_ci", "paralyzed", "plateau"],
+    why: "The sequel to The War of Art focuses on what happens after you beat Resistance: you turn pro. If you're talented but inconsistent, this book will call you out and show you the path."
+  },
+  {
+    id: 29,
+    title: "Relentless",
+    creator: "Tim Grover",
+    type: "book",
+    link: "https://www.amazon.com/dp/1476714207",
+    duration: "256 pages",
+    patterns: ["low_ci", "plateau", "craftsperson_no_message"],
+    why: "Tim Grover trained Michael Jordan and Kobe Bryant. If your Craft Intensity is low because you're soft on yourself, this book will either wake you up or piss you off."
+  },
+  {
+    id: 30,
+    title: "Can't Hurt Me",
+    creator: "David Goggins",
+    type: "book",
+    link: "https://www.amazon.com/dp/1544512287",
+    duration: "364 pages",
+    patterns: ["low_aq", "low_ci", "burnout"],
+    why: "Goggins' message is brutal: you're probably operating at 40% of your capacity. If you've been coddling yourself and you know it, this will shatter your comfort zone."
+  },
+
+  // === YOUTUBE VIDEOS (18) ===
+  {
+    id: 31,
+    title: "Make Good Art",
+    creator: "Neil Gaiman",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=ikAb-NYkseI",
+    duration: "19 min",
+    patterns: ["burnout", "paralyzed", "low_aq"],
+    why: "The ultimate creative pep talk for hard times. Gaiman's refrain – 'Make good art' – lands like a gentle command from the universe: no matter what happens, use it as fuel."
+  },
+  {
+    id: 32,
+    title: "The Gap",
+    creator: "Ira Glass",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=91FQKciKfHI",
+    duration: "2 min",
+    patterns: ["plateau", "low_ci", "low_ri"],
+    why: "Only a couple minutes long, but life-changing. Ira Glass explains why your output doesn't yet live up to your taste – and the only way to close the gap is to keep creating."
+  },
+  {
+    id: 33,
+    title: "Naval Ravikant on How to Get Rich",
+    creator: "Naval Ravikant",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=1-TZqOsVCNM",
+    duration: "2 hr 17 min",
+    patterns: ["low_aq", "underground_gem", "plateau"],
+    why: "Naval explains leverage, equity, and why 'productizing yourself' is the path to freedom. Essential for any creative who wants their art to fund their life, not consume it."
+  },
+  {
+    id: 34,
+    title: "Jerry Seinfeld on How to Write a Joke",
+    creator: "Tim Ferriss Show",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=yNTmFORn3xQ",
+    duration: "1 hr 30 min",
+    patterns: ["low_ci", "plateau", "craftsperson_no_message"],
+    why: "Seinfeld's approach to comedy writing is surgical. If your work feels sloppy or you lack a consistent creative process, Jerry's discipline is a masterclass."
+  },
+  {
+    id: 35,
+    title: "Dave Chappelle on Walking Away from $50 Million",
+    creator: "Inside the Actors Studio",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=hzlvDV3mpZw",
+    duration: "45 min",
+    patterns: ["protect_magic", "underground_gem", "low_aq"],
+    why: "Chappelle walked away from the biggest deal in comedy history because it was toxic to his creativity. A masterclass in protecting your artistic soul when the industry wants to own it."
+  },
+  {
+    id: 36,
+    title: "John Cleese on Creativity in Management",
+    creator: "John Cleese",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=Pb5oIIPO62g",
+    duration: "36 min",
+    patterns: ["low_ci", "low_aq", "plateau"],
+    why: "Cleese explains 'open mode' (playful, creative) vs 'closed mode' (anxious, executive). If you can't seem to access flow, this framework gives you practical methods."
+  },
+  {
+    id: 37,
+    title: "Pharrell Williams on Creativity and Collaboration",
+    creator: "Various",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=GhCXAiNz9Jo",
+    duration: "20 min",
+    patterns: ["low_ri", "craftsperson_no_message", "plateau"],
+    why: "Pharrell's approach is pure feeling over formula. If your work is technically proficient but doesn't move people, his philosophy might unlock what's missing."
+  },
+  {
+    id: 38,
+    title: "Tyler, the Creator on Finding Your Voice",
+    creator: "Tyler, the Creator",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=DVuYSWp5ISO",
+    duration: "15 min",
+    patterns: ["low_ri", "plateau", "underground_gem"],
+    why: "Tyler went from banned provocateur to Grammy winner without compromising his weirdness. Proof that radical authenticity finds its audience."
+  },
+  {
+    id: 39,
+    title: "David Lynch on Creativity and Meditation",
+    creator: "David Lynch",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=KVwVR_0F5eg",
+    duration: "20 min",
+    patterns: ["low_aq", "low_ci", "protect_magic"],
+    why: "Lynch credits Transcendental Meditation with everything in his creative life. If your mental space is cluttered or you can't access deep creative states, his calm conviction might inspire you."
+  },
+  {
+    id: 40,
+    title: "Quincy Jones: The Big Interview",
+    creator: "Various",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=bh8R9bRz50c",
+    duration: "45 min",
+    patterns: ["protect_magic", "plateau", "craftsperson_no_message"],
+    why: "70 years of wisdom from someone who worked with Sinatra to Michael Jackson. If you want perspective on building a career that lasts decades, Quincy's insights are irreplaceable."
+  },
+  {
+    id: 41,
+    title: "How Billie Eilish Creates Music",
+    creator: "Billie Eilish & Finneas",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=kpxBGJBOQSE",
+    duration: "15 min",
+    patterns: ["low_ri", "low_aq", "plateau"],
+    why: "They made a Grammy-winning album in a bedroom. If your Autonomy is low because you think you need more resources – watch this. Constraints breed creativity."
+  },
+  {
+    id: 42,
+    title: "Hayao Miyazaki on Creative Exhaustion",
+    creator: "Studio Ghibli",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=tqVqU3RGBqg",
+    duration: "20 min",
+    patterns: ["burnout", "low_aq", "protect_magic"],
+    why: "Miyazaki pours his entire soul into every frame – and then collapses from exhaustion. Beautiful and terrifying. A powerful mirror for anyone who takes their craft seriously."
+  },
+  {
+    id: 43,
+    title: "Virgil Abloh's Last Lecture",
+    creator: "Virgil Abloh",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=biFlrzTJets",
+    duration: "1 hr 30 min",
+    patterns: ["plateau", "low_ri", "untapped"],
+    why: "Virgil's '3% rule' and frameworks for sampling and remixing are essential for any creative feeling stuck or derivative. How to honor influences while creating something undeniably yours."
+  },
+  {
+    id: 44,
+    title: "Ira Glass on Storytelling (Full 4-Part Series)",
+    creator: "Ira Glass",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=5pFI9UuC_fc",
+    duration: "20 min",
+    patterns: ["low_ri", "low_ci", "plateau"],
+    why: "The two building blocks of storytelling: the anecdote and the moment of reflection. Simple framework, profound impact. Required viewing for anyone who communicates through narrative."
+  },
+  {
+    id: 45,
+    title: "Nipsey Hussle on Marathon Mentality",
+    creator: "Nipsey Hussle",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=7_7Rd9urT0Y",
+    duration: "25 min",
+    patterns: ["low_aq", "plateau", "underground_gem"],
+    why: "Nipsey spent a decade grinding independently before mainstream success. If you're impatient, his philosophy – 'the marathon continues' – is a reminder that sustainable success is built brick by brick."
+  },
+  {
+    id: 46,
+    title: "Rick Rubin's 60 Minutes Interview",
+    creator: "Rick Rubin / CBS",
+    type: "video",
+    link: "https://www.youtube.com/watch?v=sE1teB5bN-w",
+    duration: "13 min",
+    patterns: ["protect_magic", "plateau", "low_aq"],
+    why: "Rubin emphasizes intuition, listening, and getting out of the way of the art. If you're doing great but fear overthinking might ruin it, this will remind you to trust the process."
+  },
+
+  // === TED TALKS (6) ===
+  {
+    id: 47,
+    title: "The Art of Asking",
+    creator: "Amanda Palmer",
+    type: "ted",
+    link: "https://www.ted.com/talks/amanda_palmer_the_art_of_asking",
+    duration: "14 min",
+    patterns: ["craftsperson_no_message", "low_ri", "low_aq"],
+    why: "Palmer shows that 'when we really see each other, we want to help each other.' If you're great at your craft but feel disconnected from your audience, this talk is a revelation."
+  },
+  {
+    id: 48,
+    title: "Success, Failure and the Drive to Keep Creating",
+    creator: "Elizabeth Gilbert",
+    type: "ted",
+    link: "https://www.ted.com/talks/elizabeth_gilbert_success_failure_and_the_drive_to_keep_creating",
+    duration: "7 min",
+    patterns: ["protect_magic", "burnout"],
+    why: "Gilbert realized that in both extreme success and extreme failure, the solution was the same: return to the work she loves. Powerful if you're riding high or have face-planted."
+  },
+  {
+    id: 49,
+    title: "The Power of Vulnerability",
+    creator: "Brené Brown",
+    type: "ted",
+    link: "https://www.ted.com/talks/brene_brown_the_power_of_vulnerability",
+    duration: "20 min",
+    patterns: ["low_ri", "low_aq", "craftsperson_no_message"],
+    why: "Vulnerability is the birthplace of creativity and genuine connection. If you've been creating with a guarded heart, this talk might crack you open in the best way."
+  },
+  {
+    id: 50,
+    title: "Inside the Mind of a Master Procrastinator",
+    creator: "Tim Urban",
+    type: "ted",
+    link: "https://www.ted.com/talks/tim_urban_inside_the_mind_of_a_master_procrastinator",
+    duration: "14 min",
+    patterns: ["low_ci", "paralyzed", "plateau"],
+    why: "Hilarious and eye-opening. The Instant Gratification Monkey vs. the Panic Monster – you'll see yourself and feel motivated to take action now rather than at 3AM on deadline day."
+  },
+  {
+    id: 51,
+    title: "Great Design is Serious, Not Solemn",
+    creator: "Paula Scher",
+    type: "ted",
+    link: "https://www.ted.com/talks/paula_scher_great_design_is_serious_not_solemn",
+    duration: "18 min",
+    patterns: ["plateau", "craftsperson_no_message", "protect_magic"],
+    why: "Paula Scher recounts how early success led her into a creative rut – and how she broke free by embracing 'serious play.' A case study in avoiding creative complacency."
+  },
+  {
+    id: 52,
+    title: "J.K. Rowling: The Fringe Benefits of Failure",
+    creator: "J.K. Rowling",
+    type: "ted",
+    link: "https://www.youtube.com/watch?v=wHGqp8lz36c",
+    duration: "20 min",
+    patterns: ["burnout", "low_aq", "low_ri"],
+    why: "Rowling went from rock-bottom to massive success. 'Rock bottom became the solid foundation on which I rebuilt my life.' Permission to fail – and assurance you'll be okay."
+  },
+
+  // === PODCAST EPISODES (5) ===
+  {
+    id: 53,
+    title: "Creative Pep Talk: How to Remedy Creative Burnout",
+    creator: "Andy J. Pizza",
+    type: "podcast",
+    link: "https://open.spotify.com/episode/4dsRr7AzDqi5TgnsC8KPAN",
+    duration: "53 min",
+    patterns: ["burnout", "low_aq", "low_ci"],
+    why: "If you wake up dreading the creative work that used to excite you, Andy's tips – delivered with humor and heart – will resonate. Easy listening when you're too fried to read."
+  },
+  {
+    id: 54,
+    title: "Magic Lessons: Brené Brown on Big Strong Magic",
+    creator: "Elizabeth Gilbert with Brené Brown",
+    type: "podcast",
+    link: "https://podcasts.apple.com/us/podcast/magic-lessons-se-1-ep-12-brene-brown-on-big-strong-magic/id1138081319?i=1000373139417",
+    duration: "35 min",
+    patterns: ["underground_gem", "low_ri", "burnout"],
+    why: "Two creative powerhouses discuss staying wholehearted in creativity. If you're resonating with audiences but personally running on empty, this discussion will refill your cup."
+  },
+  {
+    id: 55,
+    title: "Design Matters: Milton Glaser Interview",
+    creator: "Debbie Millman with Milton Glaser",
+    type: "podcast",
+    link: "https://soundcloud.com/designmatters/design-matters-with-debbie-91",
+    duration: "55 min",
+    patterns: ["protect_magic", "plateau", "craftsperson_no_message"],
+    why: "Milton Glaser – creator of 'I ♥ NY' – shares 80+ years of wisdom about staying creative over the long haul. How to keep the flame alive by staying intellectually engaged and humble."
+  },
+  {
+    id: 56,
+    title: "Tim Ferriss: Steven Pressfield on Overcoming Resistance",
+    creator: "Tim Ferriss with Steven Pressfield",
+    type: "podcast",
+    link: "https://podcasts.apple.com/ca/podcast/501-steven-pressfield-how-to-overcome-self-sabotage/id863897795?i=1000510784746",
+    duration: "1 hr 54 min",
+    patterns: ["low_ci", "paralyzed", "low_aq"],
+    why: "If The War of Art lit a fire under you, this in-depth conversation will stoke it into a steady blaze. Two hours of real talk on the creative journey and mental toughness."
+  },
+
+  // === DOCUMENTARIES (4) ===
+  {
+    id: 57,
+    title: "Jiro Dreams of Sushi",
+    creator: "David Gelb",
+    type: "documentary",
+    link: "https://www.netflix.com/title/70181716",
+    duration: "1 hr 21 min",
+    patterns: ["low_ci", "plateau", "protect_magic"],
+    why: "Jiro Ono is 85 and still trying to make perfect sushi. A meditation on devotion to craft. You'll finish this wanting to go deeper into your craft, not wider."
+  },
+  {
+    id: 58,
+    title: "Everything Is a Remix",
+    creator: "Kirby Ferguson",
+    type: "documentary",
+    link: "https://www.everythingisaremix.info/watch",
+    duration: "37 min",
+    patterns: ["low_ri", "plateau", "low_ci"],
+    why: "Nothing is completely original – and that's okay. If you feel paralyzed trying to be 100% novel, this will free you to embrace influence and make your remixes richer."
+  },
+  {
+    id: 59,
+    title: "PressPausePlay",
+    creator: "Viktor Vaulkunsson & David Dworsky",
+    type: "documentary",
+    link: "https://vimeo.com/34608191",
+    duration: "1 hr 20 min",
+    patterns: ["low_ri", "craftsperson_no_message", "burnout"],
+    why: "Examines the digital revolution in creative industries. If you're feeling disillusioned or making work just to appease algorithms, this will rekindle your commitment to authenticity."
+  },
+  {
+    id: 60,
+    title: "Exit Through the Gift Shop",
+    creator: "Banksy",
+    type: "documentary",
+    link: "https://www.amazon.com/Exit-Through-Gift-Shop-Banksy/dp/B004C04P9E",
+    duration: "1 hr 27 min",
+    patterns: ["craftsperson_no_message", "low_ri", "untapped"],
+    why: "A wild cautionary tale about art and authenticity. If your Resonance is low because you've been focusing on style over substance, this film will hit you in the gut."
+  },
+
+  // === FILM (1) ===
+  {
+    id: 61,
+    title: "Whiplash",
+    creator: "Damien Chazelle",
+    type: "film",
+    link: "https://www.amazon.com/Whiplash-Miles-Teller/dp/B00R9AKTEM",
+    duration: "1 hr 47 min",
+    patterns: ["hustler", "craftsperson_no_message", "burnout"],
+    why: "A cautionary tale of the Hustler's path. Forces you to ask: Is destroying myself for applause worth it? Watching this might prompt you to recalibrate your approach to practice and success."
+  }
+];
+
+// ============================================================
+// WELLNESS PROTOCOLS (45 total)
+// ============================================================
+
+const protocols = [
+  // === PHYSICAL / ENERGY (10) ===
+  {
+    id: 1,
+    name: "Morning Walk",
+    category: "physical",
+    prescription: "15-minute walk within 1 hour of waking. No phone.",
+    why: "Movement clears mental fog and builds energy before demands hit.",
+    patterns: ["low_aq", "low_energy", "burnout"]
+  },
+  {
+    id: 2,
+    name: "Step Tracking",
+    category: "physical",
+    prescription: "Aim for 7,000 steps daily. Track it.",
+    why: "What gets measured gets managed. Movement compounds into energy.",
+    patterns: ["low_aq", "low_ci", "plateau"]
+  },
+  {
+    id: 3,
+    name: "Lemon Water",
+    category: "physical",
+    prescription: "Warm water with half a lemon, first thing.",
+    why: "Hydration + vitamin C before caffeine. Your liver will thank you.",
+    patterns: ["low_aq", "burnout"]
+  },
+  {
+    id: 4,
+    name: "Sleep by 11",
+    category: "physical",
+    prescription: "Non-negotiable lights-out by 11pm.",
+    why: "Every hour before midnight is worth two after. Protect your sleep.",
+    patterns: ["low_aq", "low_ci", "burnout"]
+  },
+  {
+    id: 5,
+    name: "No Screens After 9pm",
+    category: "physical",
+    prescription: "All screens off by 9pm. Read, stretch, or talk.",
+    why: "Blue light kills melatonin. Your sleep quality affects tomorrow's creativity.",
+    patterns: ["low_aq", "low_ci"]
+  },
+  {
+    id: 6,
+    name: "Cold Shower Finish",
+    category: "physical",
+    prescription: "Last 30 seconds of shower on cold.",
+    why: "Builds stress tolerance. If you can handle this, you can handle creative discomfort.",
+    patterns: ["low_ci", "paralyzed"]
+  },
+  {
+    id: 7,
+    name: "Stretch for 5",
+    category: "physical",
+    prescription: "5 minutes of stretching before deep work.",
+    why: "Body tension becomes mental tension. Release it first.",
+    patterns: ["low_ci", "low_aq"]
+  },
+  {
+    id: 8,
+    name: "Hydration Check",
+    category: "physical",
+    prescription: "8 glasses of water minimum. Track it.",
+    why: "Dehydration causes brain fog. Most creatives are chronically dehydrated.",
+    patterns: ["low_ci", "low_aq", "plateau"]
+  },
+  {
+    id: 9,
+    name: "Sunlight in Eyes",
+    category: "physical",
+    prescription: "10 minutes of outdoor light within 1 hour of waking.",
+    why: "Sets your circadian rhythm. Energy begets energy.",
+    patterns: ["low_aq", "burnout"]
+  },
+  {
+    id: 10,
+    name: "Movement Snack",
+    category: "physical",
+    prescription: "2 minutes of movement every hour. Set a timer.",
+    why: "Sitting is the new smoking. Brief movement resets focus.",
+    patterns: ["low_ci", "plateau"]
+  },
+
+  // === MENTAL SPACE (10) ===
+  {
+    id: 11,
+    name: "Brain Dump",
+    category: "mental",
+    prescription: "Write everything in your head onto paper. Empty the RAM.",
+    why: "Your mind is for having ideas, not holding them. Get them out.",
+    patterns: ["low_aq", "low_space"]
+  },
+  {
+    id: 12,
+    name: "One Task Tomorrow",
+    category: "mental",
+    prescription: "Before bed, write the ONE thing for tomorrow.",
+    why: "Decision fatigue kills mornings. Decide tonight.",
+    patterns: ["low_ci", "low_aq"]
+  },
+  {
+    id: 13,
+    name: "2-Minute Meditation",
+    category: "mental",
+    prescription: "Not 20 minutes. Just 2. Breathe.",
+    why: "The best meditation is the one you'll actually do.",
+    patterns: ["low_aq", "low_space", "burnout"]
+  },
+  {
+    id: 14,
+    name: "No Phone First Hour",
+    category: "mental",
+    prescription: "Wake up, don't check anything for 60 minutes.",
+    why: "Your morning sets your day. Don't give it to other people's priorities.",
+    patterns: ["low_aq", "low_ci"]
+  },
+  {
+    id: 15,
+    name: "Weekly Review",
+    category: "mental",
+    prescription: "30 minutes Sunday to review the week and plan the next.",
+    why: "Reflection is how you compound learning. Don't skip it.",
+    patterns: ["plateau", "low_ci"]
+  },
+  {
+    id: 16,
+    name: "Gratitude Note",
+    category: "mental",
+    prescription: "Write one thing you're grateful for. Daily.",
+    why: "Gratitude shifts focus from scarcity to abundance. Creativity follows.",
+    patterns: ["low_aq", "burnout", "low_ri"]
+  },
+  {
+    id: 17,
+    name: "Inbox Zero Session",
+    category: "mental",
+    prescription: "30 minutes to clear email completely. Then close it.",
+    why: "Email is other people's to-do list. Process it, then protect your time.",
+    patterns: ["low_aq", "low_ci"]
+  },
+  {
+    id: 18,
+    name: "Unsubscribe Purge",
+    category: "mental",
+    prescription: "Unsubscribe from 10 emails today.",
+    why: "Every unnecessary input is a decision drain. Reduce the noise.",
+    patterns: ["low_aq", "low_space"]
+  },
+  {
+    id: 19,
+    name: "App Delete",
+    category: "mental",
+    prescription: "Remove one time-wasting app from your phone.",
+    why: "The app will survive without you. Will your creativity survive with it?",
+    patterns: ["low_ci", "plateau"]
+  },
+  {
+    id: 20,
+    name: "Notification Audit",
+    category: "mental",
+    prescription: "Turn off all non-essential notifications.",
+    why: "Every buzz is a broken thought. Protect your attention.",
+    patterns: ["low_ci", "low_aq"]
+  },
+
+  // === CREATIVE PRACTICE (10) ===
+  {
+    id: 21,
+    name: "15 Minutes of Play",
+    category: "creative",
+    prescription: "Create something with zero stakes. No publishing.",
+    why: "Play is where creativity lives. No pressure, no performance.",
+    patterns: ["low_ri", "low_ci", "paralyzed"]
+  },
+  {
+    id: 22,
+    name: "Consume Intentionally",
+    category: "creative",
+    prescription: "Watch/read ONE thing fully. No multitasking.",
+    why: "Fragmented consumption creates fragmented output. Go deep.",
+    patterns: ["low_ri", "plateau"]
+  },
+  {
+    id: 23,
+    name: "Copy Work",
+    category: "creative",
+    prescription: "Hand-copy a piece of writing or art you admire.",
+    why: "Copying teaches what reading can't. Feel how the masters work.",
+    patterns: ["low_ci", "plateau", "low_ri"]
+  },
+  {
+    id: 24,
+    name: "Analog Hour",
+    category: "creative",
+    prescription: "One hour of creative work with no digital tools.",
+    why: "Screens enable, but they also distract. Try creating without them.",
+    patterns: ["low_ci", "paralyzed"]
+  },
+  {
+    id: 25,
+    name: "Ship Something Small",
+    category: "creative",
+    prescription: "Publish one tiny thing this week. Imperfect is fine.",
+    why: "Shipping is a muscle. Train it with small reps.",
+    patterns: ["low_ci", "paralyzed", "low_ri"]
+  },
+  {
+    id: 26,
+    name: "Call a Creative Friend",
+    category: "creative",
+    prescription: "15-minute voice call with another creative. Not text.",
+    why: "Isolation breeds stagnation. Connection breeds ideas.",
+    patterns: ["low_ri", "burnout", "plateau"]
+  },
+  {
+    id: 27,
+    name: "Visit a Museum or Park",
+    category: "creative",
+    prescription: "Change your visual input. Go somewhere that feeds you.",
+    why: "You can't pour from an empty cup. Fill it with beauty.",
+    patterns: ["low_ri", "burnout", "plateau"]
+  },
+  {
+    id: 28,
+    name: "Read 20 Pages",
+    category: "creative",
+    prescription: "Physical book. No Kindle. 20 pages minimum.",
+    why: "Books are concentrated thought. Absorb someone else's perspective.",
+    patterns: ["low_ri", "plateau", "low_ci"]
+  },
+  {
+    id: 29,
+    name: "Learn One New Thing",
+    category: "creative",
+    prescription: "Watch a tutorial on a skill adjacent to yours.",
+    why: "Cross-pollination is where innovation lives.",
+    patterns: ["plateau", "low_ci"]
+  },
+  {
+    id: 30,
+    name: "Document Your Process",
+    category: "creative",
+    prescription: "Take photos or notes of your work-in-progress.",
+    why: "Documentation forces reflection. Share it or keep it – but capture it.",
+    patterns: ["low_ri", "plateau"]
+  },
+
+  // === CONSTRAINT REDUCTION (10) ===
+  {
+    id: 31,
+    name: "Say No Once",
+    category: "constraint",
+    prescription: "Decline one request this week.",
+    why: "Every yes is a no to something else. Protect your creative time.",
+    patterns: ["low_aq", "high_constraint"]
+  },
+  {
+    id: 32,
+    name: "Cancel One Thing",
+    category: "constraint",
+    prescription: "Remove one commitment from your calendar.",
+    why: "Subtraction creates space. What can you eliminate?",
+    patterns: ["low_aq", "burnout"]
+  },
+  {
+    id: 33,
+    name: "Automate One Task",
+    category: "constraint",
+    prescription: "Bill pay, email filter, recurring order – anything.",
+    why: "Every automated task is a freed decision. Compound the savings.",
+    patterns: ["low_aq", "low_ci"]
+  },
+  {
+    id: 34,
+    name: "Delegate One Task",
+    category: "constraint",
+    prescription: "Pay someone to do something you hate.",
+    why: "Your time has value. Spend it on what only you can do.",
+    patterns: ["low_aq", "hustler"]
+  },
+  {
+    id: 35,
+    name: "Batch Your Admin",
+    category: "constraint",
+    prescription: "All emails/calls in one 2-hour block. Not scattered.",
+    why: "Context switching kills creativity. Batch the boring stuff.",
+    patterns: ["low_ci", "low_aq"]
+  },
+  {
+    id: 36,
+    name: "Set Office Hours",
+    category: "constraint",
+    prescription: "Tell people when you're available. Stick to it.",
+    why: "Availability on demand kills deep work. Set boundaries.",
+    patterns: ["low_aq", "low_ci"]
+  },
+  {
+    id: 37,
+    name: "Financial Check",
+    category: "constraint",
+    prescription: "15 minutes reviewing your money situation.",
+    why: "Financial anxiety drains creative energy. Face it to free yourself.",
+    patterns: ["low_aq", "underground_gem"]
+  },
+  {
+    id: 38,
+    name: "Eliminate One Subscription",
+    category: "constraint",
+    prescription: "Cancel something you don't use.",
+    why: "Subscriptions are tiny energy leaks. Plug them.",
+    patterns: ["low_aq", "plateau"]
+  },
+  {
+    id: 39,
+    name: "Clean One Space",
+    category: "constraint",
+    prescription: "Desk, room, or digital folder. Just one.",
+    why: "External order creates internal clarity.",
+    patterns: ["low_aq", "low_space", "low_ci"]
+  },
+  {
+    id: 40,
+    name: "Set a Boundary",
+    category: "constraint",
+    prescription: "Tell someone what you need from them.",
+    why: "Unspoken needs become resentment. Speak up.",
+    patterns: ["low_aq", "burnout"]
+  },
+
+  // === FRUIT PROTOCOLS (5) ===
+  {
+    id: 41,
+    name: "Apple Baseline",
+    category: "fruit",
+    prescription: "Eat an apple. Sometimes the answer is simple.",
+    why: "Before optimizing, try the basics. Nutrition affects cognition.",
+    patterns: ["all"]
+  },
+  {
+    id: 42,
+    name: "Banana Before Flow",
+    category: "fruit",
+    prescription: "Eat a banana before deep work session.",
+    why: "Potassium for focus. Quick energy without the crash.",
+    patterns: ["low_ci"]
+  },
+  {
+    id: 43,
+    name: "Citrus Morning",
+    category: "fruit",
+    prescription: "Orange or grapefruit with breakfast.",
+    why: "Vitamin C, hydration, and a sensory wake-up call.",
+    patterns: ["low_aq", "burnout"]
+  },
+  {
+    id: 44,
+    name: "Berry Snack",
+    category: "fruit",
+    prescription: "Handful of blueberries in the afternoon.",
+    why: "Brain food. Antioxidants for cognitive function.",
+    patterns: ["low_ci", "plateau"]
+  },
+  {
+    id: 45,
+    name: "Melon Hydration",
+    category: "fruit",
+    prescription: "Watermelon when you've been grinding.",
+    why: "92% water. When you're too busy to drink, eat your hydration.",
+    patterns: ["hustler", "burnout"]
+  }
+];
+
+// ============================================================
+// ARCHETYPES (14 total)
+// ============================================================
+
+const archetypes = [
+  {
+    id: "burnout",
+    name: "The Burnout",
+    subtitle: "System Failure",
+    check: (s) => s.aq < 4 && s.ri < 4 && s.ci < 4,
+    profile: "Everything is failing simultaneously. You're depleted, disconnected, and not producing meaningful work. This isn't a productivity problem – it's a crisis.",
+    insight: "Stop everything. Recovery is the only priority. No new projects, no commitments, no optimization. Rest, then rebuild one law at a time."
+  },
+  {
+    id: "hustler",
+    name: "The Hustler",
+    subtitle: "Grinding Without Freedom",
+    check: (s) => s.aq < 4 && s.ci >= 6,
+    profile: "High output, low autonomy. You're producing constantly but feel trapped – by clients, money, obligations, or your own standards. The work is happening, but at what cost?",
+    insight: "Your intensity is your asset and your trap. The next move isn't more output – it's strategic reduction. What one constraint could you eliminate this month?"
+  },
+  {
+    id: "underground_gem",
+    name: "The Underground Gem",
+    subtitle: "Resonance Without Freedom",
+    check: (s) => s.ri >= 6 && s.aq < 4,
+    profile: "Your work deeply connects with people, but you're strangled by constraints. Financial pressure, obligations, or external demands prevent you from fully capitalizing on your resonance.",
+    insight: "You have proof your work matters. Now monetize that proof. Study leverage, build systems, or find partners who can convert your resonance into autonomy."
+  },
+  {
+    id: "algorithm_slave",
+    name: "The Algorithm Slave",
+    subtitle: "Output Without Meaning",
+    check: (s) => s.ci >= 6 && s.ri < 4,
+    profile: "You know how to produce. Prolific, consistent, technically competent. But you're optimizing for metrics at the expense of soul. High output, low impact.",
+    insight: "Create one thing this month that will TANK algorithmically but make you proud in 10 years. The anti-viral piece. Find what you're avoiding saying."
+  },
+  {
+    id: "paralyzed_dreamer",
+    name: "The Paralyzed Dreamer",
+    subtitle: "Freedom Without Action",
+    check: (s) => s.aq >= 6 && s.ci < 4,
+    profile: "You have the freedom to create – time, resources, optionality – but you're not using it. Perfectionism, fear, or endless preparation keeps you from actually shipping work.",
+    insight: "Freedom without output is just comfortable stagnation. Start with the smallest possible action. Ship something embarrassingly small. Motion creates clarity."
+  },
+  {
+    id: "craftsperson",
+    name: "The Craftsperson",
+    subtitle: "Skill Without Message",
+    check: (s) => s.ci >= 7 && s.ri < 5 && s.aq >= 4,
+    profile: "Technical mastery is evident. You can execute at a high level. But the work lacks distinctive voice, emotional depth, or clear perspective. Competent, not compelling.",
+    insight: "What would you make if no one was watching? The skills are there – now add the vulnerability. Your next evolution is personal, not technical."
+  },
+  {
+    id: "cult_leader",
+    name: "The Cult Leader",
+    subtitle: "Deep Connection, Narrow Reach",
+    check: (s) => s.ri >= 7 && s.ci >= 4 && s.aq >= 4,
+    profile: "Your audience would follow you anywhere. Deep loyalty, strong identity fit, genuine impact. You've solved for resonance. Now the question is scale without dilution.",
+    insight: "Protect what made them love you in the first place. Scale slowly. Every expansion should deepen the core, not water it down."
+  },
+  {
+    id: "free_agent",
+    name: "The Free Agent",
+    subtitle: "Options Without Direction",
+    check: (s) => s.aq >= 7 && s.ri < 6 && s.ci < 6,
+    profile: "Maximum optionality, moderate output and impact. You could do anything, so you're not fully committing to something. Freedom is your asset and your excuse.",
+    insight: "Optionality without commitment is just expensive indecision. Pick a direction, go deep for 6 months, evaluate. You can always pivot – but first, commit."
+  },
+  {
+    id: "professional",
+    name: "The Professional",
+    subtitle: "Consistent Across All Fronts",
+    check: (s) => s.aq >= 5 && s.aq <= 7 && s.ri >= 5 && s.ri <= 7 && s.ci >= 5 && s.ci <= 7,
+    profile: "Solid across the board. No critical weaknesses, no exceptional strengths. Sustainable, competent, making a living. The question is whether you're satisfied here.",
+    insight: "You're in the 'good enough' zone. To break through, you'll need to temporarily destabilize – push one law to exceptional while maintaining the others."
+  },
+  {
+    id: "thriving",
+    name: "The Thriving Creator",
+    subtitle: "All Systems Healthy",
+    check: (s) => s.aq >= 7 && s.ri >= 7 && s.ci >= 7,
+    profile: "Freedom, resonance, and craft intensity all aligned. This is rare. You're in the compounding phase where creative returns build on themselves.",
+    insight: "Your job is protection, not expansion. Say no more than yes. Guard your time, your energy, and the conditions that created this state."
+  },
+  {
+    id: "legacy",
+    name: "The Legacy Builder",
+    subtitle: "Generational Impact",
+    check: (s) => s.alpha >= 8,
+    profile: "You've transcended personal success. Creating not for validation or money, but because you're the only one who can make THIS thing. Work that will outlast you.",
+    insight: "Document everything. Teach. Build systems that can carry your vision forward. Your creativity is a public good now."
+  },
+  {
+    id: "comeback",
+    name: "The Comeback Arc",
+    subtitle: "Rising From the Ashes",
+    check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 3 && s.ci < 5,
+    profile: "You had a moment, then disappeared. Now returning with more wisdom, clearer vision, and the freedom to create on your terms. The second act is forming.",
+    insight: "Your superpower is perspective earned through failure. The comeback doesn't need to be bigger – just truer. Create from clarity, not desperation."
+  },
+  {
+    id: "chaos",
+    name: "The Chaos Creator",
+    subtitle: "Thriving in Instability",
+    check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5,
+    profile: "You create BECAUSE of chaos, not despite it. Need pressure, constraints, urgency. Your best work comes from crisis. Sustainable? Questionable.",
+    insight: "Find controlled chaos. Manufactured deadlines, artificial constraints. You can generate urgency from discipline instead of waiting for desperation."
+  },
+  {
+    id: "explorer",
+    name: "The Explorer",
+    subtitle: "In Transition",
+    check: (s) => true, // Default fallback
+    profile: "Your scores are mixed. You're experimenting, learning, finding your way. Some things work, others don't. You haven't settled into a pattern yet.",
+    insight: "Track what energizes versus drains you. The Explorer becomes The Professional when you start saying no to experiments that don't serve you."
+  }
+];
+
+// ============================================================
+// REFLECTION QUESTIONS
+// ============================================================
+
+const reflectionQuestions = {
+  energy: {
+    low: "You're running on fumes. What's draining you most?",
+    mid: "Functional but not thriving. Where does energy leak?",
+    high: "Strong reserves. How do you protect this?"
+  },
+  space: {
+    low: "Your mind is full. What thought keeps intruding?",
+    mid: "Some clarity, some noise. What creates peace?",
+    high: "Clear head. What practices maintain this?"
+  },
+  optionality: {
+    low: "Feeling trapped. What door could you open?",
+    mid: "Some options. Which unused option matters most?",
+    high: "Many paths available. Are you using this freedom?"
+  },
+  constraint: {
+    low: "Light obligations. Protect this fiercely.",
+    mid: "Moderate load. What's non-essential?",
+    high: "Heavy constraints. What must change first?"
+  },
+  impact: {
+    low: "Forgettable work. When did you last move someone?",
+    mid: "Some impact. What made your best work hit?",
+    high: "Deep resonance. How do you maintain authenticity at scale?"
+  },
+  identity: {
+    low: "Generic appeal. Who specifically needs YOUR work?",
+    mid: "Some specificity. Could you niche down further?",
+    high: "Perfect fit. Your audience feels seen."
+  },
+  boldness: {
+    low: "Playing safe. What would you make if no one judged?",
+    mid: "Some risks. What's the scary project you're avoiding?",
+    high: "Fearless. Remember why you started taking risks."
+  },
+  audience: {
+    small: "Intimate audience. Depth over breadth.",
+    medium: "Growing reach. Maintain connection as you scale.",
+    large: "Mass audience. How do you stay personal at scale?"
+  },
+  flow: {
+    low: "Minimal flow. What interrupts you most?",
+    mid: "Decent focus. Could you protect 2 more hours?",
+    high: "Deep immersion. Are you also resting?"
+  },
+  evolution: {
+    low: "Stagnant. What skill would change everything?",
+    mid: "Growing. Where's your next edge?",
+    high: "Rapid evolution. Document what's working."
+  },
+  risk: {
+    low: "Too safe. What experiment could you run?",
+    mid: "Some experimentation. Push one boundary this week.",
+    high: "Bold moves. Balance risk with completion."
+  },
+  admin: {
+    low: "Lean operations. Keep it this way.",
+    mid: "Moderate admin. What could you automate?",
+    high: "Drowning in logistics. Hire help or cut scope."
+  },
+  distraction: {
+    low: "Focused. What boundaries protect this?",
+    mid: "Some leakage. Check your screen time report.",
+    high: "Major distraction problem. Your phone is the enemy."
+  },
+  stagnation: {
+    low: "Shipping regularly. Momentum is your friend.",
+    mid: "Some paralysis. What's blocking the current project?",
+    high: "Frozen. Start with the smallest possible action."
+  }
+};
+
+// ============================================================
+// SCORE INTERPRETATIONS
+// ============================================================
+
+const scoreInterpretations = {
+  critical: { min: 0, max: 1.9, label: "Critical", color: "#ff6b6b", description: "Emergency. Address immediately." },
+  struggling: { min: 2, max: 3.9, label: "Struggling", color: "#ff9b71", description: "Significant intervention needed." },
+  functional: { min: 4, max: 5.9, label: "Functional", color: "#ffd93d", description: "Working, but with friction." },
+  healthy: { min: 6, max: 7.9, label: "Healthy", color: "#6bcf7f", description: "Sustainable. Room for growth." },
+  excellent: { min: 8, max: 10, label: "Excellent", color: "#c4ff61", description: "Rare and precious. Protect this." }
+};
+
+// ============================================================
+// TYPE ICONS (for display)
+// ============================================================
+
+const typeIcons = {
+  book: "📚",
+  video: "🎬",
+  podcast: "🎧",
+  ted: "🎤",
+  essay: "📝",
+  documentary: "🎞️",
+  film: "🎬"
+};
+
+// ============================================================
+// EXPORT (for module systems) or GLOBAL (for browser)
+// ============================================================
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    recommendations,
+    protocols,
+    archetypes,
+    reflectionQuestions,
+    scoreInterpretations,
+    typeIcons
+  };
+}
