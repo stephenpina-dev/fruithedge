@@ -4,11 +4,11 @@
 // ============================================================
 
 // ============================================================
-// RECOMMENDATIONS (61 total)
+// RECOMMENDATIONS (48 total - Books + YouTube Videos + Amazon Films)
 // ============================================================
 
 const recommendations = [
-  // === BOOKS (28) ===
+  // === BOOKS (30) ===
   {
     id: 1,
     title: "The War of Art",
@@ -310,7 +310,7 @@ const recommendations = [
     why: "Goggins' message is brutal: you're probably operating at 40% of your capacity. If you've been coddling yourself and you know it, this will shatter your comfort zone."
   },
 
-  // === YOUTUBE VIDEOS (18) ===
+  // === YOUTUBE VIDEOS (16) ===
   {
     id: 31,
     title: "Make Good Art",
@@ -472,143 +472,9 @@ const recommendations = [
     why: "Rubin emphasizes intuition, listening, and getting out of the way of the art. If you're doing great but fear overthinking might ruin it, this will remind you to trust the process."
   },
 
-  // === TED TALKS (6) ===
+  // === AMAZON FILMS (2) ===
   {
     id: 47,
-    title: "The Art of Asking",
-    creator: "Amanda Palmer",
-    type: "ted",
-    link: "https://www.ted.com/talks/amanda_palmer_the_art_of_asking",
-    duration: "14 min",
-    patterns: ["craftsperson_no_message", "low_ri"],
-    why: "Palmer shows that 'when we really see each other, we want to help each other.' If you're great at your craft but feel disconnected from your audience, this talk is a revelation."
-  },
-  {
-    id: 48,
-    title: "Success, Failure and the Drive to Keep Creating",
-    creator: "Elizabeth Gilbert",
-    type: "ted",
-    link: "https://www.ted.com/talks/elizabeth_gilbert_success_failure_and_the_drive_to_keep_creating",
-    duration: "7 min",
-    patterns: ["comeback", "protect_magic"],
-    why: "Gilbert realized that in both extreme success and extreme failure, the solution was the same: return to the work she loves. Powerful if you're riding high or have face-planted."
-  },
-  {
-    id: 49,
-    title: "The Power of Vulnerability",
-    creator: "Brene Brown",
-    type: "ted",
-    link: "https://www.ted.com/talks/brene_brown_the_power_of_vulnerability",
-    duration: "20 min",
-    patterns: ["low_ri", "low_aq"],
-    why: "Vulnerability is the birthplace of creativity and genuine connection. If you've been creating with a guarded heart, this talk might crack you open in the best way."
-  },
-  {
-    id: 50,
-    title: "Inside the Mind of a Master Procrastinator",
-    creator: "Tim Urban",
-    type: "ted",
-    link: "https://www.ted.com/talks/tim_urban_inside_the_mind_of_a_master_procrastinator",
-    duration: "14 min",
-    patterns: ["low_ci", "paralyzed", "comeback"],
-    why: "Hilarious and eye-opening. The Instant Gratification Monkey vs. the Panic Monster – you'll see yourself and feel motivated to take action now rather than at 3AM on deadline day."
-  },
-  {
-    id: 51,
-    title: "Great Design is Serious, Not Solemn",
-    creator: "Paula Scher",
-    type: "ted",
-    link: "https://www.ted.com/talks/paula_scher_great_design_is_serious_not_solemn",
-    duration: "18 min",
-    patterns: ["protect_magic", "high_ci"],
-    why: "Paula Scher recounts how early success led her into a creative rut – and how she broke free by embracing 'serious play.' A case study in avoiding creative complacency."
-  },
-  {
-    id: 52,
-    title: "J.K. Rowling: The Fringe Benefits of Failure",
-    creator: "J.K. Rowling",
-    type: "ted",
-    link: "https://www.youtube.com/watch?v=wHGqp8lz36c",
-    duration: "20 min",
-    patterns: ["burnout", "low_aq"],
-    why: "Rowling went from rock-bottom to massive success. 'Rock bottom became the solid foundation on which I rebuilt my life.' Permission to fail – and assurance you'll be okay."
-  },
-
-  // === PODCAST EPISODES (5) ===
-  {
-    id: 53,
-    title: "Creative Pep Talk: How to Remedy Creative Burnout",
-    creator: "Andy J. Pizza",
-    type: "podcast",
-    link: "https://open.spotify.com/episode/4dsRr7AzDqi5TgnsC8KPAN",
-    duration: "53 min",
-    patterns: ["burnout", "low_aq"],
-    why: "If you wake up dreading the creative work that used to excite you, Andy's tips – delivered with humor and heart – will resonate. Easy listening when you're too fried to read."
-  },
-  {
-    id: 54,
-    title: "Magic Lessons: Brene Brown on Big Strong Magic",
-    creator: "Elizabeth Gilbert with Brene Brown",
-    type: "podcast",
-    link: "https://podcasts.apple.com/us/podcast/magic-lessons-se-1-ep-12-brene-brown-on-big-strong-magic/id1138081319?i=1000373139417",
-    duration: "35 min",
-    patterns: ["underground_gem", "low_aq"],
-    why: "Two creative powerhouses discuss staying wholehearted in creativity. If you're resonating with audiences but personally running on empty, this discussion will refill your cup."
-  },
-  {
-    id: 55,
-    title: "Design Matters: Milton Glaser Interview",
-    creator: "Debbie Millman with Milton Glaser",
-    type: "podcast",
-    link: "https://soundcloud.com/designmatters/design-matters-with-debbie-91",
-    duration: "55 min",
-    patterns: ["protect_magic", "high_ci"],
-    why: "Milton Glaser – creator of 'I ♥ NY' – shares 80+ years of wisdom about staying creative over the long haul. How to keep the flame alive by staying intellectually engaged and humble."
-  },
-  {
-    id: 56,
-    title: "Tim Ferriss: Steven Pressfield on Overcoming Resistance",
-    creator: "Tim Ferriss with Steven Pressfield",
-    type: "podcast",
-    link: "https://podcasts.apple.com/ca/podcast/501-steven-pressfield-how-to-overcome-self-sabotage/id863897795?i=1000510784746",
-    duration: "1 hr 54 min",
-    patterns: ["paralyzed", "low_ci"],
-    why: "If The War of Art lit a fire under you, this in-depth conversation will stoke it into a steady blaze. Two hours of real talk on the creative journey and mental toughness."
-  },
-
-  // === DOCUMENTARIES (4) ===
-  {
-    id: 57,
-    title: "Jiro Dreams of Sushi",
-    creator: "David Gelb",
-    type: "documentary",
-    link: "https://www.netflix.com/title/70181716",
-    duration: "1 hr 21 min",
-    patterns: ["protect_magic", "high_ci"],
-    why: "Jiro Ono is 85 and still trying to make perfect sushi. A meditation on devotion to craft. You'll finish this wanting to go deeper into your craft, not wider."
-  },
-  {
-    id: 58,
-    title: "Everything Is a Remix",
-    creator: "Kirby Ferguson",
-    type: "documentary",
-    link: "https://www.everythingisaremix.info/watch",
-    duration: "37 min",
-    patterns: ["low_ri", "low_ci"],
-    why: "Nothing is completely original – and that's okay. If you feel paralyzed trying to be 100% novel, this will free you to embrace influence and make your remixes richer."
-  },
-  {
-    id: 59,
-    title: "PressPausePlay",
-    creator: "Viktor Vaulkunsson & David Dworsky",
-    type: "documentary",
-    link: "https://vimeo.com/34608191",
-    duration: "1 hr 20 min",
-    patterns: ["craftsperson_no_message", "low_ri"],
-    why: "Examines the digital revolution in creative industries. If you're feeling disillusioned or making work just to appease algorithms, this will rekindle your commitment to authenticity."
-  },
-  {
-    id: 60,
     title: "Exit Through the Gift Shop",
     creator: "Banksy",
     type: "documentary",
@@ -617,18 +483,6 @@ const recommendations = [
     patterns: ["untapped", "low_ri"],
     why: "A wild cautionary tale about art and authenticity. If your Resonance is low because you've been focusing on style over substance, this film will hit you in the gut."
   },
-
-  // === FILM (1) ===
-  {
-    id: 61,
-    title: "Whiplash",
-    creator: "Damien Chazelle",
-    type: "film",
-    link: "https://www.amazon.com/Whiplash-Miles-Teller/dp/B00R9AKTEM",
-    duration: "1 hr 47 min",
-    patterns: ["hustler", "low_aq"],
-    why: "A cautionary tale of the Hustler's path. Forces you to ask: Is destroying myself for applause worth it? Watching this might prompt you to recalibrate your approach to practice and success."
-  }
 ];
 
 // ============================================================
@@ -1243,3 +1097,58 @@ const typeIcons = {
   documentary: "🎞️",
   film: "🎬"
 };
+
+// ============================================================
+// LABS TIPS - Science-backed micro-interventions
+// ============================================================
+
+const labsTips = [
+  // LOW ENERGY
+  { id: 1, tip: "Watch 2 minutes of salsa dancing. Mirror neurons activate energy without you moving a muscle.", trigger: "low_energy", category: "energy" },
+  { id: 2, tip: "Splash cold water on your face. Triggers the mammalian dive reflex — instant alertness.", trigger: "low_energy", category: "energy" },
+  { id: 3, tip: "Smell a lemon. Citrus scent increases norepinephrine by 30%. Your brain thinks it's morning.", trigger: "low_energy", category: "energy" },
+  { id: 4, tip: "Stand up and shake your hands vigorously for 10 seconds. Resets your nervous system.", trigger: "low_energy", category: "energy" },
+  { id: 5, tip: "Look at photos of vast landscapes. Studies show 'awe' images restore mental energy faster than rest.", trigger: "low_energy", category: "energy" },
+
+  // LOW MENTAL SPACE
+  { id: 6, tip: "Write down every open loop in your head. The brain relaxes once it knows nothing will be forgotten.", trigger: "low_space", category: "space" },
+  { id: 7, tip: "Stare at a candle flame for 60 seconds. Ancient focus hack — still works.", trigger: "low_space", category: "space" },
+  { id: 8, tip: "Hum a single note for 30 seconds. Activates the vagus nerve. Instant calm.", trigger: "low_space", category: "space" },
+  { id: 9, tip: "Name 5 things you can see, 4 you can hear, 3 you can touch. Grounds you in the present.", trigger: "low_space", category: "space" },
+  { id: 10, tip: "Delete one app from your phone right now. Mental space is physical space.", trigger: "low_space", category: "space" },
+
+  // LOW FLOW / HIGH DISTRACTION
+  { id: 11, tip: "Put your phone in a different room. Physical distance beats willpower every time.", trigger: "high_distraction", category: "flow" },
+  { id: 12, tip: "Set a timer for 25 minutes. Tell yourself you only have to focus until it rings. You won't want to stop.", trigger: "low_flow", category: "flow" },
+  { id: 13, tip: "Listen to video game soundtracks. Designed to keep you focused without distracting you.", trigger: "low_flow", category: "flow" },
+  { id: 14, tip: "Work with your back to the door. Reduces subconscious alertness to your environment.", trigger: "high_distraction", category: "flow" },
+  { id: 15, tip: "Chew gum while working. Studies show it increases focus by up to 10%.", trigger: "low_flow", category: "flow" },
+
+  // HIGH STAGNATION / LOW RISK
+  { id: 16, tip: "Draw something with your non-dominant hand for 60 seconds. Breaks neural patterns. Unlocks creativity.", trigger: "high_stagnation", category: "stagnation" },
+  { id: 17, tip: "Send one message you've been avoiding. Courage is a muscle — this is a rep.", trigger: "low_boldness", category: "risk" },
+  { id: 18, tip: "Publish something ugly. Done beats perfect. Your inner critic needs to lose sometimes.", trigger: "high_stagnation", category: "stagnation" },
+  { id: 19, tip: "Learn one word in a language you don't speak. Novel input = novel output.", trigger: "high_stagnation", category: "stagnation" },
+  { id: 20, tip: "Take a different route to somewhere familiar. Small novelty triggers big creativity.", trigger: "high_stagnation", category: "stagnation" },
+
+  // LOW RESONANCE / LOW IDENTITY
+  { id: 21, tip: "Text one fan and ask what your work means to them. Reconnect with why you started.", trigger: "low_identity", category: "resonance" },
+  { id: 22, tip: "Revisit your earliest work. Cringe, then notice — you've grown more than you think.", trigger: "low_resonance", category: "resonance" },
+  { id: 23, tip: "Describe your art to a stranger in 10 words or less. Clarity creates resonance.", trigger: "low_identity", category: "resonance" },
+  { id: 24, tip: "Copy your favorite artist's work by hand. Not to steal — to feel how they thought.", trigger: "low_boldness", category: "resonance" },
+  { id: 25, tip: "Ask someone who loves your work: 'Why?' Their answer is your brand.", trigger: "low_identity", category: "resonance" },
+
+  // HIGH ADMIN / HIGH CONSTRAINT
+  { id: 26, tip: "Automate one tiny task today. Even a text shortcut counts. Small wins compound.", trigger: "high_admin", category: "admin" },
+  { id: 27, tip: "Say no to one thing this week you would normally say yes to. Protect your time like money.", trigger: "high_constraint", category: "constraint" },
+  { id: 28, tip: "Cancel one meeting. Most could've been an email anyway.", trigger: "high_admin", category: "admin" },
+  { id: 29, tip: "Unsubscribe from 5 emails right now. Inbox clutter is mental clutter.", trigger: "high_admin", category: "admin" },
+  { id: 30, tip: "Batch your admin into one 90-minute block. Scattered admin = scattered mind.", trigger: "high_admin", category: "admin" },
+
+  // FRUIT-SPECIFIC
+  { id: 31, tip: "Eat an apple before deep work. Slow-release glucose keeps focus stable longer than coffee.", trigger: "low_flow", category: "fruit" },
+  { id: 32, tip: "Freeze grapes and eat them during creative sessions. Cold + sweet = sustained attention.", trigger: "low_flow", category: "fruit" },
+  { id: 33, tip: "Smell an orange peel. Limonene reduces stress hormones. Instant creative reset.", trigger: "low_space", category: "fruit" },
+  { id: 34, tip: "Drink lemon water first thing in the morning. Hydration + citrus = mental clarity.", trigger: "low_energy", category: "fruit" },
+  { id: 35, tip: "Keep a banana at your desk. Potassium prevents the mental fog that comes from low electrolytes.", trigger: "low_energy", category: "fruit" }
+];

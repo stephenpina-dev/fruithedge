@@ -6,6 +6,8 @@
 (function() {
   'use strict';
 
+  console.log('[FruitHedge] IIFE starting...');
+
   // ============================================================
   // STATE
   // ============================================================
@@ -42,11 +44,325 @@
     recommendation: null,
     protocol: null,
     history: [],
+    playbooks: [],
+    streak: {
+      current_streak: 0,
+      longest_streak: 0,
+      last_checkin_date: null,
+      first_checkin_date: null,
+      total_checkins: 0
+    },
+    badges: {
+      first: false,      // First Check-in
+      fire: false,       // On Fire (7 day streak)
+      consistent: false, // Consistent (30 day streak)
+      century: false,    // Century (100 check-ins)
+      comeback: false    // Comeback (returned after 7+ day gap)
+    },
     settings: {
       theme: 'dark',
       lastCalculated: null
+    },
+    records: {
+      best: {
+        aq: { value: null, date: null },
+        ri: { value: null, date: null },
+        ci: { value: null, date: null }
+      },
+      worst: {
+        aq: { value: null, date: null },
+        ri: { value: null, date: null },
+        ci: { value: null, date: null }
+      }
+    },
+    lastAutoSave: {
+      timestamp: null,
+      scores: null
     }
   };
+
+  const PLAYBOOK_MAX_COUNT = 20;
+  const AUTO_SAVE_COOLDOWN_MS = 60000; // 1 minute cooldown
+
+  // Ensure no stale playbook reference from previous sessions
+  window._currentViewedPlaybook = null;
+
+  // ============================================================
+  // TOAST NOTIFICATIONS
+  // ============================================================
+
+  function showToast(message) {
+    console.log('[FruitHedge] showToast called with:', message);
+    const container = document.getElementById('toast-container');
+    if (!container) {
+      console.error('[FruitHedge] Toast container not found!');
+      return;
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    container.appendChild(toast);
+    console.log('[FruitHedge] Toast added to DOM');
+
+    // Remove after animation completes (3s)
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 3000);
+  }
+
+  // ============================================================
+  // SAVE CONFIRMATION MODAL
+  // ============================================================
+
+  // Store pending save data when user needs to confirm replacement
+  let pendingSaveData = null;
+
+  function getTodayDateString() {
+    const today = new Date();
+    return today.toISOString().split('T')[0]; // YYYY-MM-DD
+  }
+
+  function findTodayPlaybook() {
+    const todayStr = getTodayDateString();
+    return state.playbooks.find(pb => {
+      const pbDate = new Date(pb.date).toISOString().split('T')[0];
+      return pbDate === todayStr;
+    });
+  }
+
+  function showSaveConfirmModal() {
+    const overlay = elements.saveConfirmOverlay;
+    if (overlay) {
+      overlay.classList.add('active');
+      console.log('[FruitHedge] Save confirm modal shown');
+    }
+  }
+
+  function hideSaveConfirmModal() {
+    const overlay = elements.saveConfirmOverlay;
+    if (overlay) {
+      overlay.classList.remove('active');
+      console.log('[FruitHedge] Save confirm modal hidden');
+    }
+    pendingSaveData = null;
+  }
+
+  function replaceTodayPlaybook() {
+    if (!pendingSaveData) return;
+
+    const todayPlaybook = findTodayPlaybook();
+
+    if (todayPlaybook) {
+      // Remove existing today's playbook
+      const index = state.playbooks.findIndex(pb => pb.id === todayPlaybook.id);
+      if (index !== -1) {
+        state.playbooks.splice(index, 1);
+      }
+
+      // Also remove from history
+      const todayStr = getTodayDateString();
+      const historyIndex = state.history.findIndex(h => {
+        const hDate = new Date(h.date).toISOString().split('T')[0];
+        return hDate === todayStr;
+      });
+      if (historyIndex !== -1) {
+        state.history.splice(historyIndex, 1);
+      }
+    }
+
+    // Now save the new entry
+    performAutoSave(pendingSaveData);
+    hideSaveConfirmModal();
+  }
+
+  // ============================================================
+  // AUTO-SAVE & RECORDS TRACKING
+  // ============================================================
+
+  function scoresAreEqual(scores1, scores2) {
+    if (!scores1 || !scores2) return false;
+    return scores1.aq === scores2.aq &&
+           scores1.ri === scores2.ri &&
+           scores1.ci === scores2.ci &&
+           scores1.alpha === scores2.alpha;
+  }
+
+  function shouldAutoSave(scores) {
+    const now = Date.now();
+    const { timestamp, scores: lastScores } = state.lastAutoSave;
+
+    // Don't save if scores are zero
+    if (scores.alpha === 0) return false;
+
+    // Don't save if identical scores
+    if (scoresAreEqual(scores, lastScores)) return false;
+
+    // Don't save if within cooldown period
+    if (timestamp && (now - timestamp) < AUTO_SAVE_COOLDOWN_MS) return false;
+
+    return true;
+  }
+
+  function autoSaveScores() {
+    const scores = { ...state.scores };
+
+    if (!shouldAutoSave(scores)) return;
+
+    console.log('[FruitHedge] autoSaveScores: Starting auto-save...');
+
+    // Prepare save data
+    const inputs = state.inputs;
+    const reflections = {
+      energy: getPersonalizedReflection('energy', inputs.energy, 10),
+      space: getPersonalizedReflection('space', inputs.space, 10),
+      optionality: getPersonalizedReflection('optionality', inputs.optionality, 10),
+      constraint: getPersonalizedReflection('constraint', inputs.constraint, 10),
+      impact: getPersonalizedReflection('impact', inputs.impact, 10),
+      identity: getPersonalizedReflection('identity', inputs.identity, 10),
+      boldness: getPersonalizedReflection('boldness', inputs.boldness, 10),
+      audience: getAudiencePersonalizedReflection(inputs.audience),
+      flow: getPersonalizedReflection('flow', inputs.flow, 60),
+      evolution: getPersonalizedReflection('evolution', inputs.evolution, 10),
+      risk: getPersonalizedReflection('risk', inputs.risk, 10),
+      admin: getPersonalizedReflection('admin', inputs.admin, 60),
+      distraction: getPersonalizedReflection('distraction', inputs.distraction, 60),
+      stagnation: getPersonalizedReflection('stagnation', inputs.stagnation, 10)
+    };
+
+    const saveData = {
+      scores: scores,
+      inputs: { ...inputs },
+      reflections: reflections,
+      archetype: state.archetype
+    };
+
+    // Always save - performAutoSave handles replacing today's entry
+    performAutoSave(saveData);
+  }
+
+  function performAutoSave(saveData) {
+    const { scores, inputs, reflections, archetype } = saveData;
+    const todayStr = getTodayDateString();
+
+    // Remove any existing entry for today (enforce one entry per day)
+    state.playbooks = state.playbooks.filter(pb => {
+      const pbDate = new Date(pb.date).toISOString().split('T')[0];
+      return pbDate !== todayStr;
+    });
+
+    // Also remove today from history
+    state.history = state.history.filter(h => {
+      const hDate = new Date(h.date).toISOString().split('T')[0];
+      return hDate !== todayStr;
+    });
+
+    // Create playbook entry
+    const playbook = {
+      id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+      date: new Date().toISOString(),
+      scores: {
+        aq: scores.aq,
+        ri: scores.ri,
+        ci: scores.ci,
+        alpha: scores.alpha
+      },
+      archetype: archetype ? {
+        name: archetype.name,
+        subtitle: archetype.subtitle,
+        profile: archetype.profile,
+        insight: archetype.insight
+      } : null,
+      reflections: reflections
+    };
+
+    // Add to playbooks array
+    state.playbooks.unshift(playbook);
+    console.log('[FruitHedge] performAutoSave: Added/replaced playbook for today', playbook.id, 'Total:', state.playbooks.length);
+
+    // Enforce max limit
+    if (state.playbooks.length > PLAYBOOK_MAX_COUNT) {
+      state.playbooks = state.playbooks.slice(0, PLAYBOOK_MAX_COUNT);
+    }
+
+    // Save to localStorage (fruithedge_journals)
+    savePlaybooksToStorage();
+    console.log('[FruitHedge] performAutoSave: Saved to localStorage (fruithedge_journals)');
+
+    // Also save to history for dashboard charts
+    const historyEntry = {
+      id: generateId(),
+      date: new Date().toISOString(),
+      scores: scores,
+      inputs: inputs,
+      archetype: archetype ? archetype.id : null
+    };
+    state.history.unshift(historyEntry);
+    saveHistory();
+    console.log('[FruitHedge] performAutoSave: Also saved to history for dashboard');
+
+    // Update records for best/worst tracking
+    updateRecords(scores);
+
+    // Update streak and badges
+    updateStreakOnCheckin();
+
+    // Update displays
+    updatePlaybooksDisplay();
+    updateHabitEngineDisplay();
+    updateHistoryDisplay();
+    updateDashboard();
+
+    // Update lastAutoSave tracking
+    state.lastAutoSave.timestamp = Date.now();
+    state.lastAutoSave.scores = scores;
+
+    console.log('[FruitHedge] performAutoSave: About to show toast');
+    showToast('Saved to Playbooks ✓');
+    console.log('[FruitHedge] performAutoSave: Complete');
+  }
+
+  function loadRecords() {
+    try {
+      const recordsData = localStorage.getItem('fruithedge_records');
+      if (recordsData) {
+        state.records = JSON.parse(recordsData);
+      }
+    } catch (e) {
+      console.error('Error loading records:', e);
+    }
+  }
+
+  function saveRecords() {
+    try {
+      localStorage.setItem('fruithedge_records', JSON.stringify(state.records));
+    } catch (e) {
+      console.error('Error saving records:', e);
+    }
+  }
+
+  function updateRecords(scores) {
+    const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+    const laws = ['aq', 'ri', 'ci'];
+
+    laws.forEach(law => {
+      const value = scores[law];
+
+      // Update best
+      if (state.records.best[law].value === null || value > state.records.best[law].value) {
+        state.records.best[law] = { value, date: today };
+      }
+
+      // Update worst (only if we have a recorded best - first time counts as both)
+      if (state.records.worst[law].value === null || value < state.records.worst[law].value) {
+        state.records.worst[law] = { value, date: today };
+      }
+    });
+
+    saveRecords();
+  }
 
   // ============================================================
   // PERSONALIZED REFLECTION QUESTIONS (for PDF Journal)
@@ -224,6 +540,10 @@
     archetypeProfile: document.getElementById('archetype-profile'),
     archetypeInsight: document.getElementById('archetype-insight'),
 
+    // Recommended Resources
+    recommendedResources: document.getElementById('recommended-resources'),
+    resourcesGrid: document.getElementById('resources-grid'),
+
     // Recommendation
     recIcon: document.getElementById('rec-icon'),
     recTitle: document.getElementById('rec-title'),
@@ -242,18 +562,18 @@
     wellnessWhy: document.getElementById('wellness-why'),
 
     // History
-    saveScoresBtn: document.getElementById('save-scores-btn'),
+    historyToggleBtn: document.getElementById('history-toggle-btn'),
+    historyToggleText: document.querySelector('#history-toggle-btn .history-toggle-text'),
+    historyContent: document.getElementById('history-content'),
     exportHistoryBtn: document.getElementById('export-history-btn'),
     clearHistoryBtn: document.getElementById('clear-history-btn'),
     historyTbody: document.getElementById('history-tbody'),
     historyEmpty: document.getElementById('history-empty'),
 
     // Export
-    exportImageBtn: document.getElementById('export-image-btn'),
     exportPdfBtn: document.getElementById('export-pdf-btn'),
     copyLinkBtn: document.getElementById('copy-link-btn'),
     shareTwitterBtn: document.getElementById('share-twitter-btn'),
-    exportCanvas: document.getElementById('export-canvas'),
 
     // Modal
     modalOverlay: document.getElementById('modal-overlay'),
@@ -261,7 +581,50 @@
     modalMessage: document.getElementById('modal-message'),
     modalClose: document.getElementById('modal-close'),
     modalCancel: document.getElementById('modal-cancel'),
-    modalConfirm: document.getElementById('modal-confirm')
+    modalConfirm: document.getElementById('modal-confirm'),
+
+    // Playbooks
+    playbooksSection: document.getElementById('playbooks-section'),
+    playbooksCount: document.getElementById('playbooks-count'),
+    playbooksEmpty: document.getElementById('playbooks-empty'),
+    playbooksGrid: document.getElementById('playbooks-grid-tab'),
+    playbookModalOverlay: document.getElementById('playbook-modal-overlay'),
+    playbookModalTitle: document.getElementById('playbook-modal-title'),
+    playbookModalContent: document.getElementById('playbook-modal-content'),
+    playbookModalClose: document.getElementById('playbook-modal-close'),
+    playbookModalSaveClose: document.getElementById('playbook-modal-save-close'),
+    playbookModalPdf: document.getElementById('playbook-modal-pdf'),
+
+    // Habit Engine
+    returnBanner: document.getElementById('return-banner'),
+    returnBannerText: document.getElementById('return-banner-text'),
+    returnBannerClose: document.getElementById('return-banner-close'),
+    streakDisplay: document.getElementById('streak-display'),
+    streakFire: document.getElementById('streak-fire'),
+    streakCount: document.getElementById('streak-count'),
+    streakLongest: document.getElementById('streak-longest'),
+    habitCheckins: document.getElementById('habit-checkins'),
+    habitMemberSince: document.getElementById('habit-member-since'),
+    habitBadgesCount: document.getElementById('habit-badges-count'),
+    badgeFirst: document.getElementById('badge-first'),
+    badgeFire: document.getElementById('badge-fire'),
+    badgeConsistent: document.getElementById('badge-consistent'),
+    badgeCentury: document.getElementById('badge-century'),
+    badgeComeback: document.getElementById('badge-comeback'),
+
+    // Info Modals (How It Works, About)
+    headerHowItWorks: document.getElementById('header-how-it-works'),
+    headerAbout: document.getElementById('header-about'),
+    howItWorksModal: document.getElementById('how-it-works-modal'),
+    howItWorksClose: document.getElementById('how-it-works-close'),
+    howItWorksGotIt: document.getElementById('how-it-works-got-it'),
+    aboutModal: document.getElementById('about-modal'),
+    aboutClose: document.getElementById('about-close'),
+
+    // Save Confirmation Modal
+    saveConfirmOverlay: document.getElementById('save-confirm-overlay'),
+    saveConfirmReplace: document.getElementById('save-confirm-replace'),
+    saveConfirmCancel: document.getElementById('save-confirm-cancel')
   };
 
   // ============================================================
@@ -519,6 +882,74 @@
   }
 
   // ============================================================
+  // LABS TIPS - Science-backed micro-interventions
+  // ============================================================
+
+  function getLabsTips(sliderValues) {
+    const triggers = [];
+
+    // Detect triggers based on slider values
+    if (sliderValues.energy <= 4) triggers.push("low_energy");
+    if (sliderValues.space <= 4) triggers.push("low_space");
+    if (sliderValues.flow <= 20) triggers.push("low_flow");
+    if (sliderValues.distraction >= 40) triggers.push("high_distraction");
+    if (sliderValues.stagnation >= 6) triggers.push("high_stagnation");
+    if (sliderValues.boldness <= 4) triggers.push("low_boldness");
+    if (sliderValues.identity <= 4) triggers.push("low_identity");
+    if (sliderValues.admin >= 40) triggers.push("high_admin");
+    if (sliderValues.constraint >= 7) triggers.push("high_constraint");
+    if (sliderValues.impact <= 4) triggers.push("low_resonance");
+
+    // Find matching tips
+    const matchedTips = labsTips.filter(tip => triggers.includes(tip.trigger));
+
+    // If no matches, return random fruit tip
+    if (matchedTips.length === 0) {
+      const fruitTips = labsTips.filter(t => t.category === "fruit");
+      return [fruitTips[Math.floor(Math.random() * fruitTips.length)]];
+    }
+
+    // Return up to 2 random matched tips
+    const shuffled = matchedTips.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 2);
+  }
+
+  function displayLabsTips() {
+    const labsTipsContainer = document.getElementById('labs-tips');
+    if (!labsTipsContainer) return;
+
+    // Get current slider values
+    const sliderValues = {
+      energy: parseInt(elements.sliders.energy?.value || 5),
+      space: parseInt(elements.sliders.space?.value || 5),
+      flow: parseInt(elements.sliders.flow?.value || 15),
+      distraction: parseInt(elements.sliders.distraction?.value || 15),
+      stagnation: parseInt(elements.sliders.stagnation?.value || 5),
+      boldness: parseInt(elements.sliders.boldness?.value || 5),
+      identity: parseInt(elements.sliders.identity?.value || 5),
+      admin: parseInt(elements.sliders.admin?.value || 15),
+      constraint: parseInt(elements.sliders.constraint?.value || 5),
+      impact: parseInt(elements.sliders.impact?.value || 5)
+    };
+
+    const tips = getLabsTips(sliderValues);
+
+    // Show the labs section
+    const labsSection = document.getElementById('labs-section');
+    if (labsSection) {
+      labsSection.classList.remove('hidden');
+    }
+
+    // Render tips
+    labsTipsContainer.innerHTML = tips.map(tip => `
+      <div class="labs-tip">
+        <span class="labs-tip-icon">💡</span>
+        <p class="labs-tip-text">"${tip.tip}"</p>
+      </div>
+    `).join('');
+  }
+
+  // ============================================================
   // PERSONALIZED REFLECTION GENERATION (for PDF Journal)
   // ============================================================
 
@@ -693,6 +1124,71 @@
     return icons[category] || '✨';
   }
 
+  function getResourceTypeIcon(type) {
+    const icons = {
+      book: '📚',
+      video: '🎬',
+      podcast: '🎧',
+      ted: '🎤',
+      documentary: '🎞️',
+      article: '📝',
+      course: '🎓'
+    };
+    return icons[type] || '📖';
+  }
+
+  /**
+   * Display recommended resources based on score patterns
+   */
+  function showRecommendedResources() {
+    if (!elements.recommendedResources || !elements.resourcesGrid) return;
+
+    // Get top 3 recommendations with variety
+    const matched = matchRecommendations(state.scores, 6);
+
+    // Select 3 with type variety
+    const selected = [];
+    const usedTypes = new Set();
+
+    // First pass: prioritize variety
+    for (const rec of matched) {
+      if (selected.length >= 3) break;
+      if (!usedTypes.has(rec.type)) {
+        selected.push(rec);
+        usedTypes.add(rec.type);
+      }
+    }
+
+    // Second pass: fill remaining if needed
+    for (const rec of matched) {
+      if (selected.length >= 3) break;
+      if (!selected.includes(rec)) {
+        selected.push(rec);
+      }
+    }
+
+    if (selected.length === 0) {
+      elements.recommendedResources.classList.add('hidden');
+      return;
+    }
+
+    // Show the section
+    elements.recommendedResources.classList.remove('hidden');
+
+    // Build resource cards HTML
+    elements.resourcesGrid.innerHTML = selected.map(rec => `
+      <div class="resource-card">
+        <div class="resource-header">
+          <span class="resource-icon">${getResourceTypeIcon(rec.type)}</span>
+          <span class="resource-title">${rec.title}</span>
+        </div>
+        <div class="resource-meta">${rec.creator} • ${rec.duration}</div>
+        <p class="resource-why">${rec.why}</p>
+        <a href="${rec.link}" target="_blank" rel="noopener noreferrer" class="resource-link">View Resource →</a>
+      </div>
+    `).join('');
+  }
+
   // ============================================================
   // UI UPDATES - Per-Law Calculation
   // ============================================================
@@ -855,7 +1351,12 @@
 
       // Show archetype and recommendations
       showArchetypeCard();
+      showRecommendedResources();
       showRecommendations();
+      displayLabsTips();
+
+      // Auto-save to history
+      autoSaveScores();
     }
   }
 
@@ -863,9 +1364,21 @@
    * Show archetype card with matched archetype data
    */
   function showArchetypeCard() {
-    if (!state.archetype) return;
+    if (!state.archetype) {
+      console.log('[FruitHedge] No archetype matched');
+      return;
+    }
 
     const arch = state.archetype;
+
+    // Debug log
+    console.log(`[FruitHedge] Matched archetype: ${arch.name}`);
+    console.log(`[FruitHedge] Archetype details:`, {
+      name: arch.name,
+      subtitle: arch.subtitle || arch.sub,
+      profile: arch.profile ? arch.profile.substring(0, 50) + '...' : 'none',
+      insight: arch.insight ? arch.insight.substring(0, 50) + '...' : 'none'
+    });
 
     // Show the card
     if (elements.archetypeCard) {
@@ -918,7 +1431,6 @@
 
     const r = recs[weakest];
     let html = `<div class="rec-card">
-      <div class="rec-tier">TIER 1: CRITICAL FOCUS</div>
       <div class="rec-title">${r.title}</div>
       <p class="rec-content">${r.content}</p>
       <div class="rec-action">${r.action}</div>
@@ -1042,16 +1554,46 @@
     try {
       const historyData = localStorage.getItem('fruithedge_history');
       if (historyData) {
-        state.history = JSON.parse(historyData);
+        let history = JSON.parse(historyData);
+
+        // Clean up duplicates - keep only latest entry per day
+        const beforeCount = history.length;
+        history = cleanupDuplicateHistory(history);
+
+        if (history.length !== beforeCount) {
+          console.log('[FruitHedge] Cleaned up duplicate history:', beforeCount, '->', history.length);
+          localStorage.setItem('fruithedge_history', JSON.stringify(history));
+        }
+
+        state.history = history;
       }
 
       const settingsData = localStorage.getItem('fruithedge_settings');
       if (settingsData) {
         state.settings = { ...state.settings, ...JSON.parse(settingsData) };
       }
+
+      // Load records for best/worst tracking
+      loadRecords();
     } catch (e) {
       console.error('Error loading from localStorage:', e);
     }
+  }
+
+  /**
+   * Clean up duplicate same-day entries in history, keeping only the latest per day
+   */
+  function cleanupDuplicateHistory(history) {
+    const byDate = {};
+
+    history.forEach(h => {
+      const day = new Date(h.date).toISOString().split('T')[0];
+      if (!byDate[day] || new Date(h.date) > new Date(byDate[day].date)) {
+        byDate[day] = h;
+      }
+    });
+
+    return Object.values(byDate).sort((a, b) => new Date(b.date) - new Date(a.date));
   }
 
   function saveHistory() {
@@ -1091,6 +1633,7 @@
     state.history.unshift(entry);
     saveHistory();
     updateHistoryDisplay();
+    updateDashboard();
     alert('Scores saved to history!');
   }
 
@@ -1171,6 +1714,7 @@
     state.history = state.history.filter(e => e.id !== id);
     saveHistory();
     updateHistoryDisplay();
+    updateDashboard();
   }
 
   function clearHistory() {
@@ -1178,6 +1722,7 @@
       state.history = [];
       saveHistory();
       updateHistoryDisplay();
+      updateDashboard();
       hideModal();
     });
   }
@@ -1197,108 +1742,36 @@
     URL.revokeObjectURL(url);
   }
 
+  function toggleHistorySection() {
+    const btn = elements.historyToggleBtn;
+    const content = elements.historyContent;
+    const text = elements.historyToggleText;
+
+    if (!btn || !content) return;
+
+    const isExpanded = content.classList.contains('expanded');
+
+    if (isExpanded) {
+      // Collapse
+      content.classList.remove('expanded');
+      content.classList.add('collapsed');
+      btn.classList.remove('expanded');
+      if (text) text.textContent = 'View History';
+    } else {
+      // Expand
+      content.classList.remove('collapsed');
+      content.classList.add('expanded');
+      btn.classList.add('expanded');
+      if (text) text.textContent = 'Hide History';
+    }
+  }
+
   // ============================================================
   // EXPORT FUNCTIONS
   // ============================================================
 
-  function generateImage() {
-    if (state.scores.alpha === 0) {
-      alert('Please calculate your scores first.');
-      return;
-    }
-
-    const canvas = elements.exportCanvas;
-    const ctx = canvas.getContext('2d');
-
-    canvas.width = 1200;
-    canvas.height = 630;
-
-    // Background
-    ctx.fillStyle = '#0a0e14';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Grain effect
-    ctx.globalAlpha = 0.03;
-    for (let i = 0; i < 5000; i++) {
-      ctx.fillStyle = Math.random() > 0.5 ? '#fff' : '#000';
-      ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1);
-    }
-    ctx.globalAlpha = 1;
-
-    // Logo
-    ctx.font = 'bold 48px Playfair Display, serif';
-    const gradient = ctx.createLinearGradient(50, 50, 300, 50);
-    gradient.addColorStop(0, '#c4ff61');
-    gradient.addColorStop(0.5, '#ff9b71');
-    gradient.addColorStop(1, '#ff6b9d');
-    ctx.fillStyle = gradient;
-    ctx.textAlign = 'left';
-    ctx.fillText('FruitHedge', 50, 80);
-
-    // Tagline
-    ctx.font = '16px IBM Plex Sans, sans-serif';
-    ctx.fillStyle = '#8b949e';
-    ctx.fillText('Creative Portfolio Manager', 50, 110);
-
-    // Alpha score
-    ctx.font = 'bold 180px Playfair Display, serif';
-    const alphaGradient = ctx.createLinearGradient(400, 200, 800, 400);
-    alphaGradient.addColorStop(0, '#c4ff61');
-    alphaGradient.addColorStop(0.5, '#ff9b71');
-    alphaGradient.addColorStop(1, '#ff6b9d');
-    ctx.fillStyle = alphaGradient;
-    ctx.textAlign = 'center';
-    ctx.fillText(state.scores.alpha.toFixed(1), canvas.width / 2, 320);
-
-    // Alpha label
-    ctx.font = '24px IBM Plex Sans, sans-serif';
-    ctx.fillStyle = '#8b949e';
-    ctx.fillText('Creative Alpha Index', canvas.width / 2, 360);
-
-    // Three scores
-    const scores = [
-      { label: 'Autonomy', value: state.scores.aq, color: '#c4ff61' },
-      { label: 'Resonance', value: state.scores.ri, color: '#ff9b71' },
-      { label: 'Craft Intensity', value: state.scores.ci, color: '#ff6b9d' }
-    ];
-
-    scores.forEach((score, i) => {
-      const x = 200 + i * 300;
-      const y = 450;
-
-      ctx.font = 'bold 48px JetBrains Mono, monospace';
-      ctx.fillStyle = score.color;
-      ctx.fillText(score.value.toFixed(1), x, y);
-
-      ctx.font = '16px IBM Plex Sans, sans-serif';
-      ctx.fillStyle = '#8b949e';
-      ctx.fillText(score.label, x, y + 30);
-    });
-
-    // Archetype
-    ctx.font = '20px IBM Plex Sans, sans-serif';
-    ctx.fillStyle = '#e6edf3';
-    ctx.fillText(state.archetype ? state.archetype.name : 'Creative', canvas.width / 2, 550);
-
-    ctx.font = '14px IBM Plex Sans, sans-serif';
-    ctx.fillStyle = '#484f58';
-    ctx.fillText(state.archetype ? state.archetype.subtitle : '', canvas.width / 2, 580);
-
-    // Date
-    ctx.textAlign = 'right';
-    ctx.font = '14px JetBrains Mono, monospace';
-    ctx.fillStyle = '#484f58';
-    ctx.fillText(new Date().toLocaleDateString(), canvas.width - 50, canvas.height - 30);
-
-    // Download
-    const link = document.createElement('a');
-    link.download = 'fruithedge-results.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  }
-
   /**
-   * Generate PDF Journal with personalized reflection questions
+   * Generate playbook and save to localStorage (NO PDF - that's a separate action)
    */
   function generatePDFJournal() {
     if (state.scores.alpha === 0) {
@@ -1306,28 +1779,492 @@
       return;
     }
 
-    const inputs = state.inputs;
+    // Find today's playbook (auto-saved on calculation)
+    const todayPlaybook = findTodayPlaybook();
 
-    // Generate personalized reflections based on current scores
-    const reflections = {
-      // Autonomy
-      energy: getPersonalizedReflection('energy', inputs.energy, 10),
-      space: getPersonalizedReflection('space', inputs.space, 10),
-      optionality: getPersonalizedReflection('optionality', inputs.optionality, 10),
-      constraint: getPersonalizedReflection('constraint', inputs.constraint, 10),
-      // Resonance
-      impact: getPersonalizedReflection('impact', inputs.impact, 10),
-      identity: getPersonalizedReflection('identity', inputs.identity, 10),
-      boldness: getPersonalizedReflection('boldness', inputs.boldness, 10),
-      audience: getAudiencePersonalizedReflection(inputs.audience),
-      // Craft Intensity
-      flow: getPersonalizedReflection('flow', inputs.flow, 60),
-      evolution: getPersonalizedReflection('evolution', inputs.evolution, 10),
-      risk: getPersonalizedReflection('risk', inputs.risk, 10),
-      admin: getPersonalizedReflection('admin', inputs.admin, 60),
-      distraction: getPersonalizedReflection('distraction', inputs.distraction, 60),
-      stagnation: getPersonalizedReflection('stagnation', inputs.stagnation, 10)
-    };
+    if (!todayPlaybook) {
+      // No playbook for today - shouldn't happen if they calculated, but handle gracefully
+      alert('No playbook found for today. Please calculate your scores first.');
+      return;
+    }
+
+    // Scroll to playbooks section
+    scrollToSection('playbooks');
+
+    // Open today's playbook after a short delay for smooth transition
+    setTimeout(() => {
+      viewPlaybook(todayPlaybook.id);
+      // Focus on first reflection textarea
+      setTimeout(() => {
+        const firstTextarea = document.querySelector('.pm-reflection-answer');
+        if (firstTextarea) {
+          firstTextarea.focus();
+        }
+      }, 100);
+    }, 300);
+  }
+
+  // ============================================================
+  // PLAYBOOKS MANAGEMENT
+  // ============================================================
+
+  /**
+   * Load playbooks from localStorage and clean up duplicates
+   */
+  function loadPlaybooksFromStorage() {
+    try {
+      const stored = localStorage.getItem('fruithedge_journals');
+      if (stored) {
+        let playbooks = JSON.parse(stored);
+
+        // Clean up duplicates - keep only latest entry per day
+        const beforeCount = playbooks.length;
+        playbooks = cleanupDuplicatePlaybooks(playbooks);
+
+        if (playbooks.length !== beforeCount) {
+          console.log('[FruitHedge] Cleaned up duplicate playbooks:', beforeCount, '->', playbooks.length);
+          // Save cleaned data back
+          localStorage.setItem('fruithedge_journals', JSON.stringify(playbooks));
+        }
+
+        state.playbooks = playbooks;
+      }
+    } catch (e) {
+      console.error('[FruitHedge] Error loading playbooks:', e);
+      state.playbooks = [];
+    }
+  }
+
+  /**
+   * Clean up duplicate same-day entries, keeping only the latest per day
+   */
+  function cleanupDuplicatePlaybooks(playbooks) {
+    const byDate = {};
+
+    playbooks.forEach(p => {
+      const day = new Date(p.date).toISOString().split('T')[0];
+      // Keep the latest entry for each day
+      if (!byDate[day] || new Date(p.date) > new Date(byDate[day].date)) {
+        byDate[day] = p;
+      }
+    });
+
+    // Convert back to array, sorted by date (newest first)
+    return Object.values(byDate).sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
+
+  /**
+   * Save playbooks to localStorage
+   */
+  function savePlaybooksToStorage() {
+    try {
+      localStorage.setItem('fruithedge_journals', JSON.stringify(state.playbooks));
+    } catch (e) {
+      console.error('[FruitHedge] Error saving playbooks:', e);
+    }
+  }
+
+  /**
+   * Update playbooks display
+   */
+  function updatePlaybooksDisplay() {
+    console.log('[FruitHedge] updatePlaybooksDisplay called, playbooksGrid exists:', !!elements.playbooksGrid);
+    if (!elements.playbooksGrid) {
+      console.log('[FruitHedge] WARNING: playbooksGrid element not found!');
+      return;
+    }
+
+    const count = state.playbooks.length;
+    console.log('[FruitHedge] updatePlaybooksDisplay: Rendering', count, 'playbooks');
+
+    // Update count
+    if (elements.playbooksCount) {
+      elements.playbooksCount.textContent = `${count} of ${PLAYBOOK_MAX_COUNT} saved`;
+    }
+
+    // Show/hide empty state
+    if (elements.playbooksEmpty) {
+      elements.playbooksEmpty.style.display = count === 0 ? 'block' : 'none';
+    }
+
+    // Clear and rebuild grid
+    elements.playbooksGrid.innerHTML = '';
+
+    if (count === 0) return;
+
+    state.playbooks.forEach(playbook => {
+      console.log('[FruitHedge] Creating card for playbook:', playbook.id);
+      const card = createPlaybookCard(playbook);
+      elements.playbooksGrid.appendChild(card);
+    });
+  }
+
+  /**
+   * Create a playbook card element
+   */
+  function createPlaybookCard(playbook) {
+    const card = document.createElement('div');
+    card.className = 'playbook-card';
+    card.dataset.id = playbook.id;
+
+    const date = new Date(playbook.date);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+
+    card.innerHTML = `
+      <div class="playbook-card-date">${formattedDate}</div>
+      <div class="playbook-card-alpha">${playbook.scores.alpha.toFixed(1)}</div>
+      <div class="playbook-card-alpha-label">Alpha</div>
+      <div class="playbook-card-archetype">${playbook.archetype ? playbook.archetype.name : 'Unknown'}</div>
+      <div class="playbook-card-subtitle">${playbook.archetype ? playbook.archetype.subtitle : ''}</div>
+      <div class="playbook-card-scores">
+        <div class="playbook-card-score">
+          <span class="playbook-card-score-value aq">${playbook.scores.aq.toFixed(1)}</span>
+          <span class="playbook-card-score-label">AQ</span>
+        </div>
+        <div class="playbook-card-score">
+          <span class="playbook-card-score-value ri">${playbook.scores.ri.toFixed(1)}</span>
+          <span class="playbook-card-score-label">Ri</span>
+        </div>
+        <div class="playbook-card-score">
+          <span class="playbook-card-score-value ci">${playbook.scores.ci.toFixed(1)}</span>
+          <span class="playbook-card-score-label">Ci</span>
+        </div>
+      </div>
+      <div class="playbook-card-actions">
+        <button class="playbook-card-btn playbook-card-btn--view" onclick="FruitHedge.viewPlaybook('${playbook.id}')">View</button>
+        <button class="playbook-card-btn playbook-card-btn--delete" onclick="FruitHedge.deletePlaybook('${playbook.id}')">Delete</button>
+      </div>
+    `;
+
+    return card;
+  }
+
+  /**
+   * View a saved playbook in modal
+   */
+  function viewPlaybook(id) {
+    const playbook = state.playbooks.find(p => p.id === id);
+    if (!playbook) return;
+
+    // Store current playbook for PDF generation
+    window._currentViewedPlaybook = playbook;
+
+    const date = new Date(playbook.date);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+
+    // Build modal content
+    let content = `
+      <div class="pm-alpha">
+        <div class="pm-alpha-value">${playbook.scores.alpha.toFixed(1)}</div>
+        <div class="pm-alpha-label">Creative Alpha Index</div>
+      </div>
+
+      <div class="pm-scores">
+        <div class="pm-score">
+          <div class="pm-score-value aq">${playbook.scores.aq.toFixed(1)}</div>
+          <div class="pm-score-label">Autonomy</div>
+        </div>
+        <div class="pm-score">
+          <div class="pm-score-value ri">${playbook.scores.ri.toFixed(1)}</div>
+          <div class="pm-score-label">Resonance</div>
+        </div>
+        <div class="pm-score">
+          <div class="pm-score-value ci">${playbook.scores.ci.toFixed(1)}</div>
+          <div class="pm-score-label">Intensity</div>
+        </div>
+      </div>
+    `;
+
+    // Archetype section
+    if (playbook.archetype) {
+      content += `
+        <div class="pm-section">
+          <div class="pm-section-title">Your Archetype</div>
+          <div class="pm-archetype">
+            <div class="pm-archetype-name">${playbook.archetype.name}</div>
+            <div class="pm-archetype-subtitle">${playbook.archetype.subtitle}</div>
+            <p class="pm-archetype-profile">${playbook.archetype.profile}</p>
+          </div>
+          ${playbook.archetype.insight ? `
+            <div class="pm-protocol">
+              <div class="pm-protocol-name">Strategic Insight</div>
+              <p class="pm-protocol-why">${playbook.archetype.insight}</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    // Reflection questions section
+    if (playbook.reflections) {
+      const reflectionLabels = {
+        energy: 'Energy Surplus',
+        space: 'Mental Space',
+        optionality: 'Optionality',
+        constraint: 'Constraint Load',
+        impact: 'Emotional Impact',
+        identity: 'Identity Fit',
+        boldness: 'Artistic Boldness',
+        audience: 'Audience Size',
+        flow: 'Flow Hours',
+        evolution: 'Skill Evolution',
+        risk: 'Creative Risk',
+        admin: 'Admin Load',
+        distraction: 'Distraction',
+        stagnation: 'Stagnation Level'
+      };
+
+      // Get existing answers or empty object
+      const answers = playbook.reflection_answers || {};
+
+      content += `
+        <div class="pm-section">
+          <div class="pm-section-title">Reflection Questions</div>
+          <div class="pm-save-indicator" id="pm-save-indicator">Saved</div>
+          ${Object.entries(playbook.reflections).map(([key, question]) => `
+            <div class="pm-reflection-item">
+              <div class="pm-reflection-label">${reflectionLabels[key] || key}</div>
+              <p class="pm-reflection-question">${question}</p>
+              <textarea
+                class="pm-reflection-answer"
+                data-key="${key}"
+                placeholder="Write your reflection here..."
+                rows="3"
+              >${answers[key] || ''}</textarea>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // Update modal
+    if (elements.playbookModalTitle) {
+      elements.playbookModalTitle.textContent = `Playbook — ${formattedDate}`;
+    }
+    if (elements.playbookModalContent) {
+      elements.playbookModalContent.innerHTML = content;
+    }
+
+    // Initialize auto-expanding textareas and auto-save
+    initReflectionTextareas(playbook.id);
+
+    // Show modal
+    if (elements.playbookModalOverlay) {
+      elements.playbookModalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  // Debounce timer for auto-save
+  let reflectionSaveTimer = null;
+
+  /**
+   * Initialize reflection textareas with auto-expand and auto-save
+   */
+  function initReflectionTextareas(playbookId) {
+    const textareas = document.querySelectorAll('.pm-reflection-answer');
+    const saveIndicator = document.getElementById('pm-save-indicator');
+
+    textareas.forEach(textarea => {
+      // Auto-expand on input
+      textarea.addEventListener('input', function() {
+        autoExpandTextarea(this);
+        scheduleReflectionSave(playbookId, saveIndicator);
+      });
+
+      // Initial auto-expand for existing content
+      autoExpandTextarea(textarea);
+    });
+  }
+
+  /**
+   * Auto-expand textarea based on content
+   */
+  function autoExpandTextarea(textarea) {
+    textarea.style.height = 'auto';
+    const minHeight = 72; // ~3 rows
+    const newHeight = Math.max(minHeight, textarea.scrollHeight);
+    textarea.style.height = newHeight + 'px';
+  }
+
+  /**
+   * Schedule auto-save with debounce
+   */
+  function scheduleReflectionSave(playbookId, saveIndicator) {
+    // Hide saved indicator while typing
+    if (saveIndicator) {
+      saveIndicator.classList.remove('visible');
+    }
+
+    // Clear existing timer
+    if (reflectionSaveTimer) {
+      clearTimeout(reflectionSaveTimer);
+    }
+
+    // Set new timer for 1 second
+    reflectionSaveTimer = setTimeout(() => {
+      saveReflectionAnswers(playbookId, saveIndicator);
+    }, 1000);
+  }
+
+  /**
+   * Save reflection answers to localStorage
+   */
+  function saveReflectionAnswers(playbookId, saveIndicator) {
+    const textareas = document.querySelectorAll('.pm-reflection-answer');
+    const answers = {};
+
+    textareas.forEach(textarea => {
+      const key = textarea.dataset.key;
+      const value = textarea.value.trim();
+      if (value) {
+        answers[key] = value;
+      }
+    });
+
+    // Find and update the playbook
+    const playbookIndex = state.playbooks.findIndex(p => p.id === playbookId);
+    if (playbookIndex !== -1) {
+      state.playbooks[playbookIndex].reflection_answers = answers;
+      savePlaybooksToStorage();
+
+      // Show saved indicator
+      if (saveIndicator) {
+        saveIndicator.classList.add('visible');
+        // Hide after 2 seconds
+        setTimeout(() => {
+          saveIndicator.classList.remove('visible');
+        }, 2000);
+      }
+    }
+  }
+
+  /**
+   * Delete a saved playbook
+   */
+  function deletePlaybook(id) {
+    showModal(
+      'Delete Playbook',
+      'Are you sure you want to delete this playbook? This cannot be undone.',
+      () => {
+        state.playbooks = state.playbooks.filter(p => p.id !== id);
+        savePlaybooksToStorage();
+        updatePlaybooksDisplay();
+        hideModal();
+      }
+    );
+  }
+
+  /**
+   * Close playbook modal
+   */
+  function closePlaybookModal() {
+    if (elements.playbookModalOverlay) {
+      elements.playbookModalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    window._currentViewedPlaybook = null;
+  }
+
+  /**
+   * Save any pending reflection answers and close the playbook modal with confirmation
+   */
+  function saveAndClosePlaybook() {
+    const playbook = window._currentViewedPlaybook;
+    console.log('[FruitHedge] saveAndClosePlaybook called, playbook:', playbook ? playbook.id : 'none');
+
+    if (playbook) {
+      // Force save any pending reflection answers immediately
+      const textareas = document.querySelectorAll('.pm-reflection-answer');
+      const answers = {};
+
+      textareas.forEach(textarea => {
+        const key = textarea.dataset.key;
+        const value = textarea.value.trim();
+        if (value) {
+          answers[key] = value;
+        }
+      });
+
+      // Find and update the playbook
+      const playbookIndex = state.playbooks.findIndex(p => p.id === playbook.id);
+      console.log('[FruitHedge] Found playbook at index:', playbookIndex, 'Total playbooks:', state.playbooks.length);
+
+      if (playbookIndex !== -1) {
+        state.playbooks[playbookIndex].reflection_answers = answers;
+        savePlaybooksToStorage();
+        console.log('[FruitHedge] Saved to localStorage key: fruithedge_journals');
+      } else {
+        console.log('[FruitHedge] WARNING: Playbook not found in state.playbooks!');
+      }
+    }
+
+    // Close the modal
+    closePlaybookModal();
+
+    // Refresh the playbooks display to ensure list is up to date
+    updatePlaybooksDisplay();
+    console.log('[FruitHedge] Called updatePlaybooksDisplay()');
+
+    // Show confirmation toast
+    showSaveConfirmation();
+  }
+
+  /**
+   * Show a brief "Playbook saved" confirmation toast
+   */
+  function showSaveConfirmation() {
+    // Create toast element if it doesn't exist
+    let toast = document.getElementById('save-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'save-toast';
+      toast.className = 'save-toast';
+      document.body.appendChild(toast);
+    }
+
+    // Set content and show
+    toast.textContent = 'Playbook saved';
+    toast.classList.add('visible');
+
+    // Hide after 2 seconds
+    setTimeout(() => {
+      toast.classList.remove('visible');
+    }, 2000);
+  }
+
+  /**
+   * Download PDF from viewed playbook - ONLY triggered by explicit button click
+   */
+  function downloadPlaybookPdf() {
+    console.log('[FruitHedge] downloadPlaybookPdf called');
+    const playbook = window._currentViewedPlaybook;
+    if (!playbook) {
+      console.log('[FruitHedge] No playbook to download - aborting');
+      return;
+    }
+
+    // Safety check: Only proceed if modal is actually visible
+    if (!elements.playbookModalOverlay || !elements.playbookModalOverlay.classList.contains('active')) {
+      console.log('[FruitHedge] Modal not visible - aborting PDF generation');
+      return;
+    }
+
+    console.log('[FruitHedge] Generating PDF for playbook:', playbook.id);
+
+    // Generate HTML content similar to generatePDFJournal but from stored data
+    const date = new Date(playbook.date);
+    const formattedDate = date.toLocaleDateString();
+    const formattedTime = date.toLocaleTimeString();
 
     const content = `
       <!DOCTYPE html>
@@ -1356,11 +2293,6 @@
             font-size: 18px;
             border-bottom: 2px solid #eee;
             padding-bottom: 8px;
-          }
-          h3 {
-            font-size: 14px;
-            color: #444;
-            margin: 20px 0 10px 0;
           }
           .header-meta {
             color: #666;
@@ -1416,48 +2348,6 @@
             border-radius: 8px;
             background: #fff;
           }
-          .section--autonomy { border-left: 4px solid #2d5016; }
-          .section--resonance { border-left: 4px solid #c45a2c; }
-          .section--intensity { border-left: 4px solid #8b2d5c; }
-          .reflection-item {
-            margin: 15px 0;
-            padding: 15px;
-            background: #fafafa;
-            border-radius: 6px;
-          }
-          .reflection-label {
-            font-weight: 600;
-            font-size: 13px;
-            color: #333;
-            margin-bottom: 5px;
-          }
-          .reflection-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
-          }
-          .reflection-question {
-            font-style: italic;
-            color: #444;
-            font-size: 14px;
-            line-height: 1.5;
-          }
-          .journal-space {
-            margin-top: 15px;
-            padding: 20px;
-            border: 1px dashed #ccc;
-            border-radius: 4px;
-            min-height: 80px;
-            background: #fff;
-          }
-          .journal-space::before {
-            content: 'Your thoughts:';
-            font-size: 11px;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-          }
           .archetype-section {
             text-align: center;
             padding: 30px;
@@ -1496,152 +2386,42 @@
       </head>
       <body>
         <h1>FruitHedge Creative Journal</h1>
-        <div class="header-meta">Generated on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}</div>
+        <div class="header-meta">Generated on ${formattedDate} at ${formattedTime}</div>
 
-        <div class="alpha">${state.scores.alpha.toFixed(1)}</div>
+        <div class="alpha">${playbook.scores.alpha.toFixed(1)}</div>
         <div class="alpha-label">Creative Alpha Index</div>
 
         <div class="scores-header">
           <div class="score">
-            <div class="score-value" style="color: #2d5016;">${state.scores.aq.toFixed(1)}</div>
+            <div class="score-value" style="color: #2d5016;">${playbook.scores.aq.toFixed(1)}</div>
             <div class="score-label">Autonomy</div>
           </div>
           <div class="score">
-            <div class="score-value" style="color: #c45a2c;">${state.scores.ri.toFixed(1)}</div>
+            <div class="score-value" style="color: #c45a2c;">${playbook.scores.ri.toFixed(1)}</div>
             <div class="score-label">Resonance</div>
           </div>
           <div class="score">
-            <div class="score-value" style="color: #8b2d5c;">${state.scores.ci.toFixed(1)}</div>
+            <div class="score-value" style="color: #8b2d5c;">${playbook.scores.ci.toFixed(1)}</div>
             <div class="score-label">Intensity</div>
           </div>
         </div>
 
+        ${playbook.archetype ? `
         <div class="archetype-section">
-          <div class="archetype-name">${state.archetype ? state.archetype.name : 'Your Archetype'}</div>
-          <div class="archetype-subtitle">${state.archetype ? state.archetype.subtitle : ''}</div>
-          <p class="archetype-profile">${state.archetype ? state.archetype.profile : 'Complete all calculations to see your creative archetype.'}</p>
+          <div class="archetype-name">${playbook.archetype.name}</div>
+          <div class="archetype-subtitle">${playbook.archetype.subtitle}</div>
+          <p class="archetype-profile">${playbook.archetype.profile}</p>
         </div>
+        ` : ''}
 
-        <h2>Law I: Autonomy Quotient — Reflection Questions</h2>
-        <div class="section section--autonomy">
-          <div class="reflection-item">
-            <div class="reflection-label">Energy Surplus</div>
-            <div class="reflection-value">Score: ${inputs.energy}/10</div>
-            <div class="reflection-question">${reflections.energy}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Mental Space</div>
-            <div class="reflection-value">Score: ${inputs.space}/10</div>
-            <div class="reflection-question">${reflections.space}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Optionality</div>
-            <div class="reflection-value">Score: ${inputs.optionality}/10</div>
-            <div class="reflection-question">${reflections.optionality}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Constraint Load</div>
-            <div class="reflection-value">Score: ${inputs.constraint}/10</div>
-            <div class="reflection-question">${reflections.constraint}</div>
-            <div class="journal-space"></div>
-          </div>
-        </div>
-
-        <h2>Law II: Resonance Index — Reflection Questions</h2>
-        <div class="section section--resonance">
-          <div class="reflection-item">
-            <div class="reflection-label">Emotional Impact</div>
-            <div class="reflection-value">Score: ${inputs.impact}/10</div>
-            <div class="reflection-question">${reflections.impact}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Identity Fit</div>
-            <div class="reflection-value">Score: ${inputs.identity}/10</div>
-            <div class="reflection-question">${reflections.identity}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Artistic Boldness</div>
-            <div class="reflection-value">Score: ${inputs.boldness}/10</div>
-            <div class="reflection-question">${reflections.boldness}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Audience Size</div>
-            <div class="reflection-value">Audience: ${formatAudience(inputs.audience)}</div>
-            <div class="reflection-question">${reflections.audience}</div>
-            <div class="journal-space"></div>
-          </div>
-        </div>
-
-        <h2>Law III: Craft Intensity — Reflection Questions</h2>
-        <div class="section section--intensity">
-          <h3>Creative Fuel</h3>
-          <div class="reflection-item">
-            <div class="reflection-label">Flow Hours (weekly)</div>
-            <div class="reflection-value">${inputs.flow} hours/week</div>
-            <div class="reflection-question">${reflections.flow}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Skill Evolution</div>
-            <div class="reflection-value">Score: ${inputs.evolution}/10</div>
-            <div class="reflection-question">${reflections.evolution}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Creative Risk</div>
-            <div class="reflection-value">Score: ${inputs.risk}/10</div>
-            <div class="reflection-question">${reflections.risk}</div>
-            <div class="journal-space"></div>
-          </div>
-
-          <h3>Creative Drag</h3>
-          <div class="reflection-item">
-            <div class="reflection-label">Admin Load (weekly)</div>
-            <div class="reflection-value">${inputs.admin} hours/week</div>
-            <div class="reflection-question">${reflections.admin}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Distraction (weekly)</div>
-            <div class="reflection-value">${inputs.distraction} hours/week</div>
-            <div class="reflection-question">${reflections.distraction}</div>
-            <div class="journal-space"></div>
-          </div>
-          <div class="reflection-item">
-            <div class="reflection-label">Stagnation Level</div>
-            <div class="reflection-value">Score: ${inputs.stagnation}/10</div>
-            <div class="reflection-question">${reflections.stagnation}</div>
-            <div class="journal-space"></div>
-          </div>
-        </div>
-
+        ${playbook.archetype && playbook.archetype.insight ? `
         <h2>Key Insight</h2>
         <div class="section">
-          <p style="font-size: 16px; line-height: 1.8;">${state.archetype ? state.archetype.insight : 'Complete all calculations to receive your personalized insight.'}</p>
-          <div class="journal-space" style="min-height: 120px;"></div>
-        </div>
-
-        ${state.recommendation ? `
-        <h2>Recommended: ${state.recommendation.title}</h2>
-        <div class="section">
-          <p><strong>${state.recommendation.creator}</strong> • ${state.recommendation.type} • ${state.recommendation.duration}</p>
-          <p>${state.recommendation.why}</p>
+          <p style="font-size: 16px; line-height: 1.8;">${playbook.archetype.insight}</p>
         </div>
         ` : ''}
 
-        ${state.protocol ? `
-        <h2>FruitHedge Protocol: ${state.protocol.name}</h2>
-        <div class="section">
-          <p><strong>${state.protocol.prescription}</strong></p>
-          <p>${state.protocol.why}</p>
-        </div>
-        ` : ''}
+        ${playbook.reflections ? generateReflectionsPdfHtml(playbook) : ''}
 
         <div class="footer">
           <p>FruitHedge Research Team • v3.0 • fruithedge.com</p>
@@ -1655,6 +2435,333 @@
     printWindow.document.write(content);
     printWindow.document.close();
     printWindow.print();
+  }
+
+  /**
+   * Generate HTML for reflections section in PDF
+   */
+  function generateReflectionsPdfHtml(playbook) {
+    const reflectionLabels = {
+      energy: 'Energy Surplus',
+      space: 'Mental Space',
+      optionality: 'Optionality',
+      constraint: 'Constraint Load',
+      impact: 'Emotional Impact',
+      identity: 'Identity Fit',
+      boldness: 'Artistic Boldness',
+      audience: 'Audience Size',
+      flow: 'Flow Hours',
+      evolution: 'Skill Evolution',
+      risk: 'Creative Risk',
+      admin: 'Admin Load',
+      distraction: 'Distraction',
+      stagnation: 'Stagnation Level'
+    };
+
+    const answers = playbook.reflection_answers || {};
+
+    return `
+      <h2>Reflections</h2>
+      ${Object.entries(playbook.reflections).map(([key, question]) => `
+        <div class="section" style="border-left: 3px solid #2d5016;">
+          <p style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
+            ${reflectionLabels[key] || key}
+          </p>
+          <p style="font-style: italic; color: #444; margin-bottom: 12px;">${question}</p>
+          ${answers[key] ? `
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 10px;">
+              <p style="margin: 0; white-space: pre-wrap;">${answers[key]}</p>
+            </div>
+          ` : `
+            <div style="border: 1px dashed #ccc; padding: 20px; border-radius: 4px; min-height: 60px; margin-top: 10px;">
+              <span style="color: #999; font-size: 11px;">Your thoughts:</span>
+            </div>
+          `}
+        </div>
+      `).join('')}
+    `;
+  }
+
+  // ============================================================
+  // HABIT ENGINE - Streak & Badges
+  // ============================================================
+
+  /**
+   * Get today's date as YYYY-MM-DD string
+   */
+  function getTodayDateString() {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  /**
+   * Calculate days between two date strings
+   */
+  function daysBetween(date1, date2) {
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+    const diffTime = Math.abs(d2 - d1);
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  }
+
+  /**
+   * Load streak and badges from localStorage
+   */
+  function loadHabitEngineFromStorage() {
+    try {
+      const streakData = localStorage.getItem('fruithedge_streak');
+      if (streakData) {
+        const parsed = JSON.parse(streakData);
+        state.streak = { ...state.streak, ...parsed };
+      }
+
+      const badgesData = localStorage.getItem('fruithedge_badges');
+      if (badgesData) {
+        const parsed = JSON.parse(badgesData);
+        state.badges = { ...state.badges, ...parsed };
+      }
+    } catch (e) {
+      console.error('[FruitHedge] Error loading habit engine data:', e);
+    }
+  }
+
+  /**
+   * Save streak and badges to localStorage
+   */
+  function saveHabitEngineToStorage() {
+    try {
+      localStorage.setItem('fruithedge_streak', JSON.stringify(state.streak));
+      localStorage.setItem('fruithedge_badges', JSON.stringify(state.badges));
+    } catch (e) {
+      console.error('[FruitHedge] Error saving habit engine data:', e);
+    }
+  }
+
+  /**
+   * Update streak when user saves a playbook
+   */
+  function updateStreakOnCheckin() {
+    const today = getTodayDateString();
+    const lastCheckin = state.streak.last_checkin_date;
+
+    // Check if this is a comeback (7+ day gap)
+    let isComeback = false;
+    if (lastCheckin) {
+      const daysSinceLastCheckin = daysBetween(lastCheckin, today);
+      if (daysSinceLastCheckin >= 7) {
+        isComeback = true;
+      }
+    }
+
+    // If same day, don't double count but still allow the check-in
+    if (lastCheckin === today) {
+      // Already checked in today, no streak change
+      return;
+    }
+
+    // Increment total check-ins
+    state.streak.total_checkins++;
+
+    // Set first check-in date if not set
+    if (!state.streak.first_checkin_date) {
+      state.streak.first_checkin_date = today;
+    }
+
+    // Calculate streak
+    if (!lastCheckin) {
+      // First ever check-in
+      state.streak.current_streak = 1;
+    } else {
+      const daysSinceLastCheckin = daysBetween(lastCheckin, today);
+      if (daysSinceLastCheckin === 1) {
+        // Consecutive day - streak continues
+        state.streak.current_streak++;
+      } else if (daysSinceLastCheckin === 0) {
+        // Same day - shouldn't happen but handle it
+        // Streak stays the same
+      } else {
+        // Missed days - streak resets
+        state.streak.current_streak = 1;
+      }
+    }
+
+    // Update last check-in date
+    state.streak.last_checkin_date = today;
+
+    // Update longest streak
+    if (state.streak.current_streak > state.streak.longest_streak) {
+      state.streak.longest_streak = state.streak.current_streak;
+    }
+
+    // Check and award badges
+    checkAndAwardBadges(isComeback);
+
+    // Save to localStorage
+    saveHabitEngineToStorage();
+  }
+
+  /**
+   * Check and award badges based on current state
+   */
+  function checkAndAwardBadges(isComeback = false) {
+    const newBadges = [];
+
+    // First Check-in badge
+    if (!state.badges.first && state.streak.total_checkins >= 1) {
+      state.badges.first = true;
+      newBadges.push('first');
+    }
+
+    // On Fire badge (7 day streak)
+    if (!state.badges.fire && state.streak.current_streak >= 7) {
+      state.badges.fire = true;
+      newBadges.push('fire');
+    }
+
+    // Consistent badge (30 day streak)
+    if (!state.badges.consistent && state.streak.current_streak >= 30) {
+      state.badges.consistent = true;
+      newBadges.push('consistent');
+    }
+
+    // Century badge (100 check-ins)
+    if (!state.badges.century && state.streak.total_checkins >= 100) {
+      state.badges.century = true;
+      newBadges.push('century');
+    }
+
+    // Comeback badge (returned after 7+ day gap)
+    if (!state.badges.comeback && isComeback) {
+      state.badges.comeback = true;
+      newBadges.push('comeback');
+    }
+
+    // Animate newly earned badges
+    if (newBadges.length > 0) {
+      setTimeout(() => {
+        newBadges.forEach(badge => {
+          const badgeEl = document.getElementById(`badge-${badge}`);
+          if (badgeEl) {
+            badgeEl.classList.add('badge--new');
+            setTimeout(() => badgeEl.classList.remove('badge--new'), 600);
+          }
+        });
+      }, 100);
+    }
+  }
+
+  /**
+   * Update habit engine display (streak, stats, badges)
+   */
+  function updateHabitEngineDisplay() {
+    // Update streak count
+    if (elements.streakCount) {
+      elements.streakCount.textContent = state.streak.current_streak;
+    }
+
+    // Update longest streak
+    if (elements.streakLongest) {
+      elements.streakLongest.textContent = `${state.streak.longest_streak} days`;
+    }
+
+    // Add fire effect if streak >= 7
+    if (elements.streakDisplay) {
+      if (state.streak.current_streak >= 7) {
+        elements.streakDisplay.classList.add('on-fire');
+      } else {
+        elements.streakDisplay.classList.remove('on-fire');
+      }
+    }
+
+    // Update total check-ins
+    if (elements.habitCheckins) {
+      elements.habitCheckins.textContent = state.streak.total_checkins;
+    }
+
+    // Update member since
+    if (elements.habitMemberSince) {
+      if (state.streak.first_checkin_date) {
+        const date = new Date(state.streak.first_checkin_date);
+        elements.habitMemberSince.textContent = date.toLocaleDateString('en-US', {
+          month: 'short',
+          year: 'numeric'
+        });
+      } else {
+        elements.habitMemberSince.textContent = '—';
+      }
+    }
+
+    // Update badges earned count
+    const badgesEarned = Object.values(state.badges).filter(b => b).length;
+    if (elements.habitBadgesCount) {
+      elements.habitBadgesCount.textContent = `${badgesEarned}/5`;
+    }
+
+    // Update badge display states
+    const badgeElements = {
+      first: elements.badgeFirst,
+      fire: elements.badgeFire,
+      consistent: elements.badgeConsistent,
+      century: elements.badgeCentury,
+      comeback: elements.badgeComeback
+    };
+
+    Object.entries(badgeElements).forEach(([key, el]) => {
+      if (el) {
+        if (state.badges[key]) {
+          el.classList.remove('badge--locked');
+          el.classList.add('badge--unlocked');
+        } else {
+          el.classList.add('badge--locked');
+          el.classList.remove('badge--unlocked');
+        }
+      }
+    });
+  }
+
+  /**
+   * Show return prompt banner based on last check-in
+   */
+  function showReturnBannerIfNeeded() {
+    if (!elements.returnBanner || !elements.returnBannerText) return;
+
+    const lastCheckin = state.streak.last_checkin_date;
+    if (!lastCheckin) return; // No previous check-in
+
+    const today = getTodayDateString();
+    const daysSince = daysBetween(lastCheckin, today);
+
+    let message = '';
+    let icon = '👋';
+
+    if (daysSince === 0) {
+      // Already checked in today, no banner
+      return;
+    } else if (daysSince >= 1 && daysSince <= 2) {
+      message = "Welcome back! Keep the streak alive.";
+      icon = '🔥';
+    } else if (daysSince >= 3 && daysSince <= 6) {
+      message = "It's been a few days. Your creativity misses you.";
+      icon = '💭';
+    } else if (daysSince >= 7) {
+      message = "Time for a creative audit. Let's see where you're at.";
+      icon = '🎯';
+    }
+
+    if (message) {
+      elements.returnBannerText.textContent = message;
+      const iconEl = elements.returnBanner.querySelector('.return-banner-icon');
+      if (iconEl) iconEl.textContent = icon;
+      elements.returnBanner.style.display = 'flex';
+    }
+  }
+
+  /**
+   * Dismiss return banner
+   */
+  function dismissReturnBanner() {
+    if (elements.returnBanner) {
+      elements.returnBanner.style.display = 'none';
+    }
   }
 
   function copyLink() {
@@ -1858,8 +2965,14 @@
     // Show archetype card
     showArchetypeCard();
 
+    // Show recommended resources
+    showRecommendedResources();
+
     // Show recommendations
     showRecommendations();
+
+    // Show Labs tips
+    displayLabsTips();
   }
 
   // ============================================================
@@ -1867,6 +2980,7 @@
   // ============================================================
 
   function initEventListeners() {
+    console.log('[FruitHedge] initEventListeners() starting...');
     // Theme toggle
     if (elements.themeToggle) {
       elements.themeToggle.addEventListener('click', toggleTheme);
@@ -1903,10 +3017,12 @@
       elements.calculateCiBtn.addEventListener('click', calculateAndShowCi);
     }
 
-    // History actions
-    if (elements.saveScoresBtn) {
-      elements.saveScoresBtn.addEventListener('click', saveCurrentScores);
+    // History toggle (collapsible)
+    if (elements.historyToggleBtn) {
+      elements.historyToggleBtn.addEventListener('click', toggleHistorySection);
     }
+
+    // History actions
     if (elements.exportHistoryBtn) {
       elements.exportHistoryBtn.addEventListener('click', exportHistory);
     }
@@ -1915,9 +3031,6 @@
     }
 
     // Export actions
-    if (elements.exportImageBtn) {
-      elements.exportImageBtn.addEventListener('click', generateImage);
-    }
     if (elements.exportPdfBtn) {
       elements.exportPdfBtn.addEventListener('click', generatePDFJournal);
     }
@@ -1946,12 +3059,1036 @@
       });
     }
 
+    // Playbook modal
+    if (elements.playbookModalClose) {
+      elements.playbookModalClose.addEventListener('click', closePlaybookModal);
+    }
+    if (elements.playbookModalSaveClose) {
+      elements.playbookModalSaveClose.addEventListener('click', saveAndClosePlaybook);
+    }
+    if (elements.playbookModalPdf) {
+      elements.playbookModalPdf.addEventListener('click', downloadPlaybookPdf);
+    }
+    if (elements.playbookModalOverlay) {
+      elements.playbookModalOverlay.addEventListener('click', (e) => {
+        if (e.target === elements.playbookModalOverlay) closePlaybookModal();
+      });
+    }
+
+    // Save confirmation modal
+    if (elements.saveConfirmReplace) {
+      elements.saveConfirmReplace.addEventListener('click', replaceTodayPlaybook);
+    }
+    if (elements.saveConfirmCancel) {
+      elements.saveConfirmCancel.addEventListener('click', hideSaveConfirmModal);
+    }
+    if (elements.saveConfirmOverlay) {
+      elements.saveConfirmOverlay.addEventListener('click', (e) => {
+        if (e.target === elements.saveConfirmOverlay) hideSaveConfirmModal();
+      });
+    }
+
+    // Return banner close
+    if (elements.returnBannerClose) {
+      elements.returnBannerClose.addEventListener('click', dismissReturnBanner);
+    }
+
+    // Equity chart metric tabs
+    const equityTabs = document.querySelectorAll('.equity-tab');
+    equityTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const metric = tab.dataset.metric;
+        if (metric === currentEquityMetric) return;
+
+        // Update active state
+        equityTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update current metric and redraw
+        currentEquityMetric = metric;
+        if (state.history.length >= 2) {
+          drawEquityCurve(state.history, currentEquityMetric);
+        }
+      });
+    });
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && elements.modalOverlay && elements.modalOverlay.classList.contains('active')) {
-        hideModal();
+      if (e.key === 'Escape') {
+        if (elements.playbookModalOverlay && elements.playbookModalOverlay.classList.contains('active')) {
+          closePlaybookModal();
+        } else if (elements.modalOverlay && elements.modalOverlay.classList.contains('active')) {
+          hideModal();
+        }
+      }
+
+      // Shift+D to seed demo data (when on dashboard section)
+      if (e.shiftKey && e.key === 'D') {
+        const dashboardSection = document.getElementById('dashboard-section');
+        if (dashboardSection) {
+          const rect = dashboardSection.getBoundingClientRect();
+          // Check if dashboard is visible in viewport
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            seedDemoHistory();
+          }
+        }
       }
     });
+    console.log('[FruitHedge] initEventListeners() completed');
+  }
+
+  // ============================================================
+  // PERFORMANCE DASHBOARD
+  // ============================================================
+
+  const dashboardElements = {
+    empty: document.getElementById('dashboard-empty'),
+    content: document.getElementById('dashboard-content'),
+    equityChart: document.getElementById('equity-chart'),
+    equityChartTitle: document.getElementById('equity-chart-title'),
+    equityTooltip: document.getElementById('equity-tooltip'),
+    radarChart: document.getElementById('radar-chart'),
+    radarTooltip: document.getElementById('radar-tooltip'),
+    statATH: document.getElementById('stat-ath'),
+    statStreak: document.getElementById('stat-streak'),
+    statCheckins: document.getElementById('stat-checkins'),
+    statAvg: document.getElementById('stat-avg'),
+    statDrawdown: document.getElementById('stat-drawdown'),
+    statBest: document.getElementById('stat-best'),
+    statWeakest: document.getElementById('stat-weakest'),
+    trendAQ: document.getElementById('trend-aq'),
+    trendAQArrow: document.getElementById('trend-aq-arrow'),
+    trendRi: document.getElementById('trend-ri'),
+    trendRiArrow: document.getElementById('trend-ri-arrow'),
+    trendCi: document.getElementById('trend-ci'),
+    trendCiArrow: document.getElementById('trend-ci-arrow'),
+    trendAlpha: document.getElementById('trend-alpha'),
+    trendAlphaArrow: document.getElementById('trend-alpha-arrow')
+  };
+
+  // Chart data points for hover detection
+  let equityDataPoints = [];
+
+  // Current equity chart metric
+  let currentEquityMetric = 'alpha';
+
+  // Metric configuration for equity chart
+  const equityMetricConfig = {
+    alpha: { label: 'Creative Alpha Over Time', color: '#ffffff', key: 'alpha' },
+    aq: { label: 'Autonomy Quotient Over Time', color: '#c4ff61', key: 'aq' },
+    ri: { label: 'Resonance Index Over Time', color: '#ffb380', key: 'ri' },
+    ci: { label: 'Craft Intensity Over Time', color: '#ff6b9d', key: 'ci' }
+  };
+
+  function updateDashboard() {
+    const history = state.history;
+
+    if (history.length < 2) {
+      if (dashboardElements.empty) dashboardElements.empty.style.display = 'block';
+      if (dashboardElements.content) dashboardElements.content.style.display = 'none';
+      return;
+    }
+
+    if (dashboardElements.empty) dashboardElements.empty.style.display = 'none';
+    if (dashboardElements.content) dashboardElements.content.style.display = 'block';
+
+    // Draw charts
+    drawEquityCurve(history, currentEquityMetric);
+    drawRadarChart();
+
+    // Update stats
+    updateStats(history);
+
+    // Update trends
+    updateTrends(history);
+  }
+
+  function drawEquityCurve(history, metric = 'alpha') {
+    const canvas = dashboardElements.equityChart;
+    if (!canvas) return;
+
+    const config = equityMetricConfig[metric] || equityMetricConfig.alpha;
+    const scoreKey = config.key;
+    const lineColor = config.color;
+
+    // Update chart title
+    if (dashboardElements.equityChartTitle) {
+      dashboardElements.equityChartTitle.textContent = config.label;
+    }
+
+    const ctx = canvas.getContext('2d');
+    const container = canvas.parentElement;
+
+    // Set canvas size for high DPI
+    const dpr = window.devicePixelRatio || 1;
+    const rect = container.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+
+    const width = rect.width;
+    const height = rect.height;
+    const padding = { top: 20, right: 20, bottom: 40, left: 50 };
+    const chartWidth = width - padding.left - padding.right;
+    const chartHeight = height - padding.top - padding.bottom;
+
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Reverse history for chronological order
+    const data = [...history].reverse();
+
+    // Get min/max for Y axis (always 0-10 for consistency)
+    const minScore = 0;
+    const maxScore = 10;
+
+    // Draw grid lines
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+    ctx.lineWidth = 1;
+
+    // Horizontal grid lines
+    for (let i = 0; i <= 5; i++) {
+      const y = padding.top + (chartHeight * i / 5);
+      ctx.beginPath();
+      ctx.moveTo(padding.left, y);
+      ctx.lineTo(width - padding.right, y);
+      ctx.stroke();
+
+      // Y-axis labels
+      const value = maxScore - ((maxScore - minScore) * i / 5);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.font = '11px JetBrains Mono, monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText(value.toFixed(1), padding.left - 10, y + 4);
+    }
+
+    // Draw the line with metric-specific color
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+
+    // Create gradient fill based on line color
+    // Convert hex to rgba for gradient (with fallback)
+    const hexToRgba = (hex, alpha) => {
+      // Fallback to lime if hex is invalid
+      if (!hex || typeof hex !== 'string' || !hex.startsWith('#') || hex.length < 7) {
+        return `rgba(196, 255, 97, ${alpha})`;
+      }
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      // Check for NaN
+      if (isNaN(r) || isNaN(g) || isNaN(b)) {
+        return `rgba(196, 255, 97, ${alpha})`;
+      }
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    };
+    const gradientFill = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
+    gradientFill.addColorStop(0, hexToRgba(lineColor, 0.3));
+    gradientFill.addColorStop(1, hexToRgba(lineColor, 0));
+
+    // Store data points for hover
+    equityDataPoints = [];
+
+    ctx.beginPath();
+    data.forEach((entry, i) => {
+      const scoreValue = entry.scores[scoreKey];
+      const x = padding.left + (chartWidth * i / (data.length - 1));
+      const y = padding.top + chartHeight * (1 - (scoreValue - minScore) / (maxScore - minScore));
+
+      equityDataPoints.push({
+        x, y,
+        date: new Date(entry.date).toLocaleDateString(),
+        value: scoreValue,
+        metric: metric
+      });
+
+      if (i === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    });
+    ctx.stroke();
+
+    // Fill area under the curve
+    ctx.lineTo(padding.left + chartWidth, height - padding.bottom);
+    ctx.lineTo(padding.left, height - padding.bottom);
+    ctx.closePath();
+    ctx.fillStyle = gradientFill;
+    ctx.fill();
+
+    // Draw data points
+    equityDataPoints.forEach((point, i) => {
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = lineColor;
+      ctx.fill();
+      ctx.strokeStyle = '#1a1a1a';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+
+    // Draw X-axis labels (show first, last, and middle)
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.font = '10px JetBrains Mono, monospace';
+    ctx.textAlign = 'center';
+
+    if (data.length > 0) {
+      // First date
+      ctx.fillText(new Date(data[0].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        padding.left, height - 10);
+      // Last date
+      ctx.fillText(new Date(data[data.length - 1].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        width - padding.right, height - 10);
+      // Middle date if more than 2 entries
+      if (data.length > 2) {
+        const midIndex = Math.floor(data.length / 2);
+        ctx.fillText(new Date(data[midIndex].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          padding.left + chartWidth / 2, height - 10);
+      }
+    }
+
+    // Setup hover listener
+    canvas.onmousemove = function(e) {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Find closest point
+      let closest = null;
+      let minDist = Infinity;
+
+      equityDataPoints.forEach(point => {
+        const dist = Math.sqrt(Math.pow(point.x - x, 2) + Math.pow(point.y - y, 2));
+        if (dist < minDist && dist < 30) {
+          minDist = dist;
+          closest = point;
+        }
+      });
+
+      const tooltip = dashboardElements.equityTooltip;
+      if (closest && tooltip) {
+        tooltip.style.display = 'block';
+        tooltip.innerHTML = `<strong>${closest.value.toFixed(1)}</strong><br>${closest.date}`;
+        tooltip.style.left = (closest.x - 40) + 'px';
+        tooltip.style.top = (closest.y - 50) + 'px';
+      } else if (tooltip) {
+        tooltip.style.display = 'none';
+      }
+    };
+
+    canvas.onmouseleave = function() {
+      if (dashboardElements.equityTooltip) {
+        dashboardElements.equityTooltip.style.display = 'none';
+      }
+    };
+  }
+
+  // Radar chart state for hover detection
+  const radarState = {
+    points: [], // Stores {x, y, score, name, fullName, status} for each vertex
+    hasData: false
+  };
+
+  function drawRadarChart() {
+    const canvas = dashboardElements.radarChart;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const maxRadius = Math.min(width, height) / 2 - 40; // Leave room for labels
+
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Get current scores or use last history entry
+    let aq, ri, ci, alpha;
+    if (state.scores.alpha > 0) {
+      aq = state.scores.aq;
+      ri = state.scores.ri;
+      ci = state.scores.ci;
+      alpha = state.scores.alpha;
+    } else if (state.history.length > 0) {
+      const latest = state.history[0];
+      aq = latest.scores.aq;
+      ri = latest.scores.ri;
+      ci = latest.scores.ci;
+      alpha = latest.scores.alpha;
+    } else {
+      // Empty state
+      radarState.hasData = false;
+      drawRadarEmpty(ctx, centerX, centerY, maxRadius);
+      return;
+    }
+
+    radarState.hasData = true;
+
+    // Angles for 3 axes (AQ at top, Ri bottom-left, Ci bottom-right)
+    const angles = [
+      -Math.PI / 2,           // AQ: top (270°)
+      -Math.PI / 2 + (2 * Math.PI / 3),  // Ri: bottom-left (150°)
+      -Math.PI / 2 + (4 * Math.PI / 3)   // Ci: bottom-right (30°)
+    ];
+
+    // Colors
+    const gridColor = 'rgba(128, 128, 128, 0.2)';
+    const axisColor = 'rgba(128, 128, 128, 0.4)';
+    const lime = '#c4ff61';
+    const peach = '#ff9b71';
+    const berry = '#d46a9e';
+    const textColor = '#e0e0e0';
+    const mutedColor = '#888888';
+
+    // Draw grid circles (at 2, 4, 6, 8, 10)
+    for (let level = 2; level <= 10; level += 2) {
+      const r = (level / 10) * maxRadius;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, r, 0, 2 * Math.PI);
+      ctx.strokeStyle = gridColor;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Draw axis lines
+    angles.forEach(angle => {
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(
+        centerX + Math.cos(angle) * maxRadius,
+        centerY + Math.sin(angle) * maxRadius
+      );
+      ctx.strokeStyle = axisColor;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Calculate vertex positions based on scores
+    const scores = [aq, ri, ci];
+    const names = ['AQ', 'Ri', 'Ci'];
+    const fullNames = ['Autonomy Quotient', 'Resonance Index', 'Creative Intensity'];
+    const colors = [lime, peach, berry];
+    const vertices = [];
+
+    radarState.points = []; // Reset hover points
+
+    scores.forEach((score, i) => {
+      const normalizedScore = Math.min(score, 10) / 10;
+      const x = centerX + Math.cos(angles[i]) * normalizedScore * maxRadius;
+      const y = centerY + Math.sin(angles[i]) * normalizedScore * maxRadius;
+      vertices.push({ x, y });
+
+      // Store for hover detection
+      radarState.points.push({
+        x,
+        y,
+        score,
+        name: names[i],
+        fullName: fullNames[i],
+        color: colors[i],
+        status: getScoreStatus(names[i], score)
+      });
+    });
+
+    // Draw filled shape with gradient
+    ctx.beginPath();
+    ctx.moveTo(vertices[0].x, vertices[0].y);
+    vertices.forEach((v, i) => {
+      if (i > 0) ctx.lineTo(v.x, v.y);
+    });
+    ctx.closePath();
+
+    // Create gradient fill
+    const gradient = ctx.createLinearGradient(
+      vertices[0].x, vertices[0].y,
+      (vertices[1].x + vertices[2].x) / 2,
+      (vertices[1].y + vertices[2].y) / 2
+    );
+    gradient.addColorStop(0, 'rgba(196, 255, 97, 0.3)');   // lime
+    gradient.addColorStop(0.5, 'rgba(255, 155, 113, 0.3)'); // peach
+    gradient.addColorStop(1, 'rgba(212, 106, 158, 0.3)');  // berry
+
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    // Draw shape border
+    ctx.strokeStyle = lime;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Draw vertex points with glow
+    vertices.forEach((v, i) => {
+      // Glow
+      ctx.beginPath();
+      ctx.arc(v.x, v.y, 8, 0, 2 * Math.PI);
+      ctx.fillStyle = colors[i].replace(')', ', 0.3)').replace('rgb', 'rgba').replace('#', '');
+      // Convert hex to rgba for glow
+      const glowColor = hexToRgba(colors[i], 0.3);
+      ctx.fillStyle = glowColor;
+      ctx.fill();
+
+      // Solid point
+      ctx.beginPath();
+      ctx.arc(v.x, v.y, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = colors[i];
+      ctx.fill();
+    });
+
+    // Draw labels at each axis end
+    const labelOffset = 25;
+    scores.forEach((score, i) => {
+      const labelX = centerX + Math.cos(angles[i]) * (maxRadius + labelOffset);
+      const labelY = centerY + Math.sin(angles[i]) * (maxRadius + labelOffset);
+
+      ctx.font = 'bold 11px monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // Name and score
+      ctx.fillStyle = colors[i];
+      ctx.fillText(`${names[i]}: ${score.toFixed(1)}`, labelX, labelY);
+    });
+
+    // Draw center alpha
+    ctx.font = 'bold 20px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    // Alpha symbol
+    ctx.fillStyle = mutedColor;
+    ctx.font = '14px monospace';
+    ctx.fillText('α', centerX, centerY - 10);
+
+    // Alpha value with gradient effect (approximate with solid color)
+    ctx.fillStyle = lime;
+    ctx.font = 'bold 18px monospace';
+    ctx.fillText(alpha.toFixed(1), centerX, centerY + 8);
+
+    // Setup hover listener if not already done
+    setupRadarHover(canvas);
+  }
+
+  function drawRadarEmpty(ctx, centerX, centerY, maxRadius) {
+    // Colors
+    const gridColor = 'rgba(128, 128, 128, 0.15)';
+    const axisColor = 'rgba(128, 128, 128, 0.3)';
+    const mutedColor = '#666666';
+
+    // Angles for 3 axes
+    const angles = [
+      -Math.PI / 2,
+      -Math.PI / 2 + (2 * Math.PI / 3),
+      -Math.PI / 2 + (4 * Math.PI / 3)
+    ];
+
+    // Draw grid circles
+    for (let level = 2; level <= 10; level += 2) {
+      const r = (level / 10) * maxRadius;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, r, 0, 2 * Math.PI);
+      ctx.strokeStyle = gridColor;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Draw axis lines
+    const names = ['AQ', 'Ri', 'Ci'];
+    angles.forEach((angle, i) => {
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(
+        centerX + Math.cos(angle) * maxRadius,
+        centerY + Math.sin(angle) * maxRadius
+      );
+      ctx.strokeStyle = axisColor;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Draw axis labels
+      const labelX = centerX + Math.cos(angle) * (maxRadius + 20);
+      const labelY = centerY + Math.sin(angle) * (maxRadius + 20);
+      ctx.font = '11px monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = mutedColor;
+      ctx.fillText(names[i], labelX, labelY);
+    });
+
+    // Center text
+    ctx.font = '11px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = mutedColor;
+    ctx.fillText('Calculate scores', centerX, centerY - 8);
+    ctx.fillText('to see your shape', centerX, centerY + 8);
+  }
+
+  function hexToRgba(hex, alpha) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  function getScoreStatus(name, score) {
+    const labels = {
+      AQ: { low: 'LOW AUTONOMY', mid: 'MODERATE AUTONOMY', high: 'HIGH AUTONOMY' },
+      Ri: { low: 'LOW RESONANCE', mid: 'MODERATE RESONANCE', high: 'HIGH RESONANCE' },
+      Ci: { low: 'LOW INTENSITY', mid: 'MODERATE INTENSITY', high: 'HIGH INTENSITY' }
+    };
+
+    const icons = { low: '⚠️', mid: '⚡', high: '🔥' };
+    let level;
+    if (score < 4) level = 'low';
+    else if (score < 7) level = 'mid';
+    else level = 'high';
+
+    return `${icons[level]} ${labels[name][level]}`;
+  }
+
+  function setupRadarHover(canvas) {
+    if (canvas._radarHoverSetup) return;
+    canvas._radarHoverSetup = true;
+
+    const tooltip = dashboardElements.radarTooltip;
+    if (!tooltip) return;
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!radarState.hasData) {
+        tooltip.classList.remove('visible');
+        return;
+      }
+
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      // Check proximity to each vertex point
+      let hoveredPoint = null;
+      const hitRadius = 20;
+
+      for (const point of radarState.points) {
+        const dist = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
+        if (dist < hitRadius) {
+          hoveredPoint = point;
+          break;
+        }
+      }
+
+      if (hoveredPoint) {
+        tooltip.innerHTML = `
+          <div class="radar-tooltip-title">${hoveredPoint.fullName}</div>
+          <div class="radar-tooltip-score">${hoveredPoint.score.toFixed(1)} / 10</div>
+          <div class="radar-tooltip-status">${hoveredPoint.status}</div>
+        `;
+        tooltip.style.left = `${e.clientX - rect.left + 15}px`;
+        tooltip.style.top = `${e.clientY - rect.top - 10}px`;
+        tooltip.classList.add('visible');
+        canvas.style.cursor = 'pointer';
+      } else {
+        tooltip.classList.remove('visible');
+        canvas.style.cursor = 'default';
+      }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
+      canvas.style.cursor = 'default';
+    });
+  }
+
+  function updateStats(history) {
+    // All-Time High Alpha
+    const alphas = history.map(h => h.scores.alpha);
+    const ath = Math.max(...alphas);
+    if (dashboardElements.statATH) {
+      dashboardElements.statATH.textContent = ath.toFixed(1);
+    }
+
+    // Total Check-ins
+    if (dashboardElements.statCheckins) {
+      dashboardElements.statCheckins.textContent = history.length;
+    }
+
+    // Average Alpha
+    const avgAlpha = alphas.reduce((a, b) => a + b, 0) / alphas.length;
+    if (dashboardElements.statAvg) {
+      dashboardElements.statAvg.textContent = avgAlpha.toFixed(1);
+    }
+
+    // Biggest Drawdown (largest drop between consecutive sessions)
+    let maxDrawdown = 0;
+    for (let i = 0; i < history.length - 1; i++) {
+      // History is newest first, so we compare backwards
+      const current = history[i].scores.alpha;
+      const previous = history[i + 1].scores.alpha;
+      const drop = previous - current;
+      if (drop > maxDrawdown) {
+        maxDrawdown = drop;
+      }
+    }
+    if (dashboardElements.statDrawdown) {
+      dashboardElements.statDrawdown.textContent = maxDrawdown > 0 ? `-${maxDrawdown.toFixed(1)}` : '0.0';
+    }
+
+    // Current Streak (consecutive days with entries)
+    let streak = 1;
+    const sortedByDate = [...history].sort((a, b) => new Date(b.date) - new Date(a.date));
+    for (let i = 0; i < sortedByDate.length - 1; i++) {
+      const current = new Date(sortedByDate[i].date);
+      const next = new Date(sortedByDate[i + 1].date);
+      const diffDays = Math.floor((current - next) / (1000 * 60 * 60 * 24));
+      if (diffDays <= 1) {
+        streak++;
+      } else {
+        break;
+      }
+    }
+    if (dashboardElements.statStreak) {
+      dashboardElements.statStreak.textContent = streak + ' days';
+    }
+
+    // Best and Weakest Law (based on records with dates)
+    const formatRecordDate = (dateStr) => {
+      if (!dateStr) return '';
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    };
+
+    // Find best law (highest recorded value)
+    const bestRecords = [
+      { name: 'AQ', value: state.records.best.aq.value, date: state.records.best.aq.date },
+      { name: 'Ri', value: state.records.best.ri.value, date: state.records.best.ri.date },
+      { name: 'Ci', value: state.records.best.ci.value, date: state.records.best.ci.date }
+    ].filter(r => r.value !== null);
+
+    // Find weakest law (lowest recorded value)
+    const worstRecords = [
+      { name: 'AQ', value: state.records.worst.aq.value, date: state.records.worst.aq.date },
+      { name: 'Ri', value: state.records.worst.ri.value, date: state.records.worst.ri.date },
+      { name: 'Ci', value: state.records.worst.ci.value, date: state.records.worst.ci.date }
+    ].filter(r => r.value !== null);
+
+    if (dashboardElements.statBest) {
+      if (bestRecords.length > 0) {
+        bestRecords.sort((a, b) => b.value - a.value);
+        const best = bestRecords[0];
+        const dateStr = best.date ? ` — ${formatRecordDate(best.date)}` : '';
+        dashboardElements.statBest.textContent = `${best.name} (${best.value.toFixed(1)})${dateStr}`;
+      } else {
+        dashboardElements.statBest.textContent = '—';
+      }
+    }
+
+    if (dashboardElements.statWeakest) {
+      if (worstRecords.length > 0) {
+        worstRecords.sort((a, b) => a.value - b.value);
+        const weakest = worstRecords[0];
+        const dateStr = weakest.date ? ` — ${formatRecordDate(weakest.date)}` : '';
+        dashboardElements.statWeakest.textContent = `${weakest.name} (${weakest.value.toFixed(1)})${dateStr}`;
+      } else {
+        dashboardElements.statWeakest.textContent = '—';
+      }
+    }
+  }
+
+  function updateTrends(history) {
+    // Compare current to average of last 3 sessions
+    if (history.length < 2) return;
+
+    const current = history[0].scores;
+    const recentCount = Math.min(3, history.length - 1);
+    const recent = history.slice(1, recentCount + 1);
+
+    const avgRecent = {
+      aq: recent.reduce((sum, h) => sum + h.scores.aq, 0) / recent.length,
+      ri: recent.reduce((sum, h) => sum + h.scores.ri, 0) / recent.length,
+      ci: recent.reduce((sum, h) => sum + h.scores.ci, 0) / recent.length,
+      alpha: recent.reduce((sum, h) => sum + h.scores.alpha, 0) / recent.length
+    };
+
+    function getTrend(current, avg) {
+      const diff = current - avg;
+      const threshold = 0.3; // Tolerance for "flat"
+      if (diff > threshold) return { arrow: '↑', class: 'trend-arrow--up' };
+      if (diff < -threshold) return { arrow: '↓', class: 'trend-arrow--down' };
+      return { arrow: '→', class: 'trend-arrow--flat' };
+    }
+
+    // Update AQ trend
+    const aqTrend = getTrend(current.aq, avgRecent.aq);
+    if (dashboardElements.trendAQ) {
+      dashboardElements.trendAQ.textContent = current.aq.toFixed(1);
+    }
+    if (dashboardElements.trendAQArrow) {
+      dashboardElements.trendAQArrow.textContent = aqTrend.arrow;
+      dashboardElements.trendAQArrow.className = 'trend-arrow ' + aqTrend.class;
+    }
+
+    // Update Ri trend
+    const riTrend = getTrend(current.ri, avgRecent.ri);
+    if (dashboardElements.trendRi) {
+      dashboardElements.trendRi.textContent = current.ri.toFixed(1);
+    }
+    if (dashboardElements.trendRiArrow) {
+      dashboardElements.trendRiArrow.textContent = riTrend.arrow;
+      dashboardElements.trendRiArrow.className = 'trend-arrow ' + riTrend.class;
+    }
+
+    // Update Ci trend
+    const ciTrend = getTrend(current.ci, avgRecent.ci);
+    if (dashboardElements.trendCi) {
+      dashboardElements.trendCi.textContent = current.ci.toFixed(1);
+    }
+    if (dashboardElements.trendCiArrow) {
+      dashboardElements.trendCiArrow.textContent = ciTrend.arrow;
+      dashboardElements.trendCiArrow.className = 'trend-arrow ' + ciTrend.class;
+    }
+
+    // Update Alpha trend
+    const alphaTrend = getTrend(current.alpha, avgRecent.alpha);
+    if (dashboardElements.trendAlpha) {
+      dashboardElements.trendAlpha.textContent = current.alpha.toFixed(1);
+    }
+    if (dashboardElements.trendAlphaArrow) {
+      dashboardElements.trendAlphaArrow.textContent = alphaTrend.arrow;
+      dashboardElements.trendAlphaArrow.className = 'trend-arrow ' + alphaTrend.class;
+    }
+  }
+
+  // ============================================================
+  // DEMO DATA SEEDER
+  // ============================================================
+
+  function seedDemoHistory() {
+    // Clear existing history
+    state.history = [];
+
+    const archetypeIds = [
+      'burnout', 'stuck_artist', 'free_agent', 'professional', 'explorer',
+      'virtuoso', 'rising_star', 'underground_legend', 'beloved_amateur',
+      'raw_talent', 'cult_figure', 'master', 'prodigy', 'icon'
+    ];
+
+    // Generate ~30 entries over 90 days
+    const entries = [];
+    const now = new Date();
+    const startDate = new Date(now.getTime() - (90 * 24 * 60 * 60 * 1000)); // 90 days ago
+
+    // Simulate a journey: starting rough, improving over time with variance
+    // Starting scores around 2-4, ending around 6-8
+    const numEntries = 30;
+
+    for (let i = 0; i < numEntries; i++) {
+      // Calculate date (spread across 90 days with some randomness)
+      const dayOffset = Math.floor((i / numEntries) * 90) + Math.floor(Math.random() * 3);
+      const entryDate = new Date(startDate.getTime() + (dayOffset * 24 * 60 * 60 * 1000));
+
+      // Progress factor (0 at start, 1 at end)
+      const progress = i / (numEntries - 1);
+
+      // Base improvement curve (sigmoid-ish for realistic growth)
+      const baseImprovement = Math.pow(progress, 0.7);
+
+      // Add variance and occasional drawdowns
+      const variance = (Math.random() - 0.5) * 1.5;
+      const drawdown = (Math.random() < 0.15) ? -1.5 : 0; // 15% chance of drawdown
+
+      // Calculate individual scores
+      // AQ: Starts low (2-3), ends higher (6-8)
+      let aq = 2 + (baseImprovement * 5) + variance * 0.8 + drawdown * 0.7;
+      aq = Math.max(1, Math.min(10, aq));
+
+      // Ri: Similar pattern but different variance
+      let ri = 2.5 + (baseImprovement * 4.5) + (Math.random() - 0.5) * 1.2 + drawdown * 0.5;
+      ri = Math.max(1, Math.min(10, ri));
+
+      // Ci: Starts slightly higher, grows steadier
+      let ci = 3 + (baseImprovement * 4) + (Math.random() - 0.5) * 1 + drawdown * 0.8;
+      ci = Math.max(1, Math.min(10, ci));
+
+      // Round to 1 decimal
+      aq = Math.round(aq * 10) / 10;
+      ri = Math.round(ri * 10) / 10;
+      ci = Math.round(ci * 10) / 10;
+
+      // Calculate alpha (geometric mean)
+      const alpha = Math.round(Math.pow(aq * ri * ci, 1/3) * 10) / 10;
+
+      // Pick archetype based on scores (simplified logic)
+      let archetypeIndex;
+      if (alpha < 3) archetypeIndex = Math.floor(Math.random() * 3); // burnout, stuck, free_agent
+      else if (alpha < 5) archetypeIndex = 3 + Math.floor(Math.random() * 3); // professional, explorer, virtuoso
+      else if (alpha < 7) archetypeIndex = 6 + Math.floor(Math.random() * 4); // rising_star to raw_talent
+      else archetypeIndex = 10 + Math.floor(Math.random() * 4); // cult_figure to icon
+
+      entries.push({
+        id: generateId(),
+        date: entryDate.toISOString(),
+        scores: { aq, ri, ci, alpha },
+        inputs: {
+          energy: Math.round(aq * 0.8 + Math.random() * 2),
+          space: Math.round(aq * 0.7 + Math.random() * 3),
+          optionality: Math.round(aq * 0.9 + Math.random() * 1),
+          constraint: Math.round((10 - aq) * 0.6 + Math.random() * 2),
+          impact: Math.round(ri * 0.8 + Math.random() * 2),
+          identity: Math.round(ri * 0.9 + Math.random() * 1),
+          boldness: Math.round(ri * 0.7 + Math.random() * 3),
+          audience: Math.pow(10, 2 + ri * 0.4),
+          flow: Math.round(ci * 2 + Math.random() * 5),
+          evolution: Math.round(ci * 0.8 + Math.random() * 2),
+          risk: Math.round(ci * 0.7 + Math.random() * 3),
+          admin: Math.round((10 - ci) * 1.5 + Math.random() * 5),
+          distraction: Math.round((10 - ci) * 1.5 + Math.random() * 5),
+          stagnation: Math.round((10 - ci) * 0.5 + Math.random() * 2)
+        },
+        archetype: archetypeIds[Math.min(archetypeIndex, archetypeIds.length - 1)]
+      });
+    }
+
+    // Sort by date (oldest first for history array which shows newest first)
+    entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    state.history = entries;
+    saveHistory();
+    updateHistoryDisplay();
+    updateDashboard();
+
+    console.log(`%c[FruitHedge] Demo data seeded: ${entries.length} entries over 90 days`, 'color: #c4ff61; font-weight: bold;');
+    console.log(`%c  - All-Time High: ${Math.max(...entries.map(e => e.scores.alpha)).toFixed(1)}`, 'color: #c4ff61;');
+    console.log(`%c  - Starting Alpha: ${entries[entries.length - 1].scores.alpha.toFixed(1)}`, 'color: #c4ff61;');
+    console.log(`%c  - Current Alpha: ${entries[0].scores.alpha.toFixed(1)}`, 'color: #c4ff61;');
+  }
+
+  // ============================================================
+  // TAB NAVIGATION
+  // ============================================================
+
+  const TAB_STORAGE_KEY = 'fruithedge_active_tab';
+  const VALID_SECTIONS = ['calculator', 'dashboard', 'playbooks'];
+
+  // Intersection Observer for active tab highlighting
+  let sectionObserver = null;
+
+  function initNavigation() {
+    console.log('[FruitHedge] initNavigation() starting...');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+
+    if (tabButtons.length === 0) {
+      console.warn('[FruitHedge] No tab buttons found, skipping navigation init');
+      return;
+    }
+
+    // Add click handlers for smooth scroll
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = btn.dataset.tab;
+        console.log('[FruitHedge] Tab button clicked, scrolling to:', sectionId);
+        scrollToSection(sectionId);
+      });
+    });
+    console.log('[FruitHedge] Tab click handlers attached');
+
+    // Set up Intersection Observer for active tab highlighting
+    setupScrollObserver();
+
+    // Handle URL hash on load
+    const hash = window.location.hash.slice(1);
+    if (hash && VALID_SECTIONS.includes(hash)) {
+      // Small delay to let page render first
+      setTimeout(() => scrollToSection(hash), 100);
+    }
+  }
+
+  function scrollToSection(sectionId) {
+    const sectionMap = {
+      'calculator': 'calculator-section',
+      'dashboard': 'dashboard-section',
+      'playbooks': 'playbooks-section'
+    };
+
+    const targetId = sectionMap[sectionId] || sectionId + '-section';
+    const section = document.getElementById(targetId);
+
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+
+      // Update URL hash
+      history.replaceState(null, '', '#' + sectionId);
+
+      // Update active tab
+      updateActiveTab(sectionId);
+
+      // Refresh content if needed
+      if (sectionId === 'playbooks') {
+        updatePlaybooksDisplay();
+      }
+      if (sectionId === 'dashboard') {
+        updateDashboard();
+      }
+    }
+  }
+
+  function updateActiveTab(sectionId) {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+      if (btn.dataset.tab === sectionId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  function setupScrollObserver() {
+    const sections = document.querySelectorAll('.page-section');
+
+    if (sections.length === 0) {
+      console.warn('[FruitHedge] No page sections found for observer');
+      return;
+    }
+
+    const options = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Trigger when section is in middle-ish of viewport
+      threshold: 0
+    };
+
+    sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Extract section name from ID (e.g., 'calculator-section' -> 'calculator')
+          const sectionId = entry.target.id.replace('-section', '');
+          console.log('[FruitHedge] Section in view:', sectionId);
+          updateActiveTab(sectionId);
+
+          // Update URL hash without scrolling
+          if (window.location.hash.slice(1) !== sectionId) {
+            history.replaceState(null, '', '#' + sectionId);
+          }
+        }
+      });
+    }, options);
+
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    console.log('[FruitHedge] Scroll observer set up for', sections.length, 'sections');
+  }
+
+  // Special function for CTA button - scrolls to calculator
+  function beginAudit() {
+    scrollToSection('calculator');
   }
 
   // ============================================================
@@ -1959,8 +4096,15 @@
   // ============================================================
 
   function init() {
+    console.log('[FruitHedge] init() starting...');
     // Load saved data
     loadFromStorage();
+
+    // Load playbooks
+    loadPlaybooksFromStorage();
+
+    // Load habit engine data (streak, badges)
+    loadHabitEngineFromStorage();
 
     // Apply theme
     setTheme(state.settings.theme);
@@ -1971,8 +4115,165 @@
     // Update history display
     updateHistoryDisplay();
 
+    // Update playbooks display
+    updatePlaybooksDisplay();
+
+    // Update habit engine display
+    updateHabitEngineDisplay();
+
+    // Show return banner if needed
+    showReturnBannerIfNeeded();
+
+    // Update dashboard
+    updateDashboard();
+
     // Check for URL params
     loadFromURL();
+
+    // Initialize tab navigation
+    console.log('[FruitHedge] About to call initNavigation()...');
+    initNavigation();
+    console.log('[FruitHedge] initNavigation() completed');
+
+    // Initialize info modals
+    console.log('[FruitHedge] About to call initInfoModals()...');
+    initInfoModals();
+    console.log('[FruitHedge] initInfoModals() completed');
+
+    // Initialize help tooltips
+    initHelpTooltips();
+  }
+
+  // ============================================================
+  // INFO MODALS (How It Works, About)
+  // ============================================================
+
+  function initInfoModals() {
+    // How It Works modal
+    if (elements.headerHowItWorks) {
+      elements.headerHowItWorks.addEventListener('click', () => {
+        openInfoModal(elements.howItWorksModal);
+      });
+    }
+
+    if (elements.howItWorksClose) {
+      elements.howItWorksClose.addEventListener('click', () => {
+        closeInfoModal(elements.howItWorksModal);
+      });
+    }
+
+    if (elements.howItWorksGotIt) {
+      elements.howItWorksGotIt.addEventListener('click', () => {
+        closeInfoModal(elements.howItWorksModal);
+      });
+    }
+
+    if (elements.howItWorksModal) {
+      elements.howItWorksModal.addEventListener('click', (e) => {
+        if (e.target === elements.howItWorksModal) {
+          closeInfoModal(elements.howItWorksModal);
+        }
+      });
+    }
+
+    // About modal
+    if (elements.headerAbout) {
+      elements.headerAbout.addEventListener('click', () => {
+        openInfoModal(elements.aboutModal);
+      });
+    }
+
+    if (elements.aboutClose) {
+      elements.aboutClose.addEventListener('click', () => {
+        closeInfoModal(elements.aboutModal);
+      });
+    }
+
+    if (elements.aboutModal) {
+      elements.aboutModal.addEventListener('click', (e) => {
+        if (e.target === elements.aboutModal) {
+          closeInfoModal(elements.aboutModal);
+        }
+      });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (elements.howItWorksModal && elements.howItWorksModal.classList.contains('active')) {
+          closeInfoModal(elements.howItWorksModal);
+        }
+        if (elements.aboutModal && elements.aboutModal.classList.contains('active')) {
+          closeInfoModal(elements.aboutModal);
+        }
+      }
+    });
+  }
+
+  function openInfoModal(modal) {
+    if (!modal) return;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeInfoModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('active');
+    // Only restore scroll if no other modals are open
+    const anyModalOpen =
+      (elements.howItWorksModal && elements.howItWorksModal.classList.contains('active')) ||
+      (elements.aboutModal && elements.aboutModal.classList.contains('active')) ||
+      (elements.playbookModalOverlay && elements.playbookModalOverlay.classList.contains('active')) ||
+      (elements.modalOverlay && elements.modalOverlay.classList.contains('active'));
+    if (!anyModalOpen) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  // ============================================================
+  // CONTEXTUAL HELP TOOLTIPS
+  // ============================================================
+
+  function initHelpTooltips() {
+    const triggers = document.querySelectorAll('.help-tooltip-trigger');
+
+    triggers.forEach(trigger => {
+      const tooltipId = trigger.dataset.tooltip;
+      const tooltip = document.getElementById('tooltip-' + tooltipId);
+
+      if (!tooltip) return;
+
+      // Toggle on click
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Close all other tooltips first
+        document.querySelectorAll('.help-tooltip.visible').forEach(t => {
+          if (t !== tooltip) t.classList.remove('visible');
+        });
+
+        tooltip.classList.toggle('visible');
+      });
+    });
+
+    // Close tooltips when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.help-tooltip-trigger') && !e.target.closest('.help-tooltip')) {
+        document.querySelectorAll('.help-tooltip.visible').forEach(t => {
+          t.classList.remove('visible');
+        });
+      }
+    });
+
+    // Close tooltips on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.help-tooltip.visible').forEach(t => {
+          t.classList.remove('visible');
+        });
+      }
+    });
   }
 
   // ============================================================
@@ -1981,7 +4282,11 @@
 
   window.FruitHedge = {
     viewEntry,
-    deleteEntry
+    deleteEntry,
+    viewPlaybook,
+    deletePlaybook,
+    scrollToSection,
+    beginAudit
   };
 
   // Initialize when DOM is ready

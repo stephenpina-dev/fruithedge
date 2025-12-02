@@ -7,7 +7,9 @@
       "Bash(node /Users/fruithedge/fruithedge/test-archetypes.js:*)",
       "Bash(node /Users/fruithedge/fruithedge/test-recommendations.js:*)",
       "Bash(node test-recommendations.js:*)",
-      "Bash(node /Users/fruithedge/fruithedge/test-journals.js:*)"
+      "Bash(node /Users/fruithedge/fruithedge/test-journals.js:*)",
+      "Bash(node test-recommendation-links.js:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

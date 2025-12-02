@@ -20,29 +20,65 @@
 
   <!-- Header (Sticky) -->
   <header class="header">
-    <div class="header-left">
-      <h1 class="logo">FruitHedge</h1>
-      <div class="tagline-badge">Creative Portfolio Manager</div>
-    </div>
-    <div class="header-right">
-      <div class="status-bar">
-        <span class="status-dot"></span>
-        <span class="status-text">Ready</span>
+    <div class="header-content">
+      <div class="header-left">
+        <span class="logo">FruitHedge</span>
+        <span class="tagline-badge">Measure. Reflect. Compound.</span>
       </div>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-        <span class="theme-icon">☀️</span>
-      </button>
+      <div class="header-right">
+        <button class="header-link" id="header-how-it-works">How It Works</button>
+        <button class="header-link" id="header-about">About</button>
+        <div class="status-bar">
+          <div><span class="status-dot"></span>ONLINE</div>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <span class="theme-icon">☀️</span>
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
+  <!-- Return Prompt Banner -->
+  <div class="return-banner" id="return-banner" style="display: none;">
+    <div class="return-banner-content">
+      <span class="return-banner-icon">👋</span>
+      <span class="return-banner-text" id="return-banner-text">Welcome back!</span>
+    </div>
+    <button class="return-banner-close" id="return-banner-close">&times;</button>
+  </div>
+
+  <!-- Tab Navigation -->
+  <nav class="tab-bar" id="tab-bar">
+    <div class="tab-bar-inner container">
+      <button class="tab-btn active" data-tab="calculator" id="tab-btn-calculator">
+        <span class="tab-icon">📊</span>
+        <span class="tab-label">Calculator</span>
+      </button>
+      <button class="tab-btn" data-tab="dashboard" id="tab-btn-dashboard">
+        <span class="tab-icon">📈</span>
+        <span class="tab-label">Dashboard</span>
+      </button>
+      <button class="tab-btn" data-tab="playbooks" id="tab-btn-playbooks">
+        <span class="tab-icon">📚</span>
+        <span class="tab-label">Playbooks</span>
+      </button>
+    </div>
+  </nav>
+
   <!-- Main Content -->
-  <main id="main-content" class="main-content container">
+  <main id="main-content" class="main-content">
+
+    <!-- ============================================================ -->
+    <!-- SECTION: CALCULATOR -->
+    <!-- ============================================================ -->
+    <section class="page-section" id="calculator-section">
+    <div class="section-inner container">
 
     <!-- Hero Section -->
     <section class="hero">
       <h1 class="hero-title">The 3 Laws of <span>Creative Alpha</span></h1>
-      <p class="hero-subtitle">A performance measurement system to analyze the true health of your creativity. Built for artists who manage their craft like a hedge fund manages capital.</p>
-      <div class="hero-tagline">STOP CHASING VOLATILE TRENDS. INVEST IN UNDERLYING CREATIVE FUNDAMENTALS.</div>
+      <p class="hero-subtitle">A performance measurement system to analyze the true health of your creativity.</p>
+      <p class="hero-instruction">Rate your Autonomy, Resonance, and Intensity below. Your results generate a personalized playbook — complete it weekly to track your growth.</p>
     </section>
 
     <!-- Calculator Section -->
@@ -51,10 +87,19 @@
       <!-- Law I: Autonomy Quotient -->
       <article class="law-card autonomy">
         <div class="law-header">
-          <div>
+          <div class="law-header-left">
             <div class="law-number">Law I</div>
-            <div class="law-title">Creative Autonomy</div>
+            <div class="law-title-wrapper">
+              <div class="law-title">Creative Autonomy</div>
+              <button class="help-tooltip-trigger" data-tooltip="aq" aria-label="Learn about Autonomy Quotient">?</button>
+            </div>
             <div class="law-tagline">"Freedom Creates Output"</div>
+            <div class="help-tooltip" id="tooltip-aq">
+              <div class="help-tooltip-content">
+                <strong>Autonomy Quotient (AQ)</strong> measures your freedom to create. Good inputs (energy, space, optionality) multiply together. Constraint divides the result. The cube root smooths extreme values.
+              </div>
+              <div class="help-tooltip-formula">AQ = 10 × ∛[(E × S × O) / (C × 10)]</div>
+            </div>
           </div>
           <div class="law-score-box" id="aq-box">—</div>
         </div>
@@ -116,10 +161,19 @@
       <!-- Law II: Resonance Index -->
       <article class="law-card resonance">
         <div class="law-header">
-          <div>
+          <div class="law-header-left">
             <div class="law-number">Law II</div>
-            <div class="law-title">Resonant Work</div>
+            <div class="law-title-wrapper">
+              <div class="law-title">Resonant Work</div>
+              <button class="help-tooltip-trigger" data-tooltip="ri" aria-label="Learn about Resonance Index">?</button>
+            </div>
             <div class="law-tagline">"Depth Beats Breadth"</div>
+            <div class="help-tooltip" id="tooltip-ri">
+              <div class="help-tooltip-content">
+                <strong>Resonance Index (Ri)</strong> measures how deeply you connect. Impact, identity, and boldness multiply together, then divide by audience size. Bigger audiences LOWER the score—depth beats breadth.
+              </div>
+              <div class="help-tooltip-formula">Ri = (I × Id × B) / [10 × (1 + ln(A/1000))]</div>
+            </div>
           </div>
           <div class="law-score-box" id="ri-box">—</div>
         </div>
@@ -180,10 +234,19 @@
       <!-- Law III: Craft Intensity -->
       <article class="law-card intensity">
         <div class="law-header">
-          <div>
+          <div class="law-header-left">
             <div class="law-number">Law III</div>
-            <div class="law-title">Craft Intensity</div>
+            <div class="law-title-wrapper">
+              <div class="law-title">Craft Intensity</div>
+              <button class="help-tooltip-trigger" data-tooltip="ci" aria-label="Learn about Craft Intensity">?</button>
+            </div>
             <div class="law-tagline">"Flow Is the Measure of Mastery"</div>
+            <div class="help-tooltip" id="tooltip-ci">
+              <div class="help-tooltip-content">
+                <strong>Craft Intensity (Ci)</strong> measures active growth. Flow, evolution, and risk multiply together. Admin, distraction, and stagnation divide the result. These dividers kill your creative capacity.
+              </div>
+              <div class="help-tooltip-formula">Ci = 10 × ∛[(F × E × R) / (A × D × S)]</div>
+            </div>
           </div>
           <div class="law-score-box" id="ci-box">—</div>
         </div>
@@ -296,21 +359,36 @@
         <h3>Personalized Action Plan</h3>
         <div id="recs-content"></div>
       </div>
+
+      <!-- FruitHedge Labs Tips -->
+      <div class="labs-section hidden" id="labs-section">
+        <h3>FruitHedge Labs</h3>
+        <p class="labs-subtitle">Science-backed micro-interventions based on your scores</p>
+        <div class="labs-tips" id="labs-tips">
+          <!-- Tips inserted by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Playbook CTA -->
+    <section class="playbook-section">
+      <button class="playbook-btn" id="export-pdf-btn">
+        Generate Personalized FruitHedge Playbook
+      </button>
+    </section>
+
+    <!-- Recommended Resources Section -->
+    <section class="resources-section hidden" id="recommended-resources">
+      <h2 class="section-title">Recommended Resources</h2>
+      <p class="resources-subtitle">Curated content based on your score patterns</p>
+      <div class="resources-grid" id="resources-grid">
+        <!-- Populated by JavaScript -->
+      </div>
     </section>
 
     <!-- Export Actions -->
     <section class="export-section">
-      <h2 class="section-title">Save & Share</h2>
-      <div class="export-actions">
-        <button class="btn btn-secondary" id="save-scores-btn">
-          <span>💾</span> Save to History
-        </button>
-        <button class="btn btn-secondary" id="export-image-btn">
-          <span>🖼️</span> Download Image
-        </button>
-        <button class="btn btn-secondary" id="export-pdf-btn">
-          <span>📄</span> Download Journal
-        </button>
+      <div class="export-actions-secondary">
         <button class="btn btn-secondary" id="copy-link-btn">
           <span>🔗</span> Copy Link
         </button>
@@ -320,115 +398,293 @@
       </div>
     </section>
 
-    <!-- History Section -->
+    <!-- History Section (Collapsible) -->
     <section class="history-section" id="history-section">
-      <h2 class="section-title">Your History</h2>
+      <button class="history-toggle-btn" id="history-toggle-btn">
+        <span class="history-toggle-text">View History</span>
+        <span class="history-toggle-arrow">▼</span>
+      </button>
 
-      <div class="history-actions">
-        <button class="btn btn-secondary" id="export-history-btn">Export JSON</button>
-        <button class="btn btn-danger" id="clear-history-btn">Clear All</button>
-      </div>
-
-      <div class="history-table-wrapper">
-        <table class="history-table" id="history-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>AQ</th>
-              <th>Ri</th>
-              <th>Ci</th>
-              <th>Alpha</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="history-tbody">
-            <!-- Populated by JavaScript -->
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Empty State -->
-      <div class="empty-state" id="history-empty">
-        <div class="empty-state-icon">📊</div>
-        <p class="empty-state-text">No history yet. Calculate and save your scores to track progress.</p>
-      </div>
-    </section>
-
-    <!-- Theory Section (Visible) -->
-    <section class="theory-section">
-      <h2 class="theory-title">The Math Behind FruitHedge</h2>
-      <p class="theory-intro">All three metrics are normalized to a 0-10 scale for easy comparison. The formulas are designed to reward balance and punish extremes.</p>
-
-      <div class="theory-laws">
-        <!-- Law I -->
-        <div class="theory-law autonomy">
-          <h3><span class="theory-law-num">Law I:</span> Autonomy Quotient (AQ)</h3>
-          <p class="theory-tagline">"Freedom Creates Output"</p>
-          <div class="formula">
-            AQ = 10 × ∛[(E × S × O) / (C × 100)]
-          </div>
-          <div class="formula-vars">
-            <p><strong>E</strong> = Energy Surplus (1-10)</p>
-            <p><strong>S</strong> = Mental Space (1-10)</p>
-            <p><strong>O</strong> = Optionality (1-10)</p>
-            <p><strong>C</strong> = Constraint Load (1-10)</p>
-          </div>
-          <p class="formula-explain">The cube root ensures that all three positive factors must be present — you can't compensate for zero energy with maximum optionality.</p>
+      <div class="history-content collapsed" id="history-content">
+        <div class="history-actions">
+          <button class="btn btn-secondary" id="export-history-btn">Export JSON</button>
+          <button class="btn btn-danger" id="clear-history-btn">Clear All</button>
         </div>
 
-        <!-- Law II -->
-        <div class="theory-law resonance">
-          <h3><span class="theory-law-num">Law II:</span> Resonance Index (Ri)</h3>
-          <p class="theory-tagline">"Depth Beats Breadth"</p>
-          <div class="formula">
-            Ri = [(I × Id × B) / (1 + ln(A/1000))] / 100
-          </div>
-          <div class="formula-vars">
-            <p><strong>I</strong> = Emotional Impact (1-10)</p>
-            <p><strong>Id</strong> = Identity Fit (1-10)</p>
-            <p><strong>B</strong> = Artistic Boldness (1-10)</p>
-            <p><strong>A</strong> = Audience Size (100 to 10M+)</p>
-          </div>
-          <p class="formula-explain">The logarithmic dilution factor penalizes large audiences — 10x more followers only increases dilution marginally, but 10x less depth is devastating.</p>
+        <div class="history-table-wrapper">
+          <table class="history-table" id="history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>AQ</th>
+                <th>Ri</th>
+                <th>Ci</th>
+                <th>Alpha</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="history-tbody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
         </div>
 
-        <!-- Law III -->
-        <div class="theory-law intensity">
-          <h3><span class="theory-law-num">Law III:</span> Craft Intensity (Ci)</h3>
-          <p class="theory-tagline">"Flow Is the Measure of Mastery"</p>
-          <div class="formula">
-            Ci = 10 × ∛[(F/6 × Ev × R) / (A/6 × D/6 × St)]
-          </div>
-          <div class="formula-vars">
-            <p><strong>F</strong> = Flow Hours (1-60)</p>
-            <p><strong>Ev</strong> = Skill Evolution (1-10)</p>
-            <p><strong>R</strong> = Creative Risk (1-10)</p>
-            <p><strong>A</strong> = Admin Load (1-60)</p>
-            <p><strong>D</strong> = Distraction (1-60)</p>
-            <p><strong>St</strong> = Stagnation Level (1-10)</p>
-          </div>
-          <p class="formula-explain">The ratio of fuel to drag determines intensity. High flow with low admin = compounding mastery. Low flow with high distraction = creative atrophy.</p>
-        </div>
-
-        <!-- Composite -->
-        <div class="theory-law composite">
-          <h3>Creative Alpha Index (α)</h3>
-          <p class="theory-tagline">"The geometric mean of sustainable creativity"</p>
-          <div class="formula">
-            α = ∛(AQ × Ri × Ci)
-          </div>
-          <p class="formula-explain">The geometric mean punishes weaknesses — you can't compensate for burnout with intensity. A 2 in any law drags down the entire composite.</p>
+        <!-- Empty State -->
+        <div class="empty-state" id="history-empty">
+          <div class="empty-state-icon">📊</div>
+          <p class="empty-state-text">No history yet. Calculate and save your scores to track progress.</p>
         </div>
       </div>
     </section>
+
+    </div><!-- End section-inner -->
+    </section><!-- End Section: Calculator -->
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION: DASHBOARD -->
+    <!-- ============================================================ -->
+    <section class="page-section page-section-wide" id="dashboard-section">
+    <div class="section-inner section-inner-wide">
+
+    <!-- Performance Dashboard -->
+    <div class="dashboard-header">
+      <h2 class="section-title">Performance Dashboard</h2>
+
+      <!-- Not Enough Data Message -->
+      <div class="dashboard-empty" id="dashboard-empty">
+        <div class="empty-state-icon">📈</div>
+        <p class="empty-state-text">Not enough data. Save at least 2 scores to see your performance dashboard.</p>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard-content" id="dashboard-content" style="display: none;">
+
+        <!-- Habit Engine: Streak & Badges -->
+        <div class="habit-engine">
+          <!-- Streak Display -->
+          <div class="streak-display" id="streak-display">
+            <div class="streak-fire" id="streak-fire">🔥</div>
+            <div class="streak-info">
+              <div class="streak-current">
+                <span class="streak-count" id="streak-count">0</span>
+                <span class="streak-label">Day Streak</span>
+              </div>
+              <div class="streak-longest">
+                <span class="streak-longest-label">Longest:</span>
+                <span class="streak-longest-value" id="streak-longest">0 days</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Stats -->
+          <div class="habit-stats">
+            <div class="habit-stat">
+              <span class="habit-stat-value" id="habit-checkins">0</span>
+              <span class="habit-stat-label">Total Check-ins</span>
+            </div>
+            <div class="habit-stat">
+              <span class="habit-stat-value" id="habit-member-since">—</span>
+              <span class="habit-stat-label">Member Since</span>
+            </div>
+            <div class="habit-stat">
+              <span class="habit-stat-value" id="habit-badges-count">0/5</span>
+              <span class="habit-stat-label">Badges Earned</span>
+            </div>
+          </div>
+
+          <!-- Badges Display -->
+          <div class="badges-display" id="badges-display">
+            <div class="badge badge--locked" id="badge-first" data-tooltip="First Check-in: Save your first playbook">
+              <span class="badge-icon">🌱</span>
+              <span class="badge-name">First Check-in</span>
+            </div>
+            <div class="badge badge--locked" id="badge-fire" data-tooltip="On Fire: Achieve a 7-day streak">
+              <span class="badge-icon">🔥</span>
+              <span class="badge-name">On Fire</span>
+            </div>
+            <div class="badge badge--locked" id="badge-consistent" data-tooltip="Consistent: Achieve a 30-day streak">
+              <span class="badge-icon">💎</span>
+              <span class="badge-name">Consistent</span>
+            </div>
+            <div class="badge badge--locked" id="badge-century" data-tooltip="Century: Complete 100 total check-ins">
+              <span class="badge-icon">🏆</span>
+              <span class="badge-name">Century</span>
+            </div>
+            <div class="badge badge--locked" id="badge-comeback" data-tooltip="Comeback: Return after 7+ day gap">
+              <span class="badge-icon">⚡</span>
+              <span class="badge-name">Comeback</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Row: Charts -->
+        <div class="dashboard-charts">
+          <!-- Equity Curve -->
+          <div class="dashboard-card dashboard-card--chart">
+            <div class="dashboard-card-card-header-row">
+              <div class="dashboard-card-header">
+                <span class="dashboard-card-title" id="equity-chart-title">Creative Alpha Over Time</span>
+                <span class="dashboard-card-subtitle">Performance tracking</span>
+              </div>
+              <div class="equity-chart-tabs">
+                <button class="equity-tab active" data-metric="alpha">α</button>
+                <button class="equity-tab" data-metric="aq">AQ</button>
+                <button class="equity-tab" data-metric="ri">Ri</button>
+                <button class="equity-tab" data-metric="ci">Ci</button>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="equity-chart" width="600" height="250"></canvas>
+            </div>
+            <div class="chart-tooltip" id="equity-tooltip"></div>
+          </div>
+
+          <!-- Pie Chart -->
+          <div class="dashboard-card dashboard-card--radar">
+            <div class="dashboard-card-header">
+              <span class="dashboard-card-title">Score Balance</span>
+              <span class="dashboard-card-subtitle">Your creative shape</span>
+            </div>
+            <div class="radar-wrapper">
+              <canvas id="radar-chart" width="280" height="280"></canvas>
+              <div class="radar-tooltip" id="radar-tooltip"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Stats and Trends -->
+        <div class="dashboard-stats-row">
+          <!-- Stats Panel -->
+          <div class="dashboard-card dashboard-card--stats">
+            <div class="dashboard-card-header">
+              <span class="dashboard-card-title">Trading Stats</span>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-label">All-Time High Alpha</span>
+                <span class="stat-value" id="stat-ath">—</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Current Streak</span>
+                <span class="stat-value" id="stat-streak">—</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Total Check-ins</span>
+                <span class="stat-value" id="stat-checkins">—</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Average Alpha</span>
+                <span class="stat-value" id="stat-avg">—</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Biggest Drawdown</span>
+                <span class="stat-value stat-value--negative" id="stat-drawdown">—</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Best Law</span>
+                <span class="stat-value stat-value--positive" id="stat-best">—</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Weakest Law</span>
+                <span class="stat-value stat-value--negative" id="stat-weakest">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trend Indicators -->
+          <div class="dashboard-card dashboard-card--trends">
+            <div class="dashboard-card-header">
+              <span class="dashboard-card-title">Trend Indicators</span>
+              <span class="dashboard-card-subtitle">vs last 3 sessions</span>
+            </div>
+            <div class="trends-grid">
+              <div class="trend-item">
+                <span class="trend-label">AQ</span>
+                <span class="trend-value" id="trend-aq">—</span>
+                <span class="trend-arrow" id="trend-aq-arrow">→</span>
+              </div>
+              <div class="trend-item">
+                <span class="trend-label">Ri</span>
+                <span class="trend-value" id="trend-ri">—</span>
+                <span class="trend-arrow" id="trend-ri-arrow">→</span>
+              </div>
+              <div class="trend-item">
+                <span class="trend-label">Ci</span>
+                <span class="trend-value" id="trend-ci">—</span>
+                <span class="trend-arrow" id="trend-ci-arrow">→</span>
+              </div>
+              <div class="trend-item trend-item--alpha">
+                <span class="trend-label">Alpha</span>
+                <span class="trend-value" id="trend-alpha">—</span>
+                <span class="trend-arrow" id="trend-alpha-arrow">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- End section-inner-wide -->
+    </section><!-- End Section: Dashboard -->
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION: PLAYBOOKS -->
+    <!-- ============================================================ -->
+    <section class="page-section page-section-wide" id="playbooks-section">
+    <div class="section-inner section-inner-wide">
+
+    <!-- My Playbooks -->
+    <div class="playbooks-header">
+      <h2 class="section-title">My Playbooks</h2>
+      <span class="playbooks-count" id="playbooks-count-tab">0 of 20 saved</span>
+    </div>
+    <p class="playbooks-privacy-note">Your reflections are saved locally on this device only. FruitHedge never sees or stores your answers.</p>
+
+    <!-- Empty State -->
+    <div class="playbooks-empty" id="playbooks-empty-tab">
+      <div class="empty-state-icon">📓</div>
+      <p class="empty-state-text">No playbooks saved yet. Calculate your scores above to generate your first playbook.</p>
+    </div>
+
+    <!-- Playbook Cards Grid -->
+    <div class="playbooks-grid" id="playbooks-grid-tab">
+      <!-- Populated by JavaScript -->
+    </div>
+
+    </div><!-- End section-inner-wide -->
+    </section><!-- End Section: Playbooks -->
 
   </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>FRUITHEDGE v3.0 // CREATIVE PORTFOLIO MANAGER // NORMALIZED 0-10 SCALE</p>
-    <p>Stop chasing volatile trends. Invest in underlying creative fundamentals.</p>
+    <p class="footer-line-1">FRUITHEDGE RESEARCH LAB // v3.0</p>
+    <p class="footer-line-2">Home of the Performance Enhancing Journal™</p>
+    <p class="footer-line-3">NORMALIZED 0-10 SCALE // © 2025</p>
   </footer>
+
+  <!-- Playbook View Modal -->
+  <div class="playbook-modal-overlay" id="playbook-modal-overlay">
+    <div class="playbook-modal" id="playbook-modal">
+      <div class="playbook-modal-header">
+        <h3 class="playbook-modal-title" id="playbook-modal-title">Playbook</h3>
+        <button class="playbook-modal-close" id="playbook-modal-close">&times;</button>
+      </div>
+      <div class="playbook-modal-content" id="playbook-modal-content">
+        <!-- Populated by JavaScript -->
+      </div>
+      <div class="playbook-modal-footer">
+        <button class="btn btn-secondary" id="playbook-modal-pdf">Download PDF</button>
+        <button class="btn btn-primary" id="playbook-modal-save-close">Save & Close</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal for Confirmations -->
   <div class="modal-overlay" id="modal-overlay">
@@ -447,8 +703,179 @@
     </div>
   </div>
 
-  <!-- Hidden Canvas for Image Generation -->
-  <canvas id="export-canvas" style="display: none;"></canvas>
+  <!-- How It Works Modal -->
+  <div class="info-modal-overlay" id="how-it-works-modal">
+    <div class="info-modal info-modal--large">
+      <button class="info-modal-close" id="how-it-works-close">&times;</button>
+      <h2 class="info-modal-title">How FruitHedge Works</h2>
+      <div class="info-modal-content">
+        <p class="info-modal-intro">For people who see math and panic. Breathe. This is easier than it looks.</p>
+
+        <!-- Section 1: The Point -->
+        <div class="info-section">
+          <h3 class="info-section-title">The Point</h3>
+          <p>FruitHedge measures your creative health using three scores:</p>
+          <ul class="info-list">
+            <li><strong>AQ</strong> (Autonomy Quotient) — Do you have the freedom to create?</li>
+            <li><strong>Ri</strong> (Resonance Index) — Does your work actually connect?</li>
+            <li><strong>Ci</strong> (Craft Intensity) — Are you actively growing?</li>
+          </ul>
+          <p>These three combine into one master score: <strong>Creative Alpha (α)</strong></p>
+          <p class="info-highlight">That's it. Three ingredients. One smoothie.</p>
+        </div>
+
+        <!-- Section 2: The Fruit Stand Analogy -->
+        <div class="info-section">
+          <h3 class="info-section-title">The Fruit Stand Analogy</h3>
+          <p>Imagine you run a fruit stand.</p>
+          <p>Your success depends on three things:</p>
+          <ol class="info-list-numbered">
+            <li><strong>Do you have good fruit?</strong> (Quality ingredients — your Autonomy)</li>
+            <li><strong>Do people love your fruit?</strong> (Customer connection — your Resonance)</li>
+            <li><strong>Are you improving your fruit game?</strong> (Daily hustle — your Intensity)</li>
+          </ol>
+          <p class="info-highlight">If one is missing, the whole stand suffers.</p>
+        </div>
+
+        <!-- Section 3: Law I - Autonomy -->
+        <div class="info-section">
+          <h3 class="info-section-title">🍎 Law I: Autonomy Quotient</h3>
+          <p>Imagine making apple juice:</p>
+          <ul class="info-list info-list--compact">
+            <li><strong>Energy</strong> = Fresh apples</li>
+            <li><strong>Space</strong> = A clean kitchen</li>
+            <li><strong>Optionality</strong> = Having different recipes to try</li>
+            <li><strong>Constraint</strong> = Someone yelling at you while you work</li>
+          </ul>
+          <p>More apples × cleaner kitchen × more recipes = better juice.<br>But if someone's yelling at you? That <em>DIVIDES</em> your output.</p>
+          <p class="info-highlight">High AQ = Freedom to create. Low AQ = Survival mode.</p>
+        </div>
+
+        <!-- Section 4: Law II - Resonance -->
+        <div class="info-section">
+          <h3 class="info-section-title">🍊 Law II: Resonance Index</h3>
+          <p>Imagine selling oranges:</p>
+          <ul class="info-list info-list--compact">
+            <li><strong>Impact</strong> = How juicy your oranges are</li>
+            <li><strong>Identity</strong> = How much your oranges taste like YOU</li>
+            <li><strong>Boldness</strong> = Are you experimenting with new varieties?</li>
+            <li><strong>Audience</strong> = How many people you're selling to</li>
+          </ul>
+          <p>Here's the twist: If you're selling to 10 people who <em>LOVE</em> your oranges, that's better than selling bland oranges to 10,000 people who don't care.</p>
+          <p class="info-highlight">High Ri = Cult classic. Low Ri = Algorithm fodder.</p>
+        </div>
+
+        <!-- Section 5: Law III - Intensity -->
+        <div class="info-section">
+          <h3 class="info-section-title">🍇 Law III: Craft Intensity</h3>
+          <p>Imagine growing grapes for wine:</p>
+          <ul class="info-list info-list--compact">
+            <li><strong>Flow</strong> = Hours actually tending the vineyard</li>
+            <li><strong>Evolution</strong> = Learning new techniques</li>
+            <li><strong>Risk</strong> = Trying new grape varieties</li>
+            <li><strong>Admin</strong> = Paperwork and bureaucracy</li>
+            <li><strong>Distraction</strong> = Netflix and scrolling</li>
+            <li><strong>Stagnation</strong> = Fear of trying new things</li>
+          </ul>
+          <p>More time in the vineyard + learning + experimenting = amazing wine.<br>But admin + distraction + fear? That kills your harvest.</p>
+          <p class="info-highlight">High Ci = Mastery in motion. Low Ci = Coasting.</p>
+        </div>
+
+        <!-- Section 6: Creative Alpha -->
+        <div class="info-section">
+          <h3 class="info-section-title">🍓 Creative Alpha</h3>
+          <p>You're making a fruit smoothie with three fruits:</p>
+          <ul class="info-list info-list--compact">
+            <li><strong>AQ</strong> = Strawberries (your freedom)</li>
+            <li><strong>Ri</strong> = Bananas (your connection)</li>
+            <li><strong>Ci</strong> = Oranges (your growth)</li>
+          </ul>
+          <p>If all three are fresh and ripe → amazing smoothie.<br>If one is rotten → the whole smoothie tastes off.</p>
+          <p class="info-highlight">The formula punishes imbalance. You can't compensate for a 2 in one area by having 10s elsewhere. Balance beats peaks.</p>
+        </div>
+
+        <!-- Section 7: Cheat Sheet -->
+        <div class="info-section">
+          <h3 class="info-section-title">Quick Reference</h3>
+          <p>If you want to raise...</p>
+          <ul class="info-list">
+            <li><strong>AQ</strong> → Reduce constraints, increase energy, clear mental space</li>
+            <li><strong>Ri</strong> → Go deeper not wider, take bold risks, find your true audience</li>
+            <li><strong>Ci</strong> → Increase flow hours, reduce admin/distraction, embrace experimentation</li>
+            <li><strong>Alpha</strong> → Identify your LOWEST score and fix that first</li>
+          </ul>
+        </div>
+
+        <!-- Section 8: Final Thought -->
+        <div class="info-section info-section--final">
+          <p>You don't need to understand the math to use FruitHedge.</p>
+          <p>Just know this:</p>
+          <ul class="info-list info-list--principles">
+            <li>Good inputs multiply.</li>
+            <li>Bad inputs divide.</li>
+            <li>Balance beats peaks.</li>
+            <li>What you measure improves.</li>
+          </ul>
+          <p class="info-cta">Now scroll down and audit yourself.</p>
+        </div>
+
+        <button class="info-modal-btn" id="how-it-works-got-it">Got it 🍊</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Modal -->
+  <div class="info-modal-overlay" id="about-modal">
+    <div class="info-modal">
+      <button class="info-modal-close" id="about-close">&times;</button>
+      <h2 class="info-modal-title">About FruitHedge</h2>
+      <div class="info-modal-content">
+        <div class="about-tagline">The Performance Enhancing Journal™</div>
+
+        <div class="about-section">
+          <h3>Origin Story</h3>
+          <p>FruitHedge was born from a simple observation: creatives track everything except what actually matters. Followers, likes, revenue—all lagging indicators. We built a system to measure the <em>leading</em> indicators of creative success.</p>
+        </div>
+
+        <div class="about-section">
+          <h3>The Philosophy</h3>
+          <p>We borrowed hedge fund thinking for creative work. Just as traders measure alpha (excess returns above market), we measure Creative Alpha—your excess output above your potential.</p>
+          <p>The three laws (Autonomy, Resonance, Intensity) are the fundamental forces that determine creative performance. Master them, and the results follow.</p>
+        </div>
+
+        <div class="about-section">
+          <h3>How to Use It</h3>
+          <ul class="about-list">
+            <li>Weekly check-ins build the clearest picture</li>
+            <li>Be honest with the sliders—this is private</li>
+            <li>Focus on your lowest score first</li>
+            <li>Generate playbooks to capture insights</li>
+            <li>Track trends over time in the Dashboard</li>
+          </ul>
+        </div>
+
+        <div class="about-section about-section--footer">
+          <p class="about-privacy">Your data stays on your device. FruitHedge never sees your reflections.</p>
+          <p class="about-version">FRUITHEDGE TERMINAL v3.0 © 2025</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Daily Save Confirmation Modal -->
+  <div class="save-confirm-overlay" id="save-confirm-overlay">
+    <div class="save-confirm-modal">
+      <p class="save-confirm-text">You already logged today.</p>
+      <p class="save-confirm-subtext">Replace your earlier score?</p>
+      <div class="save-confirm-buttons">
+        <button class="save-confirm-btn save-confirm-replace" id="save-confirm-replace">Replace</button>
+        <button class="save-confirm-btn save-confirm-cancel" id="save-confirm-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="data.js"></script>
