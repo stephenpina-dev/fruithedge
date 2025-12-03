@@ -88,6 +88,14 @@
   window._currentViewedPlaybook = null;
 
   // ============================================================
+  // iOS DETECTION
+  // ============================================================
+
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+
+  // ============================================================
   // TOAST NOTIFICATIONS
   // ============================================================
 
@@ -2232,8 +2240,21 @@
         stagnation: 'Stagnation Level'
       };
 
+      // Helper to format input score display
+      const formatInputScore = (key, value) => {
+        if (value === undefined || value === null) return '';
+        if (key === 'audience') {
+          return `Your score: ${value.toLocaleString()} followers`;
+        } else if (key === 'flow' || key === 'admin' || key === 'distraction') {
+          return `Your score: ${value} hours/week`;
+        } else {
+          return `Your score: ${value}/10`;
+        }
+      };
+
       // Get existing answers or empty object
       const answers = playbook.reflection_answers || {};
+      const inputs = playbook.inputs || {};
 
       content += `
         <div class="pm-section">
@@ -2243,6 +2264,7 @@
             <div class="pm-reflection-item">
               <div class="pm-reflection-label">${reflectionLabels[key] || key}</div>
               <p class="pm-reflection-question">${question}</p>
+              ${inputs[key] !== undefined ? `<p class="question-score">${formatInputScore(key, inputs[key])}</p>` : ''}
               <textarea
                 class="pm-reflection-answer"
                 data-key="${key}"
@@ -2456,6 +2478,20 @@
    */
   function downloadPlaybookPdf() {
     console.log('[FruitHedge] downloadPlaybookPdf called');
+
+    // iOS-specific handling
+    if (isIOS()) {
+      const iosMessage = "To save as PDF on iPhone:\n\n" +
+        "1. Tap the Share button (square with arrow)\n" +
+        "2. Select 'Print'\n" +
+        "3. Pinch outward on the preview to open as PDF\n" +
+        "4. Tap Share again\n" +
+        "5. Choose 'Save to Files'";
+      alert(iosMessage);
+      setTimeout(function() { window.print(); }, 500);
+      return;
+    }
+
     const playbook = window._currentViewedPlaybook;
     if (!playbook) {
       console.log('[FruitHedge] No playbook to download - aborting');
@@ -2667,7 +2703,20 @@
       stagnation: 'Stagnation Level'
     };
 
+    // Helper to format input score display for PDF
+    const formatInputScore = (key, value) => {
+      if (value === undefined || value === null) return '';
+      if (key === 'audience') {
+        return `Your score: ${value.toLocaleString()} followers`;
+      } else if (key === 'flow' || key === 'admin' || key === 'distraction') {
+        return `Your score: ${value} hours/week`;
+      } else {
+        return `Your score: ${value}/10`;
+      }
+    };
+
     const answers = playbook.reflection_answers || {};
+    const inputs = playbook.inputs || {};
 
     return `
       <h2>Reflections</h2>
@@ -2676,7 +2725,12 @@
           <p style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
             ${reflectionLabels[key] || key}
           </p>
-          <p style="font-style: italic; color: #444; margin-bottom: 12px;">${question}</p>
+          <p style="font-style: italic; color: #444; margin-bottom: 8px;">${question}</p>
+          ${inputs[key] !== undefined ? `
+            <p style="font-size: 12px; color: #2d5016; font-family: monospace; margin-bottom: 10px;">
+              ${formatInputScore(key, inputs[key])}
+            </p>
+          ` : ''}
           ${answers[key] ? `
             <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 10px;">
               <p style="margin: 0; white-space: pre-wrap;">${answers[key]}</p>

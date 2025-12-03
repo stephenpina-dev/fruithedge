@@ -3427,7 +3427,14 @@ details[open] .theory-toggle-icon {
   color: var(--text-secondary);
   font-style: italic;
   line-height: 1.5;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.question-score {
+  font-size: 0.85rem;
+  color: rgba(196, 255, 97, 0.7);
+  margin-bottom: 8px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .pm-reflection-answer {
@@ -4596,50 +4603,63 @@ details[open] .theory-toggle-icon {
 .help-btn,
 .info-btn,
 .tooltip-btn,
-[class*="help"],
-[class*="info-btn"] {
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
-  min-height: 18px;
-  max-width: 18px;
-  max-height: 18px;
+.law-help {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
   padding: 0;
-  margin: 0;
+  margin-left: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  font-size: 11px;
-  line-height: 18px;
-  text-align: center;
-  display: inline-block;
-  font-weight: 700;
-  color: var(--text-muted);
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  cursor: help;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  font-weight: normal;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: middle;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
-.help-tooltip-trigger:hover {
-  color: var(--accent-lime);
-  border-color: var(--accent-lime);
-  background: rgba(196, 255, 97, 0.1);
+.help-tooltip-trigger:hover,
+.help-btn:hover,
+.info-btn:hover,
+.tooltip-btn:hover,
+.law-help:hover {
+  border-color: rgba(196, 255, 97, 0.5);
+  color: rgba(196, 255, 97, 0.8);
 }
 
-.help-tooltip {
+.help-tooltip,
+.tooltip-content,
+.help-popup,
+.help-modal,
+.info-popup {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  right: 0;
-  background: var(--bg-elevated);
-  border: 1px solid var(--accent-lime);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  z-index: 100;
+  z-index: 9999;
+  max-width: 280px;
+  padding: 14px;
+  background: rgba(10, 14, 20, 0.98);
+  border: 1px solid rgba(196, 255, 97, 0.3);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-5px);
   transition: all 0.2s ease;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .help-tooltip.visible {
@@ -4843,4 +4863,142 @@ details[open] .theory-toggle-icon {
 [data-theme="light"] .save-confirm-modal {
   background: var(--bg-secondary);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE - iPhone 15 and similar
+   ============================================ */
+@media screen and (max-width: 430px) {
+
+  /* Reduce side padding so boxes stretch wider */
+  body,
+  .container,
+  main,
+  section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Boxes stretch closer to screen edges */
+  .law-card,
+  .card,
+  .hero-box,
+  .results-box,
+  .module,
+  .section-box,
+  .action-plan,
+  .protocol-section,
+  .labs-section,
+  .archetype-section,
+  .recommendations-section,
+  .compounding-engine,
+  .synthesis {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Bigger base text for readability */
+  body {
+    font-size: 17px;
+  }
+
+  p, span, li {
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  /* Headings bigger */
+  h1, .hero-title {
+    font-size: 1.5rem;
+  }
+
+  h2, .section-title {
+    font-size: 1.3rem;
+  }
+
+  h3, .law-title, .law-name {
+    font-size: 1.15rem;
+  }
+
+  /* Slider labels bigger and readable */
+  .slider-label,
+  .factor-label,
+  .factor-name,
+  label {
+    font-size: 1rem;
+  }
+
+  /* Slider value display */
+  .slider-value,
+  .factor-value {
+    font-size: 1rem;
+  }
+
+  /* Buttons bigger and easy to tap */
+  button, .btn {
+    font-size: 1.05rem;
+    min-height: 48px;
+    padding: 14px 18px;
+  }
+
+  /* Score displays bigger */
+  .score-value, .law-score {
+    font-size: 2.5rem;
+  }
+
+  .alpha-score,
+  .alpha-value,
+  .composite-num {
+    font-size: 3.2rem;
+  }
+
+  /* Logo must be bigger than tagline */
+  .logo {
+    font-size: 2rem;
+  }
+
+  .tagline,
+  .tagline-badge {
+    font-size: 0.65rem;
+  }
+
+  /* Tips and recommendations readable */
+  .labs-tip-text,
+  .protocol-text,
+  .action-plan-text,
+  .recommendation-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Journal/playbook text bigger */
+  .journal-question,
+  .reflection-input,
+  .playbook-content,
+  .pm-reflection-question,
+  .pm-reflection-answer {
+    font-size: 1rem;
+  }
+
+  textarea {
+    font-size: 1rem;
+    min-height: 100px;
+  }
+
+  /* Modal content readable */
+  .modal-content,
+  .popup-content,
+  .info-modal-content,
+  .playbook-modal-content {
+    padding: 16px;
+    font-size: 1rem;
+  }
+
+  /* Footer readable */
+  footer, .footer {
+    font-size: 0.7rem;
+  }
 }
