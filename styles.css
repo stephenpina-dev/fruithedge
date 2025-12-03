@@ -4903,7 +4903,7 @@ details[open] .theory-toggle-icon {
 
   /* Bigger base text for readability */
   body {
-    font-size: 17px;
+    font-size: 15px;
   }
 
   p, span, li {
@@ -4929,7 +4929,7 @@ details[open] .theory-toggle-icon {
   .factor-label,
   .factor-name,
   label {
-    font-size: 0.85rem;
+    font-size: 13px;
   }
 
   /* Slider value display */
