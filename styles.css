@@ -4603,6 +4603,14 @@ details[open] .theory-toggle-icon {
   font-weight: 600;
 }
 
+.about-signature {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
 /* ============================================================
    CONTEXTUAL HELP TOOLTIPS
    ============================================================ */
