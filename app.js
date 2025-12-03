@@ -1,5 +1,5 @@
 // ============================================================
-// FRUITHEDGE v3.0 — Application Logic
+// FRUITHEDGE v3.0 - Application Logic
 // Single-page scroll, per-law calculations, inline results
 // ============================================================
 
@@ -377,7 +377,7 @@
     space: {
       low: "Your mind is cluttered. What worry keeps interrupting your creative flow? Can you address or release it?",
       mid: "You have manageable mental space. What systems could create more clarity?",
-      high: "Your mind is clear. This is a rare gift — what would you create if nothing was blocking you?"
+      high: "Your mind is clear. This is a rare gift. What would you create if nothing was blocking you?"
     },
     optionality: {
       low: "You feel trapped. What's one small step toward more freedom that you could take today?",
@@ -385,7 +385,7 @@
       high: "You have full freedom. With all doors open, which one actually matters most?"
     },
     constraint: {
-      low: "Your constraints are minimal. Be careful not to drift — what structure actually helps your output?",
+      low: "Your constraints are minimal. Be careful not to drift. What structure actually helps your output?",
       mid: "You have moderate constraints. Which ones are truly necessary versus just inherited?",
       high: "Your constraints are crushing. What's the first one you'd eliminate if you could? Why haven't you?"
     },
@@ -405,9 +405,9 @@
       high: "You're being fearless. How do you balance bold expression with sustainable craft?"
     },
     audience: {
-      small: "You have a small audience. This is a gift — you can know each person. What do they actually need?",
+      small: "You have a small audience. This is a gift. You can know each person. What do they actually need?",
       medium: "You have a growing audience. How do you maintain depth as numbers increase?",
-      large: "You have a large audience. Depth at scale is hard — what's your strategy to stay connected?"
+      large: "You have a large audience. Depth at scale is hard. What's your strategy to stay connected?"
     },
     flow: {
       low: "You're barely reaching flow. What environment changes would help you lose track of time?",
@@ -530,9 +530,13 @@
     // Archetype card
     archetypeCard: document.getElementById('archetype-card'),
 
-    // Recommendations section
+    // 1. Action Plan section
     recsSection: document.getElementById('recs-section'),
-    recsContent: document.getElementById('recs-content'),
+    actionPlanContent: document.getElementById('action-plan-content'),
+
+    // 2. Protocol section
+    protocolSection: document.getElementById('protocol-section'),
+    protocolContent: document.getElementById('protocol-content'),
 
     // Archetype
     archetypeName: document.getElementById('archetype-name'),
@@ -714,7 +718,7 @@
     if (score >= 8) {
       return {
         label: '✓ AUTONOMY ACHIEVED',
-        explain: 'Full creative freedom. You have the rare gift of space, energy, and choice. Protect this state fiercely—it is the foundation of great work.',
+        explain: 'Full creative freedom. You have the rare gift of space, energy, and choice. Protect this state fiercely. It is the foundation of great work.',
         class: 'excellent'
       };
     }
@@ -734,7 +738,7 @@
     }
     return {
       label: '✗ DISTRESSED ASSET',
-      explain: 'Creative emergency. Obligations are crushing your capacity. Immediate intervention required—cancel non-essentials, protect your energy.',
+      explain: 'Creative emergency. Obligations are crushing your capacity. Immediate intervention required: cancel non-essentials, protect your energy.',
       class: 'critical'
     };
   }
@@ -746,7 +750,7 @@
     if (score >= 8) {
       return {
         label: '★ CULT CLASSIC',
-        explain: 'Deep, lasting impact. Your work creates lifelong fans who would notice if you disappeared. This is real art—sustainable and meaningful.',
+        explain: 'Deep, lasting impact. Your work creates lifelong fans who would notice if you disappeared. This is real art: sustainable and meaningful.',
         class: 'excellent'
       };
     }
@@ -766,7 +770,7 @@
     }
     return {
       label: '⊘ ALGORITHM NOISE',
-      explain: 'High dilution detected. Your content may be disposable—consumed and forgotten. Fundamental reset needed: create for 1 person, not 1 million.',
+      explain: 'High dilution detected. Your content may be disposable, consumed and forgotten. Fundamental reset needed: create for 1 person, not 1 million.',
       class: 'critical'
     };
   }
@@ -826,13 +830,13 @@
     if (score >= 8) {
       return {
         label: 'COMPOUNDING RETURNS',
-        explain: 'All three forces aligned. Your creative portfolio is generating alpha. Protect the conditions that made this possible. Your personalized journal captures the reflection questions that reveal what\'s working — use it to document and replicate this state.'
+        explain: 'All three forces aligned. Your creative portfolio is generating alpha. Protect the conditions that made this possible. Your personalized journal captures the reflection questions that reveal what\'s working. Use it to document and replicate this state.'
       };
     }
     if (score >= 6) {
       return {
         label: 'POSITIVE MOMENTUM',
-        explain: 'Strong position. You\'re outperforming — now identify your weakest law and rebalance for maximum growth. Your personalized journal highlights the specific friction points to address next.'
+        explain: 'Strong position. You\'re outperforming. Now identify your weakest law and rebalance for maximum growth. Your personalized journal highlights the specific friction points to address next.'
       };
     }
     if (score >= 4) {
@@ -844,12 +848,12 @@
     if (score >= 2) {
       return {
         label: 'PORTFOLIO DRAG',
-        explain: 'Significant friction eating your returns. Audit ruthlessly — something is bleeding your creative capital. Your personalized journal is designed to help you identify the leaks and plug them.'
+        explain: 'Significant friction eating your returns. Audit ruthlessly. Something is bleeding your creative capital. Your personalized journal is designed to help you identify the leaks and plug them.'
       };
     }
     return {
       label: 'CREATIVE INSOLVENCY',
-      explain: 'All systems underwater. Stop trading your creative capital. Recover your principal before making any new investments. We crafted a personalized journal for you — use it to reflect and find your way back to baseline.'
+      explain: 'All systems underwater. Stop trading your creative capital. Recover your principal before making any new investments. We crafted a personalized journal for you. Use it to reflect and find your way back to baseline.'
     };
   }
 
@@ -885,38 +889,141 @@
   // LABS TIPS - Science-backed micro-interventions
   // ============================================================
 
-  function getLabsTips(sliderValues) {
+  function getLabsTips(sliderValues, scores, archetype) {
+    console.log('[FruitHedge Labs] Slider values:', sliderValues);
+    console.log('[FruitHedge Labs] Scores:', scores);
+    console.log('[FruitHedge Labs] Archetype:', archetype);
+    console.log('[FruitHedge Labs] Total tips available:', typeof labsTips !== 'undefined' ? labsTips.length : 'NOT FOUND');
+
     const triggers = [];
 
-    // Detect triggers based on slider values
-    if (sliderValues.energy <= 4) triggers.push("low_energy");
-    if (sliderValues.space <= 4) triggers.push("low_space");
-    if (sliderValues.flow <= 20) triggers.push("low_flow");
-    if (sliderValues.distraction >= 40) triggers.push("high_distraction");
-    if (sliderValues.stagnation >= 6) triggers.push("high_stagnation");
-    if (sliderValues.boldness <= 4) triggers.push("low_boldness");
-    if (sliderValues.identity <= 4) triggers.push("low_identity");
-    if (sliderValues.admin >= 40) triggers.push("high_admin");
-    if (sliderValues.constraint >= 7) triggers.push("high_constraint");
-    if (sliderValues.impact <= 4) triggers.push("low_resonance");
+    // ============================================================
+    // LOW RANGE TRIGGERS (struggling)
+    // 1-10 scale sliders: energy, space, stagnation, boldness, identity, constraint, impact
+    // ============================================================
+    if (sliderValues.energy <= 4) {
+      triggers.push("low_energy");
+      console.log('[FruitHedge Labs] Triggered: low_energy (energy=' + sliderValues.energy + ' <= 4)');
+    }
+    if (sliderValues.space <= 4) {
+      triggers.push("low_space");
+      console.log('[FruitHedge Labs] Triggered: low_space (space=' + sliderValues.space + ' <= 4)');
+    }
+    if (sliderValues.flow <= 10) {
+      triggers.push("low_flow");
+      console.log('[FruitHedge Labs] Triggered: low_flow (flow=' + sliderValues.flow + ' <= 10 hours)');
+    }
+    if (sliderValues.boldness <= 4) {
+      triggers.push("low_boldness");
+      console.log('[FruitHedge Labs] Triggered: low_boldness (boldness=' + sliderValues.boldness + ' <= 4)');
+    }
+    if (sliderValues.identity <= 4) {
+      triggers.push("low_identity");
+      console.log('[FruitHedge Labs] Triggered: low_identity (identity=' + sliderValues.identity + ' <= 4)');
+    }
+    if (sliderValues.impact <= 4) {
+      triggers.push("low_resonance");
+      console.log('[FruitHedge Labs] Triggered: low_resonance (impact=' + sliderValues.impact + ' <= 4)');
+    }
+
+    // ============================================================
+    // HIGH DRAG TRIGGERS (negative factors)
+    // ============================================================
+    if (sliderValues.distraction >= 30) {
+      triggers.push("high_distraction");
+      console.log('[FruitHedge Labs] Triggered: high_distraction (distraction=' + sliderValues.distraction + ' >= 30 hours)');
+    }
+    if (sliderValues.admin >= 30) {
+      triggers.push("high_admin");
+      console.log('[FruitHedge Labs] Triggered: high_admin (admin=' + sliderValues.admin + ' >= 30 hours)');
+    }
+    if (sliderValues.stagnation >= 6) {
+      triggers.push("high_stagnation");
+      console.log('[FruitHedge Labs] Triggered: high_stagnation (stagnation=' + sliderValues.stagnation + ' >= 6)');
+    }
+    if (sliderValues.constraint >= 7) {
+      triggers.push("high_constraint");
+      console.log('[FruitHedge Labs] Triggered: high_constraint (constraint=' + sliderValues.constraint + ' >= 7)');
+    }
+
+    // ============================================================
+    // MID RANGE TRIGGERS (maintaining - scores 5-7)
+    // ============================================================
+    if (sliderValues.energy >= 5 && sliderValues.energy <= 7) {
+      triggers.push("mid_energy");
+      console.log('[FruitHedge Labs] Triggered: mid_energy (energy=' + sliderValues.energy + ' in 5-7)');
+    }
+    if (scores && scores.ri >= 5 && scores.ri <= 7) {
+      triggers.push("mid_resonance");
+      console.log('[FruitHedge Labs] Triggered: mid_resonance (Ri=' + scores.ri + ' in 5-7)');
+    }
+    if (scores && scores.ci >= 5 && scores.ci <= 7) {
+      triggers.push("mid_intensity");
+      console.log('[FruitHedge Labs] Triggered: mid_intensity (Ci=' + scores.ci + ' in 5-7)');
+    }
+
+    // ============================================================
+    // HIGH PERFORMER TRIGGERS (optimizing - scores >= 7)
+    // ============================================================
+    if (scores && scores.alpha >= 7) {
+      triggers.push("high_performer");
+      console.log('[FruitHedge Labs] Triggered: high_performer (alpha=' + scores.alpha + ' >= 7)');
+    }
+    if (scores && scores.aq >= 7) {
+      triggers.push("high_autonomy");
+      console.log('[FruitHedge Labs] Triggered: high_autonomy (AQ=' + scores.aq + ' >= 7)');
+    }
+    if (scores && scores.ri >= 7) {
+      triggers.push("high_resonance");
+      console.log('[FruitHedge Labs] Triggered: high_resonance (Ri=' + scores.ri + ' >= 7)');
+    }
+    if (scores && scores.ci >= 7) {
+      triggers.push("high_intensity");
+      console.log('[FruitHedge Labs] Triggered: high_intensity (Ci=' + scores.ci + ' >= 7)');
+    }
+
+    // ============================================================
+    // ARCHETYPE TRIGGERS
+    // ============================================================
+    if (archetype && archetype.name) {
+      const archetypeTrigger = archetype.name.toLowerCase().replace(/\s+/g, '_');
+      triggers.push(archetypeTrigger);
+      console.log('[FruitHedge Labs] Triggered archetype:', archetypeTrigger);
+    }
+
+    // Always include "any" trigger for general science tips
+    triggers.push("any");
+
+    console.log('[FruitHedge Labs] All triggers:', triggers);
 
     // Find matching tips
     const matchedTips = labsTips.filter(tip => triggers.includes(tip.trigger));
+    console.log('[FruitHedge Labs] Matched tips:', matchedTips.length, matchedTips.map(t => t.trigger));
 
-    // If no matches, return random fruit tip
+    // If no matches, return from optimize or fruit categories
     if (matchedTips.length === 0) {
-      const fruitTips = labsTips.filter(t => t.category === "fruit");
-      return [fruitTips[Math.floor(Math.random() * fruitTips.length)]];
+      console.log('[FruitHedge Labs] No matches, returning from optimize/fruit tips');
+      const generalTips = labsTips.filter(t => t.category === "optimize" || t.category === "fruit");
+      return generalTips.sort(() => 0.5 - Math.random()).slice(0, 2);
     }
 
     // Return up to 2 random matched tips
     const shuffled = matchedTips.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 2);
+    const selectedTips = shuffled.slice(0, 2);
+    console.log('[FruitHedge Labs] Selected 2 tips to display:', selectedTips.map(t => ({ id: t.id, trigger: t.trigger, tip: t.tip.substring(0, 50) + '...' })));
+    return selectedTips;
   }
 
   function displayLabsTips() {
+    console.log('[FruitHedge Labs Display] displayLabsTips() called');
+
     const labsTipsContainer = document.getElementById('labs-tips');
-    if (!labsTipsContainer) return;
+    console.log('[FruitHedge Labs Display] Container found:', !!labsTipsContainer);
+
+    if (!labsTipsContainer) {
+      console.log('[FruitHedge Labs Display] ERROR: No labs-tips container!');
+      return;
+    }
 
     // Get current slider values
     const sliderValues = {
@@ -932,21 +1039,43 @@
       impact: parseInt(elements.sliders.impact?.value || 5)
     };
 
-    const tips = getLabsTips(sliderValues);
+    // Pass scores and archetype for mid/high range triggers
+    const tips = getLabsTips(sliderValues, state.scores, state.archetype);
+    console.log('[FruitHedge Labs Display] Tips returned from getLabsTips:', tips);
+    console.log('[FruitHedge Labs Display] Tips count:', tips ? tips.length : 'null/undefined');
 
     // Show the labs section
     const labsSection = document.getElementById('labs-section');
+    console.log('[FruitHedge Labs Display] Labs section found:', !!labsSection);
     if (labsSection) {
       labsSection.classList.remove('hidden');
+      console.log('[FruitHedge Labs Display] Labs section hidden class removed');
+    }
+
+    // Check if tips is valid
+    if (!tips || !Array.isArray(tips) || tips.length === 0) {
+      console.log('[FruitHedge Labs Display] ERROR: No valid tips to display!');
+      labsTipsContainer.innerHTML = '<p class="labs-tip-text">No tips available</p>';
+      return;
     }
 
     // Render tips
-    labsTipsContainer.innerHTML = tips.map(tip => `
+    const html = tips.map(tip => {
+      console.log('[FruitHedge Labs Display] Rendering tip:', tip);
+      if (!tip || !tip.tip) {
+        console.log('[FruitHedge Labs Display] WARNING: Invalid tip object:', tip);
+        return '';
+      }
+      return `
       <div class="labs-tip">
         <span class="labs-tip-icon">💡</span>
         <p class="labs-tip-text">"${tip.tip}"</p>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
+
+    console.log('[FruitHedge Labs Display] Generated HTML length:', html.length);
+    labsTipsContainer.innerHTML = html;
+    console.log('[FruitHedge Labs Display] Final container innerHTML:', labsTipsContainer.innerHTML.substring(0, 200) + '...');
   }
 
   // ============================================================
@@ -1017,12 +1146,12 @@
     }
     if (scores.aq < 4 && scores.ri < 4 && scores.ci < 4) patterns.push('burnout');
 
-    // Untapped potential — good alpha but weak area
+    // Untapped potential: good alpha but weak area
     if (scores.alpha >= 5 && (scores.aq < 5 || scores.ri < 5 || scores.ci < 5)) {
       patterns.push('untapped');
     }
 
-    // Comeback — decent autonomy/resonance but low craft
+    // Comeback: decent autonomy/resonance but low craft
     if (scores.aq >= 5 && scores.ri >= 5 && scores.ci >= 2 && scores.ci < 5) {
       patterns.push('comeback');
     }
@@ -1030,7 +1159,7 @@
     // High constraint (inverse of high_aq for protocols)
     if (scores.aq < 4) patterns.push('high_constraint');
 
-    // Low space (for protocols) — same trigger as low_aq
+    // Low space (for protocols) - same trigger as low_aq
     if (scores.aq < 4) patterns.push('low_space');
 
     // If no specific patterns, add general
@@ -1340,7 +1469,7 @@
       // Update composite status
       const alphaStatus = getAlphaStatus(state.scores.alpha);
       if (elements.compositeStatus) {
-        elements.compositeStatus.textContent = alphaStatus.label + ' — ' + alphaStatus.explain;
+        elements.compositeStatus.textContent = alphaStatus.label + ': ' + alphaStatus.explain;
       }
 
       // Match archetype, recommendation, and protocol
@@ -1401,55 +1530,135 @@
   }
 
   /**
-   * Show recommendations based on weakest law
+   * Get action plan based on score patterns and archetype
+   * Returns the most relevant action plan from actionPlans data
    */
-  function showRecommendations() {
-    if (!elements.recsSection || !elements.recsContent) return;
+  function getActionPlan(scores, archetype) {
+    // Check for specific patterns in priority order
 
-    const scores = state.scores;
-
-    // Find weakest law
-    const weakest = getWeakestLaw(scores);
-
-    const recs = {
-      aq: {
-        title: 'Autonomy Deficit Detected',
-        content: 'Your creative freedom is strangled. Without autonomy, all other metrics are meaningless.',
-        action: 'Next 7 Days: Identify your top 3 energy drains. Ruthlessly eliminate ONE of them.'
-      },
-      ri: {
-        title: 'Depth Over Reach Required',
-        content: 'You may be optimizing for vanity metrics. High reach + low resonance = disposable content.',
-        action: 'Next 7 Days: Create one piece for an audience of ONE. Impossibly specific, weird, true.'
-      },
-      ci: {
-        title: 'Flow State Deficit',
-        content: 'Your craft is dying from operational drag. Without deep flow, you cannot evolve.',
-        action: 'Next 7 Days: Block 3 hours for ZERO interruption work. Phone off. Internet off.'
-      }
-    };
-
-    const r = recs[weakest];
-    let html = `<div class="rec-card">
-      <div class="rec-title">${r.title}</div>
-      <p class="rec-content">${r.content}</p>
-      <div class="rec-action">${r.action}</div>
-    </div>`;
-
-    // FruitHedge Protocol (formerly Wellness)
-    if (state.protocol) {
-      const p = state.protocol;
-      const icon = getCategoryIcon(p.category);
-      html += `<div class="rec-card wellness">
-        <div class="rec-tier">${icon} FRUITHEDGE PROTOCOL</div>
-        <div class="rec-title">${p.name}</div>
-        <p class="rec-content"><strong>Prescription:</strong> ${p.prescription}</p>
-        <div class="rec-action">${p.why}</div>
-      </div>`;
+    // Burnout: all scores critically low
+    if (scores.aq < 3 && scores.ri < 3 && scores.ci < 3) {
+      return actionPlans.burnout_risk;
     }
 
-    elements.recsContent.innerHTML = html;
-    elements.recsSection.classList.add('show');
+    // High performer: all scores high
+    if (scores.aq >= 7 && scores.ri >= 7 && scores.ci >= 7) {
+      return actionPlans.high_performer;
+    }
+
+    // Free agent archetype: high autonomy but lacks focus
+    if (archetype && archetype.id === 'free_agent') {
+      return actionPlans.free_agent;
+    }
+
+    // Rising cult: high resonance, moderate other scores
+    if (scores.ri >= 6 && scores.aq >= 4 && scores.ci >= 4 && scores.ci < 7) {
+      return actionPlans.rising_cult;
+    }
+
+    // Low boldness check (need slider value)
+    const boldnessSlider = elements.sliders.boldness;
+    if (boldnessSlider && parseInt(boldnessSlider.value) <= 3) {
+      return actionPlans.low_boldness;
+    }
+
+    // High admin check (need slider value)
+    const adminSlider = elements.sliders.admin;
+    if (adminSlider && parseInt(adminSlider.value) >= 35) {
+      return actionPlans.high_admin;
+    }
+
+    // Find weakest law and return appropriate plan
+    const weakest = getWeakestLaw(scores);
+
+    if (weakest === 'aq') {
+      // Check if it's burnout risk (low energy + high constraint)
+      const energySlider = elements.sliders.energy;
+      const constraintSlider = elements.sliders.constraint;
+      if (energySlider && constraintSlider) {
+        const energy = parseInt(energySlider.value);
+        const constraint = parseInt(constraintSlider.value);
+        if (energy <= 3 && constraint >= 7) {
+          return actionPlans.burnout_risk;
+        }
+      }
+      return actionPlans.low_autonomy;
+    }
+
+    if (weakest === 'ri') {
+      return actionPlans.low_resonance;
+    }
+
+    if (weakest === 'ci') {
+      // Check if grinding without direction
+      if (scores.aq >= 5 && scores.ri < 5) {
+        return actionPlans.grinding_artist;
+      }
+      return actionPlans.low_intensity;
+    }
+
+    // Fallback: balanced/emerging
+    if (scores.aq >= 4 && scores.aq <= 6 && scores.ri >= 4 && scores.ri <= 6 && scores.ci >= 4 && scores.ci <= 6) {
+      return actionPlans.balanced;
+    }
+
+    return actionPlans.emerging_voice;
+  }
+
+  /**
+   * Show the three recommendation sections:
+   * 1. Personalized Action Plan - strategic diagnosis
+   * 2. Daily Protocol - simple daily habit
+   * 3. Labs Tips - science hacks (handled separately)
+   */
+  function showRecommendations() {
+    if (!elements.recsSection) return;
+
+    const scores = state.scores;
+    const archetype = state.archetype;
+
+    // ============================================================
+    // 1. PERSONALIZED ACTION PLAN
+    // Strategic diagnosis + 7-day action based on patterns
+    // ============================================================
+    const actionPlan = getActionPlan(scores, archetype);
+
+    if (elements.actionPlanContent && actionPlan) {
+      const actionHtml = `
+        <div class="action-plan-card">
+          <div class="action-plan-headline">${actionPlan.headline}</div>
+          <p class="action-plan-diagnosis">${actionPlan.diagnosis}</p>
+          <div class="action-plan-action"><strong>Next 7 Days:</strong> ${actionPlan.action}</div>
+        </div>
+      `;
+      elements.actionPlanContent.innerHTML = actionHtml;
+      elements.recsSection.classList.add('show');
+    }
+
+    // ============================================================
+    // 2. FRUITHEDGE PROTOCOL
+    // One simple daily habit targeting weakest law
+    // ============================================================
+    if (elements.protocolSection && elements.protocolContent && state.protocol) {
+      const p = state.protocol;
+      const weakest = getWeakestLaw(scores);
+      const targetLabel = weakest === 'aq' ? 'Low Energy / Autonomy Quotient' :
+                          weakest === 'ri' ? 'Low Connection / Resonance Index' :
+                          'Low Focus / Craft Intensity';
+
+      const protocolHtml = `
+        <div class="protocol-card">
+          <div class="protocol-name">${p.name}</div>
+          <div class="protocol-prescription">${p.prescription}</div>
+          <div class="protocol-target"><strong>Targets:</strong> ${targetLabel}</div>
+        </div>
+      `;
+      elements.protocolContent.innerHTML = protocolHtml;
+      elements.protocolSection.classList.remove('hidden');
+      elements.protocolSection.classList.add('show');
+    }
+
+    // Note: Labs Tips (section 3) are displayed via displayLabsTips()
   }
 
   // ============================================================
@@ -2048,7 +2257,7 @@
 
     // Update modal
     if (elements.playbookModalTitle) {
-      elements.playbookModalTitle.textContent = `Playbook — ${formattedDate}`;
+      elements.playbookModalTitle.textContent = `Playbook: ${formattedDate}`;
     }
     if (elements.playbookModalContent) {
       elements.playbookModalContent.innerHTML = content;
@@ -2686,7 +2895,7 @@
           year: 'numeric'
         });
       } else {
-        elements.habitMemberSince.textContent = '—';
+        elements.habitMemberSince.textContent = '-';
       }
     }
 
@@ -2798,7 +3007,7 @@
 
     const archetypeName = state.archetype ? state.archetype.name : 'Creative';
     const text = encodeURIComponent(
-      `My Creative Alpha: ${state.scores.alpha.toFixed(1)} — I'm ${archetypeName}. Measured with FruitHedge.`
+      `My Creative Alpha: ${state.scores.alpha.toFixed(1)} - I'm ${archetypeName}. Measured with FruitHedge.`
     );
     const url = `https://twitter.com/intent/tweet?text=${text}`;
     window.open(url, '_blank');
@@ -2959,7 +3168,7 @@
     // Update composite status
     const alphaStatus = getAlphaStatus(state.scores.alpha);
     if (elements.compositeStatus) {
-      elements.compositeStatus.textContent = alphaStatus.label + ' — ' + alphaStatus.explain;
+      elements.compositeStatus.textContent = alphaStatus.label + ': ' + alphaStatus.explain;
     }
 
     // Show archetype card
@@ -3781,10 +3990,10 @@
       if (bestRecords.length > 0) {
         bestRecords.sort((a, b) => b.value - a.value);
         const best = bestRecords[0];
-        const dateStr = best.date ? ` — ${formatRecordDate(best.date)}` : '';
+        const dateStr = best.date ? ` (${formatRecordDate(best.date)})` : '';
         dashboardElements.statBest.textContent = `${best.name} (${best.value.toFixed(1)})${dateStr}`;
       } else {
-        dashboardElements.statBest.textContent = '—';
+        dashboardElements.statBest.textContent = '-';
       }
     }
 
@@ -3792,10 +4001,10 @@
       if (worstRecords.length > 0) {
         worstRecords.sort((a, b) => a.value - b.value);
         const weakest = worstRecords[0];
-        const dateStr = weakest.date ? ` — ${formatRecordDate(weakest.date)}` : '';
+        const dateStr = weakest.date ? ` (${formatRecordDate(weakest.date)})` : '';
         dashboardElements.statWeakest.textContent = `${weakest.name} (${weakest.value.toFixed(1)})${dateStr}`;
       } else {
-        dashboardElements.statWeakest.textContent = '—';
+        dashboardElements.statWeakest.textContent = '-';
       }
     }
   }

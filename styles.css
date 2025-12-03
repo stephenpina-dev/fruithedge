@@ -1903,6 +1903,10 @@ details[open] .theory-toggle-icon {
     font-size: 15px;
   }
 
+  body {
+    font-size: 1.1rem;
+  }
+
   .header {
     padding: 0.75rem 1rem;
   }
@@ -1976,12 +1980,52 @@ details[open] .theory-toggle-icon {
   .score-summary-value {
     font-size: 1.5rem;
   }
+
+  /* Mobile readability improvements */
+  .slider-label,
+  .factor-label {
+    font-size: 1rem;
+  }
+
+  h2,
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .law-card p,
+  .law-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  button,
+  .btn {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .score-value,
+  .alpha-score {
+    font-size: 3rem;
+  }
+
+  .labs-tip-text {
+    font-size: 1.05rem;
+  }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
   :root {
     font-size: 14px;
+  }
+
+  body {
+    font-size: 1rem;
   }
 
   .header {
@@ -2044,6 +2088,11 @@ details[open] .theory-toggle-icon {
 
   .alpha-value {
     font-size: 3rem;
+  }
+
+  .score-value,
+  .alpha-score {
+    font-size: 2.5rem;
   }
 
   .recommendation-header {
@@ -2724,7 +2773,113 @@ details[open] .theory-toggle-icon {
 }
 
 /* ============================================================
-   FRUITHEDGE LABS SECTION
+   1. PERSONALIZED ACTION PLAN
+   Strategic diagnosis + 7-day action (coach giving diagnosis)
+   ============================================================ */
+
+.action-plan-card {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border-left: 4px solid var(--accent-cyan);
+}
+
+.action-plan-headline {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.action-plan-diagnosis {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+.action-plan-action {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  line-height: 1.6;
+}
+
+.action-plan-action strong {
+  color: var(--accent-cyan);
+}
+
+/* ============================================================
+   2. FRUITHEDGE PROTOCOL SECTION
+   Daily habit prescription (simple, practical)
+   ============================================================ */
+
+.protocol-section {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin-top: var(--space-xl);
+}
+
+.protocol-section.show {
+  opacity: 1;
+  max-height: 500px;
+}
+
+.protocol-section.hidden {
+  display: none;
+}
+
+.protocol-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-md);
+  color: var(--accent-lime);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.protocol-card {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border-left: 4px solid var(--accent-lime);
+}
+
+.protocol-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.protocol-prescription {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.5;
+}
+
+.protocol-target {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.protocol-target strong {
+  color: var(--accent-lime);
+}
+
+/* ============================================================
+   3. FRUITHEDGE LABS SECTION
+   Science-backed micro-interventions (quirky, surprising)
    ============================================================ */
 
 .labs-section {
@@ -2746,10 +2901,6 @@ details[open] .theory-toggle-icon {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
-}
-
-.labs-section h3::before {
-  content: '🧪 ';
 }
 
 .labs-subtitle {

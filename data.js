@@ -67,7 +67,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0593328972",
     duration: "272 pages",
     patterns: ["paralyzed", "low_ci", "untapped"],
-    why: "If you have trouble actually finishing and sharing your work – maybe from fear or perfectionism – The Practice will nudge you to start shipping your art regularly."
+    why: "If you have trouble finishing and sharing your work, whether from fear or perfectionism, The Practice will nudge you to start shipping your art regularly."
   },
   {
     id: 7,
@@ -87,7 +87,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0465074871",
     duration: "352 pages",
     patterns: ["low_aq", "burnout", "low_ci"],
-    why: "Counterintuitive but true: working ever harder isn't the answer when you're depleted. This book shows that deliberate rest is part of doing great work – not the opposite of it."
+    why: "Counterintuitive but true: working ever harder isn't the answer when you're depleted. This book shows that deliberate rest is part of doing great work, not the opposite of it."
   },
   {
     id: 9,
@@ -97,7 +97,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1984818324",
     duration: "304 pages",
     patterns: ["burnout", "low_aq", "low_ri"],
-    why: "If you've felt overwhelmed and exhausted by everything you have to do, yet still worried you weren't doing enough – this book will help you complete the stress cycle and regain energy."
+    why: "If you've felt overwhelmed and exhausted by everything you have to do, yet still worried you weren't doing enough, this book will help you complete the stress cycle and regain energy."
   },
   {
     id: 10,
@@ -107,7 +107,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0061339202",
     duration: "336 pages",
     patterns: ["low_ci", "plateau", "low_ri"],
-    why: "If you've been feeling disengaged or distracted, this classic can help you redesign your work process to invite more flow – that magical state where time flies and you do your best work."
+    why: "If you've been feeling disengaged or distracted, this classic can help you redesign your work process to invite more flow. That magical state where time flies and you do your best work."
   },
   {
     id: 11,
@@ -157,7 +157,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1594634718",
     duration: "288 pages",
     patterns: ["paralyzed", "low_ci", "low_ri"],
-    why: "Gilbert tackles the fear that often accompanies creativity – fear of rejection, of not being original – and gently dismantles it. You'll come away ready to live a creative life on your own terms."
+    why: "Gilbert tackles the fear that often accompanies creativity (fear of rejection, of not being original) and gently dismantles it. You'll come away ready to live a creative life on your own terms."
   },
   {
     id: 16,
@@ -167,7 +167,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0385480016",
     duration: "272 pages",
     patterns: ["paralyzed", "low_ci", "low_ri"],
-    why: "Lamott hilariously eviscerates perfectionism and gives you permission to create something imperfect and honest – which is better than nothing at all."
+    why: "Lamott hilariously eviscerates perfectionism and gives you permission to create something imperfect and honest. Which is better than nothing at all."
   },
   {
     id: 17,
@@ -217,7 +217,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0544456238",
     duration: "336 pages",
     patterns: ["craftsperson_no_message", "low_ri", "low_ci"],
-    why: "Ever feel like you're putting in hours but not getting better? This book reveals how deliberate practice can break you out of plateaus – it's not about practicing more, but practicing better."
+    why: "Ever feel like you're putting in hours but not getting better? This book reveals how deliberate practice can break you out of plateaus. It's not about practicing more, but practicing better."
   },
   {
     id: 22,
@@ -227,7 +227,7 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0307273601",
     duration: "304 pages",
     patterns: ["plateau", "low_ci"],
-    why: "161 famous creatives' daily routines – from Kafka to Maya Angelou. You'll realize there's no one 'right' way, and struggling with balance and discipline is totally normal."
+    why: "161 famous creatives' daily routines, from Kafka to Maya Angelou. You'll realize there's no one 'right' way, and struggling with balance and discipline is totally normal."
   },
   {
     id: 23,
@@ -319,7 +319,7 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=ikAb-NYkseI",
     duration: "19 min",
     patterns: ["burnout", "low_aq"],
-    why: "The ultimate creative pep talk for hard times. Gaiman's refrain – 'Make good art' – lands like a gentle command from the universe: no matter what happens, use it as fuel."
+    why: "The ultimate creative pep talk for hard times. Gaiman's refrain, 'Make good art,' lands like a gentle command from the universe: no matter what happens, use it as fuel."
   },
   {
     id: 32,
@@ -329,7 +329,7 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=91FQKciKfHI",
     duration: "2 min",
     patterns: ["low_ri", "low_ci", "comeback"],
-    why: "Only a couple minutes long, but life-changing. Ira Glass explains why your output doesn't yet live up to your taste – and the only way to close the gap is to keep creating."
+    why: "Only a couple minutes long, but life-changing. Ira Glass explains why your output doesn't yet live up to your taste. The only way to close the gap is to keep creating."
   },
   {
     id: 33,
@@ -419,7 +419,7 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=kpxBGJBOQSE",
     duration: "15 min",
     patterns: ["low_ri", "low_aq"],
-    why: "They made a Grammy-winning album in a bedroom. If your Autonomy is low because you think you need more resources – watch this. Constraints breed creativity."
+    why: "They made a Grammy-winning album in a bedroom. If your Autonomy is low because you think you need more resources, watch this. Constraints breed creativity."
   },
   {
     id: 42,
@@ -429,7 +429,7 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=tqVqU3RGBqg",
     duration: "20 min",
     patterns: ["burnout", "low_aq"],
-    why: "Miyazaki pours his entire soul into every frame – and then collapses from exhaustion. Beautiful and terrifying. A powerful mirror for anyone who takes their craft seriously."
+    why: "Miyazaki pours his entire soul into every frame, then collapses from exhaustion. Beautiful and terrifying. A powerful mirror for anyone who takes their craft seriously."
   },
   {
     id: 43,
@@ -459,7 +459,7 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=7_7Rd9urT0Y",
     duration: "25 min",
     patterns: ["low_aq", "underground_gem", "hustler"],
-    why: "Nipsey spent a decade grinding independently before mainstream success. If you're impatient, his philosophy – 'the marathon continues' – is a reminder that sustainable success is built brick by brick."
+    why: "Nipsey spent a decade grinding independently before mainstream success. If you're impatient, his philosophy, 'the marathon continues,' is a reminder that sustainable success is built brick by brick."
   },
   {
     id: 46,
@@ -732,7 +732,7 @@ const protocols = [
     name: "Document Your Process",
     category: "creative",
     prescription: "Take photos or notes of your work-in-progress.",
-    why: "Documentation forces reflection. Share it or keep it – but capture it.",
+    why: "Documentation forces reflection. Share it or keep it, but capture it.",
     patterns: ["low_ri", "plateau"]
   },
 
@@ -757,7 +757,7 @@ const protocols = [
     id: 33,
     name: "Automate One Task",
     category: "constraint",
-    prescription: "Bill pay, email filter, recurring order – anything.",
+    prescription: "Bill pay, email filter, recurring order. Anything.",
     why: "Every automated task is a freed decision. Compound the savings.",
     patterns: ["low_aq", "low_ci"]
   },
@@ -890,7 +890,7 @@ const archetypes = [
     name: "The Burnout",
     subtitle: "System Failure",
     check: (s) => s.aq < 3 && s.ri < 3 && s.ci < 3,
-    profile: "Everything is failing simultaneously. You're depleted, disconnected, and not producing meaningful work. This isn't a productivity problem – it's a crisis.",
+    profile: "Everything is failing simultaneously. You're depleted, disconnected, and not producing meaningful work. This isn't a productivity problem. It's a crisis.",
     insight: "Stop everything. Recovery is the only priority. No new projects, no commitments, no optimization. Rest, then rebuild one law at a time."
   },
   {
@@ -898,8 +898,8 @@ const archetypes = [
     name: "The Hustler",
     subtitle: "Grinding Without Freedom",
     check: (s) => s.aq < 4 && s.ci >= 6,
-    profile: "High output, low autonomy. You're producing constantly but feel trapped – by clients, money, obligations, or your own standards. The work is happening, but at what cost?",
-    insight: "Your intensity is your asset and your trap. The next move isn't more output – it's strategic reduction. What one constraint could you eliminate this month?"
+    profile: "High output, low autonomy. You're producing constantly but feel trapped by clients, money, obligations, or your own standards. The work is happening, but at what cost?",
+    insight: "Your intensity is your asset and your trap. The next move isn't more output. It's strategic reduction. What one constraint could you eliminate this month?"
   },
   {
     id: "underground_gem",
@@ -922,7 +922,7 @@ const archetypes = [
     name: "The Paralyzed Dreamer",
     subtitle: "Freedom Without Action",
     check: (s) => s.aq >= 6 && s.ci < 3,
-    profile: "You have the freedom to create – time, resources, optionality – but you're not using it. Perfectionism, fear, or endless preparation keeps you from actually shipping work.",
+    profile: "You have the freedom to create (time, resources, optionality) but you're not using it. Perfectionism, fear, or endless preparation keeps you from actually shipping work.",
     insight: "Freedom without output is just comfortable stagnation. Start with the smallest possible action. Ship something embarrassingly small. Motion creates clarity."
   },
   {
@@ -931,7 +931,7 @@ const archetypes = [
     subtitle: "Skill Without Message",
     check: (s) => s.ci >= 7 && s.ri < 5 && s.aq >= 4,
     profile: "Technical mastery is evident. You can execute at a high level. But the work lacks distinctive voice, emotional depth, or clear perspective. Competent, not compelling.",
-    insight: "What would you make if no one was watching? The skills are there – now add the vulnerability. Your next evolution is personal, not technical."
+    insight: "What would you make if no one was watching? The skills are there. Now add the vulnerability. Your next evolution is personal, not technical."
   },
   {
     id: "cult_leader",
@@ -947,7 +947,7 @@ const archetypes = [
     subtitle: "Options Without Direction",
     check: (s) => s.aq >= 7 && s.ri < 6 && s.ci >= 3 && s.ci < 6,
     profile: "Maximum optionality, moderate output and impact. You could do anything, so you're not fully committing to something. Freedom is your asset and your excuse.",
-    insight: "Optionality without commitment is just expensive indecision. Pick a direction, go deep for 6 months, evaluate. You can always pivot – but first, commit."
+    insight: "Optionality without commitment is just expensive indecision. Pick a direction, go deep for 6 months, evaluate. You can always pivot, but first, commit."
   },
 
   // === TIER 3: Check range-based patterns ===
@@ -957,7 +957,7 @@ const archetypes = [
     subtitle: "Rising From the Ashes",
     check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 2 && s.ci < 5,
     profile: "You had a moment, then disappeared. Now returning with more wisdom, clearer vision, and the freedom to create on your terms. The second act is forming.",
-    insight: "Your superpower is perspective earned through failure. The comeback doesn't need to be bigger – just truer. Create from clarity, not desperation."
+    insight: "Your superpower is perspective earned through failure. The comeback doesn't need to be bigger, just truer. Create from clarity, not desperation."
   },
   {
     id: "professional",
@@ -965,14 +965,14 @@ const archetypes = [
     subtitle: "Consistent Across All Fronts",
     check: (s) => s.aq >= 5 && s.aq <= 7.5 && s.ri >= 5 && s.ri <= 7.5 && s.ci >= 5 && s.ci <= 7.5,
     profile: "Solid across the board. No critical weaknesses, no exceptional strengths. Sustainable, competent, making a living. The question is whether you're satisfied here.",
-    insight: "You're in the 'good enough' zone. To break through, you'll need to temporarily destabilize – push one law to exceptional while maintaining the others."
+    insight: "You're in the 'good enough' zone. To break through, you'll need to temporarily destabilize. Push one law to exceptional while maintaining the others."
   },
   {
     id: "emerging",
     name: "The Emerging Artist",
     subtitle: "Finding Your Way",
     check: (s) => s.aq >= 3 && s.aq <= 6 && s.ri >= 3 && s.ri <= 6 && s.ci >= 3 && s.ci <= 6,
-    profile: "All metrics are moderate – you're in the messy middle of creative development. Nothing is broken, but nothing is exceptional yet.",
+    profile: "All metrics are moderate. You're in the messy middle of creative development. Nothing is broken, but nothing is exceptional yet.",
     insight: "This is the plateau before the breakthrough. The danger is comfort. Pick your weakest law and attack it relentlessly for 90 days."
   },
   {
@@ -1099,56 +1099,130 @@ const typeIcons = {
 };
 
 // ============================================================
-// LABS TIPS - Science-backed micro-interventions
+// LABS TIPS - Science-backed micro-interventions ONLY
+// These are quirky, research-based quick hacks - NOT strategic advice
 // ============================================================
 
 const labsTips = [
-  // LOW ENERGY
+  // ENERGY - Science hacks
   { id: 1, tip: "Watch 2 minutes of salsa dancing. Mirror neurons activate energy without you moving a muscle.", trigger: "low_energy", category: "energy" },
-  { id: 2, tip: "Splash cold water on your face. Triggers the mammalian dive reflex — instant alertness.", trigger: "low_energy", category: "energy" },
+  { id: 2, tip: "Splash cold water on your face. Triggers the mammalian dive reflex for instant alertness.", trigger: "low_energy", category: "energy" },
   { id: 3, tip: "Smell a lemon. Citrus scent increases norepinephrine by 30%. Your brain thinks it's morning.", trigger: "low_energy", category: "energy" },
   { id: 4, tip: "Stand up and shake your hands vigorously for 10 seconds. Resets your nervous system.", trigger: "low_energy", category: "energy" },
   { id: 5, tip: "Look at photos of vast landscapes. Studies show 'awe' images restore mental energy faster than rest.", trigger: "low_energy", category: "energy" },
+  { id: 6, tip: "Do 10 jumping jacks. Increases blood flow to brain by 15% for the next hour.", trigger: "low_energy", category: "energy" },
+  { id: 7, tip: "Expose yourself to bright light for 5 minutes. Suppresses melatonin, signals 'wake up' to your brain.", trigger: "low_energy", category: "energy" },
 
-  // LOW MENTAL SPACE
-  { id: 6, tip: "Write down every open loop in your head. The brain relaxes once it knows nothing will be forgotten.", trigger: "low_space", category: "space" },
-  { id: 7, tip: "Stare at a candle flame for 60 seconds. Ancient focus hack — still works.", trigger: "low_space", category: "space" },
-  { id: 8, tip: "Hum a single note for 30 seconds. Activates the vagus nerve. Instant calm.", trigger: "low_space", category: "space" },
-  { id: 9, tip: "Name 5 things you can see, 4 you can hear, 3 you can touch. Grounds you in the present.", trigger: "low_space", category: "space" },
-  { id: 10, tip: "Delete one app from your phone right now. Mental space is physical space.", trigger: "low_space", category: "space" },
+  // MENTAL SPACE - Science hacks
+  { id: 8, tip: "Write down every open loop in your head. The brain relaxes once it knows nothing will be forgotten.", trigger: "low_space", category: "space" },
+  { id: 9, tip: "Stare at a candle flame for 60 seconds. Ancient focus hack that still works.", trigger: "low_space", category: "space" },
+  { id: 10, tip: "Hum a single note for 30 seconds. Activates the vagus nerve. Instant calm.", trigger: "low_space", category: "space" },
+  { id: 11, tip: "Name 5 things you can see, 4 you can hear, 3 you can touch. Grounds you in the present.", trigger: "low_space", category: "space" },
+  { id: 12, tip: "Box breathe: 4 seconds in, 4 hold, 4 out, 4 hold. Navy SEALs use this to stay calm under fire.", trigger: "low_space", category: "space" },
+  { id: 13, tip: "Clench your fists tight for 5 seconds, then release. Progressive relaxation tricks your body into calm.", trigger: "low_space", category: "space" },
 
-  // LOW FLOW / HIGH DISTRACTION
-  { id: 11, tip: "Put your phone in a different room. Physical distance beats willpower every time.", trigger: "high_distraction", category: "flow" },
-  { id: 12, tip: "Set a timer for 25 minutes. Tell yourself you only have to focus until it rings. You won't want to stop.", trigger: "low_flow", category: "flow" },
-  { id: 13, tip: "Listen to video game soundtracks. Designed to keep you focused without distracting you.", trigger: "low_flow", category: "flow" },
-  { id: 14, tip: "Work with your back to the door. Reduces subconscious alertness to your environment.", trigger: "high_distraction", category: "flow" },
-  { id: 15, tip: "Chew gum while working. Studies show it increases focus by up to 10%.", trigger: "low_flow", category: "flow" },
+  // FLOW / FOCUS - Science hacks
+  { id: 14, tip: "Put your phone in a different room. Physical distance beats willpower every time.", trigger: "high_distraction", category: "flow" },
+  { id: 15, tip: "Set a timer for 25 minutes. The deadline creates urgency. You won't want to stop.", trigger: "low_flow", category: "flow" },
+  { id: 16, tip: "Listen to video game soundtracks. Designed to keep you focused without distracting you.", trigger: "low_flow", category: "flow" },
+  { id: 17, tip: "Work with your back to the door. Reduces subconscious alertness to your environment.", trigger: "high_distraction", category: "flow" },
+  { id: 18, tip: "Chew gum while working. Studies show it increases focus by up to 10%.", trigger: "low_flow", category: "flow" },
+  { id: 19, tip: "Lower your room temperature to 68°F. Slightly cold environments increase alertness.", trigger: "low_flow", category: "flow" },
+  { id: 20, tip: "Use brown noise or pink noise. More effective than white noise for sustained concentration.", trigger: "high_distraction", category: "flow" },
 
-  // HIGH STAGNATION / LOW RISK
-  { id: 16, tip: "Draw something with your non-dominant hand for 60 seconds. Breaks neural patterns. Unlocks creativity.", trigger: "high_stagnation", category: "stagnation" },
-  { id: 17, tip: "Send one message you've been avoiding. Courage is a muscle — this is a rep.", trigger: "low_boldness", category: "risk" },
-  { id: 18, tip: "Publish something ugly. Done beats perfect. Your inner critic needs to lose sometimes.", trigger: "high_stagnation", category: "stagnation" },
-  { id: 19, tip: "Learn one word in a language you don't speak. Novel input = novel output.", trigger: "high_stagnation", category: "stagnation" },
-  { id: 20, tip: "Take a different route to somewhere familiar. Small novelty triggers big creativity.", trigger: "high_stagnation", category: "stagnation" },
+  // CREATIVITY / STAGNATION - Science hacks
+  { id: 21, tip: "Draw something with your non-dominant hand for 60 seconds. Breaks neural patterns. Unlocks creativity.", trigger: "high_stagnation", category: "creativity" },
+  { id: 22, tip: "Take a 6-minute walk. Stanford study: walking increases creative output by 60%.", trigger: "high_stagnation", category: "creativity" },
+  { id: 23, tip: "Learn one word in a language you don't speak. Novel input = novel output.", trigger: "high_stagnation", category: "creativity" },
+  { id: 24, tip: "Take a different route to somewhere familiar. Small novelty triggers big creativity.", trigger: "high_stagnation", category: "creativity" },
+  { id: 25, tip: "Shower or do dishes. Boring tasks activate the default mode network, where insights happen.", trigger: "high_stagnation", category: "creativity" },
+  { id: 26, tip: "Lie down flat for 5 minutes. Horizontal position increases blood flow to prefrontal cortex.", trigger: "high_stagnation", category: "creativity" },
 
-  // LOW RESONANCE / LOW IDENTITY
-  { id: 21, tip: "Text one fan and ask what your work means to them. Reconnect with why you started.", trigger: "low_identity", category: "resonance" },
-  { id: 22, tip: "Revisit your earliest work. Cringe, then notice — you've grown more than you think.", trigger: "low_resonance", category: "resonance" },
-  { id: 23, tip: "Describe your art to a stranger in 10 words or less. Clarity creates resonance.", trigger: "low_identity", category: "resonance" },
-  { id: 24, tip: "Copy your favorite artist's work by hand. Not to steal — to feel how they thought.", trigger: "low_boldness", category: "resonance" },
-  { id: 25, tip: "Ask someone who loves your work: 'Why?' Their answer is your brand.", trigger: "low_identity", category: "resonance" },
+  // FRUIT-SPECIFIC - Science hacks
+  { id: 27, tip: "Eat an apple before deep work. Slow-release glucose keeps focus stable longer than coffee.", trigger: "low_flow", category: "fruit" },
+  { id: 28, tip: "Freeze grapes and eat them during creative sessions. Cold + sweet = sustained attention.", trigger: "low_flow", category: "fruit" },
+  { id: 29, tip: "Smell an orange peel. Limonene reduces stress hormones. Instant creative reset.", trigger: "low_space", category: "fruit" },
+  { id: 30, tip: "Drink lemon water first thing in the morning. Hydration + citrus = mental clarity.", trigger: "low_energy", category: "fruit" },
+  { id: 31, tip: "Keep a banana at your desk. Potassium prevents the mental fog that comes from low electrolytes.", trigger: "low_energy", category: "fruit" },
+  { id: 32, tip: "Eat blueberries. Studies link them to improved memory and cognitive function within hours.", trigger: "low_space", category: "fruit" },
 
-  // HIGH ADMIN / HIGH CONSTRAINT
-  { id: 26, tip: "Automate one tiny task today. Even a text shortcut counts. Small wins compound.", trigger: "high_admin", category: "admin" },
-  { id: 27, tip: "Say no to one thing this week you would normally say yes to. Protect your time like money.", trigger: "high_constraint", category: "constraint" },
-  { id: 28, tip: "Cancel one meeting. Most could've been an email anyway.", trigger: "high_admin", category: "admin" },
-  { id: 29, tip: "Unsubscribe from 5 emails right now. Inbox clutter is mental clutter.", trigger: "high_admin", category: "admin" },
-  { id: 30, tip: "Batch your admin into one 90-minute block. Scattered admin = scattered mind.", trigger: "high_admin", category: "admin" },
+  // HIGH PERFORMER - Science hacks (even top performers need quirky tips)
+  { id: 33, tip: "Take a 20-minute nap. NASA found it improves performance by 34% and alertness by 54%.", trigger: "high_performer", category: "optimize" },
+  { id: 34, tip: "Spend 2 minutes in the sun. Vitamin D synthesis plus serotonin boost. Nature's performance drug.", trigger: "high_performer", category: "optimize" },
+  { id: 35, tip: "Write by hand for 5 minutes. Activates different brain regions than typing. Unlocks new thinking.", trigger: "high_performer", category: "optimize" },
+  { id: 36, tip: "Stand on one leg while brushing teeth. Proprioception training improves focus and body awareness.", trigger: "high_performer", category: "optimize" },
 
-  // FRUIT-SPECIFIC
-  { id: 31, tip: "Eat an apple before deep work. Slow-release glucose keeps focus stable longer than coffee.", trigger: "low_flow", category: "fruit" },
-  { id: 32, tip: "Freeze grapes and eat them during creative sessions. Cold + sweet = sustained attention.", trigger: "low_flow", category: "fruit" },
-  { id: 33, tip: "Smell an orange peel. Limonene reduces stress hormones. Instant creative reset.", trigger: "low_space", category: "fruit" },
-  { id: 34, tip: "Drink lemon water first thing in the morning. Hydration + citrus = mental clarity.", trigger: "low_energy", category: "fruit" },
-  { id: 35, tip: "Keep a banana at your desk. Potassium prevents the mental fog that comes from low electrolytes.", trigger: "low_energy", category: "fruit" }
+  // GENERAL / ANY STATE - Science hacks
+  { id: 37, tip: "Look at the color green for 30 seconds. Studies show it enhances creative thinking.", trigger: "any", category: "general" },
+  { id: 38, tip: "Drink a glass of water right now. Even 2% dehydration impairs cognitive performance.", trigger: "any", category: "general" },
+  { id: 39, tip: "Stretch your hip flexors. Sitting compresses them, which triggers stress hormones.", trigger: "any", category: "general" },
+  { id: 40, tip: "Look at something 20 feet away for 20 seconds. The 20-20-20 rule prevents mental fatigue.", trigger: "any", category: "general" }
 ];
+
+// ============================================================
+// ACTION PLANS - Strategic advice based on score patterns
+// These are coaching diagnoses, NOT quick hacks
+// ============================================================
+
+const actionPlans = {
+  low_autonomy: {
+    headline: "Freedom First",
+    diagnosis: "Your constraints are eating your creative capacity. You cannot create under duress. High obligation + low energy = diminishing returns.",
+    action: "Identify the ONE obligation draining you most. Eliminate, delegate, or renegotiate it this week."
+  },
+  low_resonance: {
+    headline: "Depth Over Reach",
+    diagnosis: "You may be optimizing for vanity metrics. High reach plus low resonance means disposable content that doesn't stick.",
+    action: "Create one piece for an audience of ONE. Impossibly specific, weird, true. Quality compounds."
+  },
+  low_intensity: {
+    headline: "Craft Needs Attention",
+    diagnosis: "Your practice has stalled. Distraction and admin are stealing your flow hours. You're maintaining, not growing.",
+    action: "Block 2 hours this week for deep work. Phone off. Door closed. One project only."
+  },
+  high_performer: {
+    headline: "Protect The Compound",
+    diagnosis: "You are in a rare state. Most creators never reach sustained high scores. Your edge is consistency, not innovation.",
+    action: "Document exactly what is working right now. Routine, inputs, environment. Replicate it ruthlessly."
+  },
+  burnout_risk: {
+    headline: "Recovery Mode Required",
+    diagnosis: "Your system is depleted. High constraint + low energy = creative bankruptcy. Pushing harder will make it worse.",
+    action: "Cancel one commitment. Sleep 8 hours. Do zero creative work for 48 hours. Rest is not optional."
+  },
+  free_agent: {
+    headline: "Commitment Required",
+    diagnosis: "You have options but no direction. Freedom without focus is just expensive indecision. Optionality is overrated.",
+    action: "Pick ONE project. Say no to everything else for 30 days. Depth beats breadth."
+  },
+  balanced: {
+    headline: "Steady Growth Mode",
+    diagnosis: "Your scores are balanced. No crisis, but no breakthrough either. You're stable but plateauing.",
+    action: "Identify which law excites you most. Push that one to 8+ this month. Imbalance drives growth."
+  },
+  rising_cult: {
+    headline: "Double Down On Weird",
+    diagnosis: "You have a small but devoted following. They love you for what makes you different, not what makes you safe.",
+    action: "Make the thing only YOU can make. The weirder, the stickier. Your superfans will spread it."
+  },
+  grinding_artist: {
+    headline: "Aim Before You Fire",
+    diagnosis: "Your work ethic is solid but intensity without direction is just exhaustion. Effort is not the same as progress.",
+    action: "Pause the grind. Ask: is this the right mountain? If yes, continue. If unsure, stop and reassess."
+  },
+  emerging_voice: {
+    headline: "Consistency Over Perfection",
+    diagnosis: "You're in the early game. The goal is not greatness yet. It's showing up. Volume precedes quality.",
+    action: "Publish something imperfect this week. Your 100th piece will be better than your 10th. Start counting."
+  },
+  low_boldness: {
+    headline: "Risk Required",
+    diagnosis: "You're playing it safe. Safe content gets safe results. Your audience can feel the hesitation.",
+    action: "Do one thing this week that makes you slightly uncomfortable. Send the pitch. Post the take. Ship ugly."
+  },
+  high_admin: {
+    headline: "Reclaim Your Time",
+    diagnosis: "Admin is eating your creative hours. Every hour on logistics is an hour not on craft. Death by a thousand emails.",
+    action: "Batch all admin into one 90-minute block. Automate one task. Cancel one meeting. Protect the rest."
+  }
+};
