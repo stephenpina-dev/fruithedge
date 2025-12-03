@@ -5031,7 +5031,7 @@ details[open] .theory-toggle-icon {
   }
 
   .logo {
-    font-size: 1.6rem;
+    font-size: 2rem;
   }
 
   .tagline,
@@ -5055,12 +5055,15 @@ details[open] .theory-toggle-icon {
     padding: 0.3rem 0.4rem;
   }
 
-  /* Hero title - Creative Alpha same size */
-  .hero-title,
+  /* Hero title - Creative Alpha bigger */
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-accent,
   .hero-title span,
-  .hero-title em,
-  .hero-title .hero-accent {
-    font-size: 1.4rem;
+  .hero-title em {
+    font-size: inherit;
   }
 
   /* Tips and recommendations readable */
