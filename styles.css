@@ -4542,44 +4542,40 @@ details[open] .theory-toggle-icon {
 }
 
 /* About Modal Styles */
-.about-tagline {
+.about-content {
+  padding: var(--space-md);
+}
+
+.about-content h2 {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent-lime);
   margin-bottom: var(--space-xl);
 }
 
-.about-section {
-  margin-bottom: var(--space-xl);
-}
-
-.about-section h3 {
-  font-family: var(--font-display);
+.about-content h3 {
+  color: var(--accent-lime);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
   font-size: 1.1rem;
-  color: var(--text-primary);
-  margin-bottom: var(--space-sm);
 }
 
-.about-section p {
+.about-content p {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: var(--space-sm);
 }
 
-.about-section p:last-child {
-  margin-bottom: 0;
-}
-
-.about-list {
+.about-content ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.about-list li {
+.about-content li {
   font-size: 0.9rem;
   color: var(--text-secondary);
   padding-left: var(--space-lg);
@@ -4587,29 +4583,24 @@ details[open] .theory-toggle-icon {
   margin-bottom: var(--space-sm);
 }
 
-.about-list li::before {
+.about-content li::before {
   content: '▸';
   position: absolute;
   left: 0;
   color: var(--accent-lime);
 }
 
-.about-section--footer {
-  margin-bottom: 0;
-  padding-top: var(--space-lg);
+.closing-quote {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
 
-.about-privacy {
-  font-size: 0.8rem !important;
-  color: var(--text-muted) !important;
-}
-
-.about-version {
-  font-family: var(--font-mono);
-  font-size: 0.7rem !important;
-  color: var(--text-muted) !important;
-  letter-spacing: 0.1em;
+.signature {
+  color: var(--accent-peach);
+  font-weight: 600;
 }
 
 /* ============================================================
