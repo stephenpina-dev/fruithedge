@@ -1984,7 +1984,7 @@ details[open] .theory-toggle-icon {
   /* Mobile readability improvements */
   .slider-label,
   .factor-label {
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   h2,

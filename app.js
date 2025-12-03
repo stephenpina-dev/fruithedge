@@ -277,6 +277,7 @@
         ci: scores.ci,
         alpha: scores.alpha
       },
+      inputs: { ...state.inputs },
       archetype: archetype ? {
         name: archetype.name,
         subtitle: archetype.subtitle,
