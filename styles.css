@@ -2040,6 +2040,10 @@ details[open] .theory-toggle-icon {
     font-size: 0.55rem;
   }
 
+  .slider-range {
+    font-size: 0.65rem;
+  }
+
   .header-link {
     font-size: 0.6rem;
     padding: 0.4rem 0.5rem;
@@ -4930,6 +4934,26 @@ details[open] .theory-toggle-icon {
   .factor-name,
   label {
     font-size: 13px;
+  }
+
+  /* Fix cramped slider range labels */
+  .slider-range {
+    font-size: 0.6rem;
+    gap: 4px;
+  }
+
+  .slider-range span {
+    flex-shrink: 1;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .slider-range span:first-child {
+    text-align: left;
+  }
+
+  .slider-range span:last-child {
+    text-align: right;
   }
 
   /* Slider value display */
