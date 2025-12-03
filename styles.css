@@ -4888,16 +4888,16 @@ details[open] .theory-toggle-icon {
    ============================================ */
 @media screen and (max-width: 430px) {
 
-  /* Minimal side margins - boxes stretch to edges */
+  /* Minimal margins - boxes stretch to edges */
   body,
   .container,
   main,
   section {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
-  /* All boxes stretch wide */
+  /* All boxes stretch wide with less internal padding waste */
   .law-card,
   .card,
   .hero-box,
@@ -4910,47 +4910,50 @@ details[open] .theory-toggle-icon {
   .archetype-section,
   .recommendations-section,
   .compounding-engine,
-  .synthesis,
-  .input-group {
+  .synthesis {
     margin-left: 0;
     margin-right: 0;
-    padding: 12px;
+    padding: 14px 10px;
     width: 100%;
     box-sizing: border-box;
   }
 
   /* Bigger base text */
   body {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   p, span, li {
     font-size: 1.1rem;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   /* Headings bigger */
   h1, .hero-title {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   h2, .section-title {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
   }
 
   h3, .law-title, .law-name {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
-  /* Input labels bigger */
-  .input-name,
-  .input-header {
-    font-size: 1.05rem;
+  /* Input names bigger */
+  .input-name {
+    font-size: 1.1rem;
+    font-weight: 600;
   }
 
-  /* Reflection questions readable */
+  .input-val {
+    font-size: 1.1rem;
+  }
+
+  /* Reflection questions bigger */
   .reflection-q {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   /* Slider labels readable but not too big */
@@ -4961,9 +4964,9 @@ details[open] .theory-toggle-icon {
     font-size: 13px;
   }
 
+  /* Slider range labels slightly bigger */
   .slider-range {
-    font-size: 0.5rem;
-    letter-spacing: -0.02em;
+    font-size: 0.55rem;
   }
 
   /* Slider value display */
@@ -4974,18 +4977,25 @@ details[open] .theory-toggle-icon {
 
   /* Scores bigger */
   .score-value, .law-score {
-    font-size: 2.8rem;
+    font-size: 3rem;
   }
 
   .alpha-score {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
   }
 
   /* Buttons bigger */
   button, .btn {
-    font-size: 1.1rem;
-    min-height: 50px;
-    padding: 14px 20px;
+    font-size: 1.15rem;
+    min-height: 52px;
+    padding: 16px 22px;
+  }
+
+  /* Law description bigger */
+  .law-description,
+  .law-card > p {
+    font-size: 1.05rem;
+    line-height: 1.5;
   }
 
   /* Header layout fix */
