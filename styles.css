@@ -4888,16 +4888,16 @@ details[open] .theory-toggle-icon {
    ============================================ */
 @media screen and (max-width: 430px) {
 
-  /* Reduce side padding so boxes stretch wider */
+  /* Minimal side margins - boxes stretch to edges */
   body,
   .container,
   main,
   section {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
   }
 
-  /* Boxes stretch closer to screen edges */
+  /* All boxes stretch wide */
   .law-card,
   .card,
   .hero-box,
@@ -4910,35 +4910,47 @@ details[open] .theory-toggle-icon {
   .archetype-section,
   .recommendations-section,
   .compounding-engine,
-  .synthesis {
+  .synthesis,
+  .input-group {
     margin-left: 0;
     margin-right: 0;
-    padding: 14px;
+    padding: 12px;
     width: 100%;
     box-sizing: border-box;
   }
 
-  /* Bigger base text for readability */
+  /* Bigger base text */
   body {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   p, span, li {
-    font-size: 1.05rem;
-    line-height: 1.55;
+    font-size: 1.1rem;
+    line-height: 1.5;
   }
 
   /* Headings bigger */
   h1, .hero-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   h2, .section-title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 
   h3, .law-title, .law-name {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
+  }
+
+  /* Input labels bigger */
+  .input-name,
+  .input-header {
+    font-size: 1.05rem;
+  }
+
+  /* Reflection questions readable */
+  .reflection-q {
+    font-size: 0.95rem;
   }
 
   /* Slider labels readable but not too big */
@@ -4960,22 +4972,20 @@ details[open] .theory-toggle-icon {
     font-size: 1rem;
   }
 
-  /* Buttons bigger and easy to tap */
-  button, .btn {
-    font-size: 1.05rem;
-    min-height: 48px;
-    padding: 14px 18px;
-  }
-
-  /* Score displays bigger */
+  /* Scores bigger */
   .score-value, .law-score {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
-  .alpha-score,
-  .alpha-value,
-  .composite-num {
-    font-size: 3.2rem;
+  .alpha-score {
+    font-size: 3.5rem;
+  }
+
+  /* Buttons bigger */
+  button, .btn {
+    font-size: 1.1rem;
+    min-height: 50px;
+    padding: 14px 20px;
   }
 
   /* Header layout fix */
