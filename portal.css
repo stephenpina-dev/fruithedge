@@ -1,0 +1,322 @@
+/* ============================================================
+   PORTAL ANIMATION STYLES
+   WebGL glass bubble + CSS drop wave rings
+   ============================================================ */
+
+/* Portal Canvas - WebGL background */
+.portal-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Ring Container */
+.portal-rings {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Individual Ring Wrapper */
+.portal-ring {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) rotateX(70deg);
+  left: 50%;
+  top: 50%;
+}
+
+/* Ring Inner (the actual visible ring) */
+.portal-ring-inner {
+  border-radius: 100%;
+  border: 1px solid rgba(196, 255, 97, 0.25);
+  filter: blur(5px) brightness(180%);
+  opacity: 0;
+}
+
+/* Ring sizes - 10 rings with increasing diameter */
+.portal-ring:nth-child(1) .portal-ring-inner { width: 0px; height: 0px; }
+.portal-ring:nth-child(2) .portal-ring-inner { width: 20px; height: 20px; }
+.portal-ring:nth-child(3) .portal-ring-inner { width: 40px; height: 40px; }
+.portal-ring:nth-child(4) .portal-ring-inner { width: 60px; height: 60px; }
+.portal-ring:nth-child(5) .portal-ring-inner { width: 80px; height: 80px; }
+.portal-ring:nth-child(6) .portal-ring-inner { width: 100px; height: 100px; }
+.portal-ring:nth-child(7) .portal-ring-inner { width: 120px; height: 120px; }
+.portal-ring:nth-child(8) .portal-ring-inner { width: 140px; height: 140px; }
+.portal-ring:nth-child(9) .portal-ring-inner { width: 160px; height: 160px; }
+.portal-ring:nth-child(10) .portal-ring-inner { width: 180px; height: 180px; }
+
+/* Wave Animation Keyframes */
+@keyframes portalWave {
+  0% { transform: translateZ(0px); opacity: 0.9; }
+  8% { transform: translateZ(-50px); }
+  20% { transform: translateZ(30px); }
+  30% { transform: translateZ(-18px); }
+  50% { transform: translateZ(10px); }
+  80% { transform: translateZ(-4px); }
+  100% { transform: translateZ(0px); opacity: 0.6; }
+}
+
+/* Subtle rotation animation */
+@keyframes portalRotate {
+  0% { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg); }
+}
+
+/* ============================================================
+   RESULT BOX PORTAL INTEGRATION
+   ============================================================ */
+
+/* Make result boxes position relative for absolute children */
+.result-box {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Score value states */
+.result-num {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s ease,
+              filter 0.6s ease,
+              color 0.6s ease,
+              text-shadow 0.6s ease;
+}
+
+/* Default state - underwater/hidden */
+.result-box:not(.calculated) .result-num {
+  transform: scale(0.35);
+  opacity: 0.12;
+  filter: blur(4px);
+  color: rgba(150, 170, 190, 0.5);
+}
+
+/* Animating state - rings visible */
+.result-box.animating .portal-rings {
+  opacity: 1;
+}
+
+.result-box.animating .portal-canvas {
+  opacity: 0.2;
+}
+
+.result-box.animating .portal-ring-inner {
+  opacity: 1;
+  animation: portalWave 2s ease-out forwards;
+}
+
+/* Staggered delays for each ring */
+.result-box.animating .portal-ring:nth-child(1) .portal-ring-inner { animation-delay: 0ms; }
+.result-box.animating .portal-ring:nth-child(2) .portal-ring-inner { animation-delay: 50ms; }
+.result-box.animating .portal-ring:nth-child(3) .portal-ring-inner { animation-delay: 100ms; }
+.result-box.animating .portal-ring:nth-child(4) .portal-ring-inner { animation-delay: 150ms; }
+.result-box.animating .portal-ring:nth-child(5) .portal-ring-inner { animation-delay: 200ms; }
+.result-box.animating .portal-ring:nth-child(6) .portal-ring-inner { animation-delay: 250ms; }
+.result-box.animating .portal-ring:nth-child(7) .portal-ring-inner { animation-delay: 300ms; }
+.result-box.animating .portal-ring:nth-child(8) .portal-ring-inner { animation-delay: 350ms; }
+.result-box.animating .portal-ring:nth-child(9) .portal-ring-inner { animation-delay: 400ms; }
+.result-box.animating .portal-ring:nth-child(10) .portal-ring-inner { animation-delay: 450ms; }
+
+/* Generating state - score becoming visible underwater */
+.result-box.generating .result-num {
+  transform: scale(0.5);
+  opacity: 0.35;
+  filter: blur(2px);
+}
+
+/* Rising state - score emerging to surface */
+.result-box.rising .result-num {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 1s ease,
+              filter 1s ease;
+}
+
+/* Calculated state - final resting state */
+.result-box.calculated .portal-canvas {
+  opacity: 0.35;
+}
+
+.result-box.calculated .portal-rings {
+  opacity: 0.35;
+}
+
+.result-box.calculated .result-num {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ============================================================
+   COLOR VARIANTS FOR EACH LAW
+   ============================================================ */
+
+/* Autonomy - Lime */
+.law-card.autonomy .portal-ring-inner {
+  border-color: rgba(196, 255, 97, 0.3);
+}
+
+.law-card.autonomy .result-box.generating .result-num,
+.law-card.autonomy .result-box.rising .result-num,
+.law-card.autonomy .result-box.calculated .result-num {
+  color: var(--accent-lime, #c4ff61);
+  text-shadow: 0 0 20px rgba(196, 255, 97, 0.5);
+}
+
+/* Resonance - Peach */
+.law-card.resonance .portal-ring-inner {
+  border-color: rgba(255, 155, 113, 0.3);
+}
+
+.law-card.resonance .result-box.generating .result-num,
+.law-card.resonance .result-box.rising .result-num,
+.law-card.resonance .result-box.calculated .result-num {
+  color: var(--accent-peach, #ff9b71);
+  text-shadow: 0 0 20px rgba(255, 155, 113, 0.5);
+}
+
+/* Intensity - Pink/Berry */
+.law-card.intensity .portal-ring-inner {
+  border-color: rgba(255, 113, 206, 0.3);
+}
+
+.law-card.intensity .result-box.generating .result-num,
+.law-card.intensity .result-box.rising .result-num,
+.law-card.intensity .result-box.calculated .result-num {
+  color: var(--accent-berry, #ff71ce);
+  text-shadow: 0 0 20px rgba(255, 113, 206, 0.5);
+}
+
+/* ============================================================
+   COMPOSITE SCORE PORTAL
+   ============================================================ */
+
+.composite-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.composite-num {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s ease,
+              filter 0.6s ease,
+              color 0.6s ease,
+              text-shadow 0.6s ease;
+}
+
+/* Default state - underwater/hidden */
+.composite-box:not(.calculated) .composite-num {
+  transform: scale(0.35);
+  opacity: 0.12;
+  filter: blur(4px);
+  color: rgba(150, 170, 190, 0.5);
+}
+
+/* Alpha/Composite - Gold */
+.composite-box .portal-ring-inner {
+  border-color: rgba(255, 215, 100, 0.3);
+}
+
+.composite-box.animating .portal-rings {
+  opacity: 1;
+}
+
+.composite-box.animating .portal-canvas {
+  opacity: 0.2;
+}
+
+.composite-box.animating .portal-ring-inner {
+  opacity: 1;
+  animation: portalWave 2s ease-out forwards;
+}
+
+/* Staggered delays for composite rings */
+.composite-box.animating .portal-ring:nth-child(1) .portal-ring-inner { animation-delay: 0ms; }
+.composite-box.animating .portal-ring:nth-child(2) .portal-ring-inner { animation-delay: 50ms; }
+.composite-box.animating .portal-ring:nth-child(3) .portal-ring-inner { animation-delay: 100ms; }
+.composite-box.animating .portal-ring:nth-child(4) .portal-ring-inner { animation-delay: 150ms; }
+.composite-box.animating .portal-ring:nth-child(5) .portal-ring-inner { animation-delay: 200ms; }
+.composite-box.animating .portal-ring:nth-child(6) .portal-ring-inner { animation-delay: 250ms; }
+.composite-box.animating .portal-ring:nth-child(7) .portal-ring-inner { animation-delay: 300ms; }
+.composite-box.animating .portal-ring:nth-child(8) .portal-ring-inner { animation-delay: 350ms; }
+.composite-box.animating .portal-ring:nth-child(9) .portal-ring-inner { animation-delay: 400ms; }
+.composite-box.animating .portal-ring:nth-child(10) .portal-ring-inner { animation-delay: 450ms; }
+
+.composite-box.generating .composite-num {
+  transform: scale(0.5);
+  opacity: 0.35;
+  filter: blur(2px);
+  color: rgba(255, 215, 100, 0.6);
+}
+
+.composite-box.rising .composite-num {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0);
+  color: var(--accent-gold, #ffd764);
+  text-shadow: 0 0 30px rgba(255, 215, 100, 0.6);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 1s ease,
+              filter 1s ease;
+}
+
+.composite-box.calculated .portal-canvas {
+  opacity: 0.35;
+}
+
+.composite-box.calculated .portal-rings {
+  opacity: 0.35;
+}
+
+.composite-box.calculated .composite-num {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0);
+  color: var(--accent-gold, #ffd764);
+  text-shadow: 0 0 30px rgba(255, 215, 100, 0.6);
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 480px) {
+  /* Smaller ring sizes on mobile */
+  .portal-ring:nth-child(1) .portal-ring-inner { width: 0px; height: 0px; }
+  .portal-ring:nth-child(2) .portal-ring-inner { width: 15px; height: 15px; }
+  .portal-ring:nth-child(3) .portal-ring-inner { width: 30px; height: 30px; }
+  .portal-ring:nth-child(4) .portal-ring-inner { width: 45px; height: 45px; }
+  .portal-ring:nth-child(5) .portal-ring-inner { width: 60px; height: 60px; }
+  .portal-ring:nth-child(6) .portal-ring-inner { width: 75px; height: 75px; }
+  .portal-ring:nth-child(7) .portal-ring-inner { width: 90px; height: 90px; }
+  .portal-ring:nth-child(8) .portal-ring-inner { width: 105px; height: 105px; }
+  .portal-ring:nth-child(9) .portal-ring-inner { width: 120px; height: 120px; }
+  .portal-ring:nth-child(10) .portal-ring-inner { width: 135px; height: 135px; }
+}
+
+/* ============================================================
+   WEBGL FALLBACK
+   If WebGL2 not available, hide canvas gracefully
+   ============================================================ */
+
+.portal-canvas.webgl-fallback {
+  display: none;
+}

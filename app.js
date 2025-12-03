@@ -1371,6 +1371,11 @@
       }, 100);
     }
 
+    // Trigger portal animation
+    if (typeof Portal !== 'undefined') {
+      Portal.animateScore('aq', aq);
+    }
+
     // Update alpha if all calculated
     updateAlphaIfReady();
   }
@@ -1413,6 +1418,11 @@
       setTimeout(() => {
         elements.riBar.style.width = `${ri * 10}%`;
       }, 100);
+    }
+
+    // Trigger portal animation
+    if (typeof Portal !== 'undefined') {
+      Portal.animateScore('ri', ri);
     }
 
     // Update alpha if all calculated
@@ -1459,6 +1469,11 @@
       }, 100);
     }
 
+    // Trigger portal animation
+    if (typeof Portal !== 'undefined') {
+      Portal.animateScore('ci', ci);
+    }
+
     // Update alpha if all calculated
     updateAlphaIfReady();
   }
@@ -1473,6 +1488,11 @@
       // Update composite display
       if (elements.compositeNum) {
         animateValue(elements.compositeNum, 0, state.scores.alpha, 1000);
+      }
+
+      // Trigger portal animation for alpha
+      if (typeof Portal !== 'undefined') {
+        Portal.animateScore('alpha', state.scores.alpha);
       }
 
       // Update composite status

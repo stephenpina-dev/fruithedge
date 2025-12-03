@@ -13,6 +13,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
 </head>
 <body>
   <!-- Skip Link for Accessibility -->
@@ -149,6 +150,19 @@
           <button class="calc-btn" id="calculate-aq-btn">Calculate AQ</button>
 
           <div class="result-box" id="aq-result">
+            <canvas class="portal-canvas" id="portal-aq"></canvas>
+            <div class="portal-rings">
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+            </div>
             <div class="result-label">Autonomy Quotient</div>
             <div class="result-num" id="aq-num">—</div>
             <div class="result-status" id="aq-status">—</div>
@@ -221,6 +235,19 @@
           <button class="calc-btn" id="calculate-ri-btn">Calculate Ri</button>
 
           <div class="result-box" id="ri-result">
+            <canvas class="portal-canvas" id="portal-ri"></canvas>
+            <div class="portal-rings">
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+            </div>
             <div class="result-label">Resonance Index</div>
             <div class="result-num" id="ri-num">—</div>
             <div class="result-status" id="ri-status">—</div>
@@ -313,6 +340,19 @@
           <button class="calc-btn" id="calculate-ci-btn">Calculate Ci</button>
 
           <div class="result-box" id="ci-result">
+            <canvas class="portal-canvas" id="portal-ci"></canvas>
+            <div class="portal-rings">
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+              <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+            </div>
             <div class="result-label">Craft Intensity</div>
             <div class="result-num" id="ci-num">—</div>
             <div class="result-status" id="ci-status">—</div>
@@ -329,6 +369,19 @@
       <p class="synthesis-subtitle">The three laws form a synergistic feedback loop. When Autonomy, Resonance, and Intensity feed each other, creative returns compound exponentially.</p>
 
       <div class="composite-box">
+        <canvas class="portal-canvas" id="portal-alpha"></canvas>
+        <div class="portal-rings">
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+          <div class="portal-ring"><div class="portal-ring-inner"></div></div>
+        </div>
         <div class="composite-label">Creative Alpha Index</div>
         <div class="composite-num" id="composite-num">—</div>
         <div class="composite-status" id="composite-status">Calculate all three laws to unlock your creative profile</div>
@@ -896,6 +949,7 @@
 
   <!-- Scripts -->
   <script src="data.js"></script>
+  <script src="portal.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
