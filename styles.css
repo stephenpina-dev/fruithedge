@@ -4592,18 +4592,29 @@ details[open] .theory-toggle-icon {
   gap: var(--space-sm);
 }
 
-.help-tooltip-trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.help-tooltip-trigger,
+.help-btn,
+.info-btn,
+.tooltip-btn,
+[class*="help"],
+[class*="info-btn"] {
   width: 18px;
   height: 18px;
-  font-size: 0.65rem;
+  min-width: 18px;
+  min-height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  display: inline-block;
   font-weight: 700;
   color: var(--text-muted);
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  border-radius: 50%;
   cursor: help;
   transition: all var(--transition-fast);
 }
