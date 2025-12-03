@@ -2040,10 +2040,6 @@ details[open] .theory-toggle-icon {
     font-size: 0.55rem;
   }
 
-  .slider-range {
-    font-size: 0.65rem;
-  }
-
   .header-link {
     font-size: 0.6rem;
     padding: 0.4rem 0.5rem;
@@ -4936,10 +4932,6 @@ details[open] .theory-toggle-icon {
     font-size: 13px;
   }
 
-  .slider-range {
-    font-size: 0.55rem;
-  }
-
   /* Slider value display */
   .slider-value,
   .factor-value {
@@ -4964,14 +4956,63 @@ details[open] .theory-toggle-icon {
     font-size: 3.2rem;
   }
 
-  /* Logo must be bigger than tagline */
+  /* Header layout fix */
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    flex-wrap: nowrap;
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header-left,
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
   .logo {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .tagline,
   .tagline-badge {
-    font-size: 0.65rem;
+    font-size: 0.5rem;
+  }
+
+  .header-links,
+  .header-buttons,
+  .header-right,
+  .status-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .header-link {
+    font-size: 0.55rem;
+    padding: 0.3rem 0.4rem;
+  }
+
+  /* Hero title - Creative Alpha same size */
+  .hero-title,
+  .hero-title span,
+  .hero-title em,
+  .hero-title .hero-accent {
+    font-size: 1.4rem;
   }
 
   /* Tips and recommendations readable */
@@ -5009,5 +5050,47 @@ details[open] .theory-toggle-icon {
   /* Footer readable */
   footer, .footer {
     font-size: 0.7rem;
+  }
+}
+
+/* Slider range labels - fixed */
+.slider-range {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  width: 100%;
+  margin-top: 4px;
+  gap: 4px;
+}
+
+.slider-range span {
+  white-space: nowrap;
+  flex: 1 1 0;
+}
+
+.slider-range span:first-child {
+  text-align: left;
+}
+
+.slider-range span:nth-child(2) {
+  text-align: center;
+}
+
+.slider-range span:last-child {
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .slider-range {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .slider-range {
+    font-size: 0.5rem;
   }
 }
