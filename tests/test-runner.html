@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FruitHedge Test Runner</title>
+  <style>
+    :root {
+      --bg: #0a0f14;
+      --bg-secondary: #141c24;
+      --text: #e8f0f8;
+      --text-muted: #6b7c8c;
+      --green: #4ade80;
+      --red: #f87171;
+      --yellow: #fbbf24;
+      --border: #2a3a4a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .summary {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .summary-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .summary-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .summary-value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .summary-value.passed { color: var(--green); }
+    .summary-value.failed { color: var(--red); }
+    .summary-value.total { color: var(--text); }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--green);
+      transition: width 0.3s ease;
+    }
+
+    .category {
+      margin-bottom: 2rem;
+    }
+
+    .category-header {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .test-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .test-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    .test-item:hover {
+      background: var(--bg-secondary);
+    }
+
+    .test-icon {
+      font-size: 1rem;
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    .test-name {
+      flex: 1;
+    }
+
+    .test-item.passed .test-icon { color: var(--green); }
+    .test-item.failed .test-icon { color: var(--red); }
+
+    .test-item.failed {
+      background: rgba(248, 113, 113, 0.1);
+    }
+
+    .test-error {
+      font-size: 0.75rem;
+      color: var(--red);
+      margin-left: 2.25rem;
+      padding: 0.25rem 0;
+    }
+
+    .run-button {
+      background: var(--green);
+      color: var(--bg);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 2rem;
+    }
+
+    .run-button:hover {
+      opacity: 0.9;
+    }
+
+    .run-button:disabled {
+      background: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    .loading {
+      color: var(--yellow);
+      margin-bottom: 1rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-btn {
+      background: var(--bg-secondary);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--text-muted);
+    }
+
+    .filter-btn.active {
+      background: var(--text);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+  <h1>FruitHedge Test Suite</h1>
+
+  <button class="run-button" id="runTests">Run All Tests</button>
+
+  <div class="summary" id="summary" style="display: none;">
+    <div class="summary-item">
+      <span class="summary-label">Total</span>
+      <span class="summary-value total" id="totalCount">0</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">Passed</span>
+      <span class="summary-value passed" id="passedCount">0</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">Failed</span>
+      <span class="summary-value failed" id="failedCount">0</span>
+    </div>
+  </div>
+
+  <div class="progress-bar" id="progressBar" style="display: none;">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="filter-buttons" id="filters" style="display: none;">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="passed">Passed</button>
+    <button class="filter-btn" data-filter="failed">Failed</button>
+  </div>
+
+  <div id="results"></div>
+
+  <script>
+    // ============================================================
+    // TEST FRAMEWORK
+    // ============================================================
+
+    const results = {
+      passed: 0,
+      failed: 0,
+      tests: [],
+      categories: {}
+    };
+
+    let currentCategory = 'General';
+
+    function setCategory(name) {
+      currentCategory = name;
+      if (!results.categories[name]) {
+        results.categories[name] = [];
+      }
+    }
+
+    function test(name, fn) {
+      const testResult = { name, category: currentCategory };
+      try {
+        fn();
+        results.passed++;
+        testResult.passed = true;
+      } catch (error) {
+        results.failed++;
+        testResult.passed = false;
+        testResult.error = error.message;
+      }
+      results.tests.push(testResult);
+      results.categories[currentCategory].push(testResult);
+    }
+
+    function assertEqual(actual, expected, message = '') {
+      if (actual !== expected) {
+        throw new Error(`Expected ${expected}, got ${actual}${message ? ` (${message})` : ''}`);
+      }
+    }
+
+    function assertApprox(actual, expected, tolerance = 0.1, message = '') {
+      if (Math.abs(actual - expected) > tolerance) {
+        throw new Error(`Expected ~${expected} (±${tolerance}), got ${actual}${message ? ` (${message})` : ''}`);
+      }
+    }
+
+    function assertTrue(condition, message = '') {
+      if (!condition) {
+        throw new Error(`Expected true${message ? `: ${message}` : ''}`);
+      }
+    }
+
+    function assertIncludes(array, item, message = '') {
+      if (!array.includes(item)) {
+        throw new Error(`Expected array to include "${item}"${message ? ` (${message})` : ''}`);
+      }
+    }
+
+    // ============================================================
+    // FUNCTIONS TO TEST
+    // ============================================================
+
+    function calculateAQ(e, s, o, c) {
+      const positiveGeo = Math.pow(e * s * o, 1/3);
+      const constraintFactor = 1 + (c - 1) / 9;
+      const aq = positiveGeo / constraintFactor;
+      return Math.round(Math.min(10, Math.max(1, aq)) * 10) / 10;
+    }
+
+    function calculateRi(i, id, b, audienceValue) {
+      const depthGeo = Math.pow(i * id * b, 1/3);
+      const dilution = 1 + Math.log10(audienceValue / 1000) / 4;
+      const dilutionClamped = Math.max(0.5, Math.min(2, dilution));
+      const ri = depthGeo / dilutionClamped;
+      return Math.round(Math.min(10, Math.max(1, ri)) * 10) / 10;
+    }
+
+    function calculateCi(f, ev, r, ad, d, st) {
+      const flowNorm = 1 + (f - 1) * 9 / 59;
+      const adminNorm = 1 + (ad - 1) * 9 / 59;
+      const distractNorm = 1 + (d - 1) * 9 / 59;
+      const fuelGeo = Math.pow(flowNorm * ev * r, 1/3);
+      const dragGeo = Math.pow(adminNorm * distractNorm * st, 1/3);
+      const dragFactor = 1 + (dragGeo - 1) / 9;
+      const ci = fuelGeo / dragFactor;
+      return Math.round(Math.min(10, Math.max(1, ci)) * 10) / 10;
+    }
+
+    function calculateAlpha(aq, ri, ci) {
+      const alpha = Math.pow(aq * ri * ci, 1/3);
+      return Math.round(alpha * 10) / 10;
+    }
+
+    const archetypes = [
+      { id: "legacy", check: (s) => s.alpha >= 8 },
+      { id: "thriving", check: (s) => s.aq >= 7 && s.ri >= 7 && s.ci >= 7 },
+      { id: "burnout", check: (s) => s.aq < 3 && s.ri < 3 && s.ci < 3 },
+      { id: "hustler", check: (s) => s.aq < 4 && s.ci >= 6 },
+      { id: "underground_gem", check: (s) => s.ri >= 6 && s.aq < 4 },
+      { id: "algorithm_slave", check: (s) => s.ci >= 6 && s.ri < 2.5 },
+      { id: "paralyzed_dreamer", check: (s) => s.aq >= 6 && s.ci < 3 },
+      { id: "craftsperson", check: (s) => s.ci >= 7 && s.ri < 5 && s.aq >= 4 },
+      { id: "cult_leader", check: (s) => s.ri >= 7 && s.ci >= 4 && s.ci < 7 && s.aq >= 4 },
+      { id: "free_agent", check: (s) => s.aq >= 7 && s.ri < 6 && s.ci >= 3 && s.ci < 6 },
+      { id: "comeback", check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 2 && s.ci < 5 },
+      { id: "professional", check: (s) => s.aq >= 5 && s.aq <= 7.5 && s.ri >= 5 && s.ri <= 7.5 && s.ci >= 5 && s.ci <= 7.5 },
+      { id: "emerging", check: (s) => s.aq >= 3 && s.aq <= 6 && s.ri >= 3 && s.ri <= 6 && s.ci >= 3 && s.ci <= 6 },
+      { id: "chaos", check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5 },
+      { id: "explorer", check: (s) => true }
+    ];
+
+    function matchArchetype(scores) {
+      for (const arch of archetypes) {
+        if (arch.check(scores)) return arch;
+      }
+      return archetypes.find(a => a.id === 'explorer');
+    }
+
+    function getPatterns(scores) {
+      const patterns = [];
+      if (scores.aq < 4) patterns.push('low_aq');
+      if (scores.ri < 4) patterns.push('low_ri');
+      if (scores.ci < 4) patterns.push('low_ci');
+      if (scores.aq < 3) patterns.push('low_energy');
+      if (scores.ri < 3) patterns.push('low_connection');
+      if (scores.ci < 3) patterns.push('low_discipline');
+      if (scores.aq >= 7) patterns.push('high_aq');
+      if (scores.ri >= 7) patterns.push('high_ri');
+      if (scores.ci >= 7) patterns.push('high_ci');
+      if (scores.aq >= 6 && scores.ci < 4) patterns.push('paralyzed');
+      if (scores.aq < 4 && scores.ci >= 6) patterns.push('hustler');
+      if (scores.ri >= 6 && scores.aq < 4) patterns.push('underground_gem');
+      if (scores.ci >= 6 && scores.ri < 4) patterns.push('craftsperson_no_message');
+      if (scores.aq >= 7 && scores.ri >= 7 && scores.ci >= 7) patterns.push('protect_magic');
+      if (scores.aq >= 4 && scores.aq <= 6 && scores.ri >= 4 && scores.ri <= 6 && scores.ci >= 4 && scores.ci <= 6) {
+        patterns.push('plateau');
+      }
+      if (scores.aq < 4 && scores.ri < 4 && scores.ci < 4) patterns.push('burnout');
+      if (patterns.length === 0) patterns.push('general', 'plateau');
+      return patterns;
+    }
+
+    const personalizedReflections = {
+      energy: { low: "Your energy is depleted.", mid: "Your energy is moderate.", high: "Your energy is abundant." },
+      flow: { low: "You're barely reaching flow.", mid: "You have moderate flow hours.", high: "You're regularly in deep flow." },
+      audience: { small: "You have a small audience.", medium: "You have a growing audience.", large: "You have a large audience." }
+    };
+
+    function getPersonalizedReflection(key, value, max = 10) {
+      const thresholds = { low: max * 0.3, high: max * 0.7 };
+      const questions = personalizedReflections[key];
+      if (!questions) return '';
+      if (value <= thresholds.low) return questions.low;
+      if (value >= thresholds.high) return questions.high;
+      return questions.mid;
+    }
+
+    function getAudiencePersonalizedReflection(audience) {
+      if (audience < 1000) return personalizedReflections.audience.small;
+      if (audience < 100000) return personalizedReflections.audience.medium;
+      return personalizedReflections.audience.large;
+    }
+
+    // ============================================================
+    // TEST DEFINITIONS
+    // ============================================================
+
+    function runAllTests() {
+      // Reset
+      results.passed = 0;
+      results.failed = 0;
+      results.tests = [];
+      results.categories = {};
+
+      // 1. Score Calculations
+      setCategory('Score Calculations');
+
+      test('calculateAQ: max inputs (10,10,10,1) returns 10', () => {
+        assertEqual(calculateAQ(10, 10, 10, 1), 10);
+      });
+
+      test('calculateAQ: min inputs (1,1,1,10) returns 1', () => {
+        assertEqual(calculateAQ(1, 1, 1, 10), 1);
+      });
+
+      test('calculateAQ: balanced mid (5,5,5,5) returns ~3.5', () => {
+        assertApprox(calculateAQ(5, 5, 5, 5), 3.5, 0.3);
+      });
+
+      test('calculateAQ: output clamped 1-10', () => {
+        const r1 = calculateAQ(100, 100, 100, 1);
+        const r2 = calculateAQ(0.1, 0.1, 0.1, 10);
+        assertTrue(r1 <= 10 && r2 >= 1);
+      });
+
+      test('calculateRi: max depth, small audience returns 10', () => {
+        assertEqual(calculateRi(10, 10, 10, 1000), 10);
+      });
+
+      test('calculateRi: max depth, huge audience returns ~5', () => {
+        assertApprox(calculateRi(10, 10, 10, 10000000), 5, 0.5);
+      });
+
+      test('calculateRi: dilution increases with audience', () => {
+        const r1k = calculateRi(10, 10, 10, 1000);
+        const r100k = calculateRi(10, 10, 10, 100000);
+        assertTrue(r1k > r100k);
+      });
+
+      test('calculateCi: max fuel, min drag returns 10', () => {
+        assertEqual(calculateCi(60, 10, 10, 1, 1, 1), 10);
+      });
+
+      test('calculateCi: min fuel, max drag returns 1', () => {
+        assertEqual(calculateCi(1, 1, 1, 60, 60, 10), 1);
+      });
+
+      test('calculateAlpha: all 10s returns 10', () => {
+        assertEqual(calculateAlpha(10, 10, 10), 10);
+      });
+
+      test('calculateAlpha: geometric mean (8,8,8) returns 8', () => {
+        assertEqual(calculateAlpha(8, 8, 8), 8);
+      });
+
+      test('calculateAlpha: imbalance penalty (10,10,1) ~4.6', () => {
+        assertApprox(calculateAlpha(10, 10, 1), 4.6, 0.2);
+      });
+
+      // 2. Archetype Matching
+      setCategory('Archetype Matching');
+
+      test('matchArchetype: burnout', () => {
+        assertEqual(matchArchetype({aq:2, ri:2, ci:2, alpha:2}).id, 'burnout');
+      });
+
+      test('matchArchetype: legacy takes priority', () => {
+        assertEqual(matchArchetype({aq:9, ri:9, ci:9, alpha:9}).id, 'legacy');
+      });
+
+      test('matchArchetype: thriving', () => {
+        assertEqual(matchArchetype({aq:7.5, ri:7.5, ci:7.5, alpha:7.5}).id, 'thriving');
+      });
+
+      test('matchArchetype: hustler', () => {
+        assertEqual(matchArchetype({aq:3, ri:5, ci:7, alpha:4.7}).id, 'hustler');
+      });
+
+      test('matchArchetype: paralyzed_dreamer', () => {
+        assertEqual(matchArchetype({aq:7, ri:5, ci:2, alpha:4.1}).id, 'paralyzed_dreamer');
+      });
+
+      test('matchArchetype: underground_gem', () => {
+        assertEqual(matchArchetype({aq:3, ri:7, ci:5, alpha:4.7}).id, 'underground_gem');
+      });
+
+      test('matchArchetype: algorithm_slave', () => {
+        assertEqual(matchArchetype({aq:5, ri:2, ci:7, alpha:4.1}).id, 'algorithm_slave');
+      });
+
+      test('matchArchetype: professional', () => {
+        assertEqual(matchArchetype({aq:6, ri:6, ci:6, alpha:6}).id, 'professional');
+      });
+
+      // 3. Pattern Detection
+      setCategory('Pattern Detection');
+
+      test('getPatterns: low_aq when aq<4', () => {
+        assertIncludes(getPatterns({aq:3, ri:6, ci:6, alpha:4.8}), 'low_aq');
+      });
+
+      test('getPatterns: low_ri when ri<4', () => {
+        assertIncludes(getPatterns({aq:6, ri:3, ci:6, alpha:4.8}), 'low_ri');
+      });
+
+      test('getPatterns: low_ci when ci<4', () => {
+        assertIncludes(getPatterns({aq:6, ri:6, ci:3, alpha:4.8}), 'low_ci');
+      });
+
+      test('getPatterns: protect_magic for high scores', () => {
+        assertIncludes(getPatterns({aq:8, ri:8, ci:8, alpha:8}), 'protect_magic');
+      });
+
+      test('getPatterns: plateau for balanced mid', () => {
+        assertIncludes(getPatterns({aq:5, ri:5, ci:5, alpha:5}), 'plateau');
+      });
+
+      test('getPatterns: burnout when all <4', () => {
+        assertIncludes(getPatterns({aq:2, ri:2, ci:2, alpha:2}), 'burnout');
+      });
+
+      // 4. Reflection Questions
+      setCategory('Reflection Questions');
+
+      test('getPersonalizedReflection: low value returns low', () => {
+        assertTrue(getPersonalizedReflection('energy', 2, 10).includes('depleted'));
+      });
+
+      test('getPersonalizedReflection: mid value returns mid', () => {
+        assertTrue(getPersonalizedReflection('energy', 5, 10).includes('moderate'));
+      });
+
+      test('getPersonalizedReflection: high value returns high', () => {
+        assertTrue(getPersonalizedReflection('energy', 8, 10).includes('abundant'));
+      });
+
+      test('getPersonalizedReflection: boundary 3 returns low', () => {
+        assertTrue(getPersonalizedReflection('energy', 3, 10).includes('depleted'));
+      });
+
+      test('getPersonalizedReflection: boundary 7 returns high', () => {
+        assertTrue(getPersonalizedReflection('energy', 7, 10).includes('abundant'));
+      });
+
+      test('getAudiencePersonalizedReflection: 500 returns small', () => {
+        assertTrue(getAudiencePersonalizedReflection(500).includes('small'));
+      });
+
+      test('getAudiencePersonalizedReflection: 10000 returns medium', () => {
+        assertTrue(getAudiencePersonalizedReflection(10000).includes('growing'));
+      });
+
+      test('getAudiencePersonalizedReflection: 500000 returns large', () => {
+        assertTrue(getAudiencePersonalizedReflection(500000).includes('large'));
+      });
+
+      test('getAudiencePersonalizedReflection: boundary 999 returns small', () => {
+        assertTrue(getAudiencePersonalizedReflection(999).includes('small'));
+      });
+
+      test('getAudiencePersonalizedReflection: boundary 1000 returns medium', () => {
+        assertTrue(getAudiencePersonalizedReflection(1000).includes('growing'));
+      });
+
+      // 5. Edge Cases
+      setCategory('Edge Cases');
+
+      test('calculateAQ: handles very small values', () => {
+        const r = calculateAQ(0.1, 0.1, 0.1, 10);
+        assertTrue(r >= 1);
+      });
+
+      test('calculateRi: handles very small audience', () => {
+        const r = calculateRi(10, 10, 10, 1);
+        assertTrue(r >= 1 && r <= 10);
+      });
+
+      test('calculateCi: handles decimal inputs', () => {
+        const r = calculateCi(30.5, 5.5, 5.5, 15.5, 15.5, 5.5);
+        assertTrue(!isNaN(r));
+      });
+
+      test('getPersonalizedReflection: unknown key returns empty', () => {
+        assertEqual(getPersonalizedReflection('unknown', 5, 10), '');
+      });
+
+      return results;
+    }
+
+    // ============================================================
+    // UI RENDERING
+    // ============================================================
+
+    function renderResults() {
+      const container = document.getElementById('results');
+      const summary = document.getElementById('summary');
+      const progressBar = document.getElementById('progressBar');
+      const progressFill = document.getElementById('progressFill');
+      const filters = document.getElementById('filters');
+
+      // Show summary
+      summary.style.display = 'flex';
+      progressBar.style.display = 'block';
+      filters.style.display = 'flex';
+
+      document.getElementById('totalCount').textContent = results.passed + results.failed;
+      document.getElementById('passedCount').textContent = results.passed;
+      document.getElementById('failedCount').textContent = results.failed;
+
+      const passRate = results.passed / (results.passed + results.failed) * 100;
+      progressFill.style.width = `${passRate}%`;
+      progressFill.style.background = results.failed === 0 ? 'var(--green)' : 'var(--yellow)';
+
+      // Render categories
+      let html = '';
+      for (const [category, tests] of Object.entries(results.categories)) {
+        html += `
+          <div class="category">
+            <div class="category-header">${category}</div>
+            <div class="test-list">
+              ${tests.map(t => `
+                <div class="test-item ${t.passed ? 'passed' : 'failed'}" data-status="${t.passed ? 'passed' : 'failed'}">
+                  <span class="test-icon">${t.passed ? '✓' : '✗'}</span>
+                  <span class="test-name">${t.name}</span>
+                </div>
+                ${t.error ? `<div class="test-error">${t.error}</div>` : ''}
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    // Filter functionality
+    document.getElementById('filters').addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+
+        const filter = e.target.dataset.filter;
+        document.querySelectorAll('.test-item').forEach(item => {
+          if (filter === 'all') {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = item.dataset.status === filter ? 'flex' : 'none';
+          }
+        });
+      }
+    });
+
+    // Run button
+    document.getElementById('runTests').addEventListener('click', () => {
+      const btn = document.getElementById('runTests');
+      btn.disabled = true;
+      btn.textContent = 'Running...';
+
+      setTimeout(() => {
+        runAllTests();
+        renderResults();
+        btn.disabled = false;
+        btn.textContent = 'Run All Tests';
+      }, 100);
+    });
+
+    // Run on load
+    window.addEventListener('load', () => {
+      runAllTests();
+      renderResults();
+    });
+  </script>
+</body>
+</html>
