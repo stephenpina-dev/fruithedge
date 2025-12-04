@@ -220,6 +220,19 @@ const Portal = (function() {
     if (Object.keys(contexts).length > 0) {
       render();
     }
+
+    // Tap to replay animation
+    document.querySelectorAll('.result-box, .composite-box').forEach(box => {
+      box.style.cursor = 'pointer';
+      box.addEventListener('click', (e) => {
+        // Don't trigger if clicking a button or link inside
+        if (e.target.closest('button, a')) return;
+
+        const type = box.id?.replace('-result', '') ||
+                     (box.classList.contains('composite-box') ? 'alpha' : null);
+        if (type) replayAnimation(type);
+      });
+    });
   }
 
   /**
@@ -280,6 +293,41 @@ const Portal = (function() {
   }
 
   /**
+   * Replay wave animation without changing the score
+   * @param {string} type - 'aq', 'ri', 'ci', or 'alpha'
+   */
+  function replayAnimation(type) {
+    const box = type === 'alpha'
+      ? document.querySelector('.composite-box')
+      : document.getElementById(type + '-result');
+
+    if (!box) return;
+
+    // Don't replay if already animating
+    if (box.classList.contains('animating')) return;
+
+    // Remove existing states
+    box.classList.remove('animating', 'generating', 'rising', 'calculated');
+
+    // Run animation sequence
+    box.classList.add('animating');
+
+    setTimeout(() => {
+      box.classList.add('generating');
+    }, 200);
+
+    setTimeout(() => {
+      box.classList.remove('generating');
+      box.classList.add('rising');
+    }, 1000);
+
+    setTimeout(() => {
+      box.classList.remove('animating', 'rising');
+      box.classList.add('calculated');
+    }, 2200);
+  }
+
+  /**
    * Cleanup WebGL contexts
    */
   function destroy() {
@@ -312,6 +360,7 @@ const Portal = (function() {
     init,
     animateScore,
     setScore,
+    replayAnimation,
     destroy
   };
 })();
