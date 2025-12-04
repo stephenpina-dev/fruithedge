@@ -17,6 +17,7 @@ const Portal = (function() {
 
   // Color tints for each portal type
   const tints = {
+    'portal-hero': [0.3, 0.5, 0.6],    // Neutral cyan
     'portal-aq': [0.4, 0.6, 0.3],      // Muted lime
     'portal-ri': [0.6, 0.4, 0.35],     // Muted peach
     'portal-ci': [0.6, 0.35, 0.45],    // Muted pink
@@ -205,7 +206,7 @@ const Portal = (function() {
    * Initialize all portal canvases
    */
   function init() {
-    const canvasIds = ['portal-aq', 'portal-ri', 'portal-ci', 'portal-alpha'];
+    const canvasIds = ['portal-hero', 'portal-aq', 'portal-ri', 'portal-ci', 'portal-alpha'];
 
     canvasIds.forEach(id => {
       const canvas = document.getElementById(id);

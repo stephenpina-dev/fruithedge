@@ -164,6 +164,26 @@
 }
 
 /* ============================================================
+   HERO SECTION PORTAL
+   ============================================================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .portal-canvas {
+  opacity: 0.6;
+}
+
+.hero .hero-title,
+.hero .hero-subtitle,
+.hero .hero-instruction {
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================================
    COLOR VARIANTS FOR EACH LAW
    ============================================================ */
 
@@ -319,4 +339,61 @@
 
 .portal-canvas.webgl-fallback {
   display: none;
+}
+
+/* ============================================================
+   LIGHT MODE ADJUSTMENTS
+   Make portals light and airy in light mode
+   ============================================================ */
+
+[data-theme="light"] .portal-canvas {
+  opacity: 0.25;
+  filter: brightness(1.5) saturate(0.7);
+}
+
+[data-theme="light"] .hero .portal-canvas {
+  opacity: 0.2;
+  filter: brightness(1.8) saturate(0.5);
+}
+
+[data-theme="light"] .portal-ring-inner {
+  border-color: rgba(45, 80, 22, 0.2);
+  filter: blur(3px) brightness(120%);
+}
+
+/* Light mode score colors - darker for readability */
+[data-theme="light"] .result-box.generating .result-num,
+[data-theme="light"] .result-box.rising .result-num,
+[data-theme="light"] .result-box.calculated .result-num {
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .law-card.autonomy .result-box.calculated .result-num {
+  color: #4a7c23;
+  text-shadow: 0 0 15px rgba(74, 124, 35, 0.3);
+}
+
+[data-theme="light"] .law-card.resonance .result-box.calculated .result-num {
+  color: #c55a30;
+  text-shadow: 0 0 15px rgba(197, 90, 48, 0.3);
+}
+
+[data-theme="light"] .law-card.intensity .result-box.calculated .result-num {
+  color: #b5408a;
+  text-shadow: 0 0 15px rgba(181, 64, 138, 0.3);
+}
+
+[data-theme="light"] .composite-box.calculated .composite-num {
+  color: #b8860b;
+  text-shadow: 0 0 20px rgba(184, 134, 11, 0.3);
+}
+
+[data-theme="light"] .result-box.calculated .portal-canvas,
+[data-theme="light"] .composite-box.calculated .portal-canvas {
+  opacity: 0.15;
+}
+
+[data-theme="light"] .result-box.calculated .portal-rings,
+[data-theme="light"] .composite-box.calculated .portal-rings {
+  opacity: 0.2;
 }

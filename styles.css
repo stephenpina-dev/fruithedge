@@ -97,6 +97,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  border: none;
+  outline: none;
 }
 
 body {
@@ -107,6 +109,8 @@ body {
   background-color: var(--bg-primary);
   min-height: 100vh;
   transition: background-color var(--transition-base), color var(--transition-base);
+  border: none;
+  outline: none;
 }
 
 /* Grain Overlay */
@@ -211,6 +215,7 @@ p {
 .header {
   background: var(--bg-secondary);
   border-bottom: 2px solid var(--accent-lime);
+  border-top: none;
   padding: 1.5rem 2rem;
   /* Header scrolls away, tab bar stays sticky */
 }
