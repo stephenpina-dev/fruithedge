@@ -1697,6 +1697,7 @@ input[type="range"]::-moz-range-thumb {
   .dashboard-stats-row {
     grid-template-columns: minmax(0, 500px);
     justify-content: center;
+    gap: var(--space-xl);
   }
 
   .dashboard-card {
@@ -1718,6 +1719,21 @@ input[type="range"]::-moz-range-thumb {
 
   .dashboard-card--trends {
     border-top: 4px solid var(--text-muted);
+  }
+
+  .dashboard-card-card-header-row {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .equity-chart-tabs {
+    flex-shrink: 1;
+    flex-wrap: wrap;
+  }
+
+  .equity-tab {
+    min-width: 30px;
+    padding: 4px 8px;
   }
 
   .pie-container {
@@ -4157,6 +4173,8 @@ details[open] .theory-toggle-icon {
 
   .streak-display {
     justify-content: center;
+    justify-self: center;
+    margin: 0 auto;
   }
 
   .badges-display {
