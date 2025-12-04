@@ -2163,20 +2163,22 @@ details[open] .theory-toggle-icon {
   }
 }
 
-/* Skip Link */
+/* Skip Link - hidden until focused */
 .skip-link {
   position: absolute;
-  top: -40px;
-  left: 0;
+  top: -9999px;
+  left: -9999px;
   padding: var(--space-sm) var(--space-md);
-  background-color: var(--accent-cyan);
+  background-color: var(--accent-lime);
   color: var(--bg-primary);
   z-index: 10000;
-  transition: top var(--transition-fast);
+  opacity: 0;
 }
 
 .skip-link:focus {
   top: 0;
+  left: 0;
+  opacity: 1;
 }
 
 /* Screen Reader Only */
