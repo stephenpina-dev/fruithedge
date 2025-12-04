@@ -2066,10 +2066,50 @@
         }
 
         state.playbooks = playbooks;
+
+        // Sync playbooks to history if history is missing entries
+        syncPlaybooksToHistory();
       }
     } catch (e) {
       console.error('[FruitHedge] Error loading playbooks:', e);
       state.playbooks = [];
+    }
+  }
+
+  /**
+   * Sync playbooks to history - ensures dashboard has data if playbooks exist
+   */
+  function syncPlaybooksToHistory() {
+    if (state.playbooks.length === 0) return;
+
+    // Get existing history dates
+    const historyDates = new Set(state.history.map(h => {
+      return new Date(h.date).toISOString().split('T')[0];
+    }));
+
+    let added = 0;
+
+    // Add missing playbooks to history
+    state.playbooks.forEach(pb => {
+      const pbDate = new Date(pb.date).toISOString().split('T')[0];
+      if (!historyDates.has(pbDate) && pb.scores) {
+        state.history.push({
+          id: pb.id || generateId(),
+          date: pb.date,
+          scores: pb.scores,
+          inputs: pb.inputs || {},
+          archetype: pb.archetype || null
+        });
+        historyDates.add(pbDate);
+        added++;
+      }
+    });
+
+    if (added > 0) {
+      // Sort history by date descending
+      state.history.sort((a, b) => new Date(b.date) - new Date(a.date));
+      saveHistory();
+      console.log('[FruitHedge] Synced', added, 'playbooks to history for dashboard');
     }
   }
 
