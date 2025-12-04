@@ -598,8 +598,8 @@
 
     // Playbooks
     playbooksSection: document.getElementById('playbooks-section'),
-    playbooksCount: document.getElementById('playbooks-count'),
-    playbooksEmpty: document.getElementById('playbooks-empty'),
+    playbooksCount: document.getElementById('playbooks-count-tab'),
+    playbooksEmpty: document.getElementById('playbooks-empty-tab'),
     playbooksGrid: document.getElementById('playbooks-grid-tab'),
     playbookModalOverlay: document.getElementById('playbook-modal-overlay'),
     playbookModalTitle: document.getElementById('playbook-modal-title'),
