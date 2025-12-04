@@ -1696,6 +1696,30 @@ input[type="range"]::-moz-range-thumb {
   .dashboard-charts,
   .dashboard-stats-row {
     grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .dashboard-card {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    border-left: none;
+  }
+
+  .dashboard-card--chart {
+    border-top: 4px solid var(--accent-lime);
+  }
+
+  .dashboard-card--radar {
+    border-top: 4px solid var(--accent-peach);
+  }
+
+  .dashboard-card--stats {
+    border-top: 4px solid var(--accent-berry);
+  }
+
+  .dashboard-card--trends {
+    border-top: 4px solid var(--text-muted);
   }
 
   .pie-container {
