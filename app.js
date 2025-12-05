@@ -634,6 +634,12 @@
     aboutModal: document.getElementById('about-modal'),
     aboutClose: document.getElementById('about-close'),
 
+    // Privacy Modal
+    privacyLink: document.getElementById('privacy-link'),
+    privacyModal: document.getElementById('privacy-modal'),
+    privacyClose: document.getElementById('privacy-close'),
+    privacyGotIt: document.getElementById('privacy-got-it'),
+
     // Save Confirmation Modal
     saveConfirmOverlay: document.getElementById('save-confirm-overlay'),
     saveConfirmReplace: document.getElementById('save-confirm-replace'),
@@ -4521,6 +4527,34 @@
       });
     }
 
+    // Privacy modal
+    if (elements.privacyLink) {
+      elements.privacyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openInfoModal(elements.privacyModal);
+      });
+    }
+
+    if (elements.privacyClose) {
+      elements.privacyClose.addEventListener('click', () => {
+        closeInfoModal(elements.privacyModal);
+      });
+    }
+
+    if (elements.privacyGotIt) {
+      elements.privacyGotIt.addEventListener('click', () => {
+        closeInfoModal(elements.privacyModal);
+      });
+    }
+
+    if (elements.privacyModal) {
+      elements.privacyModal.addEventListener('click', (e) => {
+        if (e.target === elements.privacyModal) {
+          closeInfoModal(elements.privacyModal);
+        }
+      });
+    }
+
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -4529,6 +4563,9 @@
         }
         if (elements.aboutModal && elements.aboutModal.classList.contains('active')) {
           closeInfoModal(elements.aboutModal);
+        }
+        if (elements.privacyModal && elements.privacyModal.classList.contains('active')) {
+          closeInfoModal(elements.privacyModal);
         }
       }
     });
@@ -4547,6 +4584,7 @@
     const anyModalOpen =
       (elements.howItWorksModal && elements.howItWorksModal.classList.contains('active')) ||
       (elements.aboutModal && elements.aboutModal.classList.contains('active')) ||
+      (elements.privacyModal && elements.privacyModal.classList.contains('active')) ||
       (elements.playbookModalOverlay && elements.playbookModalOverlay.classList.contains('active')) ||
       (elements.modalOverlay && elements.modalOverlay.classList.contains('active'));
     if (!anyModalOpen) {

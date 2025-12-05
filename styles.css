@@ -1887,6 +1887,32 @@ details[open] .theory-toggle-icon {
   margin-bottom: 0;
 }
 
+.footer-links {
+  margin-top: 1rem;
+}
+
+.footer-link {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent-lime);
+}
+
+[data-theme="light"] .footer-link {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .footer-link:hover {
+  color: var(--accent-lime-dark, #4a7c23);
+}
+
 /* ============================================================
    MODAL
    ============================================================ */
@@ -4656,6 +4682,91 @@ details[open] .theory-toggle-icon {
   border-top: 1px solid var(--border);
   color: var(--text-secondary);
   font-size: 0.9rem;
+}
+
+/* Privacy Modal Styles */
+.privacy-content {
+  padding: var(--space-md);
+}
+
+.privacy-effective {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xl);
+}
+
+.privacy-section {
+  margin-bottom: var(--space-lg);
+}
+
+.privacy-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.privacy-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.privacy-content strong {
+  color: var(--text-primary);
+}
+
+.privacy-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0;
+}
+
+.privacy-list li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding-left: var(--space-lg);
+  position: relative;
+  margin-bottom: var(--space-xs);
+}
+
+.privacy-list li::before {
+  content: '•';
+  position: absolute;
+  left: var(--space-sm);
+  color: var(--accent-lime);
+}
+
+.privacy-email {
+  color: var(--accent-lime);
+  text-decoration: none;
+}
+
+.privacy-email:hover {
+  text-decoration: underline;
+}
+
+.privacy-tagline {
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+[data-theme="light"] .privacy-section-title {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .privacy-email {
+  color: var(--accent-lime-dark, #4a7c23);
 }
 
 /* ============================================================
