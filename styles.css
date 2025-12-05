@@ -1905,7 +1905,7 @@ details[open] .theory-toggle-icon {
 }
 
 [data-theme="light"] .footer-link {
-  color: rgba(0, 0, 0, 0.4);
+  color: var(--accent-lime-dark, #4a7c23) !important;
 }
 
 [data-theme="light"] .footer-link:hover {
