@@ -551,19 +551,21 @@ input[type="range"] {
   padding: 0;
 }
 
-/* Track - Solid translucent dark bar (no outer border) */
+/* Track - Solid translucent dark bar */
 input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.08);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 input[type="range"]::-moz-range-track {
   height: 8px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.08);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Remove gradient classes - all sliders use same track */
@@ -577,10 +579,10 @@ input[type="range"]::-moz-range-track {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  margin-top: -11px; /* Center on 8px track */
+  margin-top: -14px; /* Center on 8px track */
   cursor: grab;
 
   /* Liquid glass effect */
@@ -620,8 +622,8 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 /* Firefox Thumb */
 input[type="range"]::-moz-range-thumb {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: none;
   cursor: grab;
@@ -653,12 +655,14 @@ input[type="range"]:active::-moz-range-thumb {
 /* Light Theme - Slider adjustments */
 [data-theme="light"] input[type="range"]::-webkit-slider-runnable-track {
   background: rgba(0, 0, 0, 0.08);
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="light"] input[type="range"]::-moz-range-track {
   background: rgba(0, 0, 0, 0.08);
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="light"] input[type="range"]::-webkit-slider-thumb {
