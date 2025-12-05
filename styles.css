@@ -538,59 +538,159 @@ p {
   line-height: 1.4;
 }
 
-/* Range Slider Track */
+/* Range Slider - Liquid Glass Design */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 8px;
-  border-radius: var(--radius-xl);
+  height: 48px; /* Large touch target */
+  background: transparent;
   outline: none;
   cursor: pointer;
-  margin: var(--space-sm) 0;
+  margin: var(--space-xs) 0;
+  padding: 0;
 }
 
-/* Positive gradient: red → yellow → green */
-.slider--positive {
-  background: linear-gradient(90deg, #ff6b6b 0%, #ffd93d 50%, #6bcf7f 100%);
+/* Track - Solid translucent dark bar */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Negative/Inverse gradient: green → yellow → red */
-.slider--negative {
-  background: linear-gradient(90deg, #6bcf7f 0%, #ffd93d 50%, #ff6b6b 100%);
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Neutral gradient */
+/* Remove gradient classes - all sliders use same track */
+.slider--positive,
+.slider--negative,
 .slider--neutral {
-  background: linear-gradient(90deg, var(--bg-tertiary), var(--text-muted));
+  background: transparent;
 }
 
-/* Slider Thumb */
+/* Thumb - Liquid Glass Orb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 22px;
-  height: 22px;
-  background: var(--text-primary);
-  border: 3px solid var(--bg-secondary);
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: transform var(--transition-fast);
+  margin-top: -14px; /* Center on 8px track */
+  cursor: grab;
+
+  /* Liquid glass effect */
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(196, 255, 97, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
+  transform: scale(1.05);
+  box-shadow:
+    0 5px 16px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(196, 255, 97, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
 
+input[type="range"]:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.1);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(196, 255, 97, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Firefox Thumb */
 input[type="range"]::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  background: var(--text-primary);
-  border: 3px solid var(--bg-secondary);
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: none;
+  cursor: grab;
+
+  /* Liquid glass effect */
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(196, 255, 97, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.05);
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+/* Light Theme - Slider adjustments */
+[data-theme="light"] input[type="range"]::-webkit-slider-runnable-track {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] input[type="range"]::-moz-range-track {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] input[type="range"]::-webkit-slider-thumb {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(74, 124, 35, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] input[type="range"]::-moz-range-thumb {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(74, 124, 35, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
 /* Slider Range Labels */
