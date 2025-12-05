@@ -625,9 +625,10 @@
     badgeCentury: document.getElementById('badge-century'),
     badgeComeback: document.getElementById('badge-comeback'),
 
-    // Info Modals (How It Works, About)
+    // Info Modals (How It Works, About, Privacy)
     headerHowItWorks: document.getElementById('header-how-it-works'),
     headerAbout: document.getElementById('header-about'),
+    headerPrivacy: document.getElementById('header-privacy'),
     howItWorksModal: document.getElementById('how-it-works-modal'),
     howItWorksClose: document.getElementById('how-it-works-close'),
     howItWorksGotIt: document.getElementById('how-it-works-got-it'),
@@ -4527,7 +4528,14 @@
       });
     }
 
-    // Privacy modal
+    // Privacy modal (header button)
+    if (elements.headerPrivacy) {
+      elements.headerPrivacy.addEventListener('click', () => {
+        openInfoModal(elements.privacyModal);
+      });
+    }
+
+    // Privacy modal (footer link)
     if (elements.privacyLink) {
       elements.privacyLink.addEventListener('click', (e) => {
         e.preventDefault();
