@@ -672,21 +672,26 @@
 
   /**
    * Calculate Resonance Index
-   * Formula: Ri = (I × Id × B) / [1 + ln(A / 1000)]
+   * Formula: Ri = ∛(I × Id × B) / [1 + log₁₀(A/1000) × 0.02]
    *
    * Expected results:
-   * - I=10, Id=10, B=10, A=1K → Ri = 10 (no dilution)
-   * - I=10, Id=10, B=10, A=10M → Ri = 10 (ln(10K)≈9.2, denom≈10.2)
-   * - I=5, Id=5, B=5, A=100K → Ri = ~10 (125 / 5.6 ≈ 22 → clamped to 10)
-   * - I=1, Id=1, B=1, A=10M → Ri = 1 (floored)
+   * - I=10, Id=10, B=10, A=1K → Ri = 10.0 (no dilution)
+   * - I=10, Id=10, B=10, A=10M → Ri = 9.3 (8% dilution)
+   * - I=5, Id=5, B=5, A=1K → Ri = 5.0
+   * - I=5, Id=5, B=5, A=10M → Ri = 4.6
+   * - I=3, Id=3, B=3, A=10M → Ri = 2.8
+   * - I=1, Id=1, B=1, A=any → Ri = 1 (floored)
    */
   function calculateRi(i, id, b, audienceValue) {
-    // Spec formula: Ri = (I × Id × B) / [1 + ln(A / 1000)]
-    const numerator = i * id * b;
-    const denominator = 1 + Math.log(audienceValue / 1000);
-    // Protect against division by zero or negative (audience < 368)
-    const safeDenominator = Math.max(0.1, denominator);
-    const ri = numerator / safeDenominator;
+    // Geometric mean of depth factors (1-10 scale)
+    const geoMean = Math.pow(i * id * b, 1/3);
+
+    // Audience dilution: 2% per order of magnitude above 1K
+    // 1K→1.0, 10K→1.02, 100K→1.04, 1M→1.06, 10M→1.08
+    const logAudience = Math.log10(Math.max(1000, audienceValue) / 1000);
+    const dilution = 1 + logAudience * 0.02;
+
+    const ri = geoMean / dilution;
     return Math.round(Math.min(10, Math.max(1, ri)) * 10) / 10;
   }
 
@@ -987,7 +992,17 @@
     else if (avg < 4 && spread >= 3) shape = 'lopsided_low';
     else shape = 'mixed';
 
-    // Flag specific conditions
+    // Audience tier flags
+    const audienceTier = {
+      intimate: audience < 1000,           // < 1K - you know everyone
+      growing: audience >= 1000 && audience < 10000,    // 1K-10K - building momentum
+      established: audience >= 10000 && audience < 100000,  // 10K-100K - real traction
+      large: audience >= 100000 && audience < 1000000,  // 100K-1M - scale challenges begin
+      massive: audience >= 1000000 && audience < 10000000,  // 1M-10M - true scale
+      superstar: audience >= 10000000      // 10M+ - global reach
+    };
+
+    // Keep legacy flags for backward compatibility
     const isLargeAudience = audience >= 100000;
     const isSmallAudience = audience < 1000;
 
@@ -999,6 +1014,7 @@
       shape,
       isLargeAudience,
       isSmallAudience,
+      audienceTier,
       raw: { impact, identity, boldness, audience }
     };
   }

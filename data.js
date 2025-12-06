@@ -1453,6 +1453,78 @@ const riPropheticMessages = {
     }
   },
 
+  // AUDIENCE TIER: Intimate (<1K)
+  tier_intimate: {
+    condition: (p) => p.audienceTier && p.audienceTier.intimate && p.average >= 5,
+    label: "💎 INTIMATE CIRCLE",
+    messages: {
+      morning: "You have fewer than 1,000 people, but they chose you. That's not a limitation—it's a superpower. You can reply to everyone. You can know their names. You can ask them directly what they need. Today, reach out to 3 followers personally. Not to promote. To connect. To learn. This intimacy is your unfair advantage. Use it before it scales away.",
+      afternoon: "Small audience, real connection. Most creators would kill for what you have—people who actually care. Don't wish for scale yet. Deepen first. What if you created something specifically because one follower asked for it? That's the move. That's how movements start. One person at a time.",
+      evening: "Under 1K followers means you're still in the relationship-building phase. Every person who joins now is a founding member of something. Treat them that way. Tomorrow, share something you'd only share with friends. See who responds. Those are your people.",
+      night: "Intimate audiences are laboratories. You can experiment, fail, and adjust without the world watching. That's freedom most creators lose and never get back. Use this phase wisely. Test your boldest ideas now. Find what resonates. Then scale what works."
+    }
+  },
+
+  // AUDIENCE TIER: Growing (1K-10K)
+  tier_growing: {
+    condition: (p) => p.audienceTier && p.audienceTier.growing && p.average >= 5,
+    label: "🌱 BUILDING MOMENTUM",
+    messages: {
+      morning: "You're in the 1K-10K zone—past hobby, not yet career. This is the crucial phase where your creative identity solidifies. What you do now becomes what you're known for. Today, double down on what's working. Not what you wish was working. What's actually resonating. More of that.",
+      afternoon: "Building momentum means you've found something that connects. Don't pivot away from it chasing novelty. Go deeper. What's the version of your current work that's 10x more YOU? That's the path. Depth now creates the foundation for sustainable scale later.",
+      evening: "The 1K-10K phase is where most creators stall—too small to feel successful, too big to ignore. Keep going. You're not stuck. You're building. Tomorrow, create the thing that only you could make. The weird thing. The specific thing. That's what breaks you through.",
+      night: "You have traction. Not massive. Real. People are showing up for what you make. That's validation. Now the question is: can you be consistent long enough for compound growth to kick in? The answer is yes if you protect your energy and stay true to what's working."
+    }
+  },
+
+  // AUDIENCE TIER: Established (10K-100K)
+  tier_established: {
+    condition: (p) => p.audienceTier && p.audienceTier.established && p.average >= 5,
+    label: "🏛 ESTABLISHED PRESENCE",
+    messages: {
+      morning: "10K-100K is the proving ground. You have real traction. People recognize your name. But the algorithm is starting to pressure you toward optimization over authenticity. Today, resist. Make something that serves your audience, not the metrics. The audience that matters will notice.",
+      afternoon: "You're established enough to feel the pull of scale but not so big you've lost yourself. This is the fork in the road. One path leads to hollow growth. The other leads to sustainable depth. Every piece you make now is a vote for which path you're taking. Choose wisely.",
+      evening: "Established presence means you have something worth protecting. The voice that got you here—guard it. The temptation to broaden and soften is real. Don't. Tomorrow, make something that might lose casual followers but will deepen the committed ones. That's the trade that pays.",
+      night: "The 10K-100K range is where creative careers are built or broken. You have enough audience to matter. The question is whether you'll stay true to what made them follow. Before you sleep, remember why you started. That's still the point. The numbers are just evidence."
+    }
+  },
+
+  // AUDIENCE TIER: Large (100K-1M)
+  tier_large: {
+    condition: (p) => p.audienceTier && p.audienceTier.large && p.average >= 5,
+    label: "📡 SCALE CHALLENGES",
+    messages: {
+      morning: "100K-1M followers means you're operating at real scale. People are watching who you've never met. The intimacy is harder to maintain. Today, find one way to make it feel smaller. Reply to someone. Make something niche. Remember that behind every number is a human who chose to pay attention to you.",
+      afternoon: "Large scale brings large pressure. The algorithm wants you to optimize. Your team wants you to grow. Everyone has opinions about what you should make. But your audience followed YOU, not a strategy. What would you make today if the metrics didn't exist? Make that.",
+      evening: "At 100K-1M, you have influence. What you say matters to a lot of people. That's a responsibility. Tomorrow, use it intentionally. Not to grow. To serve. What does your audience need to hear that no one else is telling them? Say that.",
+      night: "Scale challenges are real. You can't reply to everyone anymore. You can't know each person. But you can still create like you're talking to one person. The best large creators never lose that intimacy in their work, even when they lose it in their DMs. Protect your voice."
+    }
+  },
+
+  // AUDIENCE TIER: Massive (1M-10M)
+  tier_massive: {
+    condition: (p) => p.audienceTier && p.audienceTier.massive && p.average >= 5,
+    label: "🌊 TRUE SCALE",
+    messages: {
+      morning: "1M-10M is a different game. You're not just a creator anymore—you're a small media company whether you want to be or not. The challenge now isn't growth. It's meaning. Does your work still matter to you? Does it still serve the people who built this? Today, make something that proves it does.",
+      afternoon: "At this scale, everything is a signal. Millions are watching. That's power and that's pressure. Most creators this size slowly become brands instead of humans. Don't. The thing that got you here—authenticity, risk, truth—double down on that. Your audience can smell the difference.",
+      evening: "Massive scale means massive opportunity to coast. You could phone it in and still get views. But you'd know. And eventually, they'd know. Tomorrow, make something that scares you again. Something that reminds you why you started. The numbers can't be the point anymore. Meaning has to be.",
+      night: "1M-10M followers is a level most creators never reach. You reached it. The question now is: what will you do with it? Not for growth. For legacy. What do you want to be known for? What would you regret not making? That's what matters at this scale."
+    }
+  },
+
+  // AUDIENCE TIER: Superstar (10M+)
+  tier_superstar: {
+    condition: (p) => p.audienceTier && p.audienceTier.superstar && p.average >= 5,
+    label: "⭐ GLOBAL REACH",
+    messages: {
+      morning: "10M+ means you've achieved something extremely rare. Global reach. Cultural influence. But with that comes the hardest question: now what? Today, ignore the machine. Make something that would make your younger self proud. Not your metrics. Your younger self. They're the one who got you here.",
+      afternoon: "At superstar scale, you can move markets, shift conversations, launch movements. That's not hyperbole. It's responsibility. What are you doing with it? Not what does it earn—what does it mean? The people with the biggest platforms owe the most to using them well.",
+      evening: "Global reach means nothing if it's empty. Most creators at this level are trapped by their own success—too big to experiment, too optimized to be authentic. You don't have to be. Tomorrow, make something weird. Something risky. Something that reminds you and everyone else that you're still an artist, not just a brand.",
+      night: "10M+ followers means you've won a game most people don't even get to play. The scores don't matter anymore. Impact does. Legacy does. What will you leave behind? What will people remember? The answer to that question is the only score that matters at this level."
+    }
+  },
+
   // SHAPE: Soaring
   soaring: {
     condition: (p) => p.shape === 'soaring',
