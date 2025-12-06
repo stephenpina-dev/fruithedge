@@ -1202,6 +1202,11 @@
       case 'ri':
         pattern = detectRiPattern(inputs);
         messages = riPropheticMessages;
+
+        // Check for scale achievement (depth at scale)
+        if (scores && scores.ri >= 7 && inputs.audience >= 1000000) {
+          pattern.hasScaleAchievement = true;
+        }
         break;
       case 'ci':
         pattern = detectCiPattern(inputs);

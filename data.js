@@ -1381,6 +1381,18 @@ const aqPropheticMessages = {
 // ============================================================
 
 const riPropheticMessages = {
+  // SCALE ACHIEVEMENT: Depth at Scale (Ri >= 7 with 1M+ audience)
+  scale_achievement: {
+    condition: (p) => p.hasScaleAchievement === true,
+    label: "🏆 DEPTH AT SCALE",
+    messages: {
+      morning: "You've achieved something most creators never will: genuine depth at massive scale. Millions of people, and they actually feel your work. This isn't luck. This is mastery. Today, don't optimize. Create from the same place that got you here—truth, boldness, specificity. The machine wants you to water it down. Don't. You've proven depth scales. Keep proving it.",
+      afternoon: "Resonance above 7 with over a million people watching. That's not a following. That's a movement. Most creators at your scale have sacrificed depth for reach. You haven't. Protect that. What you have is rare and fragile. Every piece you make either reinforces or erodes this achievement. Make something worthy of it.",
+      evening: "Depth at scale is the hardest thing in creative work. You've done it. The question now isn't growth—you have that. The question is legacy. What will this audience remember? What will outlast the algorithm? Tomorrow, make something that answers that question.",
+      night: "You've cracked the code that most creators spend their whole careers chasing: how to matter to millions without losing your soul. That's the achievement. Not the number. The depth at scale. Sleep well. You've earned it. Wake up tomorrow and protect what you've built."
+    }
+  },
+
   // BOTTLENECK: Impact
   impact_bottleneck: {
     condition: (p) => p.bottleneck.name === 'impact' && p.raw.impact <= 4,
