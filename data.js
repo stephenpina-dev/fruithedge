@@ -4,7 +4,7 @@
 // ============================================================
 
 // ============================================================
-// RECOMMENDATIONS (48 total - Books + YouTube Videos + Amazon Films)
+// RECOMMENDATIONS (52 total - Books + YouTube Videos + Amazon Films)
 // ============================================================
 
 const recommendations = [
@@ -221,13 +221,13 @@ const recommendations = [
   },
   {
     id: 22,
-    title: "Daily Rituals: How Artists Work",
-    creator: "Mason Currey",
+    title: "Atomic Habits",
+    creator: "James Clear",
     type: "book",
-    link: "https://www.amazon.com/dp/0307273601",
-    duration: "304 pages",
-    patterns: ["plateau", "low_ci"],
-    why: "161 famous creatives' daily routines, from Kafka to Maya Angelou. You'll realize there's no one 'right' way, and struggling with balance and discipline is totally normal."
+    link: "https://www.amazon.com/dp/0735211299",
+    duration: "320 pages",
+    patterns: ["low_ci", "plateau", "plateau_walker", "grinder", "comeback"],
+    why: "If your craft intensity is low because you can't build consistent creative habits, this book provides the most actionable system for making small improvements stick. Clear's framework for habit stacking and identity-based change is essential for any creator who knows what to do but struggles to do it consistently."
   },
   {
     id: 23,
@@ -306,7 +306,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/1544512287",
     duration: "364 pages",
-    patterns: ["burnout", "low_aq"],
+    patterns: ["low_ci", "paralyzed", "paralyzed_dreamer", "plateau_walker", "grinder"],
     why: "Goggins' message is brutal: you're probably operating at 40% of your capacity. If you've been coddling yourself and you know it, this will shatter your comfort zone."
   },
 
@@ -333,13 +333,13 @@ const recommendations = [
   },
   {
     id: 33,
-    title: "Naval Ravikant on How to Get Rich",
-    creator: "Naval Ravikant",
+    title: "How to Get Anything You Want",
+    creator: "Alex Hormozi (Diary of a CEO)",
     type: "video",
-    link: "https://www.youtube.com/watch?v=1-TZqOsVCNM",
-    duration: "2 hr 17 min",
-    patterns: ["low_aq", "underground_gem"],
-    why: "Naval explains leverage, equity, and why 'productizing yourself' is the path to freedom. Essential for any creative who wants their art to fund their life, not consume it."
+    link: "https://www.youtube.com/watch?v=XatVNXwLrXo",
+    duration: "2 hr 11 min",
+    patterns: ["low_aq", "underground_gem", "plateau", "grinder"],
+    why: "Hormozi built $100M+ businesses and shares the tactical mindset shifts that create leverage. If you're grinding without progress or have talent without freedom, his framework for value creation and pricing will reshape how you think about converting creative skill into autonomy."
   },
   {
     id: 34,
@@ -373,13 +373,13 @@ const recommendations = [
   },
   {
     id: 37,
-    title: "Pharrell Williams on Creativity and Collaboration",
-    creator: "Various",
-    type: "video",
-    link: "https://www.youtube.com/watch?v=GhCXAiNz9Jo",
-    duration: "20 min",
-    patterns: ["craftsperson_no_message", "low_ri"],
-    why: "Pharrell's approach is pure feeling over formula. If your work is technically proficient but doesn't move people, his philosophy might unlock what's missing."
+    title: "Creative Quest",
+    creator: "Questlove",
+    type: "book",
+    link: "https://www.amazon.com/dp/0062670573",
+    duration: "304 pages",
+    patterns: ["low_ri", "craftsperson_no_message", "plateau", "connector"],
+    why: "Questlove has collaborated with everyone from D'Angelo to Hamilton. His meditation on creativity explores how to stay curious, embrace collaboration, and keep resonance alive across decades. Essential for craftspeople who need more soul in their work and connectors who want to understand creative chemistry."
   },
   {
     id: 38,
@@ -482,6 +482,56 @@ const recommendations = [
     duration: "1 hr 27 min",
     patterns: ["untapped", "low_ri"],
     why: "A wild cautionary tale about art and authenticity. If your Resonance is low because you've been focusing on style over substance, this film will hit you in the gut."
+  },
+  {
+    id: 48,
+    title: "Perennial Seller",
+    creator: "Ryan Holiday",
+    type: "book",
+    link: "https://www.amazon.com/dp/0143109014",
+    duration: "256 pages",
+    patterns: ["high_ri", "protect_magic", "plateau", "craftsperson_no_message"],
+    why: "You've built resonance. Now how do you make it last? Holiday studied works that endured for decades and extracted the principles. If you're protecting what's working or trying to create something timeless rather than viral, this book reframes success as longevity rather than spikes."
+  },
+  {
+    id: 49,
+    title: "Give and Take",
+    creator: "Adam Grant",
+    type: "book",
+    link: "https://www.amazon.com/dp/0143124986",
+    duration: "320 pages",
+    patterns: ["connector", "low_ri", "underground_gem", "plateau"],
+    why: "Grant's research proves that givers—not takers or matchers—end up most successful. For connectors who build through relationships or underground gems struggling to convert resonance into opportunity, this reframes generosity as strategy and shows how to give without burning out."
+  },
+  {
+    id: 50,
+    title: "Digital Minimalism",
+    creator: "Cal Newport",
+    type: "book",
+    link: "https://www.amazon.com/dp/0525536515",
+    duration: "304 pages",
+    patterns: ["monk", "low_aq", "low_ci", "high_distraction"],
+    why: "Newport makes the case for intentional technology use. If you're a monk-type who craves deep focus but battles digital noise, or anyone whose autonomy and craft intensity suffer from attention leaks, this provides a philosophy and practical framework for reclaiming your mind."
+  },
+  {
+    id: 51,
+    title: "Peak Performance",
+    creator: "Brad Stulberg & Steve Magness",
+    type: "book",
+    link: "https://www.amazon.com/dp/162336793X",
+    duration: "240 pages",
+    patterns: ["grinder", "hustler", "burnout", "high_ci"],
+    why: "The science of sustainable excellence. If you're a grinder who pushes hard but risks collapse, or a hustler who needs to maintain intensity without burning out, this book balances the growth equation: stress + rest = growth. The missing manual for high performers."
+  },
+  {
+    id: 52,
+    title: "Mastery",
+    creator: "Robert Greene",
+    type: "book",
+    link: "https://www.amazon.com/dp/014312417X",
+    duration: "352 pages",
+    patterns: ["monk", "grinder", "plateau", "craftsperson_no_message", "low_ci"],
+    why: "Greene studied history's greatest masters—Darwin, Mozart, da Vinci—to extract the path to mastery. For monks pursuing depth, grinders seeking purpose in their intensity, or anyone plateaued in their craft, this book reveals the apprenticeship mindset and the 10,000 hour journey ahead."
   },
 ];
 
