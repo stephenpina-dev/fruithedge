@@ -1272,10 +1272,10 @@ const aqPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'energy' && p.raw.energy <= 4,
     label: "⚡ ENERGY CRISIS",
     messages: {
-      morning: "Your energy is depleted. Before anything else today, ask: what would restore 10% of my capacity? Do that first. Not after email. First.",
-      afternoon: "Running on fumes by midday. This isn't sustainable. What drained you this morning that you could eliminate tomorrow?",
-      evening: "You gave more than you had today. Tomorrow, protect your first 2 hours. No meetings. No requests. Just recovery.",
-      night: "You're checking this late because you couldn't during the day. That's the problem. Sleep is not optional. Close this. Rest."
+      morning: "You're running on empty and the day hasn't even started. This isn't about motivation. Your tank is dry. Before anything else, ask yourself: what would restore even 10% of your energy today? A walk? Real food? Canceling one thing? Do that first. Not after email. First. You can't create from depletion.",
+      afternoon: "You're grinding through the afternoon on fumes. This isn't sustainable and you know it. What drained you this morning? Name it specifically. A person? A task? A decision? That thing needs to change or disappear. You're trading your creative capacity for something that isn't worth it.",
+      evening: "You gave more than you had today. The deficit is real. Tomorrow morning, protect your first two hours like they're sacred. No meetings. No requests. No 'quick questions.' Just recovery and your most important work. The world can wait. Your energy can't.",
+      night: "You're checking this late because you couldn't during the day. That's not discipline. That's a system failure. Sleep is not optional. It's not a reward for finishing. It's the foundation everything else rests on. Close this. Rest. Rebuild tomorrow."
     }
   },
 
@@ -1284,10 +1284,10 @@ const aqPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'space' && p.raw.space <= 4,
     label: "🌫 MENTAL OVERLOAD",
     messages: {
-      morning: "Your mind is already full and the day just started. Write down the three thoughts consuming you. Get them out of your head and onto paper.",
-      afternoon: "Mental clutter is eating your afternoon. Step outside for 10 minutes. No phone. Let your mind defragment.",
-      evening: "Your head is noisy. Before tomorrow, do a brain dump. Every open loop, every worry, every 'I should.' Write it all down.",
-      night: "Racing thoughts at night mean unprocessed days. Tomorrow, schedule 15 minutes of nothing. Your brain needs idle time."
+      morning: "Your mind is already full and the day just started. Thoughts are competing for attention like tabs in a browser. Before you add more inputs, get the current ones out. Write down the three things consuming your mental space. Just writing them creates room. Then pick one to address today. Just one.",
+      afternoon: "Mental clutter is eating your afternoon alive. Your brain is full of open loops and half-processed worries. Step outside for 10 minutes right now. No phone. Let your mind defragment. Sometimes clarity comes from subtraction, not addition.",
+      evening: "Your head is noisy with unfinished thoughts and unnamed anxieties. Before tomorrow, do a complete brain dump. Every open loop. Every worry. Every 'I should.' Write it all down somewhere. Your mind is for having ideas, not holding them. Empty the RAM.",
+      night: "Racing thoughts at night mean unprocessed days. Your brain is trying to solve problems while you're trying to rest. Tomorrow, schedule 15 minutes of deliberate nothing. Stare at a wall. Let yourself be bored. Your brain needs idle time to consolidate and clear."
     }
   },
 
@@ -1296,10 +1296,10 @@ const aqPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'optionality' && p.raw.optionality <= 4,
     label: "🔒 TRAPPED",
     messages: {
-      morning: "You feel trapped. But are you? Write down what's actually stopping you from changing direction. Is it real or imagined?",
-      afternoon: "Low optionality means someone else controls your calendar. What's one boundary you could set this week?",
-      evening: "Feeling stuck is often feeling obligated. What commitment are you honoring that no longer serves you?",
-      night: "You're thinking about options you don't have. But options are created, not found. What's one door you could build?"
+      morning: "You feel trapped. Stuck. Locked into a path you didn't fully choose. But are you really? Write down what's actually stopping you from changing direction. Is it real or imagined? Financial? Social? Habitual? Most prisons are made of assumptions, not bars. Question one assumption today.",
+      afternoon: "Low optionality means someone or something else controls your calendar and your choices. That's not sustainable for creative work. What's one boundary you could set this week? One small reclamation of your autonomy? Start there. Options are created, not found.",
+      evening: "Feeling stuck is often feeling obligated to paths that no longer serve you. What commitment are you honoring out of inertia rather than intention? You're allowed to change your mind. You're allowed to want something different. What would you choose if you gave yourself permission?",
+      night: "You're thinking about options you don't have. But options aren't discovered. They're built. What's one door you could construct over the next 30 days? Not a dramatic escape. A small expansion of possibility. Write it down. Start building tomorrow."
     }
   },
 
@@ -1308,10 +1308,10 @@ const aqPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'freedom' && p.raw.constraint >= 7,
     label: "⛓ OBLIGATION OVERLOAD",
     messages: {
-      morning: "Heavy obligations today. Before they consume you, protect one hour for yourself. Put it on the calendar. Guard it.",
-      afternoon: "Your constraints are real, but are all of them necessary? Name one you've never questioned.",
-      evening: "You gave the day to your obligations. Did you give any of it to yourself? Tomorrow, take something back.",
-      night: "Your life belongs to others right now. This is not sustainable. Something must change. What would you drop if you had permission?"
+      morning: "Heavy obligations are pressing on you before the day even begins. Before they consume everything, protect one hour for yourself. Put it on the calendar right now. Label it 'unavailable.' Guard it like your creative life depends on it. Because it does.",
+      afternoon: "Your constraints are real. Not imagined. Real. But are all of them truly non-negotiable? Name one obligation you've never questioned. Why does it still exist? Who benefits from it? Sometimes we carry weights we picked up years ago and forgot to put down.",
+      evening: "You gave the day to your obligations and they took everything. Did you give any of it to yourself? Tomorrow, take something back. Not a lot. Just something. One hour. One boundary. One 'no' to something that doesn't serve you.",
+      night: "Your life belongs to others right now. Contracts, caregiving, debts, dependencies. That's not a character flaw. But it's also not sustainable forever. Something must change. What would you drop if you had permission? You might have more permission than you think."
     }
   },
 
@@ -1320,10 +1320,10 @@ const aqPropheticMessages = {
     condition: (p) => p.strength.name === 'energy' && p.raw.energy >= 7 && p.average < 7,
     label: "⚡ UNTAPPED POWER",
     messages: {
-      morning: "You have energy but something else is blocking you. That energy is a resource. Don't waste it on low-value tasks.",
-      afternoon: "Strong energy being eaten by constraints or mental noise. Channel it into your ONE priority before it dissipates.",
-      evening: "You had energy today. Did you use it on what mattered? Tomorrow, direct it before others claim it.",
-      night: "Energy without direction is just restlessness. Tomorrow, pick one thing. Pour the energy there."
+      morning: "You have energy but something else is blocking you. That energy is a finite resource that refreshes daily. Don't waste it on low-value tasks or other people's priorities. Identify your ONE most important creative task and attack it while the power is there.",
+      afternoon: "Strong energy being consumed by constraints or mental clutter. You have fuel but it's burning on friction. Channel it into your single highest priority before it dissipates into busywork. What's the one thing that would make today count?",
+      evening: "You had energy today. Did you use it on what mattered? Or did it get absorbed by obligations and noise? Tomorrow, direct your energy before others claim it. First hour: your most important work. No negotiation.",
+      night: "Energy without direction is just restlessness. You have the fuel. You need the focus. Before you sleep, decide: what will receive your best energy tomorrow morning? Write it down. Make it specific. Wake up and execute."
     }
   },
 
@@ -1332,10 +1332,10 @@ const aqPropheticMessages = {
     condition: (p) => p.shape === 'soaring',
     label: "✓ FULL AUTONOMY",
     messages: {
-      morning: "All systems green. This is rare. Use today for your most important work. Not maintenance. Creation.",
-      afternoon: "You're in a powerful state. Protect it. Say no to anything that would disrupt this.",
-      evening: "Strong day. Document what made it possible. These conditions are your formula. Replicate them.",
-      night: "Peak autonomy achieved. Don't take this for granted. What would threaten this state? Protect against it."
+      morning: "All systems green. Energy, space, options, freedom—all aligned. This is rare. Don't waste it on maintenance. Use today for your most important creative work. The work that requires your best self. The work that moves the needle. Everything else can wait.",
+      afternoon: "You're operating with full autonomy. This is the state everyone's chasing and you have it right now. Protect it fiercely. Say no to anything that would disrupt this. You can be helpful tomorrow. Today, be excellent.",
+      evening: "Strong autonomy day. Everything working together. Before you close out, document what made this possible. What did you protect? What did you eliminate? What did you prioritize? These conditions are your formula. Write them down. Replicate them.",
+      night: "Peak autonomy achieved. This is what freedom feels like. Don't take it for granted—it's fragile and rare. What could threaten this state? Guard against it. What maintains it? Double down. Sleep well. Protect this."
     }
   },
 
@@ -1344,10 +1344,10 @@ const aqPropheticMessages = {
     condition: (p) => p.shape === 'crashed',
     label: "✗ SYSTEM FAILURE",
     messages: {
-      morning: "Everything is low. This isn't a productivity problem. This is a recovery problem. Protect yourself today.",
-      afternoon: "Multiple systems failing. Stop trying to push through. What's the minimum you can do today?",
-      evening: "You're depleted on all fronts. Tomorrow is not about output. It's about restoration.",
-      night: "When everything is low, rest is the only work that matters. Close this. Sleep. Rebuild tomorrow."
+      morning: "Everything is low. Energy depleted. Mind cluttered. Options limited. Constraints heavy. This isn't a productivity problem. This is a life problem. Don't try to optimize your way out. Today is about one thing: recovery. What do you need? Give it to yourself.",
+      afternoon: "Multiple systems are failing simultaneously. Pushing through isn't brave. It's counterproductive. What's the minimum you can do today? Do only that. Protect whatever remains. This is about survival now, not thriving. Thriving comes after stability.",
+      evening: "You're depleted on all fronts and the day is ending. Tomorrow is not about output. It's about restoration. Lower every expectation. Focus on one thing: rebuilding your baseline. The work will still be there when you're ready. You won't be ready until you recover.",
+      night: "When everything is low, rest is the only work that matters. Close this. Sleep. Don't set ambitious goals for tomorrow. Set recovery goals. Rebuild the foundation before you build anything else. The creative work can wait. Your health can't."
     }
   },
 
@@ -1356,10 +1356,10 @@ const aqPropheticMessages = {
     condition: (p) => p.shape === 'plateau',
     label: "⚖ HOLDING STEADY",
     messages: {
-      morning: "Stable but not growing. What one lever could you push today to break the pattern?",
-      afternoon: "You're maintaining. That's okay for survival, but not for growth. Where's your next edge?",
-      evening: "Balanced at the middle is still the middle. What would make tomorrow a 7 instead of a 5?",
-      night: "Plateaus feel safe. They're also where ambition goes to die. What bold move are you avoiding?"
+      morning: "Stable but not growing. You have enough autonomy to function, but not enough to flourish. What one lever could you push today to break the pattern? More energy? More space? Fewer constraints? Pick one. Push it. Plateaus don't break themselves.",
+      afternoon: "You're maintaining, which is better than declining. But maintaining isn't growing. Where's your next edge? What would move you from functional to thriving? That thing deserves your attention today. Not the urgent stuff. The important stuff.",
+      evening: "Balanced at the middle is still the middle. You're not in crisis, but you're not in flow either. What would make tomorrow a 7 instead of a 5? Not a massive change. A small lever that compounds. Identify it now. Pull it tomorrow.",
+      night: "Plateaus feel safe because they are. No crisis, no breakthrough. Just... fine. But fine doesn't compound. Fine doesn't build legacy. What bold move are you avoiding because the plateau is comfortable? Name it. Consider it. Maybe it's time."
     }
   },
 
@@ -1368,10 +1368,10 @@ const aqPropheticMessages = {
     condition: (p) => p.shape.startsWith('lopsided'),
     label: "⚖ IMBALANCED",
     messages: {
-      morning: "Your autonomy is uneven. Strong in some areas, weak in others. Focus on your weakest link today.",
-      afternoon: "Imbalanced systems create stress. What's draining you that your strengths can't compensate for?",
-      evening: "Lopsided days are exhausting. Tomorrow, shore up your weak spot before leveraging your strength.",
-      night: "You're compensating in some areas for deficits in others. That works short-term. Not long-term."
+      morning: "Your autonomy is uneven. Strong in some areas, weak in others. That imbalance creates stress and limits output. Today, focus on your weakest link. Not your strength. Your weakness. That's where the leverage is. Shore it up before it collapses everything else.",
+      afternoon: "Imbalanced systems create friction even when parts are working well. Your strength can't compensate forever for your weakness. What's draining you that your advantages can't offset? That's the thing to fix. Not optimize around. Fix.",
+      evening: "Lopsided days are exhausting because you're constantly compensating. Tomorrow, shore up your weak spot before leveraging your strength. Sustainable autonomy is balanced autonomy. What's the one thing you could do to even out the equation?",
+      night: "You're strong somewhere and weak somewhere else. That's normal. But ignoring the weakness doesn't make it go away. It makes it grow. What's your Achilles heel right now? Energy? Space? Options? Constraints? Name it. Plan to address it. Soon."
     }
   }
 };
@@ -1386,10 +1386,10 @@ const riPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'impact' && p.raw.impact <= 4,
     label: "👁 SEEN NOT FELT",
     messages: {
-      morning: "Your work is being seen but not felt. Today, make something that moves YOU first. If it doesn't move you, it won't move them.",
-      afternoon: "Low emotional impact. When did you last create something that scared you a little? Safety is the enemy of resonance.",
-      evening: "People are scrolling past your work. What would make them stop? Not tricks. Truth.",
-      night: "Impact requires vulnerability. What are you protecting that you should be revealing?"
+      morning: "Your work is being seen but not felt. People scroll past, nod, forget. That's not resonance. That's noise. Today, make something that moves YOU first. Something that scares you a little. If it doesn't move you, it won't move them. What truth have you been avoiding?",
+      afternoon: "Low emotional impact means forgettable work. When did you last create something that gave someone chills? Tears? Laughter? That memory holds the key. What was different about that piece? Do more of whatever that was. Stop polishing. Start feeling.",
+      evening: "People are scrolling past your work because it's safe. Competent but safe. What would make them stop? Not tricks. Not hooks. Truth. Your truth. The thing you've been circling around but not saying. Say it tomorrow. See what happens.",
+      night: "Impact requires vulnerability and you've been protecting yourself. Understandable. But protected work doesn't resonate. What are you hiding that you should be revealing? Not everything. Just one thing. The thing that scares you to share. That's probably the one that matters."
     }
   },
 
@@ -1398,10 +1398,10 @@ const riPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'identity' && p.raw.identity <= 4,
     label: "🎯 NO TARGET",
     messages: {
-      morning: "You're creating for everyone, which means no one feels it's for THEM. Who specifically needs what you make?",
-      afternoon: "Generic appeal is no appeal. Describe your ideal audience member in one sentence. Now make for them.",
-      evening: "Your work lacks specificity. What if you made something ONLY 100 people would love, but they'd love it completely?",
-      night: "The riches are in the niches. Who would mourn if you stopped creating? Make for them."
+      morning: "You're creating for everyone, which means no one feels like it's for THEM. Generic appeal is no appeal. Today, describe your ideal audience member in one sentence. Not demographics. Their secret frustration. Their hidden dream. Now make something specifically for that person.",
+      afternoon: "Your work lacks specificity and it shows. Could you describe your audience so precisely that they'd recognize themselves? Try this: 'This is for people who ____ but secretly ____.' Fill in those blanks. That's your target. Aim there.",
+      evening: "What if you made something that only 100 people would love—but they'd love it completely? That's more valuable than 10,000 lukewarm reactions. Who are your 100? What do they need that no one else is making? Make that tomorrow.",
+      night: "The riches are in the niches. Who would genuinely mourn if you stopped creating? Not politely miss. Mourn. Those people are your audience. Make for them. Speak to them. Everyone else is a bonus. But those people are the core. Know them. Serve them."
     }
   },
 
@@ -1410,10 +1410,10 @@ const riPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'boldness' && p.raw.boldness <= 4,
     label: "🛡 PLAYING SAFE",
     messages: {
-      morning: "You're playing it safe. What would you make today if no one would judge you? Start there.",
-      afternoon: "Low boldness means high conformity. What opinion do you hold that others in your space don't?",
-      evening: "Safe work is forgettable work. What's the project you keep talking yourself out of?",
-      night: "The fear you feel about sharing something is usually proportional to its importance. Lean into it."
+      morning: "You're playing it safe and the work shows it. Competent but careful. What would you make today if no one would judge you? If failure was impossible? If your reputation couldn't be damaged? That thing you just thought of—start it. The fear is a compass pointing toward what matters.",
+      afternoon: "Low boldness means high conformity. You're making what's expected instead of what's true. What opinion do you hold that others in your space don't? What would you say if you weren't worried about the reaction? That's your edge. Use it or lose it.",
+      evening: "Safe work is forgettable work. It doesn't offend. It also doesn't matter. What's the project you keep talking yourself out of? The one that feels too weird, too personal, too risky? That's probably the one. Tomorrow, start it. Imperfect is fine. Safe is not.",
+      night: "The fear you feel about sharing something is usually proportional to its importance. What are you afraid to put out there? Write it down. Look at it. The resistance you feel is information. Lean into it. That's where your best work lives."
     }
   },
 
@@ -1422,10 +1422,10 @@ const riPropheticMessages = {
     condition: (p) => p.isLargeAudience && p.bottleneck.name === 'intimacy',
     label: "📢 SCALE VS SOUL",
     messages: {
-      morning: "Large audience, but connection is diluting. Today, create like you have 100 followers. Forget the metrics.",
-      afternoon: "Scale can kill soul. When did you last have a real conversation with someone who follows you?",
-      evening: "You're reaching many but touching few. Depth beats breadth. What would your day-one fans want?",
-      night: "Mass audience is a blessing and a trap. Don't lose the intimacy that built this in the first place."
+      morning: "Large audience, but connection is thinning. You're reaching more people and touching fewer. Today, create like you have 100 followers. Forget the metrics. What would you say if it wasn't going to go viral? That's probably more important than what will.",
+      afternoon: "Scale can kill soul if you let it. When did you last have a real conversation with someone who follows you? Not a broadcast. A conversation. Pick one person today. Reach out. Remember why you started. They're not a number. They're a person who chose you.",
+      evening: "You're reaching many but moving few. That's the trap of scale. Depth beats breadth. Always. What would your day-one fans want from you? Not your current audience. The originals. They knew you before the algorithm did. Make something for them.",
+      night: "Mass audience is a blessing and a trap. The blessing: reach. The trap: losing the intimacy that built this. Don't optimize for growth. Optimize for depth. The numbers will follow the meaning. They always do. But meaning has to come first."
     }
   },
 
@@ -1434,10 +1434,10 @@ const riPropheticMessages = {
     condition: (p) => p.isSmallAudience && p.raw.impact >= 6,
     label: "💎 INTIMATE POWER",
     messages: {
-      morning: "Small audience, real impact. This is the sweet spot. You can know each person. Use that advantage.",
-      afternoon: "Intimacy is your edge. What if you asked 5 followers what they actually need? Their answer might change everything.",
-      evening: "You're not chasing scale, you're building depth. That's rare. That's right. Keep going.",
-      night: "Your audience is small but they feel you. That's worth more than millions of passive scrollers."
+      morning: "Small audience, real impact. This is the sweet spot that large creators envy. You can know each person. You can respond to everyone. That's not a limitation. That's a superpower. Use it. What if you asked 5 followers today what they actually need? Their answers might change everything.",
+      afternoon: "Intimacy is your edge. Don't wish it away chasing scale. What you have right now—genuine connection with people who care—is worth more than millions of passive followers. Deepen before you widen. The depth creates the foundation for sustainable growth.",
+      evening: "You're not chasing scale and that's probably wise. You're building depth. Real connection. Actual impact. That's rare and valuable. Keep going. The numbers will come when they come. The relationships you're building now will outlast any algorithm change.",
+      night: "Your audience is small but they feel you. They chose you out of infinite options. That's not nothing. That's everything. One hundred true fans beats ten thousand casual scrollers. Always. You're building something real. Protect that. Nurture that."
     }
   },
 
@@ -1446,10 +1446,10 @@ const riPropheticMessages = {
     condition: (p) => p.strength.name === 'boldness' && p.raw.boldness >= 7 && p.average < 7,
     label: "🔥 BOLD BUT UNHEARD",
     messages: {
-      morning: "You're taking risks but they're not landing. Boldness without impact is just noise. Who needs to hear this?",
-      afternoon: "Fearless work that doesn't connect is still missing something. What truth are you telling? Who needs that truth?",
-      evening: "You're brave. Now be specific. Bold + targeted = unstoppable.",
-      night: "Your courage is an asset. Tomorrow, aim it. Not at everyone. At someone."
+      morning: "You're taking risks but they're not landing. Bold work that doesn't connect is still missing something. The craft is there. The courage is there. But who needs to hear this? Get specific about your audience today. Aim the boldness. Don't just fire into the void.",
+      afternoon: "Fearless work that doesn't resonate is just noise. You have the bravery. Now you need the targeting. What truth are you telling? Who specifically needs that truth? Where do they gather? How do they find you? Courage without strategy is just chaos.",
+      evening: "You're brave and that matters. But brave and invisible doesn't change anything. Tomorrow, combine your boldness with specificity. Make something daring AND targeted. Bold AND clear about who it's for. That combination is unstoppable.",
+      night: "Your courage is an asset most creators lack. Don't waste it on untargeted shots. Tomorrow, aim your boldness. Pick a specific audience. A specific problem. A specific truth. Then be as fearless as you are. Directed courage moves mountains."
     }
   },
 
@@ -1458,10 +1458,10 @@ const riPropheticMessages = {
     condition: (p) => p.shape === 'soaring',
     label: "★ RESONANCE ACHIEVED",
     messages: {
-      morning: "Deep resonance achieved. Your work matters to people who matter. Protect this. Don't chase scale for its own sake.",
-      afternoon: "You've solved for connection. The question now is: how do you maintain this without manufacturing it?",
-      evening: "Real impact. Real audience. Real boldness. This is the rarest combination. Guard it fiercely.",
-      night: "Resonance is your gift. Document what created it. This is the formula. Don't forget it."
+      morning: "Deep resonance achieved. Impact, identity, boldness, intimacy—all aligned. Your work matters to people who matter. This is rare. Protect it. Don't chase scale for its own sake. Don't dilute what's working. Guard this connection like the precious thing it is.",
+      afternoon: "You've solved for connection. People feel your work. They remember it. They share it because it moved them. The question now is: how do you maintain this without manufacturing it? Authenticity can't be automated. Stay true to what created this magic.",
+      evening: "Real impact. Real audience. Real boldness. This is the rarest combination in creative work. Most people never find it. You have it. Document what created it. Understand it. Because you'll want to recreate it and you'll need to know how.",
+      night: "Resonance is your gift right now. Not everyone gets this. Not everyone keeps it. Don't take it for granted. Don't optimize it to death. The magic is fragile. Protect the conditions that created it. Sleep well. Make more tomorrow."
     }
   },
 
@@ -1470,10 +1470,10 @@ const riPropheticMessages = {
     condition: (p) => p.shape === 'crashed',
     label: "⊘ SIGNAL LOST",
     messages: {
-      morning: "Your work isn't landing. Before creating more, ask: who is this for and what do they need to feel?",
-      afternoon: "Low resonance across the board. Stop publishing for a week. Study what moves YOU. Then make from there.",
-      evening: "Nothing is connecting. That's data, not failure. What's the gap between what you're making and what you believe?",
-      night: "When resonance is gone, technique won't save you. Only truth will. What truth are you avoiding?"
+      morning: "Your work isn't landing. Impact low. Targeting vague. Playing safe. The signal is lost in the noise. Before creating more, stop and ask: who is this for and what do they need to feel? Answer that first. Then make something that delivers exactly that.",
+      afternoon: "Low resonance across the board. Nothing is connecting. Here's a radical idea: stop publishing for a week. Study what moves YOU. What makes you stop scrolling? What do you save? What do you share? That's the standard. Now make work that meets it.",
+      evening: "Nothing connected today. That's data, not failure. What's the gap between what you're making and what you believe? Between who you are and what you're showing? That gap is where the resonance died. Close it tomorrow.",
+      night: "When resonance is gone, technique won't save you. Only truth will. What truth are you avoiding? What are you not saying that you should be saying? What audience are you not serving that you should be serving? The answers are in the questions you don't want to ask."
     }
   },
 
@@ -1482,10 +1482,10 @@ const riPropheticMessages = {
     condition: (p) => p.shape === 'plateau',
     label: "📡 SIGNAL STEADY",
     messages: {
-      morning: "Moderate resonance. You're connecting but not deeply. What would make your work unmissable?",
-      afternoon: "Some things land, some don't. Study the difference. What makes your best work hit?",
-      evening: "Stable connection but room to grow. Tomorrow, say something you've been holding back.",
-      night: "Your signal is consistent but not powerful. What would amplify it?"
+      morning: "Moderate resonance. You're connecting but not deeply. The work lands but doesn't stick. What would make your work unmissable? Not louder. Not more frequent. Unmissable. The kind of thing people have to tell someone about. Think about that today.",
+      afternoon: "Some things land, some don't. Study the difference. What makes your best work hit? What's present when it works and absent when it doesn't? Find that variable. It's probably truth. It's usually truth. Lean into it.",
+      evening: "Stable connection but room to grow. You're not failing but you're not breaking through either. Tomorrow, say something you've been holding back. Take one more step toward the edge. The plateau is comfortable. The edge is where growth lives.",
+      night: "Your signal is consistent but not powerful. Reliable but not remarkable. What would amplify it? More vulnerability? Better targeting? Bigger swings? Something needs to change to break through. Identify it tonight. Try it tomorrow."
     }
   },
 
@@ -1494,10 +1494,10 @@ const riPropheticMessages = {
     condition: (p) => p.shape.startsWith('lopsided'),
     label: "📡 UNEVEN SIGNAL",
     messages: {
-      morning: "Your resonance is unbalanced. Strong in some dimensions, weak in others. Which weakness matters most?",
-      afternoon: "Lopsided connection. You're either too broad, too safe, or too shallow. Which is it?",
-      evening: "Imbalanced resonance creates inconsistent results. Shore up your weakest dimension.",
-      night: "Some parts of your resonance are working. Others aren't. Tomorrow, focus on the gap."
+      morning: "Your resonance is unbalanced. Strong in some dimensions, weak in others. Maybe bold but untargeted. Maybe targeted but safe. Maybe impactful but too broad. Which weakness matters most? That's your focus today. Fix the gap.",
+      afternoon: "Lopsided resonance creates inconsistent results. Some work lands, some disappears, and you're not sure why. The answer is in the imbalance. Are you too broad? Too safe? Too shallow? Identify it. Address it. Balance creates consistency.",
+      evening: "Some parts of your resonance are working beautifully. Others are failing. The system is uneven. Tomorrow, stop leading with your strength. Lead with improving your weakness. That's where the leverage is. That's where the breakthrough lives.",
+      night: "Imbalanced connection is frustrating because you can taste success but not hold it. Something is working. Something isn't. Get specific about what's missing. Is it impact? Targeting? Courage? Intimacy? Name it. Then fix it."
     }
   }
 };
@@ -1512,10 +1512,10 @@ const ciPropheticMessages = {
     condition: (p) => p.fuelBottleneck.name === 'flow' && p.raw.flow <= 12,
     label: "🌀 NO DEPTH",
     messages: {
-      morning: "Minimal deep work happening. Before you check anything today, do 25 minutes of uninterrupted creation. Then check.",
-      afternoon: "You've barely entered flow this week. What keeps interrupting you? Name it. Eliminate it.",
-      evening: "Another day without deep work. Tomorrow, block 2 hours. Put it on the calendar. Protect it like oxygen.",
-      night: "No flow means no craft evolution. Everything else is maintenance. Schedule creation time like a meeting with your future self."
+      morning: "You're skimming the surface. Deep work isn't happening. Before you check anything today, set a timer for 25 minutes and create something. No notifications. No switching. Just depth. This is the most important thing you'll do today.",
+      afternoon: "Half the day gone, no real depth yet. Your craft is starving. Right now, close every tab except one. Work on that one thing for 45 minutes. Everything else can wait. Your future self will thank you.",
+      evening: "Another day without entering the zone. The shallow work is eating your life. Tomorrow morning, block 90 minutes before checking anything. Put your phone in another room. Protect this time like your career depends on it. Because it does.",
+      night: "No flow today means no growth today. That's not neutral. That's falling behind. Before you sleep, decide: what will you create in your first focused hour tomorrow? Write it down. Make it specific. Make it sacred."
     }
   },
 
@@ -1524,10 +1524,10 @@ const ciPropheticMessages = {
     condition: (p) => p.fuelBottleneck.name === 'evolution' && p.raw.evolution <= 4,
     label: "📉 SKILL STAGNATION",
     messages: {
-      morning: "Your skills have plateaued. Today, spend 30 minutes learning something adjacent to your craft. Not content. Capability.",
-      afternoon: "No evolution means slow irrelevance. What skill would change everything if you developed it over 90 days?",
-      evening: "You're not getting better. That's not neutral. That's falling behind. What's one skill to focus on tomorrow?",
-      night: "Stagnant skills create stagnant work. Before sleeping, decide: what will you learn this week?"
+      morning: "Your skills are frozen in time while the world moves forward. That's not stability. That's slow irrelevance. Today, spend 30 minutes learning one thing adjacent to your craft. Not consuming content. Practicing something new. Growth requires discomfort.",
+      afternoon: "Stagnation is a choice you make every day you don't stretch. What skill would change everything if you mastered it in 90 days? Name it. Find a tutorial. Start today. Not tomorrow. Today.",
+      evening: "You're repeating what you already know instead of reaching for what you don't. That felt safe. It isn't. Tomorrow, identify one skill gap that's holding you back. Commit to 20 minutes of deliberate practice on it. Daily. For one month.",
+      night: "Your craft is where it was six months ago. The market doesn't care about your comfort. Pick one skill. Just one. Write down how you'll practice it tomorrow. Make it specific: what, when, where. Then sleep. Then do it."
     }
   },
 
@@ -1536,10 +1536,10 @@ const ciPropheticMessages = {
     condition: (p) => p.fuelBottleneck.name === 'risk' && p.raw.risk <= 4,
     label: "🔄 REPETITION LOOP",
     messages: {
-      morning: "You're repeating what worked. Safe but stagnant. Today, try one thing you've never done before.",
-      afternoon: "Low creative risk means low creative growth. What experiment could you run where failure is acceptable?",
-      evening: "Playing the hits again. Tomorrow, make something that might not work. That's where growth lives.",
-      night: "Comfort is the enemy of craft. What would you try if you knew no one would see it fail?"
+      morning: "You're playing the greatest hits on repeat. Comfortable. Safe. Dying. Today, start one project where failure is possible. Not reckless. Just uncertain. That's where growth lives. What would you try if you weren't afraid of looking stupid?",
+      afternoon: "Playing safe is playing small. Your best work scared you a little when you made it. What are you avoiding making because it might not work? That's probably the thing. Start it today. Imperfect is fine. Start it.",
+      evening: "Another day of polished mediocrity. The work was fine. Just fine. Tomorrow, break something on purpose. Try a style you've never tried. Say something you've never said. Risk looking foolish. Your audience is bored of safe. So are you.",
+      night: "Repetition feels like productivity but it's actually decay. Before you sleep, write down one creative experiment you'll run this week. Something that might fail. Something that excites you. If it doesn't scare you a little, pick something scarier."
     }
   },
 
@@ -1548,10 +1548,10 @@ const ciPropheticMessages = {
     condition: (p) => p.worstDrag.name === 'admin' && p.raw.admin >= 25,
     label: "📋 ADMIN OVERLOAD",
     messages: {
-      morning: "Admin is eating your creative hours. Before opening email, identify your ONE creative priority. Do that first.",
-      afternoon: "You're drowning in logistics. What would it cost to delegate 5 hours of this? Compare to the cost of your time.",
-      evening: "More admin than creation today. This is a slow emergency. What can you automate, batch, or kill?",
-      night: "That many hours of admin is a part-time job of not-creating. Something has to change. What?"
+      morning: "You're drowning in logistics while your craft suffocates. Before you open email, answer this: what's your ONE creative priority today? Do that first. Not after the emails. First. The emails will wait. Your creativity won't.",
+      afternoon: "More managing than making. That's not a creative life. That's a manager's life with creative pretensions. What would it cost to hand off 5 hours of admin per week? $100? $200? Compare that to the cost of your stalled creative output. Hire help or kill tasks.",
+      evening: "You spent today on operations while your real work gathered dust. This is a slow emergency. Make a list: what 3 admin tasks drain you most? For each one: automate, delegate, or delete. Pick one to fix this week.",
+      night: "That many hours of admin is a part-time job of not-creating. Something has to give. Tomorrow, batch all admin into one 2-hour block. Protect the rest. Your creative work is not what happens after the admin. It's the priority. Treat it like one."
     }
   },
 
@@ -1560,10 +1560,10 @@ const ciPropheticMessages = {
     condition: (p) => p.worstDrag.name === 'distraction' && p.raw.distraction >= 20,
     label: "📱 ATTENTION LEAK",
     messages: {
-      morning: "Your phone is your enemy. Before anything else, check your screen time. That number is hours stolen from your craft.",
-      afternoon: "High distraction. Put your phone in another room. Not on silent. In another room. See what happens.",
-      evening: "You lost hours to distraction today. Not lost. Given away. What would you have built with those hours?",
-      night: "That's not rest. That's avoidance. What are you avoiding by scrolling?"
+      morning: "Your attention is bleeding out through your phone. Check your screen time right now. That number is hours stolen from your craft. Today, put your phone in another room during creative work. Not on silent. In another room. Watch what happens to your focus.",
+      afternoon: "You've already given hours to distraction today. Not breaks. Not rest. Avoidance. Right now, check your screen time. Be honest with yourself. Then set one app limit. Just one. See if you can beat it tomorrow.",
+      evening: "The hours you lost to scrolling aren't coming back. What would you have built with that time? Don't answer defensively. Answer honestly. Tomorrow, delete one app for one week. The resistance you feel is proof you should do it.",
+      night: "Your phone isn't neutral. It's an adversary with a billion-dollar algorithm designed to steal your attention. What would a week without your biggest time-sink app look like? The resistance you feel right now is the answer. Try it."
     }
   },
 
@@ -1572,10 +1572,10 @@ const ciPropheticMessages = {
     condition: (p) => p.worstDrag.name === 'stagnation' && p.raw.stagnation >= 7,
     label: "🧊 FROZEN",
     messages: {
-      morning: "You're frozen. Forget the big project. What's the smallest possible action you could take in 5 minutes? Do only that.",
-      afternoon: "Something is stuck. Name it. How long has it waited? What's the fear underneath the paralysis?",
-      evening: "Another day without shipping. Tomorrow, publish something embarrassing. The bar is too high. Lower it.",
-      night: "Paralysis thrives in darkness. Write down the project you're avoiding. Now write the first physical action. That's tomorrow's only job."
+      morning: "You're frozen. Paralyzed. Stuck. The big project feels impossible. Forget the big project. What's the smallest possible action you could take in 5 minutes? Not 'think about it.' A physical action. Write one sentence. Sketch one shape. Send one message. Do that now.",
+      afternoon: "Something is stuck and you've been avoiding looking at it directly. Name the project. Say it out loud. How long has it waited? What's the real fear underneath? Not 'I'm busy.' The real one. Face it, then take one tiny step toward it.",
+      evening: "Another day of avoidance. Tomorrow, ship something embarrassing. Lower the bar until you can clear it. Publish a draft. Share a work-in-progress. Done is better than perfect. And perfect isn't coming anyway.",
+      night: "Paralysis thrives in darkness and vagueness. Right now, write down the project you're avoiding. Then write the single smallest physical action that would move it forward. Put that paper where you'll see it first thing tomorrow. Do only that action. Then the next one."
     }
   },
 
@@ -1584,10 +1584,10 @@ const ciPropheticMessages = {
     condition: (p) => p.shape === 'soaring',
     label: "◆ DEEP WORK MODE",
     messages: {
-      morning: "Craft intensity is high. You're in the zone. Protect this at all costs. Cancel anything that would interrupt it.",
-      afternoon: "Deep in the work. This is what it's for. Keep going. The world can wait.",
-      evening: "Powerful creative day. Document what enabled it. Sleep well. Preserve the momentum.",
-      night: "Flow state achieved. This is rare. Remember this feeling. These are the days that compound into mastery."
+      morning: "Everything is aligned. Fuel high, friction low. This is rare. This is the compound zone. Protect this day at all costs. Cancel anything that would interrupt. Say no to everything that isn't your most important work. This is what you've been building toward.",
+      afternoon: "You're in the zone. Deep work is happening. Keep going. Don't check anything. Don't reward yourself with a break yet. Push deeper. The world can wait. You're doing the thing. Stay in it as long as you can.",
+      evening: "Powerful creative day. The kind that compounds into something real. Before you close out, document what enabled it. What did you do differently? What did you protect? These are your success conditions. Write them down. Replicate them.",
+      night: "Deep craft intensity today. This is what flow feels like. This is what mastery is built from. Sleep well. Protect your recovery so you can do it again tomorrow. Remember this feeling when the hard days come. This is proof of what's possible."
     }
   },
 
@@ -1596,10 +1596,10 @@ const ciPropheticMessages = {
     condition: (p) => p.shape === 'high_fuel_high_drag',
     label: "🔥 FIGHTING FRICTION",
     messages: {
-      morning: "You're in the work but fighting resistance. The craft is there. Now remove the friction. What's creating drag?",
-      afternoon: "Fuel is strong but drag is stronger. Like driving with the parking brake on. What's the brake?",
-      evening: "You have the skills and the drive. The enemy is operational. Fix systems, not effort.",
-      night: "High output, high friction. This is exhausting and unsustainable. Tomorrow, cut one source of drag."
+      morning: "You have the fuel but you're burning it on friction. Skills are sharp. Motivation is there. But admin, distraction, or stagnation is eating your output. Identify your biggest drag. Just one. What would it take to cut it in half this week? Do that.",
+      afternoon: "You're driving with the parking brake on. The engine is powerful but something is creating resistance. What's the friction? Admin? Distraction? Paralysis? Name it specifically. Then attack it specifically. You're too capable for this drag.",
+      evening: "High effort, high resistance. That's exhausting and unsustainable. You have what it takes. You're just fighting unnecessary friction. Tomorrow, fix one source of drag before you try to create. Clear the path, then walk it.",
+      night: "You're working hard against forces you could eliminate. That's not noble. That's inefficient. Pick your worst source of drag. Commit to reducing it by half. The goal isn't more effort. It's less resistance. Clear the runway."
     }
   },
 
@@ -1608,10 +1608,10 @@ const ciPropheticMessages = {
     condition: (p) => p.shape === 'crashed',
     label: "○ CREATIVE DROUGHT",
     messages: {
-      morning: "Creative output has stalled. Don't force it. Go for a walk. Change the inputs. Sometimes away is forward.",
-      afternoon: "All craft indicators low. This isn't laziness. This is a signal. What's wrong? Not with your work. With you.",
-      evening: "You didn't create today. That's okay. But too many days like this and the skill atrophies. Tomorrow, show up.",
-      night: "Craft intensity crashed. Before sleeping, answer one question: what would make tomorrow different?"
+      morning: "Craft intensity has crashed. Low fuel, high drag. This isn't laziness. This is a signal. Don't force it today. Go for a walk. Change the inputs. Read something inspiring. Sometimes away is forward. Listen to what the crash is telling you.",
+      afternoon: "All creative systems are down. Pushing harder won't help. Something deeper is wrong. What do you need that you're not getting? Rest? Clarity? Permission? Give it to yourself today. The work will still be there when you're ready.",
+      evening: "Creative drought. You didn't make what you wanted to make. That's okay. But too many days like this and the skill atrophies. Tomorrow isn't about output. It's about showing up. Even 15 minutes. Just show up.",
+      night: "When everything is low, ambition is the enemy. Don't set big goals for tomorrow. Set tiny ones. One small creative act. That's it. Rebuild the habit before you rebuild the output. Rest now. Show up tomorrow. Start small."
     }
   },
 
@@ -1620,10 +1620,10 @@ const ciPropheticMessages = {
     condition: (p) => p.shape === 'plateau' || p.shape === 'functional_high',
     label: "△ STEADY CRAFT",
     messages: {
-      morning: "Functional craft intensity. You're working, but not at your edge. Where could you push harder today?",
-      afternoon: "Steady output. That's good. But steady doesn't compound. What would make this session memorable?",
-      evening: "Solid work day. Not exceptional, not bad. What's one thing you could improve tomorrow?",
-      night: "Consistent craft. Now the question: consistent at what level? Are you satisfied here?"
+      morning: "Steady craft intensity. You're working, but not at your edge. That's sustainable but it's not growth. Where could you push harder today? What would make this session memorable instead of routine? Find that edge. Touch it.",
+      afternoon: "Functional but not exceptional. The work is happening. But is it the work that matters? What would you need to do to make today count? Not just check boxes. Actually count. Push for that in your next session.",
+      evening: "Solid work day. Not exceptional, not bad. Consistent. The question is: consistent at what level? Are you satisfied here? If not, identify one lever to push tomorrow. Small improvements compound. But you have to make them.",
+      night: "Steady state. The craft is alive but not thriving. You're maintaining, not growing. Before you sleep, ask: what would I need to change to level up? Write one answer. Try it tomorrow. Plateaus are comfortable. They're also where careers go to coast."
     }
   },
 
@@ -1632,10 +1632,10 @@ const ciPropheticMessages = {
     condition: (p) => p.shape === 'struggling' || p.shape === 'low_fuel_low_drag',
     label: "⚠ LOW OUTPUT",
     messages: {
-      morning: "Low creative output but not much friction either. The issue isn't obstacles. It's ignition. What would spark you today?",
-      afternoon: "You're not blocked, you're just not moving. Sometimes the problem is too little pressure, not too much.",
-      evening: "Neither creating nor distracted. Just... stalled. What would make tomorrow feel urgent?",
-      night: "Low intensity, low friction. You're coasting. Is that what you want?"
+      morning: "Low output but also low friction. You're not blocked. You're just not moving. The issue isn't obstacles. It's ignition. What would spark you today? Not more planning. More starting. Open the project and make one mark. That's how you start.",
+      afternoon: "You're not distracted, not overwhelmed. Just stalled. Sometimes the problem is too little pressure, not too much. Create a deadline. Tell someone what you'll ship. Add stakes. The friction might actually help.",
+      evening: "Neither creating nor distracted. Just... stalled. What would make tomorrow feel urgent? Not fake urgency. Real stakes. A deadline. A promise. A bet. Sometimes you need to manufacture pressure to move.",
+      night: "Low intensity, low friction. You're coasting in neutral. Is that what you want? If not, decide right now: what will you create tomorrow? Make it specific. Make it small. Make it non-negotiable. Then do it."
     }
   }
 };
@@ -1650,10 +1650,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.weakest.name === 'aq' && p.spread >= 2,
     label: "🔓 FREEDOM BOTTLENECK",
     messages: {
-      morning: "Your weakest link is autonomy. You have the skill and the resonance, but not the freedom. Today's priority: protect your time.",
-      afternoon: "Alpha held back by constraints. Your bottleneck isn't talent. It's freedom. What would buy you more of it?",
-      evening: "Resonance and craft are strong. Autonomy is the limiter. What would change if you had 10 more free hours per week?",
-      night: "You can do the work. People want the work. But you don't have room to do it. That's the problem to solve."
+      morning: "Your weakest link is autonomy. You have the skill. You have the audience. But you don't have the freedom to use them. Today, don't try to create more. Try to create space. Protect one hour. Cancel one thing. Say no to one request. Your bottleneck isn't talent. It's freedom.",
+      afternoon: "Alpha held back by constraints. The craft is there. The connection is there. But there's no room to deploy them. What would buy you more freedom? Money? Boundaries? Fewer obligations? Get specific. Then start building toward that. Today if possible.",
+      evening: "Resonance and craft are strong but autonomy is strangling them. What would change if you had 10 more free hours per week? That's not a fantasy question. It's a planning question. How would you get those hours? What would you sacrifice? Start there.",
+      night: "You can do the work. People want the work. But you don't have room to do it. That's the problem to solve. Not better craft. Not better marketing. More freedom. Write down the top three things stealing your autonomy. That's your hit list."
     }
   },
 
@@ -1662,10 +1662,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.weakest.name === 'ri' && p.spread >= 2,
     label: "📡 CONNECTION BOTTLENECK",
     messages: {
-      morning: "Your weakest link is resonance. You have freedom and skill, but the work isn't connecting. Who is this actually for?",
-      afternoon: "Alpha held back by connection. You're doing the work but it's not landing. What would make people feel this?",
-      evening: "Freedom and craft are strong. Resonance is the limiter. Before creating more, study what moves people.",
-      night: "You have the space. You have the skill. But no one is feeling it. That's the gap to close."
+      morning: "Your weakest link is resonance. You have the freedom to create. You have the skills to execute. But the work isn't connecting with people. Today, don't make more. Study what moves people. What makes them stop, save, share? Learn that. Then apply it.",
+      afternoon: "Alpha held back by connection. You're doing the work but it's not landing. Something is missing between your output and their hearts. Is it vulnerability? Specificity? Boldness? Identify the gap. That gap is your highest-leverage problem to solve.",
+      evening: "Freedom and craft are strong but resonance is the limiter. Before creating more, spend time understanding your audience. Not demographics. Their fears. Their dreams. Their secret frustrations. Make for that. Not for algorithms. For humans.",
+      night: "You have the space. You have the skill. But no one is feeling it. That's the gap. What truth are you not telling? What audience are you not serving? What vulnerability are you protecting? Somewhere in those questions is your answer."
     }
   },
 
@@ -1674,10 +1674,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.weakest.name === 'ci' && p.spread >= 2,
     label: "🔨 OUTPUT BOTTLENECK",
     messages: {
-      morning: "Your weakest link is craft intensity. You have freedom and connection, but not enough output. What would you ship if you had to?",
-      afternoon: "Alpha held back by execution. Your audience is waiting. Your calendar is clear. What's really stopping you?",
-      evening: "Freedom and resonance are strong. Craft is the limiter. Tomorrow, create before consuming anything.",
-      night: "You have room to work. People want what you make. But you're not making enough. Why?"
+      morning: "Your weakest link is craft intensity. You have freedom. You have an audience waiting. But the output isn't there. Today is about shipping, not strategizing. What could you finish and release before tonight? Pick one thing. Make it real. Put it in the world.",
+      afternoon: "Alpha held back by execution. Your audience is waiting. Your calendar has space. But the work isn't happening. What's actually stopping you? Not the excuse. The real thing. Is it fear? Perfectionism? Distraction? Name it, then defeat it.",
+      evening: "Freedom and resonance are strong but craft is the limiter. You have room to work and people who want your work. The only thing missing is the work itself. Tomorrow, create before consuming anything. First hour: make something. No exceptions.",
+      night: "You have room to work. People want what you make. But you're not making enough. Why? Be honest with yourself. The answer is probably uncomfortable. It's probably about fear or avoidance. Face it. Then tomorrow, do the thing anyway."
     }
   },
 
@@ -1686,10 +1686,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.balance === 'all_aligned_high',
     label: "⚡ COMPOUNDING RETURNS",
     messages: {
-      morning: "All three laws aligned. This is the compound zone. Your job today is not to push harder. It's to protect this state.",
-      afternoon: "Peak creative alpha. Say no to everything that doesn't serve this. You've earned this position. Guard it.",
-      evening: "Rare territory. Everything working. Document what created this. These are your success conditions.",
-      night: "Alpha above 7 with all laws aligned. This is what you've been building toward. Enjoy it. Protect it. Extend it."
+      morning: "All three laws aligned above 7. Autonomy, resonance, and craft intensity—all working together. This is the compound zone. Your job today is not to push harder. It's to protect this state. Say no to everything that doesn't serve it. This is rare. Guard it.",
+      afternoon: "Peak creative alpha. Freedom to work, audience to serve, craft to execute. Everything is flowing. Say no to anything that would disrupt this. You can be generous tomorrow. Today, be excellent. The world benefits more from your best work than from your scattered attention.",
+      evening: "Rare territory today. Everything working together. All systems aligned. Before you close out, document what created this. What did you protect? What did you prioritize? What did you decline? These are your success conditions. Write them down. Repeat them.",
+      night: "Alpha above 7 with all laws aligned. This is what you've been building toward. Enjoy it. Protect it. Extend it. Sleep well tonight—you earned it. Wake up tomorrow ready to do it again. This is the rhythm of mastery."
     }
   },
 
@@ -1698,10 +1698,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.balance === 'all_aligned_low',
     label: "🚨 CREATIVE EMERGENCY",
     messages: {
-      morning: "Everything is struggling. This isn't a work problem. This is a life problem. What do you need that you're not getting?",
-      afternoon: "Creative insolvency. Stop trying to produce. Start trying to recover. What would help? Not the work. You.",
-      evening: "All systems failing. Tomorrow isn't about creating. It's about surviving. Lower all expectations. Focus on stability.",
-      night: "When everything is low, ambition is the enemy. Rest. Rebuild. The work will be there when you're ready."
+      morning: "Everything is struggling. Autonomy, resonance, and craft—all underwater. This isn't a work problem. This is a life problem. Don't try to optimize. Don't try to push through. Ask yourself: what do I need that I'm not getting? Start there. The work comes after the human.",
+      afternoon: "Creative insolvency. All systems failing. Stop trying to produce. Start trying to survive and recover. What would help? Not the work. You. Do you need rest? Connection? Clarity? Permission? Give it to yourself. The work will still be there when you're ready.",
+      evening: "All systems underwater. Tomorrow isn't about creating. It's about stabilizing. Lower every expectation. Focus on one thing: rebuilding your baseline. Not excellence. Baseline. The creative work can wait. Your foundation can't.",
+      night: "When everything is low, ambition is the enemy. Don't set goals for tomorrow. Set survival conditions. Sleep. Eat. Move. Connect with one person. Rebuild the basics. The creative work comes after the human is okay. Be okay first."
     }
   },
 
@@ -1710,10 +1710,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.balance === 'severely_imbalanced',
     label: "⚖ SEVERE IMBALANCE",
     messages: {
-      morning: "One law is thriving. Another is failing. This gap is unsustainable. Today, focus only on your weakest score.",
-      afternoon: "Major imbalance. Your strength can't compensate forever. Shore up the weak link before it breaks everything.",
-      evening: "The spread between your laws is too wide. Strengths don't matter if one weakness collapses the system.",
-      night: "Imbalanced alpha creates unstable success. Tomorrow, stop optimizing your strength. Start fixing your weakness."
+      morning: "One law is thriving while another is failing. That gap is unsustainable. Your strength can't compensate forever. Today, ignore your strength entirely. Focus only on your weakest score. That's where the leverage is. That's where the system is breaking.",
+      afternoon: "Major imbalance in your creative portfolio. The spread between your laws is dangerous. Strengths don't matter if one weakness collapses the whole system. What's your weak link? Autonomy? Resonance? Craft? All your energy goes there today.",
+      evening: "The gap between your best and worst law is too wide. You're propping up a broken system with one strong leg. That works short-term. It fails long-term. Tomorrow, stop optimizing your strength. Start rescuing your weakness. Urgently.",
+      night: "Severely imbalanced alpha creates unstable success. You might be doing great in one dimension and terrible in another. That's not sustainable. Write down your weakest law. Write down three specific actions to improve it. Start tomorrow. Not next week. Tomorrow."
     }
   },
 
@@ -1722,10 +1722,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.flags.isCompounding,
     label: "📈 COMPOUNDING",
     messages: {
-      morning: "You're in the compound zone. Every day builds on the last. Protect the routine that created this.",
-      afternoon: "Compounding returns active. Don't change what's working. Double down on your system.",
-      evening: "Momentum is real. You're in it. Sleep well. Wake up ready to continue the streak.",
-      night: "When everything compounds, rest is part of the strategy. Protect your recovery as much as your output."
+      morning: "You're in the compound zone. Every day builds on the last. Protect the routine that created this. Don't experiment right now. Don't optimize. Just keep doing what's working. Consistency is the multiplier. Guard your system. It's producing.",
+      afternoon: "Compounding returns active. This is the zone where good becomes great becomes exceptional. Don't change what's working. Double down on your system. Small improvements, consistent execution. The magic is in the repetition. Stay the course.",
+      evening: "Momentum is real and you're riding it. Sleep well tonight. Recover fully. Wake up ready to continue the streak. Compounding requires consistency. One broken day doesn't ruin it. But many will. Protect your rhythm.",
+      night: "When everything compounds, rest is part of the strategy. Recovery isn't a break from the work. It's part of the work. Protect your sleep. Protect your health. The compound effect needs you at full capacity. Tomorrow, continue the streak."
     }
   },
 
@@ -1734,10 +1734,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.flags.isEmergency,
     label: "🆘 EMERGENCY",
     messages: {
-      morning: "Alpha below 3 is a crisis. Do not push through. Do not optimize. Ask for help. Talk to someone.",
-      afternoon: "This is not a productivity problem. Something is deeply wrong. What support do you need right now?",
-      evening: "Emergency levels. Tomorrow is not about work. It's about survival and recovery. Be gentle with yourself.",
-      night: "When alpha is this low, sleep is medicine. Close everything. Rest. Tomorrow, find one person to talk to."
+      morning: "Alpha below 3 is a crisis. This is not a productivity problem. Something is deeply wrong. Do not push through. Do not optimize. Reach out to someone today. A friend. A professional. Anyone. You need support right now, not strategy.",
+      afternoon: "Emergency levels. This is not about your creative output. This is about you. What support do you need right now? Not to be more productive. To be okay. Find one person to talk to today. Not text. Talk. Connection is the priority.",
+      evening: "Creative alpha this low means life alpha is struggling. Tomorrow is not about work. It's not about output. It's about survival and recovery. Be extremely gentle with yourself. Lower every bar. Ask for help if you haven't already.",
+      night: "When alpha is this low, sleep is medicine. Close everything. All of it. Rest is not earned. It's necessary. Tomorrow, your only job is to find one person to connect with. Not about work. Just human connection. That's the first step back."
     }
   },
 
@@ -1746,10 +1746,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.flags.isCoasting,
     label: "🛶 COASTING",
     messages: {
-      morning: "Comfortable middle. Nothing is broken, nothing is great. Is this where you want to stay?",
-      afternoon: "You're coasting. That's not bad. But it's also not growth. What would make you uncomfortable in a good way?",
-      evening: "Stable but stagnant. The middle is safe. It's also where ambition goes to sleep.",
-      night: "Coasting feels like balance. Sometimes it's just fear of pushing. Which is it for you?"
+      morning: "Comfortable middle. Nothing is broken, nothing is great. You're coasting. That's not wrong. But is it what you want? What would make you uncomfortable in a good way? What stretch goal are you avoiding because the plateau is easy? Today, consider taking a risk.",
+      afternoon: "You're coasting. Safe, stable, sustainable. Also: not growing. The middle is fine if you want the middle. But if you want more, something has to change. What would disrupt your comfortable pattern? What edge are you avoiding?",
+      evening: "Stable but stagnant. Not failing, not thriving. The plateau feels like balance but might be fear of pushing. Which is it for you? Be honest. If it's fear, name what you're afraid of. If it's contentment, own that too. But know which it is.",
+      night: "Coasting is comfortable. It's also where ambition goes to sleep. You're not in crisis. But you're not in growth either. Before tomorrow, ask yourself: is this where I want to stay? If not, what one thing would push me to the next level?"
     }
   },
 
@@ -1758,10 +1758,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.trend === 'rising',
     label: "📈 ASCENDING",
     messages: {
-      morning: "Alpha trending up. Momentum is real. Don't change what's working. Keep the streak alive.",
-      afternoon: "You're ascending. Each day builds on the last. What created this improvement? Do more of that.",
-      evening: "Rising alpha. You're doing something right. Document it before you forget what changed.",
-      night: "Upward trend. Sleep well. Wake up ready to extend it."
+      morning: "Alpha trending upward. You're building momentum. Don't change what's working. This is not the time to experiment or optimize. It's the time to execute. Whatever you did last time, do it again. Keep the streak alive. Momentum is fragile. Protect it.",
+      afternoon: "You're ascending. Each calculation shows improvement. What changed? What created this upward trend? Identify it specifically. Because you'll want to replicate it. And you can't replicate what you don't understand. Study your own success.",
+      evening: "Rising alpha. Something is working and you should know what it is. Before you close out today, write down what you think created the improvement. Conditions, habits, decisions. Document it. This is your playbook for growth.",
+      night: "Upward trend in progress. Sleep well. Recover fully. Tomorrow, continue what you started. The goal isn't to spike higher. It's to keep rising consistently. Small gains compound. Trust the process. Protect the trajectory."
     }
   },
 
@@ -1770,10 +1770,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.trend === 'falling',
     label: "📉 DECLINING",
     messages: {
-      morning: "Alpha declining. Somewhere a leak opened. Audit your last week. What changed?",
-      afternoon: "Downward trend. Not a crisis yet, but a signal. What's draining your creative reserves?",
-      evening: "Falling alpha. Before it becomes a pattern, identify the cause. Was it one event or slow accumulation?",
-      night: "Decline in progress. Don't panic. But don't ignore it. Tomorrow, find the leak."
+      morning: "Alpha declining. The trend is downward and you should pay attention. Somewhere a leak opened. Audit your last week specifically. What changed? What got worse? What did you start or stop doing? The answer is in the details. Find it.",
+      afternoon: "Downward trend. Not a crisis yet, but a warning. What's draining your creative reserves? Is it one big thing or many small things? Sometimes decline is one bad decision. Sometimes it's a thousand paper cuts. Figure out which before it gets worse.",
+      evening: "Falling alpha. The trajectory is wrong. Before it becomes a pattern, identify the cause. Was it one event? Accumulated neglect? A change in circumstances? Diagnosis before treatment. You can't fix what you haven't identified.",
+      night: "Decline in progress. Don't panic, but don't ignore it. Tomorrow, find the leak. One specific thing that's gotten worse. One specific change you'll make to reverse it. Get granular. 'Be better' doesn't work. Specific actions work. Pick one."
     }
   },
 
@@ -1782,10 +1782,10 @@ const alphaPropheticMessages = {
     condition: (p) => p.balance === 'balanced' || p.balance === 'imbalanced',
     label: "⚖ IN MOTION",
     messages: {
-      morning: "Your three laws are reasonably balanced. Now push all of them up. What's the highest-leverage action today?",
-      afternoon: "Balanced alpha. No critical weakness. The question is: which law could you push to exceptional?",
-      evening: "Stable across the board. Good foundation. Tomorrow, pick one law to level up.",
-      night: "Balance is the foundation. Now build on it. Which law deserves your focus this week?"
+      morning: "Your three laws are reasonably balanced. No critical weakness. No exceptional strength. Solid foundation. Now push. What's the highest-leverage action you could take today? Which law could you push toward exceptional? Pick one. Move it.",
+      afternoon: "Balanced alpha. Everything is working okay. Nothing is broken. The question is: okay or excellent? If you want excellent, one law needs to break away from the pack. Which one? Autonomy? Resonance? Craft? Pick and push.",
+      evening: "Stable across the board. Good foundation. Tomorrow, pick one law to level up. Not all three. One. Focus creates breakthroughs. Scattered effort creates plateaus. Where will you concentrate your energy this week?",
+      night: "Balance is the foundation. You have it. Now build on it. Before sleeping, choose which law deserves your focused attention this week. Write it down. Make a specific plan. Balanced is good. Balanced and improving is better."
     }
   }
 };
