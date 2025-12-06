@@ -379,74 +379,74 @@
 
   const personalizedReflections = {
     energy: {
-      low: "Your energy is depleted. What single commitment could you drop this week to recover capacity?",
-      mid: "Your energy is moderate. What activities reliably refill your tank versus drain it?",
-      high: "Your energy is abundant. How can you channel this into your most important creative work?"
+      low: "You're running on empty. Not 'tired' but depleted. What specific thing drained you most this week? Name it. Now: what would it take to eliminate or reduce that by 50%?",
+      mid: "You have enough energy to function, but not to thrive. Where is energy leaking? Identify one recurring drain you've been tolerating. What would you need to finally address it?",
+      high: "Your energy is strong. This is rare so protect it. What conditions created this? Write them down. These are your non-negotiables."
     },
     space: {
-      low: "Your mind is cluttered. What worry keeps interrupting your creative flow? Can you address or release it?",
-      mid: "You have manageable mental space. What systems could create more clarity?",
-      high: "Your mind is clear. This is a rare gift. What would you create if nothing was blocking you?"
+      low: "Your mind is full. What thought keeps intruding? Name the thing you're avoiding thinking about clearly. Write it down. Just getting it out of your head creates space.",
+      mid: "Some clarity, some noise. What reliably creates mental peace for you? When did you last do that? Schedule it this week. Not as a reward, but as a requirement.",
+      high: "Clear head. This is leverage. What's the most important question you should be thinking about right now? Use this clarity before it gets cluttered again."
     },
     optionality: {
-      low: "You feel trapped. What's one small step toward more freedom that you could take today?",
-      mid: "You have some choice. What commitment is no longer serving your creative vision?",
-      high: "You have full freedom. With all doors open, which one actually matters most?"
+      low: "You feel trapped. But trapped by what exactly? Name the top constraint. Now ask: is this truly immovable, or have you just stopped looking for doors?",
+      mid: "You have some options but aren't using them. What's one path available to you that you've been ignoring? Why? What would it take to explore it for just one week?",
+      high: "Many paths are open. This is freedom but also potential paralysis. What are you NOT choosing by keeping all options open? Sometimes closing doors creates momentum."
     },
     constraint: {
-      low: "Your constraints are minimal. Be careful not to drift. What structure actually helps your output?",
-      mid: "You have moderate constraints. Which ones are truly necessary versus just inherited?",
-      high: "Your constraints are crushing. What's the first one you'd eliminate if you could? Why haven't you?"
+      low: "Light obligations. This is rare and valuable. What would you do with your time if nothing changed? Don't waste this window. It won't last forever.",
+      mid: "Moderate load. Some constraints are real, others are inherited habits. Name one obligation you've never questioned. Why does it still exist?",
+      high: "Heavy constraints. Something has to give. If you could eliminate ONE obligation, consequences be damned, which would free up the most? What's actually stopping you?"
     },
     impact: {
-      low: "Your work isn't landing yet. Who is ONE person you want to genuinely affect? What would move them?",
-      mid: "Your work engages people. What would it take to make it transformative instead of just interesting?",
-      high: "Your work changes people. How do you protect and deepen this without losing it to scale?"
+      low: "Your work is being seen but not felt. When was the last time something you made gave someone chills, tears, or laughter? What was different about that piece? Do more of that.",
+      mid: "Some work lands, some doesn't. Look at your last 5 pieces. Which one hit hardest? Why? What would happen if you only made work at that level?",
+      high: "Your work moves people. The danger now is formula. Repeating what worked until it stops working. What's the version of your work that scares even you?"
     },
     identity: {
-      low: "Your creative identity is generic. What unique perspective do ONLY you bring to your craft?",
-      mid: "People relate to your work. What makes your most devoted fans say 'this is made for me'?",
-      high: "You have a loyal audience. What would happen if you went even more niche and specific?"
+      low: "You're making work for 'everyone' which means no one feels like it's for THEM. Describe your ideal audience member in one sentence. Not demographics. Their secret frustration.",
+      mid: "You have some sense of your audience. But could you describe them so specifically that they'd recognize themselves? Try: 'This is for people who ___ but secretly ___.'",
+      high: "Your audience feels seen by you. They don't just like your work. They feel understood. What do you know about them that they haven't told anyone? That's your edge."
     },
     boldness: {
-      low: "You're playing it safe. What's the work you're afraid to make? What scares you about it?",
-      mid: "You're taking some risks. What experiment would make you nervous to publish?",
-      high: "You're being fearless. How do you balance bold expression with sustainable craft?"
+      low: "You're playing it safe. What would you make if you knew no one would judge you? Write it down. Now: what's actually stopping you from making that?",
+      mid: "You take some risks, but there's something you're avoiding. What's the project you keep almost starting? The one that scares you? That's probably the one that matters.",
+      high: "You're making bold moves. But bold isn't reckless. What's the risk you're most proud of taking? What made you brave enough? Remember that next time you hesitate."
     },
     audience: {
-      small: "You have a small audience. This is a gift. You can know each person. What do they actually need?",
-      medium: "You have a growing audience. How do you maintain depth as numbers increase?",
-      large: "You have a large audience. Depth at scale is hard. What's your strategy to stay connected?"
+      small: "Small audience. This is intimate. You can know each person. Are you using that? What if you asked 5 of them what they actually need? Their answer might change everything.",
+      medium: "Growing audience. You're in the danger zone. Too big to know everyone, too small for the work to spread itself. What would make your existing audience recruit for you?",
+      large: "Mass audience. Do you actually know them anymore? When did you last have a real conversation with someone who follows you? Don't lose the connection that built this."
     },
     flow: {
-      low: "You're barely reaching flow. What environment changes would help you lose track of time?",
-      mid: "You have moderate flow hours. What's the difference between your best and worst creative sessions?",
-      high: "You're regularly in deep flow. How do you protect these hours from creeping obligations?"
+      low: "Minimal flow time. What interrupts you most? Be specific. Is it notifications, people, your own distraction? You can't protect what you can't name.",
+      mid: "Decent flow. Could you protect 2 more hours this week? What would you need to cancel, batch, or ignore? Those 2 hours might double your output.",
+      high: "Deep immersion. You're doing the work. But are you also resting? Sustained intensity requires recovery. What does rest look like for you? Not just sleep, but restoration."
     },
     evolution: {
-      low: "Your skills are stagnating. What's one capability that, if improved, would transform your work?",
-      mid: "You're learning steadily. What deliberate practice would accelerate your growth?",
-      high: "You're growing rapidly. How do you balance skill development with actually shipping work?"
+      low: "Your skills have stagnated. What's one capability that would change everything if you developed it over the next 90 days? Not a course. A practice. Daily reps.",
+      mid: "You're growing. But where's your next edge? What's the skill that's just beyond your current reach? Stretch toward that. Comfort is the enemy of growth.",
+      high: "Rapid evolution. Document what's working. You're learning faster than you realize. Write down the insights before they become invisible to you. Teach someone."
     },
     risk: {
-      low: "You're not experimenting. What format, topic, or approach have you been curious about but haven't tried?",
-      mid: "You're taking some creative risks. What would a 10x bolder version of your current experiment look like?",
-      high: "You're taking bold creative risks. How do you know which experiments to double down on?"
+      low: "Too safe. What experiment could you run this week where failure is okay? Not a bet the farm risk. Just something where you might look dumb. That's where growth lives.",
+      mid: "Some experimentation. Push one boundary this week. What's the thing you've been 'thinking about trying'? Stop thinking. Run the experiment. Learn from the result.",
+      high: "Bold moves. The risk now is all motion, no completion. What's one experiment you should STOP so you can finish something? Shipping beats starting."
     },
     admin: {
-      low: "Your admin load is minimal. Well done. What systems keep it this way?",
-      mid: "You have moderate admin. What could you automate, delegate, or eliminate?",
-      high: "Admin is eating your creative time. What ONE operational task could you remove this month?"
+      low: "Lean operations. Your time goes to the craft. This is the goal. Protect it fiercely. What would it take to keep it this way as you scale?",
+      mid: "Moderate admin. What single recurring task could you automate, batch, or delegate this week? Start there. Small wins compound.",
+      high: "More admin than creating. This is a crisis. What would it cost in money or discomfort to hand off the three most draining tasks? Compare that to the cost of your time."
     },
     distraction: {
-      low: "Your distraction is minimal. What habits maintain your focus?",
-      mid: "You have moderate distraction. What triggers your worst screen time spirals?",
-      high: "Distraction is stealing your life. What would you do with those hours if you reclaimed them?"
+      low: "Focused. What boundaries protect this? Write them down. These are your rules. Enforce them even when you don't feel like it.",
+      mid: "Some leakage. Check your screen time report. How much was intentional? Set one app limit this week. Not forever. Just to see what happens.",
+      high: "Major distraction problem. Your phone is not neutral. It's an opponent. What would a week without your biggest time sink app look like? The resistance you feel is the answer."
     },
     stagnation: {
-      low: "You're shipping regularly. What keeps your creative momentum flowing?",
-      mid: "You have some blocks. What project keeps getting pushed to 'next month'? Why?",
-      high: "You're paralyzed. What project are you avoiding? What's the smallest step forward you could take?"
+      low: "Shipping regularly. Momentum is real. But don't confuse motion with progress. Is what you're shipping actually building toward something?",
+      mid: "Some paralysis. What's blocking the current project? Name the specific obstacle. Not 'I'm stuck' but 'I'm stuck because ___.' Clarity precedes action.",
+      high: "Frozen. You've been avoiding something. Name the project. How long has it waited? What's the tiniest action you could take in the next 5 minutes? Do that. Then the next one."
     }
   };
 
@@ -765,7 +765,7 @@
   function getRiStatus(score) {
     if (score >= 8) {
       return {
-        label: '★ CULT CLASSIC',
+        label: '★ RESONANCE ACHIEVED',
         explain: 'Deep, lasting impact. Your work creates lifelong fans who would notice if you disappeared. This is real art: sustainable and meaningful.',
         class: 'excellent'
       };
@@ -899,6 +899,333 @@
     if (audience >= 1000000) return (audience / 1000000).toFixed(1) + 'M';
     if (audience >= 1000) return (audience / 1000).toFixed(0) + 'K';
     return audience.toString();
+  }
+
+  // ============================================================
+  // AQ PATTERN DETECTION - Analyze autonomy slider patterns
+  // ============================================================
+
+  function detectAQPattern(inputs) {
+    const { energy, space, optionality, constraint } = inputs;
+
+    // Constraint is inverted (high = bad), so convert to "freedom" score
+    const freedom = 11 - constraint;
+
+    const factors = [
+      { name: 'energy', label: 'Energy', value: energy },
+      { name: 'space', label: 'Mental Space', value: space },
+      { name: 'optionality', label: 'Optionality', value: optionality },
+      { name: 'freedom', label: 'Freedom from Constraint', value: freedom }
+    ];
+
+    // Find bottleneck (lowest) and strength (highest)
+    const sorted = [...factors].sort((a, b) => a.value - b.value);
+    const bottleneck = sorted[0];
+    const strength = sorted[sorted.length - 1];
+
+    // Calculate average and spread
+    const avg = factors.reduce((sum, f) => sum + f.value, 0) / factors.length;
+    const spread = strength.value - bottleneck.value;
+
+    // Determine shape
+    let shape;
+    if (avg >= 7 && spread < 3) shape = 'soaring';
+    else if (avg >= 7 && spread >= 3) shape = 'lopsided_high';
+    else if (avg >= 4 && avg < 7 && spread < 3) shape = 'plateau';
+    else if (avg >= 4 && avg < 7 && spread >= 3) shape = 'lopsided_mid';
+    else if (avg < 4 && spread < 3) shape = 'crashed';
+    else if (avg < 4 && spread >= 3) shape = 'lopsided_low';
+    else shape = 'mixed';
+
+    return {
+      bottleneck,
+      strength,
+      average: avg,
+      spread,
+      shape,
+      raw: { energy, space, optionality, constraint }
+    };
+  }
+
+  // ============================================================
+  // Ri PATTERN DETECTION - Analyze resonance slider patterns
+  // ============================================================
+
+  function detectRiPattern(inputs) {
+    const { impact, identity, boldness, audience } = inputs;
+
+    // Audience is logarithmic and inverts (larger = more dilution)
+    // Convert to "intimacy" score: smaller audience = higher intimacy
+    let intimacy;
+    if (audience <= 100) intimacy = 10;
+    else if (audience >= 10000000) intimacy = 1;
+    else intimacy = Math.max(1, Math.min(10, 10 - (Math.log10(audience) - 2) * 1.5));
+
+    const factors = [
+      { name: 'impact', label: 'Emotional Depth', value: impact },
+      { name: 'identity', label: 'Audience Fit', value: identity },
+      { name: 'boldness', label: 'Artistic Boldness', value: boldness },
+      { name: 'intimacy', label: 'Audience Intimacy', value: intimacy }
+    ];
+
+    // Find bottleneck and strength
+    const sorted = [...factors].sort((a, b) => a.value - b.value);
+    const bottleneck = sorted[0];
+    const strength = sorted[sorted.length - 1];
+
+    // Calculate average and spread
+    const avg = factors.reduce((sum, f) => sum + f.value, 0) / factors.length;
+    const spread = strength.value - bottleneck.value;
+
+    // Determine shape
+    let shape;
+    if (avg >= 7 && spread < 3) shape = 'soaring';
+    else if (avg >= 7 && spread >= 3) shape = 'lopsided_high';
+    else if (avg >= 4 && avg < 7 && spread < 3) shape = 'plateau';
+    else if (avg >= 4 && avg < 7 && spread >= 3) shape = 'lopsided_mid';
+    else if (avg < 4 && spread < 3) shape = 'crashed';
+    else if (avg < 4 && spread >= 3) shape = 'lopsided_low';
+    else shape = 'mixed';
+
+    // Flag specific conditions
+    const isLargeAudience = audience >= 100000;
+    const isSmallAudience = audience < 1000;
+
+    return {
+      bottleneck,
+      strength,
+      average: avg,
+      spread,
+      shape,
+      isLargeAudience,
+      isSmallAudience,
+      raw: { impact, identity, boldness, audience }
+    };
+  }
+
+  // ============================================================
+  // Ci PATTERN DETECTION - Analyze craft intensity slider patterns
+  // ============================================================
+
+  function detectCiPattern(inputs) {
+    const { flow, evolution, risk, admin, distraction, stagnation } = inputs;
+
+    // Normalize hour-based inputs to 1-10 scale
+    const flowNorm = Math.min(10, flow / 6);
+    const adminNorm = Math.min(10, admin / 6);
+    const distractionNorm = Math.min(10, distraction / 6);
+
+    // Fuel factors (high is good)
+    const fuel = [
+      { name: 'flow', label: 'Flow Time', value: flowNorm },
+      { name: 'evolution', label: 'Skill Growth', value: evolution },
+      { name: 'risk', label: 'Creative Risk', value: risk }
+    ];
+
+    // Drag factors (high is bad, so invert for comparison)
+    const drag = [
+      { name: 'admin', label: 'Admin Load', value: adminNorm, inverted: 10 - adminNorm },
+      { name: 'distraction', label: 'Distraction', value: distractionNorm, inverted: 10 - distractionNorm },
+      { name: 'stagnation', label: 'Stagnation', value: stagnation, inverted: 10 - stagnation }
+    ];
+
+    // Find fuel bottleneck and strength
+    const fuelSorted = [...fuel].sort((a, b) => a.value - b.value);
+    const fuelBottleneck = fuelSorted[0];
+    const fuelStrength = fuelSorted[fuelSorted.length - 1];
+    const fuelAvg = fuel.reduce((sum, f) => sum + f.value, 0) / fuel.length;
+
+    // Find worst drag (highest raw value = most drag)
+    const dragSorted = [...drag].sort((a, b) => b.value - a.value);
+    const worstDrag = dragSorted[0];
+    const dragAvg = drag.reduce((sum, d) => sum + d.value, 0) / drag.length;
+
+    // Overall bottleneck: compare worst fuel to worst drag
+    // If fuel bottleneck is lower than inverted drag, fuel is the problem
+    // If drag is high (inverted is low), drag is the problem
+    let overallBottleneck;
+    if (fuelBottleneck.value < worstDrag.inverted) {
+      overallBottleneck = { ...fuelBottleneck, type: 'fuel' };
+    } else {
+      overallBottleneck = { ...worstDrag, type: 'drag' };
+    }
+
+    // Calculate combined average (fuel contributes positively, drag negatively)
+    const combinedAvg = (fuelAvg + (10 - dragAvg)) / 2;
+
+    // Determine shape based on combined health
+    let shape;
+    if (fuelAvg >= 7 && dragAvg <= 3) shape = 'soaring';
+    else if (fuelAvg >= 6 && dragAvg >= 6) shape = 'high_fuel_high_drag';
+    else if (fuelAvg <= 4 && dragAvg <= 4) shape = 'low_fuel_low_drag';
+    else if (fuelAvg <= 4 && dragAvg >= 5) shape = 'crashed';
+    else if (combinedAvg >= 6) shape = 'functional_high';
+    else if (combinedAvg >= 4) shape = 'plateau';
+    else shape = 'struggling';
+
+    return {
+      bottleneck: overallBottleneck,
+      fuelBottleneck,
+      fuelStrength,
+      worstDrag,
+      fuelAvg,
+      dragAvg,
+      combinedAvg,
+      shape,
+      raw: { flow, evolution, risk, admin, distraction, stagnation }
+    };
+  }
+
+  // ============================================================
+  // ALPHA PATTERN DETECTION - Analyze law balance patterns
+  // ============================================================
+
+  function detectAlphaPattern(scores, history = null) {
+    const { aq, ri, ci, alpha } = scores;
+
+    const laws = [
+      { name: 'aq', label: 'Autonomy', value: aq },
+      { name: 'ri', label: 'Resonance', value: ri },
+      { name: 'ci', label: 'Craft Intensity', value: ci }
+    ];
+
+    // Find weakest and strongest law
+    const sorted = [...laws].sort((a, b) => a.value - b.value);
+    const weakest = sorted[0];
+    const strongest = sorted[sorted.length - 1];
+
+    // Calculate spread
+    const spread = strongest.value - weakest.value;
+    const avg = (aq + ri + ci) / 3;
+
+    // Determine balance state
+    let balance;
+    if (aq >= 7 && ri >= 7 && ci >= 7) balance = 'all_aligned_high';
+    else if (aq < 4 && ri < 4 && ci < 4) balance = 'all_aligned_low';
+    else if (spread < 2) balance = 'balanced';
+    else if (spread >= 4) balance = 'severely_imbalanced';
+    else balance = 'imbalanced';
+
+    // Detect trend if history exists
+    let trend = null;
+    if (history && typeof history.lastAlpha === 'number') {
+      const diff = alpha - history.lastAlpha;
+      if (diff > 0.5) trend = 'rising';
+      else if (diff < -0.5) trend = 'falling';
+      else trend = 'stable';
+    }
+
+    // Specific pattern flags
+    const flags = {
+      isCompounding: alpha >= 7 && spread < 2,
+      isEmergency: alpha < 3,
+      hasWeakLink: spread >= 3 && weakest.value < 5,
+      isCoasting: avg >= 5 && avg < 7 && spread < 2
+    };
+
+    return {
+      weakest,
+      strongest,
+      spread,
+      average: avg,
+      balance,
+      trend,
+      flags,
+      raw: { aq, ri, ci, alpha }
+    };
+  }
+
+  // ============================================================
+  // TIME CONTEXT - For time-aware messaging
+  // ============================================================
+
+  function getTimeContext() {
+    const now = new Date();
+    const hour = now.getHours();
+    const day = now.getDay(); // 0 = Sunday
+
+    // Time of day
+    let timeOfDay;
+    if (hour >= 5 && hour < 12) timeOfDay = 'morning';
+    else if (hour >= 12 && hour < 17) timeOfDay = 'afternoon';
+    else if (hour >= 17 && hour < 21) timeOfDay = 'evening';
+    else timeOfDay = 'night';
+
+    // Day context
+    let dayContext;
+    if (day === 0) dayContext = 'sunday';
+    else if (day === 1) dayContext = 'monday';
+    else if (day === 5) dayContext = 'friday';
+    else if (day === 6) dayContext = 'saturday';
+    else dayContext = 'midweek';
+
+    // Week phase
+    let weekPhase;
+    if (day <= 1) weekPhase = 'start';
+    else if (day <= 3) weekPhase = 'middle';
+    else weekPhase = 'end';
+
+    return { hour, day, timeOfDay, dayContext, weekPhase };
+  }
+
+  // ============================================================
+  // PROPHETIC MESSAGE GENERATOR - Pattern-aware time-aware messaging
+  // ============================================================
+
+  function generatePropheticMessage(lawType, inputs, scores, history = null) {
+    console.log('[Prophetic] Called for:', lawType);
+    const time = getTimeContext();
+    let pattern, messages;
+
+    // Detect pattern and get message templates based on law type
+    switch(lawType) {
+      case 'aq':
+        pattern = detectAQPattern(inputs);
+        messages = aqPropheticMessages;
+        break;
+      case 'ri':
+        pattern = detectRiPattern(inputs);
+        messages = riPropheticMessages;
+        break;
+      case 'ci':
+        pattern = detectCiPattern(inputs);
+        messages = ciPropheticMessages;
+        break;
+      case 'alpha':
+        pattern = detectAlphaPattern(scores, history);
+        messages = alphaPropheticMessages;
+        break;
+      default:
+        return null;
+    }
+
+    // Find first matching pattern
+    let matchedPattern = null;
+    for (const [key, p] of Object.entries(messages)) {
+      if (p.condition(pattern)) {
+        matchedPattern = { key, ...p };
+        break;
+      }
+    }
+
+    // Fallback if no pattern matched
+    if (!matchedPattern) {
+      // Use last pattern in each set as fallback
+      const keys = Object.keys(messages);
+      const fallbackKey = keys[keys.length - 1];
+      matchedPattern = { key: fallbackKey, ...messages[fallbackKey] };
+    }
+
+    // Get time-appropriate message
+    const message = matchedPattern.messages[time.timeOfDay] || matchedPattern.messages.morning;
+
+    return {
+      label: matchedPattern.label,
+      message: message,
+      patternKey: matchedPattern.key,
+      timeOfDay: time.timeOfDay,
+      dayContext: time.dayContext
+    };
   }
 
   // ============================================================
@@ -1361,14 +1688,20 @@
       animateValue(elements.aqResultValue, 0, aq, 800);
     }
 
-    // Update status with emoji and explanation
-    const status = getAQStatus(aq);
+    // Update status with prophetic message
+    const aqInputs = {
+      energy: state.inputs.energy,
+      space: state.inputs.space,
+      optionality: state.inputs.optionality,
+      constraint: state.inputs.constraint
+    };
+    const aqProphetic = generatePropheticMessage('aq', aqInputs, state.scores, null);
     if (elements.aqResultStatus) {
-      elements.aqResultStatus.textContent = status.label;
+      elements.aqResultStatus.textContent = aqProphetic.label;
       elements.aqResultStatus.className = `result-status`;
     }
     if (elements.aqResultExplain) {
-      elements.aqResultExplain.textContent = status.explain;
+      elements.aqResultExplain.textContent = aqProphetic.message;
     }
 
     // Animate bar (if exists)
@@ -1410,14 +1743,20 @@
       animateValue(elements.riResultValue, 0, ri, 800);
     }
 
-    // Update status with emoji and explanation
-    const status = getRiStatus(ri);
+    // Update status with prophetic message
+    const riInputs = {
+      impact: state.inputs.impact,
+      identity: state.inputs.identity,
+      boldness: state.inputs.boldness,
+      audience: state.inputs.audience
+    };
+    const riProphetic = generatePropheticMessage('ri', riInputs, state.scores, null);
     if (elements.riResultStatus) {
-      elements.riResultStatus.textContent = status.label;
+      elements.riResultStatus.textContent = riProphetic.label;
       elements.riResultStatus.className = `result-status`;
     }
     if (elements.riResultExplain) {
-      elements.riResultExplain.textContent = status.explain;
+      elements.riResultExplain.textContent = riProphetic.message;
     }
 
     // Animate bar (if exists)
@@ -1459,14 +1798,22 @@
       animateValue(elements.ciResultValue, 0, ci, 800);
     }
 
-    // Update status with emoji and explanation
-    const status = getCiStatus(ci);
+    // Update status with prophetic message
+    const ciInputs = {
+      flow: state.inputs.flow,
+      evolution: state.inputs.evolution,
+      risk: state.inputs.risk,
+      admin: state.inputs.admin,
+      distraction: state.inputs.distraction,
+      stagnation: state.inputs.stagnation
+    };
+    const ciProphetic = generatePropheticMessage('ci', ciInputs, state.scores, null);
     if (elements.ciResultStatus) {
-      elements.ciResultStatus.textContent = status.label;
+      elements.ciResultStatus.textContent = ciProphetic.label;
       elements.ciResultStatus.className = `result-status`;
     }
     if (elements.ciResultExplain) {
-      elements.ciResultExplain.textContent = status.explain;
+      elements.ciResultExplain.textContent = ciProphetic.message;
     }
 
     // Animate bar (if exists)
@@ -1502,10 +1849,11 @@
         Portal.animateScore('alpha', state.scores.alpha);
       }
 
-      // Update composite status
-      const alphaStatus = getAlphaStatus(state.scores.alpha);
+      // Update composite status with prophetic message
+      const alphaHistory = state.history.length > 0 ? { lastAlpha: state.history[0].scores.alpha } : null;
+      const alphaProphetic = generatePropheticMessage('alpha', null, state.scores, alphaHistory);
       if (elements.compositeStatus) {
-        elements.compositeStatus.textContent = alphaStatus.label + ': ' + alphaStatus.explain;
+        elements.compositeStatus.textContent = alphaProphetic.label + ': ' + alphaProphetic.message;
       }
 
       // Match archetype, recommendation, and protocol
@@ -3239,28 +3587,49 @@
     if (elements.riResultValue) elements.riResultValue.textContent = state.scores.ri.toFixed(1);
     if (elements.ciResultValue) elements.ciResultValue.textContent = state.scores.ci.toFixed(1);
 
-    // Update inline result statuses
-    const aqStatus = getAQStatus(state.scores.aq);
-    const riStatus = getRiStatus(state.scores.ri);
-    const ciStatus = getCiStatus(state.scores.ci);
+    // Update inline result statuses with prophetic messages
+    const aqInputs = {
+      energy: state.inputs.energy,
+      space: state.inputs.space,
+      optionality: state.inputs.optionality,
+      constraint: state.inputs.constraint
+    };
+    const riInputs = {
+      impact: state.inputs.impact,
+      identity: state.inputs.identity,
+      boldness: state.inputs.boldness,
+      audience: state.inputs.audience
+    };
+    const ciInputs = {
+      flow: state.inputs.flow,
+      evolution: state.inputs.evolution,
+      risk: state.inputs.risk,
+      admin: state.inputs.admin,
+      distraction: state.inputs.distraction,
+      stagnation: state.inputs.stagnation
+    };
+
+    const aqProphetic = generatePropheticMessage('aq', aqInputs, state.scores, null);
+    const riProphetic = generatePropheticMessage('ri', riInputs, state.scores, null);
+    const ciProphetic = generatePropheticMessage('ci', ciInputs, state.scores, null);
 
     if (elements.aqResultStatus) {
-      elements.aqResultStatus.textContent = aqStatus.label;
+      elements.aqResultStatus.textContent = aqProphetic.label;
       elements.aqResultStatus.className = 'result-status';
     }
-    if (elements.aqResultExplain) elements.aqResultExplain.textContent = aqStatus.explain;
+    if (elements.aqResultExplain) elements.aqResultExplain.textContent = aqProphetic.message;
 
     if (elements.riResultStatus) {
-      elements.riResultStatus.textContent = riStatus.label;
+      elements.riResultStatus.textContent = riProphetic.label;
       elements.riResultStatus.className = 'result-status';
     }
-    if (elements.riResultExplain) elements.riResultExplain.textContent = riStatus.explain;
+    if (elements.riResultExplain) elements.riResultExplain.textContent = riProphetic.message;
 
     if (elements.ciResultStatus) {
-      elements.ciResultStatus.textContent = ciStatus.label;
+      elements.ciResultStatus.textContent = ciProphetic.label;
       elements.ciResultStatus.className = 'result-status';
     }
-    if (elements.ciResultExplain) elements.ciResultExplain.textContent = ciStatus.explain;
+    if (elements.ciResultExplain) elements.ciResultExplain.textContent = ciProphetic.message;
 
     // Update bars
     if (elements.aqBar) elements.aqBar.style.width = `${state.scores.aq * 10}%`;
@@ -3287,10 +3656,11 @@
       animateValue(elements.compositeNum, 0, state.scores.alpha, 1000);
     }
 
-    // Update composite status
-    const alphaStatus = getAlphaStatus(state.scores.alpha);
+    // Update composite status with prophetic message
+    const alphaHistory = state.history.length > 0 ? { lastAlpha: state.history[0].scores.alpha } : null;
+    const alphaProphetic = generatePropheticMessage('alpha', null, state.scores, alphaHistory);
     if (elements.compositeStatus) {
-      elements.compositeStatus.textContent = alphaStatus.label + ': ' + alphaStatus.explain;
+      elements.compositeStatus.textContent = alphaProphetic.label + ': ' + alphaProphetic.message;
     }
 
     // Show archetype card

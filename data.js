@@ -16,7 +16,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/1936891026",
     duration: "190 pages",
-    patterns: ["low_aq", "low_ci", "paralyzed", "ember"],
+    patterns: ["low_aq", "low_ci", "paralyzed", "paralyzed_dreamer", "ember"],
     why: "\"Resistance\" is Pressfield's name for the force that keeps you from doing your work. If you're feeling burned out or blocked every time you sit down to create, this short kick-in-the-pants book will help you conquer procrastination and self-doubt."
   },
   {
@@ -66,7 +66,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/0593328972",
     duration: "272 pages",
-    patterns: ["paralyzed", "low_ci", "untapped", "ember", "grinder"],
+    patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "untapped", "ember", "grinder"],
     why: "If you have trouble finishing and sharing your work, whether from fear or perfectionism, The Practice will nudge you to start shipping your art regularly."
   },
   {
@@ -116,7 +116,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/0961454733",
     duration: "122 pages",
-    patterns: ["paralyzed", "low_ci", "low_ri"],
+    patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "low_ri"],
     why: "This slim, compassionate book explores the difficulties that cause so many artists to give up along the way. If you have plenty of freedom but find yourself not using it because you're scared, this is the gentle kick you need."
   },
   {
@@ -156,7 +156,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/1594634718",
     duration: "288 pages",
-    patterns: ["paralyzed", "low_ci", "low_ri"],
+    patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "low_ri"],
     why: "Gilbert tackles the fear that often accompanies creativity (fear of rejection, of not being original) and gently dismantles it. You'll come away ready to live a creative life on your own terms."
   },
   {
@@ -166,7 +166,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/0385480016",
     duration: "272 pages",
-    patterns: ["paralyzed", "low_ci", "low_ri"],
+    patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "low_ri"],
     why: "Lamott hilariously eviscerates perfectionism and gives you permission to create something imperfect and honest. Which is better than nothing at all."
   },
   {
@@ -186,7 +186,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/0143129252",
     duration: "222 pages",
-    patterns: ["burnout", "low_ci", "low_aq"],
+    patterns: ["burnout", "low_ci", "low_aq", "paralyzed_dreamer"],
     why: "This legendary 12-week course in book form has unblocked millions of creatives. If you aren't creating at all due to perfectionism or fear, this is a nurturing, structured way to get moving again."
   },
   {
@@ -879,6 +879,14 @@ const archetypes = [
 
   // === TIER 2: Specific imbalance patterns ===
   {
+    id: "chaos",
+    name: "The Chaos Creator",
+    subtitle: "Thriving in Instability",
+    check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5,
+    profile: "You create BECAUSE of chaos, not despite it. Need pressure, constraints, urgency. Your best work comes from crisis. Sustainable? Questionable.",
+    insight: "Find controlled chaos. Manufactured deadlines, artificial constraints. You can generate urgency from discipline instead of waiting for desperation."
+  },
+  {
     id: "hustler",
     name: "The Hustler",
     subtitle: "Grinding Without Freedom",
@@ -911,14 +919,6 @@ const archetypes = [
     insight: "Freedom without output is just comfortable stagnation. Start with the smallest possible action. Ship something embarrassingly small. Motion creates clarity."
   },
   {
-    id: "chaos",
-    name: "The Chaos Creator",
-    subtitle: "Thriving in Instability",
-    check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5,
-    profile: "You create BECAUSE of chaos, not despite it. Need pressure, constraints, urgency. Your best work comes from crisis. Sustainable? Questionable.",
-    insight: "Find controlled chaos. Manufactured deadlines, artificial constraints. You can generate urgency from discipline instead of waiting for desperation."
-  },
-  {
     id: "craftsperson",
     name: "The Craftsperson",
     subtitle: "Skill Without Message",
@@ -930,7 +930,7 @@ const archetypes = [
     id: "tribe_builder",
     name: "The Tribe Builder",
     subtitle: "Deep Connection, Narrow Reach",
-    check: (s) => s.ri >= 7 && s.ci >= 4 && s.aq >= 4,
+    check: (s) => s.ri >= 7 && s.ci >= 4 && s.aq >= 4 && !(s.aq >= 7 && s.ci >= 7) && s.alpha < 8,
     profile: "Your audience would follow you anywhere. Deep loyalty, strong identity fit, genuine impact. You've solved for resonance. Now the question is scale without dilution.",
     insight: "Protect what made them love you in the first place. Scale slowly. Every expansion should deepen the core, not water it down."
   },
@@ -961,10 +961,18 @@ const archetypes = [
     insight: "Before doing more, ask: what would create leverage? One piece that compounds beats a hundred that disappear. Find the 10% of your work that could carry the other 90%."
   },
   {
+    id: "comeback",
+    name: "The Comeback Arc",
+    subtitle: "Rising From the Ashes",
+    check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 2 && s.ci < 5,
+    profile: "You had a moment, then disappeared. Now returning with more wisdom, clearer vision, and the freedom to create on your terms. The second act is forming.",
+    insight: "Your superpower is perspective earned through failure. The comeback doesn't need to be bigger, just truer. Create from clarity, not desperation."
+  },
+  {
     id: "connector",
     name: "The Connector",
     subtitle: "Relationships Over Output",
-    check: (s) => s.ri >= 5 && s.aq >= 4 && s.aq < 6 && s.ci >= 4 && s.ci < 6,
+    check: (s) => s.ri >= 5 && s.ri > s.aq && s.ri > s.ci && s.aq >= 4 && s.ci >= 4,
     profile: "Your superpower is connection. People respond to you. Your work resonates more than your output volume suggests. But you're not fully free, and your consistency is shaky.",
     insight: "Stop trying to out-produce people. Your edge is trust. Build one thing your audience actually asked for. Ship it. Then ask them what's next. Co-creation beats solo grinding."
   },
@@ -972,7 +980,7 @@ const archetypes = [
     id: "ember",
     name: "The Ember",
     subtitle: "Potential Awaiting Fuel",
-    check: (s) => s.aq >= 4 && s.aq <= 6 && s.ri >= 4 && s.ri <= 6 && s.ci >= 3 && s.ci < 5,
+    check: (s) => s.aq >= 4 && s.aq <= 6 && s.ri >= 4 && s.ri < 6 && s.ci >= 3 && s.ci < 5 && (s.aq >= 5 || s.ri >= 5),
     profile: "The foundation is there. Decent freedom, some resonance, but you're not fully lit. You're an ember — warm, capable of fire, but not yet burning. Something's holding you back from going all-in.",
     insight: "You're one bold decision away from ignition. Not more planning. Not more preparation. One commitment. What would you do this month if you knew you couldn't fail?"
   },
@@ -980,19 +988,19 @@ const archetypes = [
     id: "plateau_walker",
     name: "The Plateau Walker",
     subtitle: "Comfortable But Not Growing",
-    check: (s) => s.aq >= 4 && s.aq <= 6 && s.ri >= 4 && s.ri <= 6 && s.ci >= 5 && s.ci <= 6,
+    check: (s) => s.aq >= 4 && s.aq < 6 && s.ri >= 4 && s.ri < 6 && s.ci >= 5 && s.ci < 6 && !(s.ri > s.aq && s.ri > s.ci),
     profile: "Nothing is broken. You're functional across the board. But nothing is exceptional either. You've reached a plateau — sustainable, comfortable, and quietly stagnant.",
     insight: "Plateaus feel safe because they are. Growth requires destabilization. Pick ONE law to push to 7+ this quarter. Let the others hold steady. Comfort is the enemy of your next level."
   },
 
   // === TIER 4: Balanced/positive states ===
   {
-    id: "professional",
-    name: "The Professional",
-    subtitle: "Consistent Across All Fronts",
-    check: (s) => s.aq >= 5 && s.aq <= 7.5 && s.ri >= 5 && s.ri <= 7.5 && s.ci >= 5 && s.ci <= 7.5,
-    profile: "Solid across the board. No critical weaknesses, no exceptional strengths. Sustainable, competent, making a living. The question is whether you're satisfied here.",
-    insight: "You're in the 'good enough' zone. To break through, you'll need to temporarily destabilize. Push one law to exceptional while maintaining the others."
+    id: "legacy",
+    name: "The Legacy Builder",
+    subtitle: "Generational Impact",
+    check: (s) => s.alpha >= 8,
+    profile: "You've transcended personal success. Creating not for validation or money, but because you're the only one who can make THIS thing. Work that will outlast you.",
+    insight: "Document everything. Teach. Build systems that can carry your vision forward. Your creativity is a public good now."
   },
   {
     id: "thriving",
@@ -1003,20 +1011,12 @@ const archetypes = [
     insight: "Your job is protection, not expansion. Say no more than yes. Guard your time, your energy, and the conditions that created this state."
   },
   {
-    id: "legacy",
-    name: "The Legacy Builder",
-    subtitle: "Generational Impact",
-    check: (s) => s.alpha >= 8,
-    profile: "You've transcended personal success. Creating not for validation or money, but because you're the only one who can make THIS thing. Work that will outlast you.",
-    insight: "Document everything. Teach. Build systems that can carry your vision forward. Your creativity is a public good now."
-  },
-  {
-    id: "comeback",
-    name: "The Comeback Arc",
-    subtitle: "Rising From the Ashes",
-    check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 2 && s.ci < 5,
-    profile: "You had a moment, then disappeared. Now returning with more wisdom, clearer vision, and the freedom to create on your terms. The second act is forming.",
-    insight: "Your superpower is perspective earned through failure. The comeback doesn't need to be bigger, just truer. Create from clarity, not desperation."
+    id: "professional",
+    name: "The Professional",
+    subtitle: "Consistent Across All Fronts",
+    check: (s) => s.aq >= 5 && s.aq <= 7.5 && s.ri >= 5 && s.ri <= 7.5 && s.ci >= 5 && s.ci <= 7.5,
+    profile: "Solid across the board. No critical weaknesses, no exceptional strengths. Sustainable, competent, making a living. The question is whether you're satisfied here.",
+    insight: "You're in the 'good enough' zone. To break through, you'll need to temporarily destabilize. Push one law to exceptional while maintaining the others."
   },
 
   // === TIER 5: Fallback ===
@@ -1259,5 +1259,533 @@ const actionPlans = {
     headline: "Reclaim Your Time",
     diagnosis: "Admin is eating your creative hours. Every hour on logistics is an hour not on craft. Death by a thousand emails.",
     action: "Batch all admin into one 90-minute block. Automate one task. Cancel one meeting. Protect the rest."
+  }
+};
+
+// ============================================================
+// AQ PROPHETIC MESSAGES - Autonomy pattern-based messaging
+// ============================================================
+
+const aqPropheticMessages = {
+  // BOTTLENECK: Energy
+  energy_bottleneck: {
+    condition: (p) => p.bottleneck.name === 'energy' && p.raw.energy <= 4,
+    label: "⚡ ENERGY CRISIS",
+    messages: {
+      morning: "Your energy is depleted. Before anything else today, ask: what would restore 10% of my capacity? Do that first. Not after email. First.",
+      afternoon: "Running on fumes by midday. This isn't sustainable. What drained you this morning that you could eliminate tomorrow?",
+      evening: "You gave more than you had today. Tomorrow, protect your first 2 hours. No meetings. No requests. Just recovery.",
+      night: "You're checking this late because you couldn't during the day. That's the problem. Sleep is not optional. Close this. Rest."
+    }
+  },
+
+  // BOTTLENECK: Mental Space
+  space_bottleneck: {
+    condition: (p) => p.bottleneck.name === 'space' && p.raw.space <= 4,
+    label: "🌫 MENTAL OVERLOAD",
+    messages: {
+      morning: "Your mind is already full and the day just started. Write down the three thoughts consuming you. Get them out of your head and onto paper.",
+      afternoon: "Mental clutter is eating your afternoon. Step outside for 10 minutes. No phone. Let your mind defragment.",
+      evening: "Your head is noisy. Before tomorrow, do a brain dump. Every open loop, every worry, every 'I should.' Write it all down.",
+      night: "Racing thoughts at night mean unprocessed days. Tomorrow, schedule 15 minutes of nothing. Your brain needs idle time."
+    }
+  },
+
+  // BOTTLENECK: Optionality
+  optionality_bottleneck: {
+    condition: (p) => p.bottleneck.name === 'optionality' && p.raw.optionality <= 4,
+    label: "🔒 TRAPPED",
+    messages: {
+      morning: "You feel trapped. But are you? Write down what's actually stopping you from changing direction. Is it real or imagined?",
+      afternoon: "Low optionality means someone else controls your calendar. What's one boundary you could set this week?",
+      evening: "Feeling stuck is often feeling obligated. What commitment are you honoring that no longer serves you?",
+      night: "You're thinking about options you don't have. But options are created, not found. What's one door you could build?"
+    }
+  },
+
+  // BOTTLENECK: Freedom (high constraint)
+  constraint_bottleneck: {
+    condition: (p) => p.bottleneck.name === 'freedom' && p.raw.constraint >= 7,
+    label: "⛓ OBLIGATION OVERLOAD",
+    messages: {
+      morning: "Heavy obligations today. Before they consume you, protect one hour for yourself. Put it on the calendar. Guard it.",
+      afternoon: "Your constraints are real, but are all of them necessary? Name one you've never questioned.",
+      evening: "You gave the day to your obligations. Did you give any of it to yourself? Tomorrow, take something back.",
+      night: "Your life belongs to others right now. This is not sustainable. Something must change. What would you drop if you had permission?"
+    }
+  },
+
+  // STRENGTH: Energy (but still limited by something else)
+  energy_strength: {
+    condition: (p) => p.strength.name === 'energy' && p.raw.energy >= 7 && p.average < 7,
+    label: "⚡ UNTAPPED POWER",
+    messages: {
+      morning: "You have energy but something else is blocking you. That energy is a resource. Don't waste it on low-value tasks.",
+      afternoon: "Strong energy being eaten by constraints or mental noise. Channel it into your ONE priority before it dissipates.",
+      evening: "You had energy today. Did you use it on what mattered? Tomorrow, direct it before others claim it.",
+      night: "Energy without direction is just restlessness. Tomorrow, pick one thing. Pour the energy there."
+    }
+  },
+
+  // SHAPE: Soaring (all high)
+  soaring: {
+    condition: (p) => p.shape === 'soaring',
+    label: "✓ FULL AUTONOMY",
+    messages: {
+      morning: "All systems green. This is rare. Use today for your most important work. Not maintenance. Creation.",
+      afternoon: "You're in a powerful state. Protect it. Say no to anything that would disrupt this.",
+      evening: "Strong day. Document what made it possible. These conditions are your formula. Replicate them.",
+      night: "Peak autonomy achieved. Don't take this for granted. What would threaten this state? Protect against it."
+    }
+  },
+
+  // SHAPE: Crashed (all low)
+  crashed: {
+    condition: (p) => p.shape === 'crashed',
+    label: "✗ SYSTEM FAILURE",
+    messages: {
+      morning: "Everything is low. This isn't a productivity problem. This is a recovery problem. Protect yourself today.",
+      afternoon: "Multiple systems failing. Stop trying to push through. What's the minimum you can do today?",
+      evening: "You're depleted on all fronts. Tomorrow is not about output. It's about restoration.",
+      night: "When everything is low, rest is the only work that matters. Close this. Sleep. Rebuild tomorrow."
+    }
+  },
+
+  // SHAPE: Plateau (mid, balanced)
+  plateau: {
+    condition: (p) => p.shape === 'plateau',
+    label: "⚖ HOLDING STEADY",
+    messages: {
+      morning: "Stable but not growing. What one lever could you push today to break the pattern?",
+      afternoon: "You're maintaining. That's okay for survival, but not for growth. Where's your next edge?",
+      evening: "Balanced at the middle is still the middle. What would make tomorrow a 7 instead of a 5?",
+      night: "Plateaus feel safe. They're also where ambition goes to die. What bold move are you avoiding?"
+    }
+  },
+
+  // SHAPE: Lopsided (fallback)
+  lopsided: {
+    condition: (p) => p.shape.startsWith('lopsided'),
+    label: "⚖ IMBALANCED",
+    messages: {
+      morning: "Your autonomy is uneven. Strong in some areas, weak in others. Focus on your weakest link today.",
+      afternoon: "Imbalanced systems create stress. What's draining you that your strengths can't compensate for?",
+      evening: "Lopsided days are exhausting. Tomorrow, shore up your weak spot before leveraging your strength.",
+      night: "You're compensating in some areas for deficits in others. That works short-term. Not long-term."
+    }
+  }
+};
+
+// ============================================================
+// Ri PROPHETIC MESSAGES - Resonance pattern-based messaging
+// ============================================================
+
+const riPropheticMessages = {
+  // BOTTLENECK: Impact
+  impact_bottleneck: {
+    condition: (p) => p.bottleneck.name === 'impact' && p.raw.impact <= 4,
+    label: "👁 SEEN NOT FELT",
+    messages: {
+      morning: "Your work is being seen but not felt. Today, make something that moves YOU first. If it doesn't move you, it won't move them.",
+      afternoon: "Low emotional impact. When did you last create something that scared you a little? Safety is the enemy of resonance.",
+      evening: "People are scrolling past your work. What would make them stop? Not tricks. Truth.",
+      night: "Impact requires vulnerability. What are you protecting that you should be revealing?"
+    }
+  },
+
+  // BOTTLENECK: Identity
+  identity_bottleneck: {
+    condition: (p) => p.bottleneck.name === 'identity' && p.raw.identity <= 4,
+    label: "🎯 NO TARGET",
+    messages: {
+      morning: "You're creating for everyone, which means no one feels it's for THEM. Who specifically needs what you make?",
+      afternoon: "Generic appeal is no appeal. Describe your ideal audience member in one sentence. Now make for them.",
+      evening: "Your work lacks specificity. What if you made something ONLY 100 people would love, but they'd love it completely?",
+      night: "The riches are in the niches. Who would mourn if you stopped creating? Make for them."
+    }
+  },
+
+  // BOTTLENECK: Boldness
+  boldness_bottleneck: {
+    condition: (p) => p.bottleneck.name === 'boldness' && p.raw.boldness <= 4,
+    label: "🛡 PLAYING SAFE",
+    messages: {
+      morning: "You're playing it safe. What would you make today if no one would judge you? Start there.",
+      afternoon: "Low boldness means high conformity. What opinion do you hold that others in your space don't?",
+      evening: "Safe work is forgettable work. What's the project you keep talking yourself out of?",
+      night: "The fear you feel about sharing something is usually proportional to its importance. Lean into it."
+    }
+  },
+
+  // BOTTLENECK: Intimacy (large audience dilution)
+  audience_dilution: {
+    condition: (p) => p.isLargeAudience && p.bottleneck.name === 'intimacy',
+    label: "📢 SCALE VS SOUL",
+    messages: {
+      morning: "Large audience, but connection is diluting. Today, create like you have 100 followers. Forget the metrics.",
+      afternoon: "Scale can kill soul. When did you last have a real conversation with someone who follows you?",
+      evening: "You're reaching many but touching few. Depth beats breadth. What would your day-one fans want?",
+      night: "Mass audience is a blessing and a trap. Don't lose the intimacy that built this in the first place."
+    }
+  },
+
+  // STRENGTH: Small audience advantage
+  small_audience_strength: {
+    condition: (p) => p.isSmallAudience && p.raw.impact >= 6,
+    label: "💎 INTIMATE POWER",
+    messages: {
+      morning: "Small audience, real impact. This is the sweet spot. You can know each person. Use that advantage.",
+      afternoon: "Intimacy is your edge. What if you asked 5 followers what they actually need? Their answer might change everything.",
+      evening: "You're not chasing scale, you're building depth. That's rare. That's right. Keep going.",
+      night: "Your audience is small but they feel you. That's worth more than millions of passive scrollers."
+    }
+  },
+
+  // STRENGTH: High boldness
+  boldness_strength: {
+    condition: (p) => p.strength.name === 'boldness' && p.raw.boldness >= 7 && p.average < 7,
+    label: "🔥 BOLD BUT UNHEARD",
+    messages: {
+      morning: "You're taking risks but they're not landing. Boldness without impact is just noise. Who needs to hear this?",
+      afternoon: "Fearless work that doesn't connect is still missing something. What truth are you telling? Who needs that truth?",
+      evening: "You're brave. Now be specific. Bold + targeted = unstoppable.",
+      night: "Your courage is an asset. Tomorrow, aim it. Not at everyone. At someone."
+    }
+  },
+
+  // SHAPE: Soaring
+  soaring: {
+    condition: (p) => p.shape === 'soaring',
+    label: "★ RESONANCE ACHIEVED",
+    messages: {
+      morning: "Deep resonance achieved. Your work matters to people who matter. Protect this. Don't chase scale for its own sake.",
+      afternoon: "You've solved for connection. The question now is: how do you maintain this without manufacturing it?",
+      evening: "Real impact. Real audience. Real boldness. This is the rarest combination. Guard it fiercely.",
+      night: "Resonance is your gift. Document what created it. This is the formula. Don't forget it."
+    }
+  },
+
+  // SHAPE: Crashed
+  crashed: {
+    condition: (p) => p.shape === 'crashed',
+    label: "⊘ SIGNAL LOST",
+    messages: {
+      morning: "Your work isn't landing. Before creating more, ask: who is this for and what do they need to feel?",
+      afternoon: "Low resonance across the board. Stop publishing for a week. Study what moves YOU. Then make from there.",
+      evening: "Nothing is connecting. That's data, not failure. What's the gap between what you're making and what you believe?",
+      night: "When resonance is gone, technique won't save you. Only truth will. What truth are you avoiding?"
+    }
+  },
+
+  // SHAPE: Plateau
+  plateau: {
+    condition: (p) => p.shape === 'plateau',
+    label: "📡 SIGNAL STEADY",
+    messages: {
+      morning: "Moderate resonance. You're connecting but not deeply. What would make your work unmissable?",
+      afternoon: "Some things land, some don't. Study the difference. What makes your best work hit?",
+      evening: "Stable connection but room to grow. Tomorrow, say something you've been holding back.",
+      night: "Your signal is consistent but not powerful. What would amplify it?"
+    }
+  },
+
+  // SHAPE: Lopsided (fallback)
+  lopsided: {
+    condition: (p) => p.shape.startsWith('lopsided'),
+    label: "📡 UNEVEN SIGNAL",
+    messages: {
+      morning: "Your resonance is unbalanced. Strong in some dimensions, weak in others. Which weakness matters most?",
+      afternoon: "Lopsided connection. You're either too broad, too safe, or too shallow. Which is it?",
+      evening: "Imbalanced resonance creates inconsistent results. Shore up your weakest dimension.",
+      night: "Some parts of your resonance are working. Others aren't. Tomorrow, focus on the gap."
+    }
+  }
+};
+
+// ============================================================
+// Ci PROPHETIC MESSAGES - Craft Intensity pattern-based messaging
+// ============================================================
+
+const ciPropheticMessages = {
+  // BOTTLENECK: Flow (fuel)
+  flow_bottleneck: {
+    condition: (p) => p.fuelBottleneck.name === 'flow' && p.raw.flow <= 12,
+    label: "🌀 NO DEPTH",
+    messages: {
+      morning: "Minimal deep work happening. Before you check anything today, do 25 minutes of uninterrupted creation. Then check.",
+      afternoon: "You've barely entered flow this week. What keeps interrupting you? Name it. Eliminate it.",
+      evening: "Another day without deep work. Tomorrow, block 2 hours. Put it on the calendar. Protect it like oxygen.",
+      night: "No flow means no craft evolution. Everything else is maintenance. Schedule creation time like a meeting with your future self."
+    }
+  },
+
+  // BOTTLENECK: Evolution (fuel)
+  evolution_bottleneck: {
+    condition: (p) => p.fuelBottleneck.name === 'evolution' && p.raw.evolution <= 4,
+    label: "📉 SKILL STAGNATION",
+    messages: {
+      morning: "Your skills have plateaued. Today, spend 30 minutes learning something adjacent to your craft. Not content. Capability.",
+      afternoon: "No evolution means slow irrelevance. What skill would change everything if you developed it over 90 days?",
+      evening: "You're not getting better. That's not neutral. That's falling behind. What's one skill to focus on tomorrow?",
+      night: "Stagnant skills create stagnant work. Before sleeping, decide: what will you learn this week?"
+    }
+  },
+
+  // BOTTLENECK: Risk (fuel)
+  risk_bottleneck: {
+    condition: (p) => p.fuelBottleneck.name === 'risk' && p.raw.risk <= 4,
+    label: "🔄 REPETITION LOOP",
+    messages: {
+      morning: "You're repeating what worked. Safe but stagnant. Today, try one thing you've never done before.",
+      afternoon: "Low creative risk means low creative growth. What experiment could you run where failure is acceptable?",
+      evening: "Playing the hits again. Tomorrow, make something that might not work. That's where growth lives.",
+      night: "Comfort is the enemy of craft. What would you try if you knew no one would see it fail?"
+    }
+  },
+
+  // BOTTLENECK: Admin (drag)
+  admin_bottleneck: {
+    condition: (p) => p.worstDrag.name === 'admin' && p.raw.admin >= 25,
+    label: "📋 ADMIN OVERLOAD",
+    messages: {
+      morning: "Admin is eating your creative hours. Before opening email, identify your ONE creative priority. Do that first.",
+      afternoon: "You're drowning in logistics. What would it cost to delegate 5 hours of this? Compare to the cost of your time.",
+      evening: "More admin than creation today. This is a slow emergency. What can you automate, batch, or kill?",
+      night: "That many hours of admin is a part-time job of not-creating. Something has to change. What?"
+    }
+  },
+
+  // BOTTLENECK: Distraction (drag)
+  distraction_bottleneck: {
+    condition: (p) => p.worstDrag.name === 'distraction' && p.raw.distraction >= 20,
+    label: "📱 ATTENTION LEAK",
+    messages: {
+      morning: "Your phone is your enemy. Before anything else, check your screen time. That number is hours stolen from your craft.",
+      afternoon: "High distraction. Put your phone in another room. Not on silent. In another room. See what happens.",
+      evening: "You lost hours to distraction today. Not lost. Given away. What would you have built with those hours?",
+      night: "That's not rest. That's avoidance. What are you avoiding by scrolling?"
+    }
+  },
+
+  // BOTTLENECK: Stagnation (drag)
+  stagnation_bottleneck: {
+    condition: (p) => p.worstDrag.name === 'stagnation' && p.raw.stagnation >= 7,
+    label: "🧊 FROZEN",
+    messages: {
+      morning: "You're frozen. Forget the big project. What's the smallest possible action you could take in 5 minutes? Do only that.",
+      afternoon: "Something is stuck. Name it. How long has it waited? What's the fear underneath the paralysis?",
+      evening: "Another day without shipping. Tomorrow, publish something embarrassing. The bar is too high. Lower it.",
+      night: "Paralysis thrives in darkness. Write down the project you're avoiding. Now write the first physical action. That's tomorrow's only job."
+    }
+  },
+
+  // SHAPE: Soaring (high fuel, low drag)
+  soaring: {
+    condition: (p) => p.shape === 'soaring',
+    label: "◆ DEEP WORK MODE",
+    messages: {
+      morning: "Craft intensity is high. You're in the zone. Protect this at all costs. Cancel anything that would interrupt it.",
+      afternoon: "Deep in the work. This is what it's for. Keep going. The world can wait.",
+      evening: "Powerful creative day. Document what enabled it. Sleep well. Preserve the momentum.",
+      night: "Flow state achieved. This is rare. Remember this feeling. These are the days that compound into mastery."
+    }
+  },
+
+  // SHAPE: High fuel, high drag (fighting friction)
+  high_fuel_high_drag: {
+    condition: (p) => p.shape === 'high_fuel_high_drag',
+    label: "🔥 FIGHTING FRICTION",
+    messages: {
+      morning: "You're in the work but fighting resistance. The craft is there. Now remove the friction. What's creating drag?",
+      afternoon: "Fuel is strong but drag is stronger. Like driving with the parking brake on. What's the brake?",
+      evening: "You have the skills and the drive. The enemy is operational. Fix systems, not effort.",
+      night: "High output, high friction. This is exhausting and unsustainable. Tomorrow, cut one source of drag."
+    }
+  },
+
+  // SHAPE: Crashed (low fuel, high drag)
+  crashed: {
+    condition: (p) => p.shape === 'crashed',
+    label: "○ CREATIVE DROUGHT",
+    messages: {
+      morning: "Creative output has stalled. Don't force it. Go for a walk. Change the inputs. Sometimes away is forward.",
+      afternoon: "All craft indicators low. This isn't laziness. This is a signal. What's wrong? Not with your work. With you.",
+      evening: "You didn't create today. That's okay. But too many days like this and the skill atrophies. Tomorrow, show up.",
+      night: "Craft intensity crashed. Before sleeping, answer one question: what would make tomorrow different?"
+    }
+  },
+
+  // SHAPE: Plateau
+  plateau: {
+    condition: (p) => p.shape === 'plateau' || p.shape === 'functional_high',
+    label: "△ STEADY CRAFT",
+    messages: {
+      morning: "Functional craft intensity. You're working, but not at your edge. Where could you push harder today?",
+      afternoon: "Steady output. That's good. But steady doesn't compound. What would make this session memorable?",
+      evening: "Solid work day. Not exceptional, not bad. What's one thing you could improve tomorrow?",
+      night: "Consistent craft. Now the question: consistent at what level? Are you satisfied here?"
+    }
+  },
+
+  // SHAPE: Struggling (low fuel, low drag but still not working)
+  struggling: {
+    condition: (p) => p.shape === 'struggling' || p.shape === 'low_fuel_low_drag',
+    label: "⚠ LOW OUTPUT",
+    messages: {
+      morning: "Low creative output but not much friction either. The issue isn't obstacles. It's ignition. What would spark you today?",
+      afternoon: "You're not blocked, you're just not moving. Sometimes the problem is too little pressure, not too much.",
+      evening: "Neither creating nor distracted. Just... stalled. What would make tomorrow feel urgent?",
+      night: "Low intensity, low friction. You're coasting. Is that what you want?"
+    }
+  }
+};
+
+// ============================================================
+// ALPHA PROPHETIC MESSAGES - Composite pattern-based messaging
+// ============================================================
+
+const alphaPropheticMessages = {
+  // WEAKEST: Autonomy
+  aq_weakest: {
+    condition: (p) => p.weakest.name === 'aq' && p.spread >= 2,
+    label: "🔓 FREEDOM BOTTLENECK",
+    messages: {
+      morning: "Your weakest link is autonomy. You have the skill and the resonance, but not the freedom. Today's priority: protect your time.",
+      afternoon: "Alpha held back by constraints. Your bottleneck isn't talent. It's freedom. What would buy you more of it?",
+      evening: "Resonance and craft are strong. Autonomy is the limiter. What would change if you had 10 more free hours per week?",
+      night: "You can do the work. People want the work. But you don't have room to do it. That's the problem to solve."
+    }
+  },
+
+  // WEAKEST: Resonance
+  ri_weakest: {
+    condition: (p) => p.weakest.name === 'ri' && p.spread >= 2,
+    label: "📡 CONNECTION BOTTLENECK",
+    messages: {
+      morning: "Your weakest link is resonance. You have freedom and skill, but the work isn't connecting. Who is this actually for?",
+      afternoon: "Alpha held back by connection. You're doing the work but it's not landing. What would make people feel this?",
+      evening: "Freedom and craft are strong. Resonance is the limiter. Before creating more, study what moves people.",
+      night: "You have the space. You have the skill. But no one is feeling it. That's the gap to close."
+    }
+  },
+
+  // WEAKEST: Craft Intensity
+  ci_weakest: {
+    condition: (p) => p.weakest.name === 'ci' && p.spread >= 2,
+    label: "🔨 OUTPUT BOTTLENECK",
+    messages: {
+      morning: "Your weakest link is craft intensity. You have freedom and connection, but not enough output. What would you ship if you had to?",
+      afternoon: "Alpha held back by execution. Your audience is waiting. Your calendar is clear. What's really stopping you?",
+      evening: "Freedom and resonance are strong. Craft is the limiter. Tomorrow, create before consuming anything.",
+      night: "You have room to work. People want what you make. But you're not making enough. Why?"
+    }
+  },
+
+  // BALANCE: All aligned high
+  all_aligned_high: {
+    condition: (p) => p.balance === 'all_aligned_high',
+    label: "⚡ COMPOUNDING RETURNS",
+    messages: {
+      morning: "All three laws aligned. This is the compound zone. Your job today is not to push harder. It's to protect this state.",
+      afternoon: "Peak creative alpha. Say no to everything that doesn't serve this. You've earned this position. Guard it.",
+      evening: "Rare territory. Everything working. Document what created this. These are your success conditions.",
+      night: "Alpha above 7 with all laws aligned. This is what you've been building toward. Enjoy it. Protect it. Extend it."
+    }
+  },
+
+  // BALANCE: All aligned low
+  all_aligned_low: {
+    condition: (p) => p.balance === 'all_aligned_low',
+    label: "🚨 CREATIVE EMERGENCY",
+    messages: {
+      morning: "Everything is struggling. This isn't a work problem. This is a life problem. What do you need that you're not getting?",
+      afternoon: "Creative insolvency. Stop trying to produce. Start trying to recover. What would help? Not the work. You.",
+      evening: "All systems failing. Tomorrow isn't about creating. It's about surviving. Lower all expectations. Focus on stability.",
+      night: "When everything is low, ambition is the enemy. Rest. Rebuild. The work will be there when you're ready."
+    }
+  },
+
+  // BALANCE: Severely imbalanced
+  severely_imbalanced: {
+    condition: (p) => p.balance === 'severely_imbalanced',
+    label: "⚖ SEVERE IMBALANCE",
+    messages: {
+      morning: "One law is thriving. Another is failing. This gap is unsustainable. Today, focus only on your weakest score.",
+      afternoon: "Major imbalance. Your strength can't compensate forever. Shore up the weak link before it breaks everything.",
+      evening: "The spread between your laws is too wide. Strengths don't matter if one weakness collapses the system.",
+      night: "Imbalanced alpha creates unstable success. Tomorrow, stop optimizing your strength. Start fixing your weakness."
+    }
+  },
+
+  // FLAGS: Compounding
+  compounding: {
+    condition: (p) => p.flags.isCompounding,
+    label: "📈 COMPOUNDING",
+    messages: {
+      morning: "You're in the compound zone. Every day builds on the last. Protect the routine that created this.",
+      afternoon: "Compounding returns active. Don't change what's working. Double down on your system.",
+      evening: "Momentum is real. You're in it. Sleep well. Wake up ready to continue the streak.",
+      night: "When everything compounds, rest is part of the strategy. Protect your recovery as much as your output."
+    }
+  },
+
+  // FLAGS: Emergency
+  emergency: {
+    condition: (p) => p.flags.isEmergency,
+    label: "🆘 EMERGENCY",
+    messages: {
+      morning: "Alpha below 3 is a crisis. Do not push through. Do not optimize. Ask for help. Talk to someone.",
+      afternoon: "This is not a productivity problem. Something is deeply wrong. What support do you need right now?",
+      evening: "Emergency levels. Tomorrow is not about work. It's about survival and recovery. Be gentle with yourself.",
+      night: "When alpha is this low, sleep is medicine. Close everything. Rest. Tomorrow, find one person to talk to."
+    }
+  },
+
+  // FLAGS: Coasting
+  coasting: {
+    condition: (p) => p.flags.isCoasting,
+    label: "🛶 COASTING",
+    messages: {
+      morning: "Comfortable middle. Nothing is broken, nothing is great. Is this where you want to stay?",
+      afternoon: "You're coasting. That's not bad. But it's also not growth. What would make you uncomfortable in a good way?",
+      evening: "Stable but stagnant. The middle is safe. It's also where ambition goes to sleep.",
+      night: "Coasting feels like balance. Sometimes it's just fear of pushing. Which is it for you?"
+    }
+  },
+
+  // TREND: Rising
+  rising: {
+    condition: (p) => p.trend === 'rising',
+    label: "📈 ASCENDING",
+    messages: {
+      morning: "Alpha trending up. Momentum is real. Don't change what's working. Keep the streak alive.",
+      afternoon: "You're ascending. Each day builds on the last. What created this improvement? Do more of that.",
+      evening: "Rising alpha. You're doing something right. Document it before you forget what changed.",
+      night: "Upward trend. Sleep well. Wake up ready to extend it."
+    }
+  },
+
+  // TREND: Falling
+  falling: {
+    condition: (p) => p.trend === 'falling',
+    label: "📉 DECLINING",
+    messages: {
+      morning: "Alpha declining. Somewhere a leak opened. Audit your last week. What changed?",
+      afternoon: "Downward trend. Not a crisis yet, but a signal. What's draining your creative reserves?",
+      evening: "Falling alpha. Before it becomes a pattern, identify the cause. Was it one event or slow accumulation?",
+      night: "Decline in progress. Don't panic. But don't ignore it. Tomorrow, find the leak."
+    }
+  },
+
+  // BALANCED (fallback for moderate spread)
+  balanced: {
+    condition: (p) => p.balance === 'balanced' || p.balance === 'imbalanced',
+    label: "⚖ IN MOTION",
+    messages: {
+      morning: "Your three laws are reasonably balanced. Now push all of them up. What's the highest-leverage action today?",
+      afternoon: "Balanced alpha. No critical weakness. The question is: which law could you push to exceptional?",
+      evening: "Stable across the board. Good foundation. Tomorrow, pick one law to level up.",
+      night: "Balance is the foundation. Now build on it. Which law deserves your focus this week?"
+    }
   }
 };

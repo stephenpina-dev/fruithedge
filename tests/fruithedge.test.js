@@ -99,22 +99,30 @@ function calculateAlpha(aq, ri, ci) {
   return Math.round(alpha * 10) / 10;
 }
 
-// Archetypes array (from data.js)
+// Archetypes array (from data.js) - Order matters! First match wins
 const archetypes = [
-  { id: "legacy", name: "The Legacy Builder", check: (s) => s.alpha >= 8 },
-  { id: "thriving", name: "The Thriving Creator", check: (s) => s.aq >= 7 && s.ri >= 7 && s.ci >= 7 },
+  // TIER 1: Crisis states
   { id: "burnout", name: "The Burnout", check: (s) => s.aq < 3 && s.ri < 3 && s.ci < 3 },
+  // TIER 2: Specific imbalance patterns
+  { id: "chaos", name: "The Chaos Creator", check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5 },
   { id: "hustler", name: "The Hustler", check: (s) => s.aq < 4 && s.ci >= 6 },
   { id: "underground_gem", name: "The Underground Gem", check: (s) => s.ri >= 6 && s.aq < 4 },
   { id: "algorithm_slave", name: "The Algorithm Slave", check: (s) => s.ci >= 6 && s.ri < 2.5 },
   { id: "paralyzed_dreamer", name: "The Paralyzed Dreamer", check: (s) => s.aq >= 6 && s.ci < 3 },
   { id: "craftsperson", name: "The Craftsperson", check: (s) => s.ci >= 7 && s.ri < 5 && s.aq >= 4 },
-  { id: "cult_leader", name: "The Cult Leader", check: (s) => s.ri >= 7 && s.ci >= 4 && s.ci < 7 && s.aq >= 4 },
+  { id: "tribe_builder", name: "The Tribe Builder", check: (s) => s.ri >= 7 && s.ci >= 4 && s.aq >= 4 && !(s.aq >= 7 && s.ci >= 7) && s.alpha < 8 },
   { id: "free_agent", name: "The Free Agent", check: (s) => s.aq >= 7 && s.ri < 6 && s.ci >= 3 && s.ci < 6 },
+  // TIER 3: New archetypes
+  { id: "monk", name: "The Monk", check: (s) => s.ri < 4 && ((s.aq >= 5 && s.ci >= 5) || (s.aq >= 6) || (s.ci >= 6)) },
+  { id: "grinder", name: "The Grinder", check: (s) => s.ci >= 5 && s.aq < 5 && s.ri < 5 },
   { id: "comeback", name: "The Comeback Arc", check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 2 && s.ci < 5 },
+  { id: "connector", name: "The Connector", check: (s) => s.ri >= 5 && s.ri > s.aq && s.ri > s.ci && s.aq >= 4 && s.ci >= 4 },
+  { id: "ember", name: "The Ember", check: (s) => s.aq >= 4 && s.aq <= 6 && s.ri >= 4 && s.ri < 6 && s.ci >= 3 && s.ci < 5 && (s.aq >= 5 || s.ri >= 5) },
+  { id: "plateau_walker", name: "The Plateau Walker", check: (s) => s.aq >= 4 && s.aq < 6 && s.ri >= 4 && s.ri < 6 && s.ci >= 5 && s.ci < 6 && !(s.ri > s.aq && s.ri > s.ci) },
+  // TIER 4: Balanced/positive states
+  { id: "legacy", name: "The Legacy Builder", check: (s) => s.alpha >= 8 },
+  { id: "thriving", name: "The Thriving Creator", check: (s) => s.aq >= 7 && s.ri >= 7 && s.ci >= 7 },
   { id: "professional", name: "The Professional", check: (s) => s.aq >= 5 && s.aq <= 7.5 && s.ri >= 5 && s.ri <= 7.5 && s.ci >= 5 && s.ci <= 7.5 },
-  { id: "emerging", name: "The Emerging Artist", check: (s) => s.aq >= 3 && s.aq <= 6 && s.ri >= 3 && s.ri <= 6 && s.ci >= 3 && s.ci <= 6 },
-  { id: "chaos", name: "The Chaos Creator", check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5 },
   { id: "explorer", name: "The Explorer", check: (s) => true }
 ];
 
@@ -397,7 +405,7 @@ test('matchArchetype: legacy takes priority over thriving (alpha>=8)', () => {
 });
 
 test('matchArchetype: hustler (aq<4, ci>=6)', () => {
-  const arch = matchArchetype({aq: 3, ri: 5, ci: 7, alpha: 4.7});
+  const arch = matchArchetype({aq: 3, ri: 4, ci: 7, alpha: 4.4});
   assertEqual(arch.id, 'hustler');
 });
 
@@ -407,7 +415,7 @@ test('matchArchetype: paralyzed_dreamer (aq>=6, ci<3)', () => {
 });
 
 test('matchArchetype: underground_gem (ri>=6, aq<4)', () => {
-  const arch = matchArchetype({aq: 3, ri: 7, ci: 5, alpha: 4.7});
+  const arch = matchArchetype({aq: 3, ri: 7, ci: 4, alpha: 4.4});
   assertEqual(arch.id, 'underground_gem');
 });
 
