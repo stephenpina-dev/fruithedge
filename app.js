@@ -672,21 +672,21 @@
 
   /**
    * Calculate Resonance Index
-   * Geometric mean of depth factors divided by audience dilution
+   * Formula: Ri = (I × Id × B) / [1 + ln(A / 1000)]
    *
    * Expected results:
-   * - I=10, Id=10, B=10, A=small → Ri = 10
-   * - I=10, Id=10, B=10, A=large → Ri = ~5-6
-   * - I=5, Id=5, B=5, A=medium → Ri = ~5
-   * - I=1, Id=1, B=1, A=large → Ri = 1 (floored)
+   * - I=10, Id=10, B=10, A=1K → Ri = 10 (no dilution)
+   * - I=10, Id=10, B=10, A=10M → Ri = 10 (ln(10K)≈9.2, denom≈10.2)
+   * - I=5, Id=5, B=5, A=100K → Ri = ~10 (125 / 5.6 ≈ 22 → clamped to 10)
+   * - I=1, Id=1, B=1, A=10M → Ri = 1 (floored)
    */
   function calculateRi(i, id, b, audienceValue) {
-    // Geometric mean of depth factors (1-10 scale)
-    const depthGeo = Math.pow(i * id * b, 1/3);
-    // Audience dilution: 1K→1.0, 10M→1.75
-    const dilution = 1 + Math.log10(audienceValue / 1000) / 4;
-    const dilutionClamped = Math.max(0.5, Math.min(2, dilution));
-    const ri = depthGeo / dilutionClamped;
+    // Spec formula: Ri = (I × Id × B) / [1 + ln(A / 1000)]
+    const numerator = i * id * b;
+    const denominator = 1 + Math.log(audienceValue / 1000);
+    // Protect against division by zero or negative (audience < 368)
+    const safeDenominator = Math.max(0.1, denominator);
+    const ri = numerator / safeDenominator;
     return Math.round(Math.min(10, Math.max(1, ri)) * 10) / 10;
   }
 
