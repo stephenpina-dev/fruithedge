@@ -16,7 +16,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/1936891026",
     duration: "190 pages",
-    patterns: ["low_aq", "low_ci", "paralyzed"],
+    patterns: ["low_aq", "low_ci", "paralyzed", "ember"],
     why: "\"Resistance\" is Pressfield's name for the force that keeps you from doing your work. If you're feeling burned out or blocked every time you sit down to create, this short kick-in-the-pants book will help you conquer procrastination and self-doubt."
   },
   {
@@ -26,7 +26,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/1455586692",
     duration: "304 pages",
-    patterns: ["low_ci", "plateau"],
+    patterns: ["low_ci", "plateau", "grinder"],
     why: "You're grinding hard but scatter your energy on emails and social media. Newport shows you how to reclaim your focus and build periods of intense, undistracted creation into your routine."
   },
   {
@@ -66,7 +66,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/0593328972",
     duration: "272 pages",
-    patterns: ["paralyzed", "low_ci", "untapped"],
+    patterns: ["paralyzed", "low_ci", "untapped", "ember", "grinder"],
     why: "If you have trouble finishing and sharing your work, whether from fear or perfectionism, The Practice will nudge you to start shipping your art regularly."
   },
   {
@@ -126,7 +126,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/1591841666",
     duration: "80 pages",
-    patterns: ["plateau", "comeback"],
+    patterns: ["plateau", "comeback", "plateau_walker"],
     why: "Ever hit that monotonous middle of a project where progress stalls? This ultra-short read helps you identify whether you're in a Dip worth pushing through, or a cul-de-sac you should quit."
   },
   {
@@ -146,7 +146,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/076117897X",
     duration: "224 pages",
-    patterns: ["low_ri", "craftsperson_no_message", "low_aq"],
+    patterns: ["low_ri", "craftsperson_no_message", "low_aq", "monk", "connector"],
     why: "If you're putting out work that no one seems to notice, or holding back because you're shy, this book will nudge you into the light and show you how to build an audience by sharing your process."
   },
   {
@@ -176,7 +176,7 @@ const recommendations = [
     type: "book",
     link: "https://www.amazon.com/dp/0061735361",
     duration: "224 pages",
-    patterns: ["protect_magic", "high_aq"],
+    patterns: ["protect_magic", "high_aq", "plateau_walker"],
     why: "When you're thriving, often you unconsciously pull back or create drama. Hendricks calls this the 'Upper Limit Problem' and shows you how to break through self-imposed limits."
   },
   {
@@ -862,29 +862,12 @@ const protocols = [
 ];
 
 // ============================================================
-// ARCHETYPES (14 total) - Ordered from MOST SPECIFIC to LEAST SPECIFIC
+// ARCHETYPES (19 total) - Ordered from MOST SPECIFIC to LEAST SPECIFIC
+// First match wins, so order matters!
 // ============================================================
 
 const archetypes = [
-  // === TIER 1: Check exceptional states first ===
-  {
-    id: "legacy",
-    name: "The Legacy Builder",
-    subtitle: "Generational Impact",
-    check: (s) => s.alpha >= 8,
-    profile: "You've transcended personal success. Creating not for validation or money, but because you're the only one who can make THIS thing. Work that will outlast you.",
-    insight: "Document everything. Teach. Build systems that can carry your vision forward. Your creativity is a public good now."
-  },
-  {
-    id: "thriving",
-    name: "The Thriving Creator",
-    subtitle: "All Systems Healthy",
-    check: (s) => s.aq >= 7 && s.ri >= 7 && s.ci >= 7,
-    profile: "Freedom, resonance, and craft intensity all aligned. This is rare. You're in the compounding phase where creative returns build on themselves.",
-    insight: "Your job is protection, not expansion. Say no more than yes. Guard your time, your energy, and the conditions that created this state."
-  },
-
-  // === TIER 2: Check specific imbalance patterns ===
+  // === TIER 1: Crisis states ===
   {
     id: "burnout",
     name: "The Burnout",
@@ -893,6 +876,8 @@ const archetypes = [
     profile: "Everything is failing simultaneously. You're depleted, disconnected, and not producing meaningful work. This isn't a productivity problem. It's a crisis.",
     insight: "Stop everything. Recovery is the only priority. No new projects, no commitments, no optimization. Rest, then rebuild one law at a time."
   },
+
+  // === TIER 2: Specific imbalance patterns ===
   {
     id: "hustler",
     name: "The Hustler",
@@ -926,6 +911,14 @@ const archetypes = [
     insight: "Freedom without output is just comfortable stagnation. Start with the smallest possible action. Ship something embarrassingly small. Motion creates clarity."
   },
   {
+    id: "chaos",
+    name: "The Chaos Creator",
+    subtitle: "Thriving in Instability",
+    check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5,
+    profile: "You create BECAUSE of chaos, not despite it. Need pressure, constraints, urgency. Your best work comes from crisis. Sustainable? Questionable.",
+    insight: "Find controlled chaos. Manufactured deadlines, artificial constraints. You can generate urgency from discipline instead of waiting for desperation."
+  },
+  {
     id: "craftsperson",
     name: "The Craftsperson",
     subtitle: "Skill Without Message",
@@ -934,10 +927,10 @@ const archetypes = [
     insight: "What would you make if no one was watching? The skills are there. Now add the vulnerability. Your next evolution is personal, not technical."
   },
   {
-    id: "cult_leader",
-    name: "The Cult Leader",
+    id: "tribe_builder",
+    name: "The Tribe Builder",
     subtitle: "Deep Connection, Narrow Reach",
-    check: (s) => s.ri >= 7 && s.ci >= 4 && s.ci < 7 && s.aq >= 4,
+    check: (s) => s.ri >= 7 && s.ci >= 4 && s.aq >= 4,
     profile: "Your audience would follow you anywhere. Deep loyalty, strong identity fit, genuine impact. You've solved for resonance. Now the question is scale without dilution.",
     insight: "Protect what made them love you in the first place. Scale slowly. Every expansion should deepen the core, not water it down."
   },
@@ -950,15 +943,49 @@ const archetypes = [
     insight: "Optionality without commitment is just expensive indecision. Pick a direction, go deep for 6 months, evaluate. You can always pivot, but first, commit."
   },
 
-  // === TIER 3: Check range-based patterns ===
+  // === TIER 3: New archetypes ===
   {
-    id: "comeback",
-    name: "The Comeback Arc",
-    subtitle: "Rising From the Ashes",
-    check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 2 && s.ci < 5,
-    profile: "You had a moment, then disappeared. Now returning with more wisdom, clearer vision, and the freedom to create on your terms. The second act is forming.",
-    insight: "Your superpower is perspective earned through failure. The comeback doesn't need to be bigger, just truer. Create from clarity, not desperation."
+    id: "monk",
+    name: "The Monk",
+    subtitle: "Mastery in Solitude",
+    check: (s) => s.ri < 4 && ((s.aq >= 5 && s.ci >= 5) || (s.aq >= 6) || (s.ci >= 6)),
+    profile: "You have freedom. You're doing the work. But nobody knows. Whether by choice or neglect, your craft lives in isolation. The world isn't seeing what you're building.",
+    insight: "At some point, invisible mastery becomes self-indulgent. You don't need to become a performer — but someone needs to see this. Who specifically would benefit from your work? Tell them it exists."
   },
+  {
+    id: "grinder",
+    name: "The Grinder",
+    subtitle: "Effort Without Leverage",
+    check: (s) => s.ci >= 5 && s.aq < 5 && s.ri < 5,
+    profile: "You're putting in the hours. The work is happening. But it's not translating to freedom or impact. You're on a treadmill — running hard, going nowhere. Effort alone isn't the answer.",
+    insight: "Before doing more, ask: what would create leverage? One piece that compounds beats a hundred that disappear. Find the 10% of your work that could carry the other 90%."
+  },
+  {
+    id: "connector",
+    name: "The Connector",
+    subtitle: "Relationships Over Output",
+    check: (s) => s.ri >= 5 && s.aq >= 4 && s.aq < 6 && s.ci >= 4 && s.ci < 6,
+    profile: "Your superpower is connection. People respond to you. Your work resonates more than your output volume suggests. But you're not fully free, and your consistency is shaky.",
+    insight: "Stop trying to out-produce people. Your edge is trust. Build one thing your audience actually asked for. Ship it. Then ask them what's next. Co-creation beats solo grinding."
+  },
+  {
+    id: "ember",
+    name: "The Ember",
+    subtitle: "Potential Awaiting Fuel",
+    check: (s) => s.aq >= 4 && s.aq <= 6 && s.ri >= 4 && s.ri <= 6 && s.ci >= 3 && s.ci < 5,
+    profile: "The foundation is there. Decent freedom, some resonance, but you're not fully lit. You're an ember — warm, capable of fire, but not yet burning. Something's holding you back from going all-in.",
+    insight: "You're one bold decision away from ignition. Not more planning. Not more preparation. One commitment. What would you do this month if you knew you couldn't fail?"
+  },
+  {
+    id: "plateau_walker",
+    name: "The Plateau Walker",
+    subtitle: "Comfortable But Not Growing",
+    check: (s) => s.aq >= 4 && s.aq <= 6 && s.ri >= 4 && s.ri <= 6 && s.ci >= 5 && s.ci <= 6,
+    profile: "Nothing is broken. You're functional across the board. But nothing is exceptional either. You've reached a plateau — sustainable, comfortable, and quietly stagnant.",
+    insight: "Plateaus feel safe because they are. Growth requires destabilization. Pick ONE law to push to 7+ this quarter. Let the others hold steady. Comfort is the enemy of your next level."
+  },
+
+  // === TIER 4: Balanced/positive states ===
   {
     id: "professional",
     name: "The Professional",
@@ -968,23 +995,31 @@ const archetypes = [
     insight: "You're in the 'good enough' zone. To break through, you'll need to temporarily destabilize. Push one law to exceptional while maintaining the others."
   },
   {
-    id: "emerging",
-    name: "The Emerging Artist",
-    subtitle: "Finding Your Way",
-    check: (s) => s.aq >= 3 && s.aq <= 6 && s.ri >= 3 && s.ri <= 6 && s.ci >= 3 && s.ci <= 6,
-    profile: "All metrics are moderate. You're in the messy middle of creative development. Nothing is broken, but nothing is exceptional yet.",
-    insight: "This is the plateau before the breakthrough. The danger is comfort. Pick your weakest law and attack it relentlessly for 90 days."
+    id: "thriving",
+    name: "The Thriving Creator",
+    subtitle: "All Systems Healthy",
+    check: (s) => s.aq >= 7 && s.ri >= 7 && s.ci >= 7,
+    profile: "Freedom, resonance, and craft intensity all aligned. This is rare. You're in the compounding phase where creative returns build on themselves.",
+    insight: "Your job is protection, not expansion. Say no more than yes. Guard your time, your energy, and the conditions that created this state."
   },
   {
-    id: "chaos",
-    name: "The Chaos Creator",
-    subtitle: "Thriving in Instability",
-    check: (s) => s.aq < 4 && s.ci >= 5 && s.ri >= 5,
-    profile: "You create BECAUSE of chaos, not despite it. Need pressure, constraints, urgency. Your best work comes from crisis. Sustainable? Questionable.",
-    insight: "Find controlled chaos. Manufactured deadlines, artificial constraints. You can generate urgency from discipline instead of waiting for desperation."
+    id: "legacy",
+    name: "The Legacy Builder",
+    subtitle: "Generational Impact",
+    check: (s) => s.alpha >= 8,
+    profile: "You've transcended personal success. Creating not for validation or money, but because you're the only one who can make THIS thing. Work that will outlast you.",
+    insight: "Document everything. Teach. Build systems that can carry your vision forward. Your creativity is a public good now."
+  },
+  {
+    id: "comeback",
+    name: "The Comeback Arc",
+    subtitle: "Rising From the Ashes",
+    check: (s) => s.aq >= 5 && s.ri >= 5 && s.ci >= 2 && s.ci < 5,
+    profile: "You had a moment, then disappeared. Now returning with more wisdom, clearer vision, and the freedom to create on your terms. The second act is forming.",
+    insight: "Your superpower is perspective earned through failure. The comeback doesn't need to be bigger, just truer. Create from clarity, not desperation."
   },
 
-  // === TIER 4: Fallback ===
+  // === TIER 5: Fallback ===
   {
     id: "explorer",
     name: "The Explorer",
