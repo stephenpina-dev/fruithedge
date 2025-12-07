@@ -2947,121 +2947,7 @@ const ciPropheticMessages = {
 // ============================================================
 
 const alphaPropheticMessages = {
-  // WEAKEST: Autonomy
-  freedom_bottleneck: {
-    condition: (s) => s.aq < s.ri && s.aq < s.ci && s.aq < 5,
-    label: "🔓 FREEDOM IS THE BOTTLENECK",
-    messages: {
-      monday: {
-        morning: "Monday morning with freedom as the bottleneck. Your connection and output are ready but autonomy holds you back. The week ahead needs to address this. What one constraint could you loosen? Not eliminate. Loosen. Start there.",
-        afternoon: "Monday afternoon still constrained. Your craft and resonance want to fly but freedom clips the wings. What is the smallest expansion of autonomy you could create today? Do that.",
-        evening: "Monday evening with freedom blocking everything. Day one is ending. Your other scores are waiting for autonomy to catch up. Before tomorrow, identify one obligation you could reduce.",
-        night: "Monday night with autonomy as the limit. The week has four more days. Your connection and output will only go as far as your freedom allows. What would create more space? Plan it for tomorrow."
-      },
-      friday: {
-        morning: "Friday morning still freedom bottlenecked. The week is ending and autonomy held you back. Before the weekend, ask: what would your life look like with 20% more freedom? What would you cut to get there?",
-        afternoon: "Friday afternoon constrained. Your craft and resonance outpaced your freedom all week. The weekend is for asking: what obligations no longer serve you? Be honest.",
-        evening: "Friday evening with freedom as the limit. The week is over. Autonomy was the ceiling. This weekend, think seriously about what you could eliminate to raise that ceiling.",
-        night: "Friday night with autonomy blocking. The week is done. Your creative capacity exceeds your creative freedom. The weekend is for planning how to change that ratio."
-      },
-      saturday: {
-        morning: "Saturday morning thinking about freedom. Your connection and output are strong but constrained. What would more autonomy actually look like? More time? More money? Fewer obligations? Get specific.",
-        afternoon: "Saturday afternoon with freedom as bottleneck. The weekend is for thinking about constraints. Which ones are real? Which ones are chosen? You have more choice than you think.",
-        evening: "Saturday evening considering autonomy. Tomorrow is Sunday. Your other scores are ready to grow. Only freedom holds them back. What would you change if you gave yourself permission?",
-        night: "Saturday night with freedom limiting. The week ahead will repeat the pattern unless you intervene. What one thing could you do to create more autonomy? Decide before you sleep."
-      },
-      sunday: {
-        morning: "Sunday morning with freedom as the bottleneck. The week starts tomorrow. Your craft and connection are ready. Is your autonomy? What would make this week different? More space. More options. How?",
-        afternoon: "Sunday afternoon still constrained. Monday is coming. Your freedom will limit your other scores again unless something changes. What could change? Be specific.",
-        evening: "Sunday evening with autonomy as the limit. The week ahead needs more freedom than last week gave you. Before the week begins, identify one thing to say no to. One space to protect.",
-        night: "Sunday night freedom bottlenecked. Tomorrow you create again. But only as much as your autonomy allows. What would give you more room tomorrow? Do that thing first."
-      },
-      midweek: {
-        morning: "Midweek morning with freedom as bottleneck. Half the week is gone. Autonomy is still the ceiling. You have time to change that. What constraint could you loosen today?",
-        afternoon: "Midweek afternoon still constrained. Your craft and connection want more than your freedom gives them. Before Friday, expand one area of autonomy. Even slightly.",
-        evening: "Midweek evening with autonomy limiting. Tomorrow is another chance. Your other scores are waiting for freedom to catch up. What would catching up look like? Plan it.",
-        night: "Midweek night freedom bottlenecked. The week is half over. Your autonomy held everything else back. The remaining days are a chance to change that. What will you do differently?"
-      }
-    }
-  },
-
-  // WEAKEST: Resonance
-  connection_bottleneck: {
-    condition: (s) => s.ri < s.aq && s.ri < s.ci && s.ri < 5,
-    label: "📡 CONNECTION IS THE BOTTLENECK",
-    messages: {
-      monday: {
-        morning: "Monday morning with connection as the bottleneck. You have the freedom and the craft but no one feels it. The week ahead needs to address resonance. Who specifically needs what you make? Start there.",
-        afternoon: "Monday afternoon still disconnected. Your autonomy and intensity are strong but impact is weak. What would you make today if you knew exactly one person would feel it deeply? Make that.",
-        evening: "Monday evening with resonance blocking. Day one is ending. Your freedom and craft are waiting for connection to catch up. Before tomorrow, define your audience more specifically.",
-        night: "Monday night with connection as the limit. The week has four more days. Your autonomy and output will only matter if someone cares. Who cares? Who should care? Answer that before you sleep."
-      },
-      friday: {
-        morning: "Friday morning still connection bottlenecked. The week is ending and resonance lagged behind. Before the weekend, ask: why is the work not landing? Be honest with yourself.",
-        afternoon: "Friday afternoon disconnected. Your freedom and craft outpaced your impact all week. The weekend is for asking: what truth are you not telling? What vulnerability are you protecting?",
-        evening: "Friday evening with resonance as the limit. The week is over. Connection was the ceiling. This weekend, study what moves YOU. That is the standard your work needs to meet.",
-        night: "Friday night with connection blocking. The week is done. You have freedom and craft without impact. The weekend is for understanding why. What is missing from the work?"
-      },
-      saturday: {
-        morning: "Saturday morning thinking about connection. Your autonomy and intensity are strong but no one feels it. What would landing actually look like? Not metrics. Feeling. People moved.",
-        afternoon: "Saturday afternoon with resonance as bottleneck. The weekend is for thinking about impact. What do you believe that you have not said? That unsaid thing might be what connects.",
-        evening: "Saturday evening considering connection. Tomorrow is Sunday. Your other scores are ready to grow. Only resonance holds them back. What truth would unlock it?",
-        night: "Saturday night with connection limiting. The week ahead will repeat the pattern unless you intervene. What would make your work unmissable? Not popular. Unmissable. Think about that."
-      },
-      sunday: {
-        morning: "Sunday morning with connection as the bottleneck. The week starts tomorrow. Your freedom and craft are ready. Is your resonance? What would you say if you stopped protecting yourself?",
-        afternoon: "Sunday afternoon still disconnected. Monday is coming. Your connection will limit your other scores again unless something changes. What could change? More vulnerability. More specificity.",
-        evening: "Sunday evening with resonance as the limit. The week ahead needs more connection than last week gave you. Before the week begins, identify one truth you have been avoiding. Consider saying it.",
-        night: "Sunday night connection bottlenecked. Tomorrow you create again. But only as much as your resonance allows. What would make someone stop scrolling and feel? Make that tomorrow."
-      },
-      midweek: {
-        morning: "Midweek morning with connection as bottleneck. Half the week is gone. Resonance is still the ceiling. You have time to change that. What could you say today that would actually land?",
-        afternoon: "Midweek afternoon still disconnected. Your freedom and craft want more than your connection gives them. Before Friday, create something vulnerable. Something true.",
-        evening: "Midweek evening with resonance limiting. Tomorrow is another chance. Your other scores are waiting for connection to catch up. What would catching up require? More truth. More specificity.",
-        night: "Midweek night connection bottlenecked. The week is half over. Your resonance held everything else back. The remaining days are a chance to change that. What truth will you tell?"
-      }
-    }
-  },
-
-  // WEAKEST: Craft Intensity
-  output_bottleneck: {
-    condition: (s) => s.ci < s.aq && s.ci < s.ri && s.ci < 5,
-    label: "⚡ OUTPUT IS THE BOTTLENECK",
-    messages: {
-      monday: {
-        morning: "Monday morning with output as the bottleneck. You have the freedom and the audience but not the craft intensity. The week ahead needs more depth. Block 90 minutes today for real creative work. Not planning. Creating.",
-        afternoon: "Monday afternoon still low output. Your autonomy and resonance are strong but production is weak. What would you make today if nothing else mattered? Make that. Everything else can wait.",
-        evening: "Monday evening with craft blocking. Day one is ending. Your freedom and connection are waiting for output to catch up. Before tomorrow, set one creative session that nothing can interrupt.",
-        night: "Monday night with output as the limit. The week has four more days. Your autonomy and resonance will only go as far as your craft allows. What would deep work look like tomorrow? Plan it now."
-      },
-      friday: {
-        morning: "Friday morning still output bottlenecked. The week is ending and craft lagged behind. Before the weekend, ask: what kept you from going deep? Be honest about the real blockers.",
-        afternoon: "Friday afternoon with low production. Your freedom and connection outpaced your output all week. The weekend is for asking: what would change if you protected creative time fiercely?",
-        evening: "Friday evening with craft as the limit. The week is over. Output was the ceiling. This weekend, think about what steals your focus. Then plan to stop it.",
-        night: "Friday night with output blocking. The week is done. You have freedom and connection without production. The weekend is for understanding why. What is really blocking your depth?"
-      },
-      saturday: {
-        morning: "Saturday morning thinking about output. Your autonomy and resonance are strong but craft lags. What would depth actually look like? Not more hours. More focus. More flow.",
-        afternoon: "Saturday afternoon with output as bottleneck. The weekend is for thinking about production. What would you create if you turned off all distractions? Consider doing that.",
-        evening: "Saturday evening considering craft. Tomorrow is Sunday. Your other scores are ready to grow. Only output holds them back. What would unlock your creative intensity?",
-        night: "Saturday night with output limiting. The week ahead will repeat the pattern unless you intervene. What would make deep work happen? Decide before you sleep."
-      },
-      sunday: {
-        morning: "Sunday morning with output as the bottleneck. The week starts tomorrow. Your freedom and connection are ready. Is your craft? What would serious creative output look like this week?",
-        afternoon: "Sunday afternoon still low production. Monday is coming. Your output will limit your other scores again unless something changes. What could change? More protection. More focus.",
-        evening: "Sunday evening with craft as the limit. The week ahead needs more output than last week gave you. Before the week begins, block your deep work time. Make it sacred.",
-        night: "Sunday night output bottlenecked. Tomorrow you create again. But only as much as your craft allows. What would help you go deep tomorrow? Set that up tonight."
-      },
-      midweek: {
-        morning: "Midweek morning with output as bottleneck. Half the week is gone. Craft is still the ceiling. You have time to change that. Today, protect 90 minutes for nothing but creation.",
-        afternoon: "Midweek afternoon still low production. Your freedom and connection want more than your output gives them. Before Friday, go deep at least once. Really deep.",
-        evening: "Midweek evening with craft limiting. Tomorrow is another chance. Your other scores are waiting for output to catch up. What would catching up look like? Plan it.",
-        night: "Midweek night output bottlenecked. The week is half over. Your craft held everything else back. The remaining days are a chance to change that. What will you create?"
-      }
-    }
-  },
-
-  // BALANCE: All aligned high
+  // 1. ALL ALIGNED HIGH - most specific positive (check first)
   all_aligned_high: {
     condition: (s) => s.aq >= 7 && s.ri >= 7 && s.ci >= 7,
     label: "✦ ALL SYSTEMS OPTIMAL",
@@ -3099,7 +2985,7 @@ const alphaPropheticMessages = {
     }
   },
 
-  // BALANCE: All aligned low
+  // 2. ALL ALIGNED LOW - most specific negative (check second)
   all_aligned_low: {
     condition: (s) => s.aq < 4 && s.ri < 4 && s.ci < 4,
     label: "⊗ ALL SYSTEMS CRITICAL",
@@ -3137,83 +3023,7 @@ const alphaPropheticMessages = {
     }
   },
 
-  // BALANCE: Severely imbalanced
-  severe_imbalance: {
-    condition: (s) => Math.max(s.aq, s.ri, s.ci) - Math.min(s.aq, s.ri, s.ci) > 4,
-    label: "⚠ SEVERE IMBALANCE",
-    messages: {
-      monday: {
-        morning: "Monday morning with severe imbalance. One score is soaring while another crashes. That gap is unsustainable. The week ahead needs to address it. What is your lowest score? That is where your attention belongs. Not your strength.",
-        afternoon: "Monday afternoon still imbalanced. The gap between your best and worst is too wide. Your strength cannot carry your weakness forever. What is failing? Address that today.",
-        evening: "Monday evening with severe gap. Day one is ending. Did you work on your weakness or lean on your strength? Tomorrow, focus on what is broken. Not what works.",
-        night: "Monday night severely imbalanced. The week has four more days. The gap will widen unless you intervene. Before you sleep, name your weakest score. Plan to address it tomorrow."
-      },
-      friday: {
-        morning: "Friday morning still severely imbalanced. The week is ending and the gap persists. Before the weekend, acknowledge the problem. You cannot strength your way out of weakness forever.",
-        afternoon: "Friday afternoon with the gap still wide. Your strength carried the week. But carrying is not solving. The weekend is for planning how to address your lowest score.",
-        evening: "Friday evening severely imbalanced. The week is over. The pattern is clear. One area thrives, another fails. This weekend, decide how to close the gap.",
-        night: "Friday night with severe gap. The week is done. Your strength is obvious. Your weakness is dangerous. The weekend is for making a real plan to address it."
-      },
-      saturday: {
-        morning: "Saturday morning with severe imbalance. Even the weekend shows the gap. What is your lowest score? Why is it so low? Understanding precedes fixing.",
-        afternoon: "Saturday afternoon still imbalanced. Your strength makes you feel successful. Your weakness will eventually catch up. What would addressing it look like?",
-        evening: "Saturday evening with the gap wide. Tomorrow is Sunday. Time to think about balance. Not optimization. Balance. What would balanced look like for you?",
-        night: "Saturday night severely imbalanced. The week ahead will repeat the pattern unless you change it. Before you sleep, commit to working on your weakness. Not your strength."
-      },
-      sunday: {
-        morning: "Sunday morning with severe imbalance. The week starts tomorrow. Will you lean on your strength again or address your weakness? The latter is harder. It is also necessary.",
-        afternoon: "Sunday afternoon still imbalanced. Monday is coming. You could repeat the pattern or break it. Breaking it means focusing on your lowest score. Not your highest.",
-        evening: "Sunday evening with the gap wide. The week ahead is an opportunity. Not to maximize your strength. To shore up your weakness. What would that look like?",
-        night: "Sunday night severely imbalanced. Tomorrow you work again. This time, give attention to what is failing. Your strength will take care of itself. Your weakness needs you."
-      },
-      midweek: {
-        morning: "Midweek morning with severe imbalance. Half the week is gone. Did you address the gap? Or widen it? You still have time. Focus on your lowest score today.",
-        afternoon: "Midweek afternoon still imbalanced. Your strength is doing its job. Your weakness is doing its damage. Before Friday, give real attention to what is failing.",
-        evening: "Midweek evening with the gap wide. Tomorrow is another chance. The strength does not need you. The weakness does. Plan to address it tomorrow.",
-        night: "Midweek night severely imbalanced. The week is half over. The gap persists. The remaining days are a choice. Same pattern or different? Different means focusing on weakness."
-      }
-    }
-  },
-
-  // FLAGS: Compounding
-  compounding: {
-    condition: (s) => s.alpha >= 7,
-    label: "📈 COMPOUNDING RETURNS",
-    messages: {
-      monday: {
-        morning: "Monday morning with compounding returns. Freedom, connection, and output all aligned above seven. This is rare. This is powerful. The week ahead is not about working harder. It is about protecting this state. Guard it fiercely.",
-        afternoon: "Monday afternoon in the compound zone. Everything is working together. Do not chase more. Protect what you have. Say no to anything that would disrupt this alignment.",
-        evening: "Monday evening with everything compounding. Day one is ending and the magic held. That is the job now. Maintenance. Before tomorrow, notice what protected this state. Repeat it.",
-        night: "Monday night in compound mode. The week has four more days. Each day in this zone builds on the last. Before you sleep, ask: what threatens this state? Then defend against it."
-      },
-      friday: {
-        morning: "Friday morning with compounding returns. The week is ending and everything stayed aligned. That is exceptional. Before the weekend, document what worked. This is your formula.",
-        afternoon: "Friday afternoon in the compound zone. The week performed at a high level. The weekend is for appreciating what you built. Not optimizing it. Appreciating it.",
-        evening: "Friday evening with everything working. The week is over. The compound held. That is victory. The weekend is for real rest. Return Monday ready to do it again.",
-        night: "Friday night in compound mode. The week is done. You stayed in the zone. The weekend is for celebrating and recovering. You earned both."
-      },
-      saturday: {
-        morning: "Saturday morning with compounding returns. Even the weekend feels different when everything is working. Enjoy this. Do not take it for granted. This is what sustainable success feels like.",
-        afternoon: "Saturday afternoon in the compound zone. You could work or rest. Both are valid. The compound will continue if you protect it. What would protection look like today?",
-        evening: "Saturday evening with everything aligned. Tomorrow is Sunday. The week ahead will try to pull you out of the zone. Remember what keeps you in. Protect those conditions.",
-        night: "Saturday night in compound mode. The week ahead could continue this streak or break it. Before you sleep, recommit to what works. The formula is clear. Follow it."
-      },
-      sunday: {
-        morning: "Sunday morning with compounding returns. The week starts tomorrow. You have momentum most people never achieve. The only question is: will you protect it? What would protection look like?",
-        afternoon: "Sunday afternoon in the compound zone. Monday is coming. You could lose this state or extend it. The choice is made by what you say yes to and what you say no to.",
-        evening: "Sunday evening with everything working. The week ahead is an opportunity to compound further. Not by adding more. By protecting what you have. Guard the conditions.",
-        night: "Sunday night in compound mode. Tomorrow you create again. From abundance. From alignment. Before you sleep, set your intention: protect the compound. Everything else is secondary."
-      },
-      midweek: {
-        morning: "Midweek morning with compounding returns. Half the week is gone and you are still in the zone. That is the goal. The remaining days are for continuing, not pushing harder.",
-        afternoon: "Midweek afternoon in the compound zone. The week is slipping by in the best possible way. Everything is working. The question is: what would threaten this? Avoid that.",
-        evening: "Midweek evening with everything aligned. Tomorrow is another chance to stay in the zone. Before you sleep, note what is working. Do more of that. Less of everything else.",
-        night: "Midweek night in compound mode. The week is half over. The compound held. The remaining days are for protecting what you have built. Not adding to it. Protecting it."
-      }
-    }
-  },
-
-  // FLAGS: Emergency
+  // 3. EMERGENCY - crisis state (alpha < 3)
   emergency: {
     condition: (s) => s.alpha < 3,
     label: "🚨 CREATIVE EMERGENCY",
@@ -3251,45 +3061,121 @@ const alphaPropheticMessages = {
     }
   },
 
-  // FLAGS: Coasting
-  coasting: {
-    condition: (s) => s.alpha >= 5 && s.alpha < 7 && s.trend === 'declining',
-    label: "📉 COASTING",
+  // 4. SEVERE IMBALANCE - structural problem (gap > 4)
+  severe_imbalance: {
+    condition: (s) => Math.max(s.aq, s.ri, s.ci) - Math.min(s.aq, s.ri, s.ci) > 4,
+    label: "⚠ SEVERE IMBALANCE",
     messages: {
       monday: {
-        morning: "Monday morning coasting. Alpha is decent but trending down. The week ahead will continue the decline unless you intervene. What got you here will not keep you here. What needs to change?",
-        afternoon: "Monday afternoon still coasting. Things are okay but drifting. Okay becomes not okay without attention. What would stop the drift? Not maintain it. Stop it.",
-        evening: "Monday evening in coast mode. Day one is ending. Did anything push against the decline? Tomorrow needs intention. Not maintenance. Intention. What will you do differently?",
-        night: "Monday night coasting down. The week has four more days. Each one you coast is a day the decline continues. Before you sleep, decide: what will you change this week?"
+        morning: "Monday morning with severe imbalance. One score is soaring while another crashes. That gap is unsustainable. The week ahead needs to address it. What is your lowest score? That is where your attention belongs. Not your strength.",
+        afternoon: "Monday afternoon still imbalanced. The gap between your best and worst is too wide. Your strength cannot carry your weakness forever. What is failing? Address that today.",
+        evening: "Monday evening with severe gap. Day one is ending. Did you work on your weakness or lean on your strength? Tomorrow, focus on what is broken. Not what works.",
+        night: "Monday night severely imbalanced. The week has four more days. The gap will widen unless you intervene. Before you sleep, name your weakest score. Plan to address it tomorrow."
       },
       friday: {
-        morning: "Friday morning still coasting. The week is ending and the drift continued. Before the weekend, be honest: is coasting a choice or an accident? Either way, it leads down.",
-        afternoon: "Friday afternoon in coast mode. The week was okay. Okay is not sustainable when the trend is down. The weekend is for asking: what would up require?",
-        evening: "Friday evening coasting. The week is over. Things are fine. Fine is declining in disguise. This weekend, think about what would actually improve things.",
-        night: "Friday night in coast mode. The week is done. The decline was gentle but real. The weekend is for deciding whether gentle decline is acceptable. It usually is not."
+        morning: "Friday morning still severely imbalanced. The week is ending and the gap persists. Before the weekend, acknowledge the problem. You cannot strength your way out of weakness forever.",
+        afternoon: "Friday afternoon with the gap still wide. Your strength carried the week. But carrying is not solving. The weekend is for planning how to address your lowest score.",
+        evening: "Friday evening severely imbalanced. The week is over. The pattern is clear. One area thrives, another fails. This weekend, decide how to close the gap.",
+        night: "Friday night with severe gap. The week is done. Your strength is obvious. Your weakness is dangerous. The weekend is for making a real plan to address it."
       },
       saturday: {
-        morning: "Saturday morning coasting. Even the weekend continues the drift. What would arresting the decline look like? Not dramatic change. Just stopping the slide.",
-        afternoon: "Saturday afternoon in coast mode. Things are comfortable but declining. Comfort is the enemy right now. What uncomfortable thing would reverse the trend?",
-        evening: "Saturday evening coasting. Tomorrow is Sunday. The week ahead will continue the decline unless you decide otherwise. What decision would stop it?",
-        night: "Saturday night in coast mode. The week ahead is a choice. Continue drifting or push back. Pushing back requires changing something. What will you change?"
+        morning: "Saturday morning with severe imbalance. Even the weekend shows the gap. What is your lowest score? Why is it so low? Understanding precedes fixing.",
+        afternoon: "Saturday afternoon still imbalanced. Your strength makes you feel successful. Your weakness will eventually catch up. What would addressing it look like?",
+        evening: "Saturday evening with the gap wide. Tomorrow is Sunday. Time to think about balance. Not optimization. Balance. What would balanced look like for you?",
+        night: "Saturday night severely imbalanced. The week ahead will repeat the pattern unless you change it. Before you sleep, commit to working on your weakness. Not your strength."
       },
       sunday: {
-        morning: "Sunday morning coasting. The week starts tomorrow. It will look like last week unless you intervene. What would intervention look like? Not maintenance. Intervention.",
-        afternoon: "Sunday afternoon in coast mode. Monday is coming. You could coast another week or push. Pushing is harder. Pushing is also the only way to reverse the trend.",
-        evening: "Sunday evening coasting. The week ahead will continue the decline unless something changes. Before the week begins, decide: what changes? Be specific.",
-        night: "Sunday night in coast mode. Tomorrow is Monday. Same as last Monday unless you make it different. What would different look like? Decide now. Then do it tomorrow."
+        morning: "Sunday morning with severe imbalance. The week starts tomorrow. Will you lean on your strength again or address your weakness? The latter is harder. It is also necessary.",
+        afternoon: "Sunday afternoon still imbalanced. Monday is coming. You could repeat the pattern or break it. Breaking it means focusing on your lowest score. Not your highest.",
+        evening: "Sunday evening with the gap wide. The week ahead is an opportunity. Not to maximize your strength. To shore up your weakness. What would that look like?",
+        night: "Sunday night severely imbalanced. Tomorrow you work again. This time, give attention to what is failing. Your strength will take care of itself. Your weakness needs you."
       },
       midweek: {
-        morning: "Midweek morning coasting. Half the week is gone and the drift continued. You still have time. What would pushing look like for the rest of this week?",
-        afternoon: "Midweek afternoon in coast mode. The week is slipping by comfortably downward. Before Friday, do something that pushes against the decline. Not tomorrow. Today.",
-        evening: "Midweek evening coasting. Tomorrow is another chance to coast or push. The coast is easier. The push is necessary. What would pushing look like?",
-        night: "Midweek night in coast mode. The week is half over. The trend continued down. The remaining days are a chance to reverse it. What would reversal require?"
+        morning: "Midweek morning with severe imbalance. Half the week is gone. Did you address the gap? Or widen it? You still have time. Focus on your lowest score today.",
+        afternoon: "Midweek afternoon still imbalanced. Your strength is doing its job. Your weakness is doing its damage. Before Friday, give real attention to what is failing.",
+        evening: "Midweek evening with the gap wide. Tomorrow is another chance. The strength does not need you. The weakness does. Plan to address it tomorrow.",
+        night: "Midweek night severely imbalanced. The week is half over. The gap persists. The remaining days are a choice. Same pattern or different? Different means focusing on weakness."
       }
     }
   },
 
-  // TREND: Rising
+  // 5. COMPOUNDING - high performance (alpha >= 7)
+  compounding: {
+    condition: (s) => s.alpha >= 7,
+    label: "📈 COMPOUNDING RETURNS",
+    messages: {
+      monday: {
+        morning: "Monday morning with compounding returns. Freedom, connection, and output all aligned above seven. This is rare. This is powerful. The week ahead is not about working harder. It is about protecting this state. Guard it fiercely.",
+        afternoon: "Monday afternoon in the compound zone. Everything is working together. Do not chase more. Protect what you have. Say no to anything that would disrupt this alignment.",
+        evening: "Monday evening with everything compounding. Day one is ending and the magic held. That is the job now. Maintenance. Before tomorrow, notice what protected this state. Repeat it.",
+        night: "Monday night in compound mode. The week has four more days. Each day in this zone builds on the last. Before you sleep, ask: what threatens this state? Then defend against it."
+      },
+      friday: {
+        morning: "Friday morning with compounding returns. The week is ending and everything stayed aligned. That is exceptional. Before the weekend, document what worked. This is your formula.",
+        afternoon: "Friday afternoon in the compound zone. The week performed at a high level. The weekend is for appreciating what you built. Not optimizing it. Appreciating it.",
+        evening: "Friday evening with everything working. The week is over. The compound held. That is victory. The weekend is for real rest. Return Monday ready to do it again.",
+        night: "Friday night in compound mode. The week is done. You stayed in the zone. The weekend is for celebrating and recovering. You earned both."
+      },
+      saturday: {
+        morning: "Saturday morning with compounding returns. Even the weekend feels different when everything is working. Enjoy this. Do not take it for granted. This is what sustainable success feels like.",
+        afternoon: "Saturday afternoon in the compound zone. You could work or rest. Both are valid. The compound will continue if you protect it. What would protection look like today?",
+        evening: "Saturday evening with everything aligned. Tomorrow is Sunday. The week ahead will try to pull you out of the zone. Remember what keeps you in. Protect those conditions.",
+        night: "Saturday night in compound mode. The week ahead could continue this streak or break it. Before you sleep, recommit to what works. The formula is clear. Follow it."
+      },
+      sunday: {
+        morning: "Sunday morning with compounding returns. The week starts tomorrow. You have momentum most people never achieve. The only question is: will you protect it? What would protection look like?",
+        afternoon: "Sunday afternoon in the compound zone. Monday is coming. You could lose this state or extend it. The choice is made by what you say yes to and what you say no to.",
+        evening: "Sunday evening with everything working. The week ahead is an opportunity to compound further. Not by adding more. By protecting what you have. Guard the conditions.",
+        night: "Sunday night in compound mode. Tomorrow you create again. From abundance. From alignment. Before you sleep, set your intention: protect the compound. Everything else is secondary."
+      },
+      midweek: {
+        morning: "Midweek morning with compounding returns. Half the week is gone and you are still in the zone. That is the goal. The remaining days are for continuing, not pushing harder.",
+        afternoon: "Midweek afternoon in the compound zone. The week is slipping by in the best possible way. Everything is working. The question is: what would threaten this? Avoid that.",
+        evening: "Midweek evening with everything aligned. Tomorrow is another chance to stay in the zone. Before you sleep, note what is working. Do more of that. Less of everything else.",
+        night: "Midweek night in compound mode. The week is half over. The compound held. The remaining days are for protecting what you have built. Not adding to it. Protecting it."
+      }
+    }
+  },
+
+  // 6. BALANCED - healthy state (gap <= 1.5 && alpha >= 5)
+  balanced: {
+    condition: (s) => Math.max(s.aq, s.ri, s.ci) - Math.min(s.aq, s.ri, s.ci) <= 1.5 && s.alpha >= 5,
+    label: "⚖ BALANCED",
+    messages: {
+      monday: {
+        morning: "Monday morning balanced. All three scores within range of each other. That is healthy. The week ahead is for maintaining this balance while gently pushing all three up. Not one. All three.",
+        afternoon: "Monday afternoon still balanced. No score is dragging the others down. That is rare. Protect it. The week is young. Keep the balance while you grow.",
+        evening: "Monday evening with balance intact. Day one is ending. Did you maintain equilibrium? Tomorrow needs the same. All three dimensions. Equal attention.",
+        night: "Monday night balanced. The week has four more days. Balance is your foundation. Build on it without disrupting it. Before you sleep, note what maintained the balance. Repeat it."
+      },
+      friday: {
+        morning: "Friday morning still balanced. The week is ending and equilibrium held. That is exceptional. Before the weekend, appreciate what you maintained. Balance is underrated.",
+        afternoon: "Friday afternoon with balance intact. The week was steady across all dimensions. The weekend is for appreciating that. Not optimizing. Appreciating.",
+        evening: "Friday evening balanced. The week is over. You stayed in equilibrium. That is the foundation for growth. The weekend is for rest that maintains the balance.",
+        night: "Friday night with balance intact. The week is done. All three dimensions stayed aligned. The weekend is for enjoying what sustainable creative health feels like."
+      },
+      saturday: {
+        morning: "Saturday morning balanced. Even the weekend maintains equilibrium. That is what sustainable creativity looks like. Enjoy it. Do not take it for granted.",
+        afternoon: "Saturday afternoon with balance intact. Freedom, connection, output, all aligned. The weekend is for being in that balance. Not pushing it. Being in it.",
+        evening: "Saturday evening balanced. Tomorrow is Sunday. The week ahead could maintain this or disrupt it. What would maintaining look like? More of the same. Equal attention to all three.",
+        night: "Saturday night with balance intact. The week ahead is an opportunity to grow from equilibrium. Not lopsided growth. Balanced growth. Keep all three dimensions in mind."
+      },
+      sunday: {
+        morning: "Sunday morning balanced. The week starts tomorrow. You enter it with equilibrium. That is a gift. Protect it. Grow all three dimensions equally. Not one at the expense of others.",
+        afternoon: "Sunday afternoon with balance intact. Monday is coming. You could maintain the balance or chase one score. Maintaining is wiser. Growth from balance is sustainable.",
+        evening: "Sunday evening balanced. The week ahead is an opportunity for balanced growth. Before the week begins, set intentions for all three dimensions. Not just one. All three.",
+        night: "Sunday night with balance intact. Tomorrow you work again. From equilibrium. That is your advantage. Before you sleep, note what maintains your balance. Do those things tomorrow."
+      },
+      midweek: {
+        morning: "Midweek morning balanced. Half the week is gone and equilibrium held. That is the goal. The remaining days are for continuing. Balance plus growth. Not one or the other.",
+        afternoon: "Midweek afternoon with balance intact. The week is slipping by in healthy equilibrium. Keep it that way. All three dimensions. Equal attention.",
+        evening: "Midweek evening balanced. Tomorrow is another chance to maintain equilibrium while growing. Before you sleep, check: are all three dimensions getting attention? They should be.",
+        night: "Midweek night with balance intact. The week is half over. The balance held. The remaining days are for growing from equilibrium. All three scores. Together."
+      }
+    }
+  },
+
+  // 7. ASCENDING - trend improving
   ascending: {
     condition: (s) => s.alpha >= 5 && s.alpha < 7 && s.trend === 'improving',
     label: "📈 ASCENDING",
@@ -3327,7 +3213,45 @@ const alphaPropheticMessages = {
     }
   },
 
-  // TREND: Falling
+  // 8. COASTING - trend declining from mid-range
+  coasting: {
+    condition: (s) => s.alpha >= 5 && s.alpha < 7 && s.trend === 'declining',
+    label: "📉 COASTING",
+    messages: {
+      monday: {
+        morning: "Monday morning coasting. Alpha is decent but trending down. The week ahead will continue the decline unless you intervene. What got you here will not keep you here. What needs to change?",
+        afternoon: "Monday afternoon still coasting. Things are okay but drifting. Okay becomes not okay without attention. What would stop the drift? Not maintain it. Stop it.",
+        evening: "Monday evening in coast mode. Day one is ending. Did anything push against the decline? Tomorrow needs intention. Not maintenance. Intention. What will you do differently?",
+        night: "Monday night coasting down. The week has four more days. Each one you coast is a day the decline continues. Before you sleep, decide: what will you change this week?"
+      },
+      friday: {
+        morning: "Friday morning still coasting. The week is ending and the drift continued. Before the weekend, be honest: is coasting a choice or an accident? Either way, it leads down.",
+        afternoon: "Friday afternoon in coast mode. The week was okay. Okay is not sustainable when the trend is down. The weekend is for asking: what would up require?",
+        evening: "Friday evening coasting. The week is over. Things are fine. Fine is declining in disguise. This weekend, think about what would actually improve things.",
+        night: "Friday night in coast mode. The week is done. The decline was gentle but real. The weekend is for deciding whether gentle decline is acceptable. It usually is not."
+      },
+      saturday: {
+        morning: "Saturday morning coasting. Even the weekend continues the drift. What would arresting the decline look like? Not dramatic change. Just stopping the slide.",
+        afternoon: "Saturday afternoon in coast mode. Things are comfortable but declining. Comfort is the enemy right now. What uncomfortable thing would reverse the trend?",
+        evening: "Saturday evening coasting. Tomorrow is Sunday. The week ahead will continue the decline unless you decide otherwise. What decision would stop it?",
+        night: "Saturday night in coast mode. The week ahead is a choice. Continue drifting or push back. Pushing back requires changing something. What will you change?"
+      },
+      sunday: {
+        morning: "Sunday morning coasting. The week starts tomorrow. It will look like last week unless you intervene. What would intervention look like? Not maintenance. Intervention.",
+        afternoon: "Sunday afternoon in coast mode. Monday is coming. You could coast another week or push. Pushing is harder. Pushing is also the only way to reverse the trend.",
+        evening: "Sunday evening coasting. The week ahead will continue the decline unless something changes. Before the week begins, decide: what changes? Be specific.",
+        night: "Sunday night in coast mode. Tomorrow is Monday. Same as last Monday unless you make it different. What would different look like? Decide now. Then do it tomorrow."
+      },
+      midweek: {
+        morning: "Midweek morning coasting. Half the week is gone and the drift continued. You still have time. What would pushing look like for the rest of this week?",
+        afternoon: "Midweek afternoon in coast mode. The week is slipping by comfortably downward. Before Friday, do something that pushes against the decline. Not tomorrow. Today.",
+        evening: "Midweek evening coasting. Tomorrow is another chance to coast or push. The coast is easier. The push is necessary. What would pushing look like?",
+        night: "Midweek night in coast mode. The week is half over. The trend continued down. The remaining days are a chance to reverse it. What would reversal require?"
+      }
+    }
+  },
+
+  // 9. FALLING - trend declining from low-range
   falling: {
     condition: (s) => s.alpha >= 3 && s.alpha < 5 && s.trend === 'declining',
     label: "📉 DECLINING",
@@ -3365,40 +3289,116 @@ const alphaPropheticMessages = {
     }
   },
 
-  // BALANCED (fallback for moderate spread)
-  balanced: {
-    condition: (s) => Math.max(s.aq, s.ri, s.ci) - Math.min(s.aq, s.ri, s.ci) <= 1.5 && s.alpha >= 5,
-    label: "⚖ BALANCED",
+  // 10. FREEDOM BOTTLENECK - AQ is weakest (catch-all, excludes all_aligned_low)
+  freedom_bottleneck: {
+    condition: (s) => s.aq < s.ri && s.aq < s.ci && s.aq < 5 && !(s.aq < 4 && s.ri < 4 && s.ci < 4),
+    label: "🔓 FREEDOM IS THE BOTTLENECK",
     messages: {
       monday: {
-        morning: "Monday morning balanced. All three scores within range of each other. That is healthy. The week ahead is for maintaining this balance while gently pushing all three up. Not one. All three.",
-        afternoon: "Monday afternoon still balanced. No score is dragging the others down. That is rare. Protect it. The week is young. Keep the balance while you grow.",
-        evening: "Monday evening with balance intact. Day one is ending. Did you maintain equilibrium? Tomorrow needs the same. All three dimensions. Equal attention.",
-        night: "Monday night balanced. The week has four more days. Balance is your foundation. Build on it without disrupting it. Before you sleep, note what maintained the balance. Repeat it."
+        morning: "Monday morning with freedom as the bottleneck. Your connection and output are ready but autonomy holds you back. The week ahead needs to address this. What one constraint could you loosen? Not eliminate. Loosen. Start there.",
+        afternoon: "Monday afternoon still constrained. Your craft and resonance want to fly but freedom clips the wings. What is the smallest expansion of autonomy you could create today? Do that.",
+        evening: "Monday evening with freedom blocking everything. Day one is ending. Your other scores are waiting for autonomy to catch up. Before tomorrow, identify one obligation you could reduce.",
+        night: "Monday night with autonomy as the limit. The week has four more days. Your connection and output will only go as far as your freedom allows. What would create more space? Plan it for tomorrow."
       },
       friday: {
-        morning: "Friday morning still balanced. The week is ending and equilibrium held. That is exceptional. Before the weekend, appreciate what you maintained. Balance is underrated.",
-        afternoon: "Friday afternoon with balance intact. The week was steady across all dimensions. The weekend is for appreciating that. Not optimizing. Appreciating.",
-        evening: "Friday evening balanced. The week is over. You stayed in equilibrium. That is the foundation for growth. The weekend is for rest that maintains the balance.",
-        night: "Friday night with balance intact. The week is done. All three dimensions stayed aligned. The weekend is for enjoying what sustainable creative health feels like."
+        morning: "Friday morning still freedom bottlenecked. The week is ending and autonomy held you back. Before the weekend, ask: what would your life look like with 20% more freedom? What would you cut to get there?",
+        afternoon: "Friday afternoon constrained. Your craft and resonance outpaced your freedom all week. The weekend is for asking: what obligations no longer serve you? Be honest.",
+        evening: "Friday evening with freedom as the limit. The week is over. Autonomy was the ceiling. This weekend, think seriously about what you could eliminate to raise that ceiling.",
+        night: "Friday night with autonomy blocking. The week is done. Your creative capacity exceeds your creative freedom. The weekend is for planning how to change that ratio."
       },
       saturday: {
-        morning: "Saturday morning balanced. Even the weekend maintains equilibrium. That is what sustainable creativity looks like. Enjoy it. Do not take it for granted.",
-        afternoon: "Saturday afternoon with balance intact. Freedom, connection, output, all aligned. The weekend is for being in that balance. Not pushing it. Being in it.",
-        evening: "Saturday evening balanced. Tomorrow is Sunday. The week ahead could maintain this or disrupt it. What would maintaining look like? More of the same. Equal attention to all three.",
-        night: "Saturday night with balance intact. The week ahead is an opportunity to grow from equilibrium. Not lopsided growth. Balanced growth. Keep all three dimensions in mind."
+        morning: "Saturday morning thinking about freedom. Your connection and output are strong but constrained. What would more autonomy actually look like? More time? More money? Fewer obligations? Get specific.",
+        afternoon: "Saturday afternoon with freedom as bottleneck. The weekend is for thinking about constraints. Which ones are real? Which ones are chosen? You have more choice than you think.",
+        evening: "Saturday evening considering autonomy. Tomorrow is Sunday. Your other scores are ready to grow. Only freedom holds them back. What would you change if you gave yourself permission?",
+        night: "Saturday night with freedom limiting. The week ahead will repeat the pattern unless you intervene. What one thing could you do to create more autonomy? Decide before you sleep."
       },
       sunday: {
-        morning: "Sunday morning balanced. The week starts tomorrow. You enter it with equilibrium. That is a gift. Protect it. Grow all three dimensions equally. Not one at the expense of others.",
-        afternoon: "Sunday afternoon with balance intact. Monday is coming. You could maintain the balance or chase one score. Maintaining is wiser. Growth from balance is sustainable.",
-        evening: "Sunday evening balanced. The week ahead is an opportunity for balanced growth. Before the week begins, set intentions for all three dimensions. Not just one. All three.",
-        night: "Sunday night with balance intact. Tomorrow you work again. From equilibrium. That is your advantage. Before you sleep, note what maintains your balance. Do those things tomorrow."
+        morning: "Sunday morning with freedom as the bottleneck. The week starts tomorrow. Your craft and connection are ready. Is your autonomy? What would make this week different? More space. More options. How?",
+        afternoon: "Sunday afternoon still constrained. Monday is coming. Your freedom will limit your other scores again unless something changes. What could change? Be specific.",
+        evening: "Sunday evening with autonomy as the limit. The week ahead needs more freedom than last week gave you. Before the week begins, identify one thing to say no to. One space to protect.",
+        night: "Sunday night freedom bottlenecked. Tomorrow you create again. But only as much as your autonomy allows. What would give you more room tomorrow? Do that thing first."
       },
       midweek: {
-        morning: "Midweek morning balanced. Half the week is gone and equilibrium held. That is the goal. The remaining days are for continuing. Balance plus growth. Not one or the other.",
-        afternoon: "Midweek afternoon with balance intact. The week is slipping by in healthy equilibrium. Keep it that way. All three dimensions. Equal attention.",
-        evening: "Midweek evening balanced. Tomorrow is another chance to maintain equilibrium while growing. Before you sleep, check: are all three dimensions getting attention? They should be.",
-        night: "Midweek night with balance intact. The week is half over. The balance held. The remaining days are for growing from equilibrium. All three scores. Together."
+        morning: "Midweek morning with freedom as bottleneck. Half the week is gone. Autonomy is still the ceiling. You have time to change that. What constraint could you loosen today?",
+        afternoon: "Midweek afternoon still constrained. Your craft and connection want more than your freedom gives them. Before Friday, expand one area of autonomy. Even slightly.",
+        evening: "Midweek evening with autonomy limiting. Tomorrow is another chance. Your other scores are waiting for freedom to catch up. What would catching up look like? Plan it.",
+        night: "Midweek night freedom bottlenecked. The week is half over. Your autonomy held everything else back. The remaining days are a chance to change that. What will you do differently?"
+      }
+    }
+  },
+
+  // 11. CONNECTION BOTTLENECK - Ri is weakest (catch-all, excludes all_aligned_low)
+  connection_bottleneck: {
+    condition: (s) => s.ri < s.aq && s.ri < s.ci && s.ri < 5 && !(s.aq < 4 && s.ri < 4 && s.ci < 4),
+    label: "📡 CONNECTION IS THE BOTTLENECK",
+    messages: {
+      monday: {
+        morning: "Monday morning with connection as the bottleneck. You have the freedom and the craft but no one feels it. The week ahead needs to address resonance. Who specifically needs what you make? Start there.",
+        afternoon: "Monday afternoon still disconnected. Your autonomy and intensity are strong but impact is weak. What would you make today if you knew exactly one person would feel it deeply? Make that.",
+        evening: "Monday evening with resonance blocking. Day one is ending. Your freedom and craft are waiting for connection to catch up. Before tomorrow, define your audience more specifically.",
+        night: "Monday night with connection as the limit. The week has four more days. Your autonomy and output will only matter if someone cares. Who cares? Who should care? Answer that before you sleep."
+      },
+      friday: {
+        morning: "Friday morning still connection bottlenecked. The week is ending and resonance lagged behind. Before the weekend, ask: why is the work not landing? Be honest with yourself.",
+        afternoon: "Friday afternoon disconnected. Your freedom and craft outpaced your impact all week. The weekend is for asking: what truth are you not telling? What vulnerability are you protecting?",
+        evening: "Friday evening with resonance as the limit. The week is over. Connection was the ceiling. This weekend, study what moves YOU. That is the standard your work needs to meet.",
+        night: "Friday night with connection blocking. The week is done. You have freedom and craft without impact. The weekend is for understanding why. What is missing from the work?"
+      },
+      saturday: {
+        morning: "Saturday morning thinking about connection. Your autonomy and intensity are strong but no one feels it. What would landing actually look like? Not metrics. Feeling. People moved.",
+        afternoon: "Saturday afternoon with resonance as bottleneck. The weekend is for thinking about impact. What do you believe that you have not said? That unsaid thing might be what connects.",
+        evening: "Saturday evening considering connection. Tomorrow is Sunday. Your other scores are ready to grow. Only resonance holds them back. What truth would unlock it?",
+        night: "Saturday night with connection limiting. The week ahead will repeat the pattern unless you intervene. What would make your work unmissable? Not popular. Unmissable. Think about that."
+      },
+      sunday: {
+        morning: "Sunday morning with connection as the bottleneck. The week starts tomorrow. Your freedom and craft are ready. Is your resonance? What would you say if you stopped protecting yourself?",
+        afternoon: "Sunday afternoon still disconnected. Monday is coming. Your connection will limit your other scores again unless something changes. What could change? More vulnerability. More specificity.",
+        evening: "Sunday evening with resonance as the limit. The week ahead needs more connection than last week gave you. Before the week begins, identify one truth you have been avoiding. Consider saying it.",
+        night: "Sunday night connection bottlenecked. Tomorrow you create again. But only as much as your resonance allows. What would make someone stop scrolling and feel? Make that tomorrow."
+      },
+      midweek: {
+        morning: "Midweek morning with connection as bottleneck. Half the week is gone. Resonance is still the ceiling. You have time to change that. What could you say today that would actually land?",
+        afternoon: "Midweek afternoon still disconnected. Your freedom and craft want more than your connection gives them. Before Friday, create something vulnerable. Something true.",
+        evening: "Midweek evening with resonance limiting. Tomorrow is another chance. Your other scores are waiting for connection to catch up. What would catching up require? More truth. More specificity.",
+        night: "Midweek night connection bottlenecked. The week is half over. Your resonance held everything else back. The remaining days are a chance to change that. What truth will you tell?"
+      }
+    }
+  },
+
+  // 12. OUTPUT BOTTLENECK - Ci is weakest (catch-all, excludes all_aligned_low)
+  output_bottleneck: {
+    condition: (s) => s.ci < s.aq && s.ci < s.ri && s.ci < 5 && !(s.aq < 4 && s.ri < 4 && s.ci < 4),
+    label: "⚡ OUTPUT IS THE BOTTLENECK",
+    messages: {
+      monday: {
+        morning: "Monday morning with output as the bottleneck. You have the freedom and the audience but not the craft intensity. The week ahead needs more depth. Block 90 minutes today for real creative work. Not planning. Creating.",
+        afternoon: "Monday afternoon still low output. Your autonomy and resonance are strong but production is weak. What would you make today if nothing else mattered? Make that. Everything else can wait.",
+        evening: "Monday evening with craft blocking. Day one is ending. Your freedom and connection are waiting for output to catch up. Before tomorrow, set one creative session that nothing can interrupt.",
+        night: "Monday night with output as the limit. The week has four more days. Your autonomy and resonance will only go as far as your craft allows. What would deep work look like tomorrow? Plan it now."
+      },
+      friday: {
+        morning: "Friday morning still output bottlenecked. The week is ending and craft lagged behind. Before the weekend, ask: what kept you from going deep? Be honest about the real blockers.",
+        afternoon: "Friday afternoon with low production. Your freedom and connection outpaced your output all week. The weekend is for asking: what would change if you protected creative time fiercely?",
+        evening: "Friday evening with craft as the limit. The week is over. Output was the ceiling. This weekend, think about what steals your focus. Then plan to stop it.",
+        night: "Friday night with output blocking. The week is done. You have freedom and connection without production. The weekend is for understanding why. What is really blocking your depth?"
+      },
+      saturday: {
+        morning: "Saturday morning thinking about output. Your autonomy and resonance are strong but craft lags. What would depth actually look like? Not more hours. More focus. More flow.",
+        afternoon: "Saturday afternoon with output as bottleneck. The weekend is for thinking about production. What would you create if you turned off all distractions? Consider doing that.",
+        evening: "Saturday evening considering craft. Tomorrow is Sunday. Your other scores are ready to grow. Only output holds them back. What would unlock your creative intensity?",
+        night: "Saturday night with output limiting. The week ahead will repeat the pattern unless you intervene. What would make deep work happen? Decide before you sleep."
+      },
+      sunday: {
+        morning: "Sunday morning with output as the bottleneck. The week starts tomorrow. Your freedom and connection are ready. Is your craft? What would serious creative output look like this week?",
+        afternoon: "Sunday afternoon still low production. Monday is coming. Your output will limit your other scores again unless something changes. What could change? More protection. More focus.",
+        evening: "Sunday evening with craft as the limit. The week ahead needs more output than last week gave you. Before the week begins, block your deep work time. Make it sacred.",
+        night: "Sunday night output bottlenecked. Tomorrow you create again. But only as much as your craft allows. What would help you go deep tomorrow? Set that up tonight."
+      },
+      midweek: {
+        morning: "Midweek morning with output as bottleneck. Half the week is gone. Craft is still the ceiling. You have time to change that. Today, protect 90 minutes for nothing but creation.",
+        afternoon: "Midweek afternoon still low production. Your freedom and connection want more than your output gives them. Before Friday, go deep at least once. Really deep.",
+        evening: "Midweek evening with craft limiting. Tomorrow is another chance. Your other scores are waiting for output to catch up. What would catching up look like? Plan it.",
+        night: "Midweek night output bottlenecked. The week is half over. Your craft held everything else back. The remaining days are a chance to change that. What will you create?"
       }
     }
   }

@@ -1215,7 +1215,7 @@
         messages = ciPropheticMessages;
         break;
       case 'alpha':
-        pattern = detectAlphaPattern(scores, history);
+        pattern = scores; // Pass scores directly - conditions expect s.aq, s.ri, s.ci
         messages = alphaPropheticMessages;
         break;
       default:
