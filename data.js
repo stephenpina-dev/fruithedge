@@ -1864,10 +1864,36 @@ const riPropheticMessages = {
     condition: (p) => p.hasScaleAchievement === true,
     label: "🏆 DEPTH AT SCALE",
     messages: {
-      morning: "You've achieved something most creators never will: genuine depth at massive scale. Millions of people, and they actually feel your work. This isn't luck. This is mastery. Today, don't optimize. Create from the same place that got you here—truth, boldness, specificity. The machine wants you to water it down. Don't. You've proven depth scales. Keep proving it.",
-      afternoon: "Resonance above 7 with over a million people watching. That's not a following. That's a movement. Most creators at your scale have sacrificed depth for reach. You haven't. Protect that. What you have is rare and fragile. Every piece you make either reinforces or erodes this achievement. Make something worthy of it.",
-      evening: "Depth at scale is the hardest thing in creative work. You've done it. The question now isn't growth—you have that. The question is legacy. What will this audience remember? What will outlast the algorithm? Tomorrow, make something that answers that question.",
-      night: "You've cracked the code that most creators spend their whole careers chasing: how to matter to millions without losing your soul. That's the achievement. Not the number. The depth at scale. Sleep well. You've earned it. Wake up tomorrow and protect what you've built."
+      monday: {
+        morning: "Monday morning with depth at scale. You achieved what most never will: genuine impact at massive reach. The week ahead is not about growing. It is about protecting. What you have is rare and fragile. Guard it.",
+        afternoon: "Monday afternoon at the peak. Millions of people and they actually feel your work. Do not optimize this away. The algorithm will tempt you to water it down. Do not. The depth is the point.",
+        evening: "Monday evening with depth at scale. Day one is ending. You are where everyone wants to be. But it is also where it is easiest to lose yourself. Before tomorrow, remember why this works. Stay true to that.",
+        night: "Monday night with rare achievement. The week has four more days. You could coast on these numbers. But coasting erodes depth. Make something this week that proves you are still an artist, not just a brand."
+      },
+      friday: {
+        morning: "Friday morning with depth at scale. The week is ending and you maintained the magic. That is the job now. Maintenance. Not growth. Protection. The depth is what matters. Keep it.",
+        afternoon: "Friday afternoon at the peak. The week went well. But success at this level creates new temptations. Broader appeal. Safer content. Resist. The depth is why they came. The depth is why they stay.",
+        evening: "Friday evening with scale and soul intact. The week is over. You made it through without losing yourself. That is victory at this level. The weekend is for remembering what matters. Not the numbers. The work.",
+        night: "Friday night with depth at scale. The week is done. You have what most creators dream of. Are you still making what you would make if no one was watching? That question keeps you honest. Keep asking it."
+      },
+      saturday: {
+        morning: "Saturday morning with rare achievement. Depth at massive scale. The weekend is not for planning growth. It is for appreciating what you built. And recommitting to the truth that built it.",
+        afternoon: "Saturday afternoon at the peak. You could be anywhere. Do anything. What do you want to make that has nothing to do with performance? That thing is probably important. Consider making it.",
+        evening: "Saturday evening with depth at scale. Tomorrow is Sunday. The week ahead will bring opportunities to dilute. Opportunities to optimize. Remember: the depth is the asset. Everything else is noise.",
+        night: "Saturday night with scale and soul. The week ahead does not need more growth. It needs more depth. Before you sleep, ask: what would my younger self think of my current work? Make them proud."
+      },
+      sunday: {
+        morning: "Sunday morning with depth at scale. The week starts tomorrow. You will reach millions. Will you move them? The reach is handled. The depth requires intention. Intend depth this week.",
+        afternoon: "Sunday afternoon at the peak. Monday is coming. Everyone will want something from you. Before the noise begins, remember why you started. That reason is still the point. Everything else is distraction.",
+        evening: "Sunday evening with rare achievement. The week ahead is an opportunity to prove you are still you. Not a brand. Not an algorithm. You. Make something this week that reminds everyone, including yourself.",
+        night: "Sunday night with depth at scale. Tomorrow you create again. This time, create like the numbers do not matter. Because at your level, they do not. Legacy matters. Meaning matters. That is what you protect."
+      },
+      midweek: {
+        morning: "Midweek morning with depth at scale. Half the week is gone. Have you maintained the depth? Or have you drifted toward safety? Today, make something risky. Prove the depth is still there.",
+        afternoon: "Midweek afternoon at the peak. The week is slipping by. Before Friday, create something that has nothing to do with performance. Something true. The depth is what you protect. Protect it today.",
+        evening: "Midweek evening with scale and soul. Tomorrow is another chance. What would you make if the algorithm rewarded depth instead of engagement? Make that anyway. Your audience will follow.",
+        night: "Midweek night with rare achievement. The week is half over. You reached millions. Did you move any of them? The remaining days are for depth. One piece that matters more than ten that perform."
+      }
     }
   },
 
@@ -1876,10 +1902,36 @@ const riPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'impact' && p.raw.impact <= 4,
     label: "👁 SEEN NOT FELT",
     messages: {
-      morning: "Your work is being seen but not felt. People scroll past, nod, forget. That's not resonance. That's noise. Today, make something that moves YOU first. Something that scares you a little. If it doesn't move you, it won't move them. What truth have you been avoiding?",
-      afternoon: "Low emotional impact means forgettable work. When did you last create something that gave someone chills? Tears? Laughter? That memory holds the key. What was different about that piece? Do more of whatever that was. Stop polishing. Start feeling.",
-      evening: "People are scrolling past your work because it's safe. Competent but safe. What would make them stop? Not tricks. Not hooks. Truth. Your truth. The thing you've been circling around but not saying. Say it tomorrow. See what happens.",
-      night: "Impact requires vulnerability and you've been protecting yourself. Understandable. But protected work doesn't resonate. What are you hiding that you should be revealing? Not everything. Just one thing. The thing that scares you to share. That's probably the one that matters."
+      monday: {
+        morning: "Monday morning with low impact. Your work is being seen but not felt. The week ahead offers a chance to change that. Before you create anything today, ask: what truth have I been avoiding? That truth is where impact lives. Not in polish. In honesty.",
+        afternoon: "Monday afternoon and still no resonance. The week is young. You have time to make something that matters. What would you create if you stopped worrying about how it would perform? That thing. Make that thing.",
+        evening: "Monday evening with work that does not land. Day one is ending. Did you make anything that moved you today? If not, tomorrow is different. Before you sleep, write down one thing you believe that you have not said publicly. Start there tomorrow.",
+        night: "Monday night with low impact. The week stretches ahead. Four more days to create something that matters. What would make you proud regardless of metrics? That is the work. Not what performs. What matters."
+      },
+      friday: {
+        morning: "Friday morning with low impact. The week is ending and nothing landed. That is data, not failure. What did you avoid saying this week? What felt too risky to share? The weekend is for reflection. Find the thing you held back.",
+        afternoon: "Friday afternoon and still not resonating. The week did not produce impact. But the weekend can produce clarity. What would you create if no one would judge you? Write that down. Maybe make it next week.",
+        evening: "Friday evening with work that did not land. The week is over. Let it go. But before you do, ask: what truth did I avoid? What vulnerability did I protect? That is where next week's impact lives.",
+        night: "Friday night with low resonance. The week is done. Rest now. But this weekend, study what moves YOU. What makes you stop scrolling? What do you save? That is the standard. Your work needs to meet it."
+      },
+      saturday: {
+        morning: "Saturday morning with low impact. The weekend is for consuming what resonates. Study it. What makes other work hit? Not the techniques. The truth underneath. That truth is what your work is missing.",
+        afternoon: "Saturday afternoon reflecting on impact. Your work is competent but forgettable. What would make it unforgettable? Not louder. Not more frequent. More true. What truth would make someone stop and feel?",
+        evening: "Saturday evening thinking about resonance. Tomorrow is Sunday. A day for deeper thinking. What do you believe that you have not said? What experience do you have that you have not shared? Impact lives in specificity.",
+        night: "Saturday night with low impact. The week ahead needs to be different. Before you sleep, consider: who specifically needs your work? Not everyone. Someone. Picture that person. What do they need to hear?"
+      },
+      sunday: {
+        morning: "Sunday morning with low impact. The week ahead is unwritten. What would you say if you only had one piece of content this week? Not the safest thing. The truest thing. Consider making only that.",
+        afternoon: "Sunday afternoon planning for impact. Monday is coming. What will be different? Not more content. Different content. What have you been circling around but not saying? That is your Monday morning priority.",
+        evening: "Sunday evening with resonance on your mind. The week starts tomorrow. You know what safe content looks like. It looks like last week. What would risky content look like? Something that might fail but might matter?",
+        night: "Sunday night thinking about impact. Tomorrow you create again. This time, create something that scares you slightly. Not reckless. Just honest. The fear you feel about sharing something is usually proportional to its importance."
+      },
+      midweek: {
+        morning: "Midweek morning with low impact. Half the week is gone and nothing has landed. You have time to change that. Today, make one thing that is more vulnerable than usual. See what happens.",
+        afternoon: "Midweek afternoon still not resonating. The week is slipping by. Before Friday, create something that reveals more than you normally reveal. Impact requires vulnerability. You have been protecting yourself.",
+        evening: "Midweek evening with work that does not land. Tomorrow is another chance. What would you say if you knew your audience needed to hear exactly one thing? Not what they want. What they need. Say that.",
+        night: "Midweek night with low impact. The week is half over. Two or three days remain. What could you create by Friday that would actually matter? Not perform. Matter. Start it tomorrow morning."
+      }
     }
   },
 
@@ -1888,10 +1940,36 @@ const riPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'identity' && p.raw.identity <= 4,
     label: "🎯 NO TARGET",
     messages: {
-      morning: "You're creating for everyone, which means no one feels like it's for THEM. Generic appeal is no appeal. Today, describe your ideal audience member in one sentence. Not demographics. Their secret frustration. Their hidden dream. Now make something specifically for that person.",
-      afternoon: "Your work lacks specificity and it shows. Could you describe your audience so precisely that they'd recognize themselves? Try this: 'This is for people who ____ but secretly ____.' Fill in those blanks. That's your target. Aim there.",
-      evening: "What if you made something that only 100 people would love—but they'd love it completely? That's more valuable than 10,000 lukewarm reactions. Who are your 100? What do they need that no one else is making? Make that tomorrow.",
-      night: "The riches are in the niches. Who would genuinely mourn if you stopped creating? Not politely miss. Mourn. Those people are your audience. Make for them. Speak to them. Everyone else is a bonus. But those people are the core. Know them. Serve them."
+      monday: {
+        morning: "Monday morning with no clear audience. You are creating for everyone, which means no one feels like it is for them. Before you make anything today, describe one specific person. Not a demographic. A human. Their frustration. Their dream. Make for them.",
+        afternoon: "Monday afternoon without a target. The week is starting scattered. Who specifically would miss your work if you stopped? Picture that person. What do they need that no one else is making? Make that.",
+        evening: "Monday evening with generic appeal. Day one is ending. Did you make anything for someone specific? If not, tomorrow is different. Write down: this is for people who blank but secretly blank. Fill in those blanks. That is your target.",
+        night: "Monday night with no identity fit. The week has four more days. You can find your audience in that time. Not a large audience. Your audience. Ten people who need exactly what you make. Who are they?"
+      },
+      friday: {
+        morning: "Friday morning with no clear target. The week is ending and your work reached no one specifically. That is the problem. The weekend is for clarity. Who would mourn if you stopped creating? Those people are your audience.",
+        afternoon: "Friday afternoon without a niche. The week scattered into the void. Before the weekend, write down the one person who needs your work most. Not wants. Needs. Make next week for that person.",
+        evening: "Friday evening with generic appeal. The week is over. Rest. But this weekend, study your best work. What did it have in common? Who responded? That pattern is your audience. Follow it.",
+        night: "Friday night with no identity fit. The week is done. Use the weekend to get specific. Riches are in niches. Who is your niche? Not everyone. Not most people. Your people. Define them."
+      },
+      saturday: {
+        morning: "Saturday morning thinking about audience. Who specifically needs what you make? Not everyone. Someone. Today, think about that person. Their life. Their problems. Their secret frustrations. Know them so well you can predict their reactions.",
+        afternoon: "Saturday afternoon without a target. The weekend is for clarity. Write down ten characteristics of your ideal audience member. Not age and location. Fears and dreams. That is who you make for.",
+        evening: "Saturday evening considering identity fit. Tomorrow is Sunday. Time for deeper thinking. What group of people feels invisible to the mainstream? What do they need that no one is making? Maybe you should make it.",
+        night: "Saturday night with no clear audience. The week ahead needs focus. Before you sleep, answer: who would understand my work better than anyone? That small group is your audience. Everyone else is a bonus."
+      },
+      sunday: {
+        morning: "Sunday morning with identity on your mind. The week starts tomorrow. Who is it for? Not vaguely. Specifically. What would you make if you were making it for exactly one person who desperately needed it?",
+        afternoon: "Sunday afternoon planning for specificity. Monday is coming. This week, try creating for a smaller audience. Not broader. Smaller. Deeper. What would you make for just 100 people who would love it completely?",
+        evening: "Sunday evening thinking about targeting. The week ahead is an opportunity. What if you niched down radically? Spoke to fewer people but spoke directly to them? That might be scarier. It would also be more effective.",
+        night: "Sunday night considering identity fit. Tomorrow you create again. This time, picture one person. Give them a name. Know their struggles. Make for them. Not the algorithm. Not the masses. One person."
+      },
+      midweek: {
+        morning: "Midweek morning with no clear target. Half the week is gone and you have been making for everyone. That means no one. Today, pick a specific audience. Make something just for them. See how it feels.",
+        afternoon: "Midweek afternoon without a niche. The week is slipping by. Before Friday, answer: who is this actually for? Not who might like it. Who needs it. That specificity changes everything.",
+        evening: "Midweek evening with generic appeal. Tomorrow is another chance. What if you created something that only 50 people would understand but those 50 would feel seen? That is worth more than 5000 casual viewers.",
+        night: "Midweek night with no identity fit. The week is half over. You have been trying to reach everyone. Try the opposite. Tomorrow, make for someone specific. Real. Knowable. That is where resonance begins."
+      }
     }
   },
 
@@ -1900,10 +1978,36 @@ const riPropheticMessages = {
     condition: (p) => p.bottleneck.name === 'boldness' && p.raw.boldness <= 4,
     label: "🛡 PLAYING SAFE",
     messages: {
-      morning: "You're playing it safe and the work shows it. Competent but careful. What would you make today if no one would judge you? If failure was impossible? If your reputation couldn't be damaged? That thing you just thought of—start it. The fear is a compass pointing toward what matters.",
-      afternoon: "Low boldness means high conformity. You're making what's expected instead of what's true. What opinion do you hold that others in your space don't? What would you say if you weren't worried about the reaction? That's your edge. Use it or lose it.",
-      evening: "Safe work is forgettable work. It doesn't offend. It also doesn't matter. What's the project you keep talking yourself out of? The one that feels too weird, too personal, too risky? That's probably the one. Tomorrow, start it. Imperfect is fine. Safe is not.",
-      night: "The fear you feel about sharing something is usually proportional to its importance. What are you afraid to put out there? Write it down. Look at it. The resistance you feel is information. Lean into it. That's where your best work lives."
+      monday: {
+        morning: "Monday morning playing it safe. The week ahead will look like last week if you make the same safe choices. What would you create today if no one would judge you? If failure was impossible? That thing. Start that thing.",
+        afternoon: "Monday afternoon still playing safe. The week is young. You have time to take a risk. What opinion do you hold that others in your space do not? What would you say if you were not worried about the reaction? Say it.",
+        evening: "Monday evening with low boldness. Day one is ending. Did you take any creative risks today? If not, tomorrow is different. Before you sleep, identify the scary project you have been avoiding. Start it tomorrow.",
+        night: "Monday night playing it safe. The week has four more days. What bold move have you been putting off? The one that makes your stomach tighten? That is the one that matters. Plan it for tomorrow."
+      },
+      friday: {
+        morning: "Friday morning still playing safe. The week is ending and you took no risks. That is understandable. But it is also why nothing changed. The weekend is for reflection. What risk would you take if you had permission?",
+        afternoon: "Friday afternoon with low boldness. The week played out safely. Before the weekend, consider: what would you create if your reputation could not be damaged? That thing is probably important.",
+        evening: "Friday evening playing it safe. The week is over. You survived. But surviving is not thriving. This weekend, think about what you would make if you stopped being afraid. That fear is pointing somewhere.",
+        night: "Friday night with low boldness. The week was safe. Safe is forgettable. The weekend is for asking: what scares me creatively? That fear is data. It is showing you where your growth lives."
+      },
+      saturday: {
+        morning: "Saturday morning thinking about risk. What would bold look like for you? Not reckless. Bold. The thing that makes you uncomfortable but excited. The weekend is for considering it. Maybe starting it.",
+        afternoon: "Saturday afternoon playing it safe. Even your weekend is safe. What would you experiment with if the experiment could not fail? If no one was watching? Consider trying that today.",
+        evening: "Saturday evening with boldness on your mind. Tomorrow is Sunday. What project have you been talking yourself out of? The one that feels too weird, too personal, too risky? That is probably the one.",
+        night: "Saturday night thinking about risk. The week ahead could be different. Before you sleep, write down one bold thing you could do next week. Not huge. Just bolder than usual. See if you can do it."
+      },
+      sunday: {
+        morning: "Sunday morning considering boldness. The week starts tomorrow. Will it be another safe week? Or will you try something different? What is the one risky thing you could do Monday? Name it.",
+        afternoon: "Sunday afternoon thinking about risk. Monday is coming. You have a choice. More of the same. Or something bold. What would you create if you knew you could not be cancelled for it? Consider making that.",
+        evening: "Sunday evening with low boldness. The week ahead is an opportunity. Safe work is forgettable work. What would make you memorable? Not famous. Memorable to the right people. That requires risk.",
+        night: "Sunday night playing it safe. Tomorrow is Monday. The week is unwritten. What if you did one thing this week that scared you? Just one. The resistance you feel right now is proportional to its importance."
+      },
+      midweek: {
+        morning: "Midweek morning still playing safe. Half the week is gone and you took no risks. You still have time. What is one thing you could do today that would be bolder than usual? Do it. See what happens.",
+        afternoon: "Midweek afternoon with low boldness. The week is slipping by safely. Before Friday, take one creative risk. Not a big one. A small one. Something that makes your heart beat slightly faster.",
+        evening: "Midweek evening playing it safe. Tomorrow is another chance. What would you post if you were not afraid of judgment? That thing. Consider posting it. The fear is the signal.",
+        night: "Midweek night with low boldness. The week is half over. No risks yet. Two or three days remain. What could you create by Friday that would surprise people? Not shock. Surprise. Something true that you have been hiding."
+      }
     }
   },
 
@@ -1912,10 +2016,36 @@ const riPropheticMessages = {
     condition: (p) => p.isLargeAudience && p.bottleneck.name === 'intimacy',
     label: "📢 SCALE VS SOUL",
     messages: {
-      morning: "Large audience, but connection is thinning. You're reaching more people and touching fewer. Today, create like you have 100 followers. Forget the metrics. What would you say if it wasn't going to go viral? That's probably more important than what will.",
-      afternoon: "Scale can kill soul if you let it. When did you last have a real conversation with someone who follows you? Not a broadcast. A conversation. Pick one person today. Reach out. Remember why you started. They're not a number. They're a person who chose you.",
-      evening: "You're reaching many but moving few. That's the trap of scale. Depth beats breadth. Always. What would your day-one fans want from you? Not your current audience. The originals. They knew you before the algorithm did. Make something for them.",
-      night: "Mass audience is a blessing and a trap. The blessing: reach. The trap: losing the intimacy that built this. Don't optimize for growth. Optimize for depth. The numbers will follow the meaning. They always do. But meaning has to come first."
+      monday: {
+        morning: "Monday morning with a large audience but thinning connection. The week ahead is a choice: more reach or more depth? Before you create today, remember why they followed you in the first place. Not the algorithm. The original magic. Make from there.",
+        afternoon: "Monday afternoon at scale. The numbers are good but the feeling is fading. What would you create today if you only had 100 followers? That intimacy you had at the start. Can you recapture it at scale? Try.",
+        evening: "Monday evening with mass audience. Day one is ending. Did you connect with anyone specifically today? Not broadcast. Connect. Tomorrow, reach out to one follower personally. Remember they are humans, not metrics.",
+        night: "Monday night at scale. The week has four more days. You can reach millions but are you touching anyone? Before you sleep, remember: depth beats breadth. Always. What would depth look like this week?"
+      },
+      friday: {
+        morning: "Friday morning with scale versus soul. The week is ending. You reached many. Who did you actually connect with? The weekend is for remembering why this matters. Not the numbers. The impact on real humans.",
+        afternoon: "Friday afternoon at mass scale. The week performed well. But performance is not connection. Before the weekend, have one real conversation with someone who follows you. Not a broadcast. A conversation.",
+        evening: "Friday evening with a large audience. The week is over. The metrics look good. But metrics are shadows of meaning. This weekend, think about what your day one fans would want from you. Make more of that.",
+        night: "Friday night at scale. The week is done. You reached more people than most will ever reach. Did you move any of them? The weekend is for remembering that one moved person matters more than a million scrollers."
+      },
+      saturday: {
+        morning: "Saturday morning thinking about scale. Your audience is large. Is it deep? Today, instead of thinking about growth, think about depth. What would make your existing audience feel more connected? Do that.",
+        afternoon: "Saturday afternoon with mass reach. The numbers are impressive. But numbers do not feel anything. What would you create if you wanted someone to cry? To laugh out loud? To send it to their best friend? That is depth.",
+        evening: "Saturday evening at scale. Tomorrow is Sunday. Time to reflect on what matters. Not reach. Resonance. What made your early work resonate? Before you had an audience? That thing is still the point.",
+        night: "Saturday night with a large audience. The weekend is for perspective. You have reach most creators dream of. Are you using it for depth or just more reach? The answer shapes your legacy."
+      },
+      sunday: {
+        morning: "Sunday morning with scale on your mind. The week starts tomorrow. Will it be about growing the audience or deepening it? Both are valid. But depth compounds in ways reach cannot. Consider that.",
+        afternoon: "Sunday afternoon thinking about connection. Monday is coming. You can broadcast to millions. But what if you created like you were talking to one person? The best large creators never lost that intimacy. Can you find it again?",
+        evening: "Sunday evening at mass scale. The week ahead is an opportunity. Not for more reach. For more meaning. What would your most loyal followers want from you? Not the casual ones. The true fans. Serve them.",
+        night: "Sunday night with a large audience. Tomorrow you create again. This time, create like you have 100 followers who would notice if you stopped. That intimacy. That care. Scale has not changed what matters. Depth still wins."
+      },
+      midweek: {
+        morning: "Midweek morning with scale versus soul. Half the week is gone. You have broadcast. Have you connected? Today, make something for your day one fans. The ones who found you before you were big. What do they need?",
+        afternoon: "Midweek afternoon at mass reach. The week is slipping by in broadcasts. Before Friday, have one real interaction. Reply deeply to someone. Remember that behind every follow is a human who chose you.",
+        evening: "Midweek evening with a large audience. Tomorrow is another chance. What would you make if metrics did not exist? If only the work and the people mattered? That clarity might change what you create.",
+        night: "Midweek night at scale. The week is half over. You have reached many. Have you moved anyone? The remaining days are a chance to prioritize depth. One piece that matters more than ten that perform."
+      }
     }
   },
 
@@ -1924,10 +2054,36 @@ const riPropheticMessages = {
     condition: (p) => p.isSmallAudience && p.raw.impact >= 6,
     label: "💎 INTIMATE POWER",
     messages: {
-      morning: "Small audience, real impact. This is the sweet spot that large creators envy. You can know each person. You can respond to everyone. That's not a limitation. That's a superpower. Use it. What if you asked 5 followers today what they actually need? Their answers might change everything.",
-      afternoon: "Intimacy is your edge. Don't wish it away chasing scale. What you have right now—genuine connection with people who care—is worth more than millions of passive followers. Deepen before you widen. The depth creates the foundation for sustainable growth.",
-      evening: "You're not chasing scale and that's probably wise. You're building depth. Real connection. Actual impact. That's rare and valuable. Keep going. The numbers will come when they come. The relationships you're building now will outlast any algorithm change.",
-      night: "Your audience is small but they feel you. They chose you out of infinite options. That's not nothing. That's everything. One hundred true fans beats ten thousand casual scrollers. Always. You're building something real. Protect that. Nurture that."
+      monday: {
+        morning: "Monday morning with a small but powerful audience. You have what large creators envy: you can know each person. The week ahead is for deepening, not broadening. Who can you reach out to personally today? Do that.",
+        afternoon: "Monday afternoon with intimate power. Your audience is small and that is a strength. What do they specifically need that no one else is making? Ask them. Literally ask. You can still do that. Use it.",
+        evening: "Monday evening with a small audience. Day one is ending. Did you talk to any of your followers directly? You have the ability to know them by name. That is worth more than millions of strangers.",
+        night: "Monday night with intimate reach. The week has four more days. Your small audience is not a limitation. It is a laboratory. You can experiment, fail, adjust. No one is watching but the people who care. Use that freedom."
+      },
+      friday: {
+        morning: "Friday morning with intimate power. The week is ending and your small audience stayed with you. That loyalty is everything. Before the weekend, thank one person who has been there. Not publicly. Personally.",
+        afternoon: "Friday afternoon with a small but mighty following. The week showed you who your people are. The weekend is for appreciating them. Not chasing new followers. Appreciating the ones you have.",
+        evening: "Friday evening with intimate reach. The week is over. Your audience is small and real. That is rare. Protect it. Nurture it. Growth will come from depth, not from chasing breadth.",
+        night: "Friday night with a small audience. The week is done. You do not have millions but you have something better: people who genuinely care. The weekend is for remembering that quality beats quantity. Always."
+      },
+      saturday: {
+        morning: "Saturday morning with intimate power. Your small audience is your strength. Today, think about how you can serve them better. Not reach more people. Serve these people more deeply.",
+        afternoon: "Saturday afternoon with a small following. You can reply to everyone. You can know their names. You can ask what they need. How many large creators wish they had that? Use it today.",
+        evening: "Saturday evening with intimate reach. Tomorrow is Sunday. What could you create specifically because one follower asked for it? That is the power of small. You can actually respond to individuals.",
+        night: "Saturday night with a small audience. The week ahead does not need to be about growth. It can be about depth. What would make your existing followers feel seen? Plan that for next week."
+      },
+      sunday: {
+        morning: "Sunday morning with intimate power. The week starts tomorrow. You have something precious: a small group that chose you. What would you make if you were only making it for them? Make that.",
+        afternoon: "Sunday afternoon with a small audience. Monday is coming. Instead of chasing growth, what if you chased depth? Made your small audience feel like the most important people in the world? They might be.",
+        evening: "Sunday evening with intimate reach. The week ahead is an opportunity to deepen before you widen. The depth creates the foundation. Without depth, width collapses. Serve who you have.",
+        night: "Sunday night with a small but powerful audience. Tomorrow you create again. Create like these specific people are watching. Because they are. Not millions of strangers. Your people. That intimacy is your edge."
+      },
+      midweek: {
+        morning: "Midweek morning with intimate power. Half the week is gone. Have you used your superpower? You can reach out personally. You can ask directly. You can know your audience by name. Use that today.",
+        afternoon: "Midweek afternoon with a small audience. The week is slipping by. Before Friday, connect with three followers personally. Not broadcast. Connect. Ask what they need. Then make it.",
+        evening: "Midweek evening with intimate reach. Tomorrow is another chance. What would you create if you knew exactly who was watching? You do know. Your small audience is knowable. Make for them.",
+        night: "Midweek night with a small following. The week is half over. Your audience is small and that is perfect for now. Depth first. Then width. The weekend creators envy you. They just do not know it."
+      }
     }
   },
 
@@ -1936,10 +2092,36 @@ const riPropheticMessages = {
     condition: (p) => p.strength.name === 'boldness' && p.raw.boldness >= 7 && p.average < 7,
     label: "🔥 BOLD BUT UNHEARD",
     messages: {
-      morning: "You're taking risks but they're not landing. Bold work that doesn't connect is still missing something. The craft is there. The courage is there. But who needs to hear this? Get specific about your audience today. Aim the boldness. Don't just fire into the void.",
-      afternoon: "Fearless work that doesn't resonate is just noise. You have the bravery. Now you need the targeting. What truth are you telling? Who specifically needs that truth? Where do they gather? How do they find you? Courage without strategy is just chaos.",
-      evening: "You're brave and that matters. But brave and invisible doesn't change anything. Tomorrow, combine your boldness with specificity. Make something daring AND targeted. Bold AND clear about who it's for. That combination is unstoppable.",
-      night: "Your courage is an asset most creators lack. Don't waste it on untargeted shots. Tomorrow, aim your boldness. Pick a specific audience. A specific problem. A specific truth. Then be as fearless as you are. Directed courage moves mountains."
+      monday: {
+        morning: "Monday morning bold but unheard. You take risks others avoid. The courage is there. The audience is not. The week ahead needs targeting, not more bravery. Who specifically needs your bold truth? Find them.",
+        afternoon: "Monday afternoon with boldness to spare. Your work is fearless but it is firing into the void. Who would be transformed by your message if they heard it? That person exists. Find where they gather.",
+        evening: "Monday evening bold but unheard. Day one is ending. Your courage is not the problem. Your aim is. Before tomorrow, get specific: who needs exactly what you are saying? Not everyone. Someone.",
+        night: "Monday night with untargeted boldness. The week has four more days. You have the bravery. Now you need the strategy. Who is your audience? Not who might like you. Who needs you? Find them this week."
+      },
+      friday: {
+        morning: "Friday morning bold but unheard. The week is ending and your courage did not find its audience. That is targeting, not talent. The weekend is for getting specific. Who is this for?",
+        afternoon: "Friday afternoon with boldness strength. You took risks this week. Did they land? If not, the issue is not the risk. It is the aim. Before the weekend, define your target more precisely.",
+        evening: "Friday evening bold but unheard. The week is over. Your fearlessness is an asset most lack. But courage without strategy is just noise. This weekend, plan where to aim your boldness.",
+        night: "Friday night with untargeted bravery. The week is done. You have what it takes. You just need to find where it is needed. The weekend is for that question: who specifically needs your boldness?"
+      },
+      saturday: {
+        morning: "Saturday morning bold but unheard. You have courage. Today, work on aim. Where do people who need your message gather? What platforms? What communities? Your boldness needs a home.",
+        afternoon: "Saturday afternoon with boldness to spare. The courage is not the problem. The targeting is. What group of people is being told comfortable lies that need your uncomfortable truth? Find them.",
+        evening: "Saturday evening bold but unheard. Tomorrow is Sunday. Time to think strategically. Your bravery is rare. Where would it be most valuable? Not everywhere. Somewhere specific.",
+        night: "Saturday night with untargeted boldness. The week ahead needs to be different. Before you sleep, answer: if only one type of person heard my work, who should it be? Aim there next week."
+      },
+      sunday: {
+        morning: "Sunday morning bold but unheard. The week starts tomorrow. Your courage is ready. Is your aim ready? Who specifically are you trying to reach? Get precise. Boldness plus targeting is unstoppable.",
+        afternoon: "Sunday afternoon with boldness strength. Monday is coming. You will be brave. But will you be strategic? What would happen if you aimed your courage at a specific audience instead of everyone?",
+        evening: "Sunday evening bold but unheard. The week ahead is an opportunity. Not for more boldness. For better targeting. Where does your message need to land? Who is waiting for exactly what you say?",
+        night: "Sunday night with untargeted bravery. Tomorrow you create again. This time, aim. Not at everyone. At someone. The boldness is not the problem. The precision is. Fix that this week."
+      },
+      midweek: {
+        morning: "Midweek morning bold but unheard. Half the week is gone. Your courage is firing but not landing. Today, focus on targeting. One specific audience. One specific message. Aim your boldness.",
+        afternoon: "Midweek afternoon with boldness to spare. The week is slipping by. Before Friday, get specific about who needs your message. Not everyone. The specific people who are waiting for your truth.",
+        evening: "Midweek evening bold but unheard. Tomorrow is another chance. What if you combined your courage with precision? Bold AND targeted. That combination is rare. That combination works.",
+        night: "Midweek night with untargeted bravery. The week is half over. Your boldness is an asset. Your aim needs work. Before you sleep, write down exactly who needs what you are saying. Tomorrow, reach them."
+      }
     }
   },
 
@@ -1948,10 +2130,36 @@ const riPropheticMessages = {
     condition: (p) => p.audienceTier && p.audienceTier.intimate && p.average >= 5,
     label: "💎 INTIMATE CIRCLE",
     messages: {
-      morning: "You have fewer than 1,000 people, but they chose you. That's not a limitation—it's a superpower. You can reply to everyone. You can know their names. You can ask them directly what they need. Today, reach out to 3 followers personally. Not to promote. To connect. To learn. This intimacy is your unfair advantage. Use it before it scales away.",
-      afternoon: "Small audience, real connection. Most creators would kill for what you have—people who actually care. Don't wish for scale yet. Deepen first. What if you created something specifically because one follower asked for it? That's the move. That's how movements start. One person at a time.",
-      evening: "Under 1K followers means you're still in the relationship-building phase. Every person who joins now is a founding member of something. Treat them that way. Tomorrow, share something you'd only share with friends. See who responds. Those are your people.",
-      night: "Intimate audiences are laboratories. You can experiment, fail, and adjust without the world watching. That's freedom most creators lose and never get back. Use this phase wisely. Test your boldest ideas now. Find what resonates. Then scale what works."
+      monday: {
+        morning: "Monday morning with fewer than 1000 people. That is not a limitation. That is a superpower. You can reply to everyone. You can know their names. Today, reach out to three followers personally. Not to promote. To connect. To learn. This is your unfair advantage.",
+        afternoon: "Monday afternoon with an intimate audience. The week is young. What do your followers actually need? You can ask them directly. Literally send a message and ask. Try that today. The answers will shape your week.",
+        evening: "Monday evening with a small circle. Day one is ending. Did you talk to any of your people today? You have the ability to have real conversations. Use it before it scales away.",
+        night: "Monday night with intimate reach. The week has four more days. Your small audience is a laboratory. You can experiment, fail, adjust without the world watching. That freedom is priceless. Use it this week."
+      },
+      friday: {
+        morning: "Friday morning with fewer than 1000 followers. The week is ending. Did you use your intimacy advantage? Before the weekend, reach out to someone who engaged with you this week. Thank them. Know them.",
+        afternoon: "Friday afternoon with a small audience. The week showed you who your people are. You can actually know them. How many large creators wish they had that? Appreciate it.",
+        evening: "Friday evening with intimate reach. The week is over. Your audience is small and real. That is rare. The weekend is for appreciating that before chasing growth.",
+        night: "Friday night with fewer than 1000 people. The week is done. You do not have millions. You have something better: people you can actually know. Protect that relationship."
+      },
+      saturday: {
+        morning: "Saturday morning with an intimate circle. The weekend is for thinking about these people. Not more people. These people. What do they need? What would delight them? You can find out directly.",
+        afternoon: "Saturday afternoon with a small audience. You have access that scales away. Use the weekend to deepen relationships with specific followers. Not all of them. A few real ones.",
+        evening: "Saturday evening with intimate reach. Tomorrow is Sunday. What could you create specifically because one follower asked for it? That responsiveness is your edge.",
+        night: "Saturday night with fewer than 1000 followers. The week ahead does not need to be about growth. It can be about depth. What would make your existing followers feel like founding members?"
+      },
+      sunday: {
+        morning: "Sunday morning with an intimate circle. The week starts tomorrow. You have something precious: a small group that chose you. Create like you are making it specifically for them. Because you are.",
+        afternoon: "Sunday afternoon with a small audience. Monday is coming. Instead of chasing new followers, what if you served existing ones so well they brought new ones? That is sustainable growth.",
+        evening: "Sunday evening with intimate reach. The week ahead is an opportunity to build the foundation that scale requires. Depth now creates sustainable width later.",
+        night: "Sunday night with fewer than 1000 people. Tomorrow you create again. Create like these specific humans are watching. Because they are. Not strangers. Your people. That intimacy is everything."
+      },
+      midweek: {
+        morning: "Midweek morning with an intimate circle. Half the week is gone. Have you used your superpower? You can message anyone who follows you and they will probably reply. Use that.",
+        afternoon: "Midweek afternoon with a small audience. The week is slipping by. Before Friday, ask five followers what they need. Literally ask. Then consider making it.",
+        evening: "Midweek evening with intimate reach. Tomorrow is another chance. Your small audience is not a problem to solve. It is an advantage to use. Use it.",
+        night: "Midweek night with fewer than 1000 followers. The week is half over. Every large creator started where you are. The ones who won built deep before they built wide. Do that."
+      }
     }
   },
 
@@ -1960,10 +2168,36 @@ const riPropheticMessages = {
     condition: (p) => p.audienceTier && p.audienceTier.growing && p.average >= 5,
     label: "🌱 BUILDING MOMENTUM",
     messages: {
-      morning: "You're in the 1K-10K zone—past hobby, not yet career. This is the crucial phase where your creative identity solidifies. What you do now becomes what you're known for. Today, double down on what's working. Not what you wish was working. What's actually resonating. More of that.",
-      afternoon: "Building momentum means you've found something that connects. Don't pivot away from it chasing novelty. Go deeper. What's the version of your current work that's 10x more YOU? That's the path. Depth now creates the foundation for sustainable scale later.",
-      evening: "The 1K-10K phase is where most creators stall—too small to feel successful, too big to ignore. Keep going. You're not stuck. You're building. Tomorrow, create the thing that only you could make. The weird thing. The specific thing. That's what breaks you through.",
-      night: "You have traction. Not massive. Real. People are showing up for what you make. That's validation. Now the question is: can you be consistent long enough for compound growth to kick in? The answer is yes if you protect your energy and stay true to what's working."
+      monday: {
+        morning: "Monday morning in the 1K to 10K zone. Past hobby, not yet career. This is the crucial phase. What you do now becomes what you are known for. Today, double down on what is working. Not what you wish was working. What is actually resonating.",
+        afternoon: "Monday afternoon building momentum. The week is young. You have traction. Not massive. Real. What would it take to double down on your best performing work? Consider that today.",
+        evening: "Monday evening in the growth phase. Day one is ending. Did you lean into what works or scatter into what might work? Tomorrow, focus. The thing that got traction deserves more attention.",
+        night: "Monday night with growing momentum. The week has four more days. This is not the time to pivot. This is the time to deepen. What made them follow? Give them more of that."
+      },
+      friday: {
+        morning: "Friday morning in the 1K to 10K zone. The week is ending. Did you build on what works or chase what might? The weekend is for clarity. What actually grew this week? Do more of that.",
+        afternoon: "Friday afternoon building momentum. The week showed you what resonates. Before the weekend, note it. What worked? What did not? That data shapes next week.",
+        evening: "Friday evening in the growth phase. The week is over. You are not stuck. You are building. Momentum is fragile. Protect it by staying consistent with what works.",
+        night: "Friday night with growing audience. The week is done. You have traction that most never find. The weekend is for appreciating that while planning to build on it."
+      },
+      saturday: {
+        morning: "Saturday morning in the 1K to 10K zone. The weekend is for perspective. You are past hobby. Not yet career. What would make this a career? What consistency would that require? Consider it.",
+        afternoon: "Saturday afternoon building momentum. The growth is real but fragile. What would protect it? More of what works. Less experimentation. This phase rewards consistency.",
+        evening: "Saturday evening in the growth phase. Tomorrow is Sunday. What commitment could you make for next week that would protect your momentum? Consistency beats creativity at this stage.",
+        night: "Saturday night with growing audience. The week ahead matters more than you think. This phase is where most people stall. Keep going. The compound is coming if you stay consistent."
+      },
+      sunday: {
+        morning: "Sunday morning in the 1K to 10K zone. The week starts tomorrow. What will you do that keeps the momentum going? Not new experiments. Consistent execution on what already works.",
+        afternoon: "Sunday afternoon building momentum. Monday is coming. You have something most people never get: traction. Do not squander it chasing novelty. Deepen what works.",
+        evening: "Sunday evening in the growth phase. The week ahead is for building on your foundation. Not reinventing it. What worked last week? Plan to do more of that.",
+        night: "Sunday night with growing audience. Tomorrow you create again. This time, create what you know works. The 1K to 10K phase rewards consistency over creativity. Be consistent."
+      },
+      midweek: {
+        morning: "Midweek morning in the 1K to 10K zone. Half the week is gone. Have you been consistent with what works? Or distracted by what might? The rest of the week needs focus.",
+        afternoon: "Midweek afternoon building momentum. The week is slipping by. Before Friday, make sure you have done more of what works. Not just experimented with what might.",
+        evening: "Midweek evening in the growth phase. Tomorrow is another chance. Momentum requires consistency. What would consistent look like for the rest of this week?",
+        night: "Midweek night with growing audience. The week is half over. The traction you have is real but fragile. Protect it with consistency. The compound effect is coming. Stay the course."
+      }
     }
   },
 
@@ -1972,10 +2206,36 @@ const riPropheticMessages = {
     condition: (p) => p.audienceTier && p.audienceTier.established && p.average >= 5,
     label: "🏛 ESTABLISHED PRESENCE",
     messages: {
-      morning: "10K-100K is the proving ground. You have real traction. People recognize your name. But the algorithm is starting to pressure you toward optimization over authenticity. Today, resist. Make something that serves your audience, not the metrics. The audience that matters will notice.",
-      afternoon: "You're established enough to feel the pull of scale but not so big you've lost yourself. This is the fork in the road. One path leads to hollow growth. The other leads to sustainable depth. Every piece you make now is a vote for which path you're taking. Choose wisely.",
-      evening: "Established presence means you have something worth protecting. The voice that got you here—guard it. The temptation to broaden and soften is real. Don't. Tomorrow, make something that might lose casual followers but will deepen the committed ones. That's the trade that pays.",
-      night: "The 10K-100K range is where creative careers are built or broken. You have enough audience to matter. The question is whether you'll stay true to what made them follow. Before you sleep, remember why you started. That's still the point. The numbers are just evidence."
+      monday: {
+        morning: "Monday morning with 10K to 100K followers. You have real traction. People recognize your name. The algorithm is starting to pressure you. Today, resist. Make something that serves your audience, not the metrics.",
+        afternoon: "Monday afternoon with established presence. The week is young. You feel the pull toward optimization. Resist it. What would you make if the algorithm did not exist? Make that.",
+        evening: "Monday evening in the established zone. Day one is ending. Did you serve your audience or the algorithm today? Tomorrow, choose audience. Always choose audience.",
+        night: "Monday night with 10K to 100K followers. The week has four more days. This is the fork in the road. Hollow growth or sustainable depth. Every piece you make is a vote. Choose wisely."
+      },
+      friday: {
+        morning: "Friday morning with established presence. The week is ending. Did you stay true to what built this? The weekend is for remembering why they followed. Not the algorithm. You.",
+        afternoon: "Friday afternoon with 10K to 100K followers. The week showed you the tension between growth and truth. Before the weekend, recommit to truth. Growth follows truth. Not the reverse.",
+        evening: "Friday evening in the established zone. The week is over. You felt the pressure to optimize. Did you resist? The weekend is for reconnecting with why this matters beyond the metrics.",
+        night: "Friday night with established presence. The week is done. You have something worth protecting. The weekend is for remembering what that is. Not the numbers. The work. The truth."
+      },
+      saturday: {
+        morning: "Saturday morning with 10K to 100K followers. The weekend is for perspective. You are at the fork. One path leads to hollow growth. One leads to sustainable depth. Which are you on?",
+        afternoon: "Saturday afternoon with established presence. You have traction that matters. The question is whether you will trade it for algorithm approval. Do not. The depth is worth more.",
+        evening: "Saturday evening in the established zone. Tomorrow is Sunday. Time to think about what you want to be known for. Not what performs. What matters. Those might be different.",
+        night: "Saturday night with 10K to 100K followers. The week ahead will test you. The algorithm will want one thing. Your soul will want another. Decide now which you will serve."
+      },
+      sunday: {
+        morning: "Sunday morning with established presence. The week starts tomorrow. You will feel the pull toward optimization. Before it begins, remember: the voice that got you here is the voice that keeps you here.",
+        afternoon: "Sunday afternoon with 10K to 100K followers. Monday is coming. The algorithm will pressure you. Resist. What would your day one followers want? Make for them. Not the masses.",
+        evening: "Sunday evening in the established zone. The week ahead is an opportunity to stay true. Not to grow at any cost. To grow in ways that matter. What would that look like?",
+        night: "Sunday night with established presence. Tomorrow you create again. This time, create like the metrics do not exist. They are not why you started. Do not let them become why you continue."
+      },
+      midweek: {
+        morning: "Midweek morning with 10K to 100K followers. Half the week is gone. Have you stayed true to your voice? Or drifted toward optimization? The rest of the week is a choice.",
+        afternoon: "Midweek afternoon with established presence. The week is slipping by. Before Friday, make something you would have made before you had an audience. Something true.",
+        evening: "Midweek evening in the established zone. Tomorrow is another chance. The pressure to optimize never goes away. But neither does the option to resist. Resist.",
+        night: "Midweek night with 10K to 100K followers. The week is half over. You are at the stage where careers are built or sold. Do not sell yours for metrics. Stay true."
+      }
     }
   },
 
@@ -1984,10 +2244,36 @@ const riPropheticMessages = {
     condition: (p) => p.audienceTier && p.audienceTier.large && p.average >= 5,
     label: "📡 SCALE CHALLENGES",
     messages: {
-      morning: "100K-1M followers means you're operating at real scale. People are watching who you've never met. The intimacy is harder to maintain. Today, find one way to make it feel smaller. Reply to someone. Make something niche. Remember that behind every number is a human who chose to pay attention to you.",
-      afternoon: "Large scale brings large pressure. The algorithm wants you to optimize. Your team wants you to grow. Everyone has opinions about what you should make. But your audience followed YOU, not a strategy. What would you make today if the metrics didn't exist? Make that.",
-      evening: "At 100K-1M, you have influence. What you say matters to a lot of people. That's a responsibility. Tomorrow, use it intentionally. Not to grow. To serve. What does your audience need to hear that no one else is telling them? Say that.",
-      night: "Scale challenges are real. You can't reply to everyone anymore. You can't know each person. But you can still create like you're talking to one person. The best large creators never lose that intimacy in their work, even when they lose it in their DMs. Protect your voice."
+      monday: {
+        morning: "Monday morning with 100K to 1M followers. Real scale. People you have never met are watching. Today, find one way to make it feel smaller. Reply to someone. Make something niche. Remember they are humans.",
+        afternoon: "Monday afternoon at scale. The week is young. The numbers are large. But behind every number is a person who chose you. What would you make today if you remembered that? Make that.",
+        evening: "Monday evening with large reach. Day one is ending. Did you connect with anyone specifically? Or just broadcast? Tomorrow, find one person to actually talk to. Scale is not an excuse for distance.",
+        night: "Monday night with 100K to 1M followers. The week has four more days. You have influence most people never get. What will you do with it? Not for growth. For impact."
+      },
+      friday: {
+        morning: "Friday morning at scale. The week is ending. You reached many. Did you connect with any? The weekend is for remembering that reach without resonance is just noise.",
+        afternoon: "Friday afternoon with 100K to 1M followers. The week performed well. But performance is not impact. Before the weekend, have one real conversation with a follower. Remember why this matters.",
+        evening: "Friday evening with large reach. The week is over. The numbers were good. Were you? Did you stay true to what built this? The weekend is for that question.",
+        night: "Friday night at scale. The week is done. You influenced many. Did you serve them? The weekend is for remembering that scale is a responsibility, not just an achievement."
+      },
+      saturday: {
+        morning: "Saturday morning with 100K to 1M followers. The weekend is for perspective. You have what most dream of. Are you using it well? Not for more growth. For actual impact.",
+        afternoon: "Saturday afternoon at scale. You can move markets. Shift conversations. What are you doing with that power? Not what does it earn. What does it mean? That question matters.",
+        evening: "Saturday evening with large reach. Tomorrow is Sunday. Time to think about legacy. Not growth. Legacy. What will you be remembered for? Numbers or impact?",
+        night: "Saturday night with 100K to 1M followers. The week ahead brings pressure. To grow. To optimize. To scale. What if you focused on depth instead? What would that look like?"
+      },
+      sunday: {
+        morning: "Sunday morning at scale. The week starts tomorrow. You will reach many. Will you move them? The reach is handled. The depth requires intention. Intend depth.",
+        afternoon: "Sunday afternoon with 100K to 1M followers. Monday is coming. Everyone will want something from you. Before the noise begins, remember what you want. Not what they want. You.",
+        evening: "Sunday evening with large reach. The week ahead is an opportunity. Not for more reach. For more meaning. What would your most loyal followers want from you? Serve them.",
+        night: "Sunday night at scale. Tomorrow you create again. This time, create like you are talking to one person. The best large creators never lose that. Do not lose it."
+      },
+      midweek: {
+        morning: "Midweek morning with 100K to 1M followers. Half the week is gone. You broadcast. Did you connect? Today, make something for your true fans. Not the casual ones. The real ones.",
+        afternoon: "Midweek afternoon at scale. The week is slipping by. Before Friday, have one real interaction. Not a broadcast. An interaction. Remember what personal means.",
+        evening: "Midweek evening with large reach. Tomorrow is another chance. Scale is not an excuse for distance. What would you make if you had to look each follower in the eye?",
+        night: "Midweek night with 100K to 1M followers. The week is half over. You have influence. Are you using it? Not for growth. For good. The remaining days are your chance."
+      }
     }
   },
 
@@ -1996,10 +2282,36 @@ const riPropheticMessages = {
     condition: (p) => p.audienceTier && p.audienceTier.massive && p.average >= 5,
     label: "🌊 TRUE SCALE",
     messages: {
-      morning: "1M-10M is a different game. You're not just a creator anymore—you're a small media company whether you want to be or not. The challenge now isn't growth. It's meaning. Does your work still matter to you? Does it still serve the people who built this? Today, make something that proves it does.",
-      afternoon: "At this scale, everything is a signal. Millions are watching. That's power and that's pressure. Most creators this size slowly become brands instead of humans. Don't. The thing that got you here—authenticity, risk, truth—double down on that. Your audience can smell the difference.",
-      evening: "Massive scale means massive opportunity to coast. You could phone it in and still get views. But you'd know. And eventually, they'd know. Tomorrow, make something that scares you again. Something that reminds you why you started. The numbers can't be the point anymore. Meaning has to be.",
-      night: "1M-10M followers is a level most creators never reach. You reached it. The question now is: what will you do with it? Not for growth. For legacy. What do you want to be known for? What would you regret not making? That's what matters at this scale."
+      monday: {
+        morning: "Monday morning with 1M to 10M followers. A different game. You are a small media company now. The week ahead is not about growth. It is about meaning. Does your work still matter to you? Make something today that proves it does.",
+        afternoon: "Monday afternoon at true scale. The week is young. Millions are watching. That is power and pressure. What would you make if the numbers did not exist? That thing is probably more important than what performs.",
+        evening: "Monday evening with massive reach. Day one is ending. Did you make anything that mattered to YOU today? Not what performed. What mattered. That distinction keeps you human at scale.",
+        night: "Monday night with 1M to 10M followers. The week has four more days. You could phone it in and still get views. But you would know. Make something this week that reminds you why you started."
+      },
+      friday: {
+        morning: "Friday morning at true scale. The week is ending. Millions engaged. Did any of it matter? The weekend is for that question. Not what performed. What mattered.",
+        afternoon: "Friday afternoon with 1M to 10M followers. The week performed. But performance is not fulfillment. Before the weekend, ask: am I still making what I want to make? Or just what works?",
+        evening: "Friday evening with massive reach. The week is over. The numbers were big. Was the meaning? The weekend is for reconnecting with why you create beyond the metrics.",
+        night: "Friday night at true scale. The week is done. You influenced millions. Did you say anything that mattered? The weekend is for remembering that scale is a megaphone, not a message."
+      },
+      saturday: {
+        morning: "Saturday morning with 1M to 10M followers. The weekend is for perspective. You have reached scale most never touch. What will you do with it? Not for more growth. For legacy.",
+        afternoon: "Saturday afternoon at true scale. You could coast forever on these numbers. But coasting is not creating. What would you make if metrics were invisible? Consider making that.",
+        evening: "Saturday evening with massive reach. Tomorrow is Sunday. Time for the big questions. What do you want to be known for? What would you regret not making? That is what matters now.",
+        night: "Saturday night with 1M to 10M followers. The week ahead brings opportunity. Not for more reach. You have reach. For more meaning. What would meaningful look like?"
+      },
+      sunday: {
+        morning: "Sunday morning at true scale. The week starts tomorrow. Millions will watch whatever you do. The question is what will you do. Not what will perform. What will matter.",
+        afternoon: "Sunday afternoon with 1M to 10M followers. Monday is coming. The machine will want content. What do YOU want? Before the week takes over, remember what you want.",
+        evening: "Sunday evening with massive reach. The week ahead is an opportunity to prove you are still you. Not a brand. Not an algorithm. You. Make something this week that proves it.",
+        night: "Sunday night at true scale. Tomorrow you create again. This time, create like your younger self is watching. Not the millions. Your younger self. Make them proud."
+      },
+      midweek: {
+        morning: "Midweek morning with 1M to 10M followers. Half the week is gone. Did you make anything that mattered? You have time. Create something today that has nothing to do with performance.",
+        afternoon: "Midweek afternoon at true scale. The week is slipping by. Before Friday, make one thing that would exist even if no one saw it. That is how you stay an artist at scale.",
+        evening: "Midweek evening with massive reach. Tomorrow is another chance. What would you make if the algorithm rewarded meaning instead of engagement? Make that anyway.",
+        night: "Midweek night with 1M to 10M followers. The week is half over. Millions watched. Did it matter? The remaining days are for meaning. Not performance. Meaning."
+      }
     }
   },
 
@@ -2008,10 +2320,36 @@ const riPropheticMessages = {
     condition: (p) => p.audienceTier && p.audienceTier.superstar && p.average >= 5,
     label: "⭐ GLOBAL REACH",
     messages: {
-      morning: "10M+ means you've achieved something extremely rare. Global reach. Cultural influence. But with that comes the hardest question: now what? Today, ignore the machine. Make something that would make your younger self proud. Not your metrics. Your younger self. They're the one who got you here.",
-      afternoon: "At superstar scale, you can move markets, shift conversations, launch movements. That's not hyperbole. It's responsibility. What are you doing with it? Not what does it earn—what does it mean? The people with the biggest platforms owe the most to using them well.",
-      evening: "Global reach means nothing if it's empty. Most creators at this level are trapped by their own success—too big to experiment, too optimized to be authentic. You don't have to be. Tomorrow, make something weird. Something risky. Something that reminds you and everyone else that you're still an artist, not just a brand.",
-      night: "10M+ followers means you've won a game most people don't even get to play. The scores don't matter anymore. Impact does. Legacy does. What will you leave behind? What will people remember? The answer to that question is the only score that matters at this level."
+      monday: {
+        morning: "Monday morning with 10M plus followers. Global reach. Cultural influence. The week is not about growth. It is about legacy. What will you make today that your younger self would be proud of? Make that.",
+        afternoon: "Monday afternoon at superstar scale. The week is young. You can move markets. Shift conversations. What are you doing with that power? Not what does it earn. What does it mean.",
+        evening: "Monday evening with global reach. Day one is ending. Did you use your influence for something that mattered? Tomorrow is another chance. The platform is enormous. The message matters more.",
+        night: "Monday night with 10M plus followers. The week has four more days. You have won the reach game. The question now is what you will do with it. Not for growth. For meaning."
+      },
+      friday: {
+        morning: "Friday morning at superstar scale. The week is ending. You moved millions. Did you move them toward something that mattered? The weekend is for that question.",
+        afternoon: "Friday afternoon with global reach. The week performed at scale. But scale is not the point anymore. Impact is. Before the weekend, ask: did any of it matter? Really matter?",
+        evening: "Friday evening with 10M plus followers. The week is over. The numbers were enormous. Was the meaning? The weekend is for remembering that reach without meaning is just noise at volume.",
+        night: "Friday night at superstar scale. The week is done. You influenced more people than live in most cities. Did you say anything worth saying? The weekend is for that reflection."
+      },
+      saturday: {
+        morning: "Saturday morning with 10M plus followers. The weekend is for the big questions. You have global reach. What will you do with it? Not what will grow it. What will matter in ten years?",
+        afternoon: "Saturday afternoon at superstar scale. You can do anything. Go anywhere. Make anything. What do you WANT to make? Not what performs. What matters. That question is your compass now.",
+        evening: "Saturday evening with global reach. Tomorrow is Sunday. Time for legacy thinking. What will people remember? What will outlast the algorithm? That is the only work that matters at your level.",
+        night: "Saturday night with 10M plus followers. The week ahead is not about more reach. It is about what you do with the reach you have. Legacy. Meaning. Impact. Those are your metrics now."
+      },
+      sunday: {
+        morning: "Sunday morning at superstar scale. The week starts tomorrow. Tens of millions will see whatever you do. The only question is what you will do. Make it count. Make it matter.",
+        afternoon: "Sunday afternoon with global reach. Monday is coming. Everyone will want something from you. Before the noise begins, remember what you want. Not what they want. You. Your vision. Your legacy.",
+        evening: "Sunday evening with 10M plus followers. The week ahead is an opportunity that almost no one ever gets. Do not waste it on performance. Use it for meaning. What do you want to say?",
+        night: "Sunday night at superstar scale. Tomorrow you create again. This time, create like legacy is the only metric. Because at your level, it is. The numbers are handled. The meaning is up to you."
+      },
+      midweek: {
+        morning: "Midweek morning with 10M plus followers. Half the week is gone. Did you make anything that mattered? Not performed. Mattered. You have time. Make something meaningful today.",
+        afternoon: "Midweek afternoon at superstar scale. The week is slipping by. Before Friday, make one thing that would make your younger self proud. Not impressed by the numbers. Proud of the work.",
+        evening: "Midweek evening with global reach. Tomorrow is another chance. What would you make if the algorithm measured meaning instead of engagement? Make that anyway. You can afford to.",
+        night: "Midweek night with 10M plus followers. The week is half over. You reached more people than most countries have citizens. Did you say anything that mattered? The remaining days are your chance."
+      }
     }
   },
 
@@ -2020,10 +2358,36 @@ const riPropheticMessages = {
     condition: (p) => p.shape === 'soaring',
     label: "★ RESONANCE ACHIEVED",
     messages: {
-      morning: "Deep resonance achieved. Impact, identity, boldness, intimacy—all aligned. Your work matters to people who matter. This is rare. Protect it. Don't chase scale for its own sake. Don't dilute what's working. Guard this connection like the precious thing it is.",
-      afternoon: "You've solved for connection. People feel your work. They remember it. They share it because it moved them. The question now is: how do you maintain this without manufacturing it? Authenticity can't be automated. Stay true to what created this magic.",
-      evening: "Real impact. Real audience. Real boldness. This is the rarest combination in creative work. Most people never find it. You have it. Document what created it. Understand it. Because you'll want to recreate it and you'll need to know how.",
-      night: "Resonance is your gift right now. Not everyone gets this. Not everyone keeps it. Don't take it for granted. Don't optimize it to death. The magic is fragile. Protect the conditions that created it. Sleep well. Make more tomorrow."
+      monday: {
+        morning: "Monday morning with resonance achieved. Impact, identity, boldness, intimacy, all aligned. Your work matters to people who matter. The week ahead is not about growth. It is about protection. Guard this connection like the precious thing it is.",
+        afternoon: "Monday afternoon with full resonance. The week is young and you are connected. Do not chase more reach. Deepen what you have. The audience that loves you is worth more than millions who scroll past.",
+        evening: "Monday evening with everything working. Day one is ending. Did you protect what you have? Or chase what you do not? Tomorrow, guard the magic. It is fragile and rare.",
+        night: "Monday night with resonance achieved. The week has four more days. You solved for connection. Now solve for protection. What threatens this state? Guard against it. What maintains it? Double down."
+      },
+      friday: {
+        morning: "Friday morning with full resonance. The week is ending and the magic held. That is the job now. Maintenance. Not growth. Protection. The depth is what matters. Keep it.",
+        afternoon: "Friday afternoon with resonance achieved. The week went well. You stayed connected. Before the weekend, document what worked. The conditions, the choices, the boundaries. This is your formula.",
+        evening: "Friday evening with everything aligned. The week is over. The connection held. That is victory. The weekend is for appreciating what you built. Not chasing more. Appreciating what is.",
+        night: "Friday night with resonance achieved. The week is done. You matter to people who matter. Rest in that. The weekend is for enjoying what sustainable success feels like."
+      },
+      saturday: {
+        morning: "Saturday morning with full resonance. The weekend stretches ahead. Your audience is connected. What would deepen that connection today? Not grow it. Deepen it. That is the work now.",
+        afternoon: "Saturday afternoon with resonance achieved. You have what most creators chase forever. Enjoy it. Do not optimize it. Do not scale it. Just enjoy what genuine connection feels like.",
+        evening: "Saturday evening with everything working. Tomorrow is Sunday. The week ahead will try to pull you toward growth. Remember: you already won. The connection is the prize. Protect it.",
+        night: "Saturday night with resonance achieved. The week ahead does not need more reach. It needs you to stay true to what built this. Before you sleep, remember why they follow. Be that."
+      },
+      sunday: {
+        morning: "Sunday morning with full resonance. The week starts tomorrow. You will be tempted to optimize. Resist. What you have is rare. The authentic connection. The real impact. Guard it.",
+        afternoon: "Sunday afternoon with resonance achieved. Monday is coming. The algorithm will want one thing. Your audience wants another. Choose your audience. Always choose your audience.",
+        evening: "Sunday evening with everything aligned. The week ahead is an opportunity to maintain the magic. Not grow it. Maintain it. What would protect this connection? Do that.",
+        night: "Sunday night with resonance achieved. Tomorrow you create again. This time, create from the place that built this. The truth. The specificity. The boldness. That is your formula. Use it."
+      },
+      midweek: {
+        morning: "Midweek morning with full resonance. Half the week is gone. Did you protect the connection? Or chase growth? The rest of the week needs to be about depth. Not reach.",
+        afternoon: "Midweek afternoon with resonance achieved. The week is slipping by. Before Friday, make something specifically for your true fans. Not the casual followers. The ones who would notice if you stopped.",
+        evening: "Midweek evening with everything working. Tomorrow is another chance. The magic is holding. Keep it that way. What would you make if only your best followers would see it? Make that.",
+        night: "Midweek night with resonance achieved. The week is half over. The connection held. That is what matters. The remaining days are for protecting what you built. Not chasing what you have not."
+      }
     }
   },
 
@@ -2032,10 +2396,36 @@ const riPropheticMessages = {
     condition: (p) => p.shape === 'crashed',
     label: "⊘ SIGNAL LOST",
     messages: {
-      morning: "Your work isn't landing. Impact low. Targeting vague. Playing safe. The signal is lost in the noise. Before creating more, stop and ask: who is this for and what do they need to feel? Answer that first. Then make something that delivers exactly that.",
-      afternoon: "Low resonance across the board. Nothing is connecting. Here's a radical idea: stop publishing for a week. Study what moves YOU. What makes you stop scrolling? What do you save? What do you share? That's the standard. Now make work that meets it.",
-      evening: "Nothing connected today. That's data, not failure. What's the gap between what you're making and what you believe? Between who you are and what you're showing? That gap is where the resonance died. Close it tomorrow.",
-      night: "When resonance is gone, technique won't save you. Only truth will. What truth are you avoiding? What are you not saying that you should be saying? What audience are you not serving that you should be serving? The answers are in the questions you don't want to ask."
+      monday: {
+        morning: "Monday morning with signal lost. Impact low, targeting vague, playing safe, connection thin. The week ahead needs to be different. Before you create anything, stop and ask: who is this for and what do they need to feel? Answer that first.",
+        afternoon: "Monday afternoon with no resonance. The week is young. You have time to change course. What would you make if you stopped worrying about how it would perform? That might be what connects.",
+        evening: "Monday evening with crashed resonance. Day one is ending. Nothing landed. That is data, not failure. What truth are you avoiding? What audience are you not serving? Tomorrow, try the opposite of safe.",
+        night: "Monday night with signal lost. The week has four more days. Enough time to find resonance. Before you sleep, write down one thing you believe that you have never said publicly. Start there tomorrow."
+      },
+      friday: {
+        morning: "Friday morning with no resonance. The week is ending and nothing connected. That is okay. The weekend is for reflection. What is the gap between what you are making and what you believe? Close that gap.",
+        afternoon: "Friday afternoon with signal lost. The week did not produce connection. Do not despair. Use the weekend to study what moves YOU. That is the standard your work needs to meet.",
+        evening: "Friday evening with crashed resonance. The week is over. Let it go. But before you do, ask: what truth did I avoid? What vulnerability did I protect? That is where next week's resonance lives.",
+        night: "Friday night with no resonance. The week is done. Rest. But this weekend, consume intentionally. What makes you stop scrolling? What do you save? That is what your work is missing."
+      },
+      saturday: {
+        morning: "Saturday morning with signal lost. The weekend is for clarity. Why is nothing connecting? Is it impact? Targeting? Boldness? Intimacy? Diagnose the problem before you try to solve it.",
+        afternoon: "Saturday afternoon with crashed resonance. Something is broken. The weekend is for figuring out what. Not fixing it yet. Understanding it. What feels off about your current work?",
+        evening: "Saturday evening with no resonance. Tomorrow is Sunday. Time for honest assessment. When did your work last truly connect? What was different then? That difference is the clue.",
+        night: "Saturday night with signal lost. The week ahead needs to be different. Before you sleep, answer honestly: are you making what you want to make? Or what you think you should make? The difference matters."
+      },
+      sunday: {
+        morning: "Sunday morning with crashed resonance. The week starts tomorrow. It can be different. What would you make if you only had one piece of content this week? Make it the truest thing you have.",
+        afternoon: "Sunday afternoon with signal lost. Monday is coming. Do not repeat last week. What will be different? Not more content. Different content. Truer content. Plan that now.",
+        evening: "Sunday evening with no resonance. The week ahead is an opportunity. Not to work harder. To work truer. What have you been circling around but not saying? Say that this week.",
+        night: "Sunday night with crashed resonance. Tomorrow you create again. This time, create from vulnerability. Not from strategy. The safe approach is not working. Try the scary one."
+      },
+      midweek: {
+        morning: "Midweek morning with signal lost. Half the week is gone and nothing has connected. You still have time. Today, make one thing that is more vulnerable than usual. See what happens.",
+        afternoon: "Midweek afternoon with crashed resonance. The week is slipping by. Before Friday, try something different. Not louder. Not more frequent. More true. What would that look like?",
+        evening: "Midweek evening with no resonance. Tomorrow is another chance. The safe approach failed. What would the risky approach look like? Consider trying that.",
+        night: "Midweek night with signal lost. The week is half over. Nothing connected. The remaining days are a chance to change that. What would you say if you knew your audience needed to hear exactly one thing?"
+      }
     }
   },
 
@@ -2044,10 +2434,36 @@ const riPropheticMessages = {
     condition: (p) => p.shape === 'plateau',
     label: "📡 SIGNAL STEADY",
     messages: {
-      morning: "Moderate resonance. You're connecting but not deeply. The work lands but doesn't stick. What would make your work unmissable? Not louder. Not more frequent. Unmissable. The kind of thing people have to tell someone about. Think about that today.",
-      afternoon: "Some things land, some don't. Study the difference. What makes your best work hit? What's present when it works and absent when it doesn't? Find that variable. It's probably truth. It's usually truth. Lean into it.",
-      evening: "Stable connection but room to grow. You're not failing but you're not breaking through either. Tomorrow, say something you've been holding back. Take one more step toward the edge. The plateau is comfortable. The edge is where growth lives.",
-      night: "Your signal is consistent but not powerful. Reliable but not remarkable. What would amplify it? More vulnerability? Better targeting? Bigger swings? Something needs to change to break through. Identify it tonight. Try it tomorrow."
+      monday: {
+        morning: "Monday morning with steady signal. You are connecting but not deeply. The week ahead is an opportunity. What would make your work unmissable? Not louder. Unmissable. The kind of thing people have to tell someone about.",
+        afternoon: "Monday afternoon with plateau resonance. The week is young. Some things land, some do not. Study the difference. What makes your best work hit? Do more of whatever that is.",
+        evening: "Monday evening with signal steady. Day one is ending. Did anything land hard today? If not, tomorrow is for taking bigger swings. Steady is safe. Safe does not break through.",
+        night: "Monday night with plateau resonance. The week has four more days. You could stay steady. You could also push. What would you say if you stopped holding back? Consider saying it this week."
+      },
+      friday: {
+        morning: "Friday morning with steady signal. The week is ending and you maintained. But maintaining is not growing. The weekend is for asking: what would break through? Not perform well. Break through.",
+        afternoon: "Friday afternoon with plateau resonance. The week was steady. Is that enough? Before the weekend, consider what would make next week exceptional. Not more content. Better content.",
+        evening: "Friday evening with signal steady. The week is over. You connected at your usual level. But usual is not exceptional. The weekend is for planning what exceptional would look like.",
+        night: "Friday night with plateau resonance. The week is done. Steady is sustainable. Steady is also forgettable. The weekend is for deciding whether you want more. And what more would require."
+      },
+      saturday: {
+        morning: "Saturday morning with steady signal. The weekend is for perspective. You are connecting but not breaking through. What would breakthrough require? More risk? More truth? More specificity?",
+        afternoon: "Saturday afternoon with plateau resonance. Steady gets steady results. If you want different results, something has to change. What would you change if you were starting over?",
+        evening: "Saturday evening with signal steady. Tomorrow is Sunday. What would make Monday different from last Monday? Not a small tweak. A real difference. What truth have you been holding back?",
+        night: "Saturday night with plateau resonance. The week ahead could be another steady week. Or it could be a breakthrough week. The difference is what you decide to risk."
+      },
+      sunday: {
+        morning: "Sunday morning with steady signal. The week starts tomorrow. Will it be another plateau week? Or will you push? What would pushing look like? More vulnerable. More specific. More bold.",
+        afternoon: "Sunday afternoon with plateau resonance. Monday is coming. You know how to be steady. Do you know how to break through? That requires saying something you have not said before.",
+        evening: "Sunday evening with signal steady. The week ahead is familiar territory. But familiar is not exceptional. Before the week begins, identify one risk you could take. Then take it.",
+        night: "Sunday night with plateau resonance. Tomorrow you create again. This time, create something that scares you slightly. The plateau is comfortable. The edge is where growth lives."
+      },
+      midweek: {
+        morning: "Midweek morning with steady signal. Half the week is gone. Same steady results. You have time to change that. What would exceptional look like for the rest of this week?",
+        afternoon: "Midweek afternoon with plateau resonance. The week is slipping by steadily. Before Friday, take one risk. Say one thing you have been holding back. See what happens.",
+        evening: "Midweek evening with signal steady. Tomorrow is another chance. Steady got you here. Steady will not get you further. What would you say if steady was not an option?",
+        night: "Midweek night with plateau resonance. The week is half over. You are connecting at your usual level. Is that enough? The remaining days are a chance to find out what more looks like."
+      }
     }
   },
 
@@ -2056,10 +2472,36 @@ const riPropheticMessages = {
     condition: (p) => p.shape.startsWith('lopsided'),
     label: "📡 UNEVEN SIGNAL",
     messages: {
-      morning: "Your resonance is unbalanced. Strong in some dimensions, weak in others. Maybe bold but untargeted. Maybe targeted but safe. Maybe impactful but too broad. Which weakness matters most? That's your focus today. Fix the gap.",
-      afternoon: "Lopsided resonance creates inconsistent results. Some work lands, some disappears, and you're not sure why. The answer is in the imbalance. Are you too broad? Too safe? Too shallow? Identify it. Address it. Balance creates consistency.",
-      evening: "Some parts of your resonance are working beautifully. Others are failing. The system is uneven. Tomorrow, stop leading with your strength. Lead with improving your weakness. That's where the leverage is. That's where the breakthrough lives.",
-      night: "Imbalanced connection is frustrating because you can taste success but not hold it. Something is working. Something isn't. Get specific about what's missing. Is it impact? Targeting? Courage? Intimacy? Name it. Then fix it."
+      monday: {
+        morning: "Monday morning with uneven resonance. Strong in some dimensions, weak in others. The week ahead needs to address the gap. What is your weakest link? Impact? Targeting? Boldness? Intimacy? Start there.",
+        afternoon: "Monday afternoon with lopsided signal. Some things are working. Others are not. Before the week takes over, identify what is failing. That is where your attention belongs. Not your strength. Your weakness.",
+        evening: "Monday evening with uneven resonance. Day one is ending. Did you work on your weak spot? Or lean on your strength? Tomorrow, focus on what is not working. That is where the leverage is.",
+        night: "Monday night with lopsided signal. The week has four more days. Your imbalance will persist unless you address it. What is your weakest dimension? Write it down. Start fixing it tomorrow."
+      },
+      friday: {
+        morning: "Friday morning with uneven resonance. The week is ending and the imbalance is clear. What worked was always going to work. What failed needs attention. The weekend is for planning how to fix it.",
+        afternoon: "Friday afternoon with lopsided signal. The week showed you the gap. Your strength carried you. Your weakness dragged you. Before the weekend, decide how to address the weak spot.",
+        evening: "Friday evening with uneven resonance. The week is over. The pattern is clear. One area is strong. Another is failing. The weekend is for deciding what changes next week.",
+        night: "Friday night with lopsided signal. The week is done. Your strength kept you afloat. Your weakness kept you stuck. The weekend is for making a plan. Which weak spot will you address?"
+      },
+      saturday: {
+        morning: "Saturday morning with uneven resonance. The weekend is for diagnosis. Why is one area strong and another weak? Understanding the gap is the first step to closing it.",
+        afternoon: "Saturday afternoon with lopsided signal. Your strength is obvious. Your weakness is hidden but damaging. What would it take to bring up your lowest score? Think about that today.",
+        evening: "Saturday evening with uneven resonance. Tomorrow is Sunday. Time to plan for balance. What would you do differently next week to address your weak spot? Plan it now.",
+        night: "Saturday night with lopsided signal. The week ahead needs to be more balanced. Before you sleep, identify your weakest dimension. That is your focus for next week. Not your strength. Your weakness."
+      },
+      sunday: {
+        morning: "Sunday morning with uneven resonance. The week starts tomorrow. Your imbalance will persist unless you intervene. What is your weakest dimension? Plan to address it first thing Monday.",
+        afternoon: "Sunday afternoon with lopsided signal. Monday is coming. You know what is working. You know what is not. This week, stop optimizing your strength. Start fixing your weakness.",
+        evening: "Sunday evening with uneven resonance. The week ahead is an opportunity for balance. Not more of what works. Less of what does not. What would that look like specifically?",
+        night: "Sunday night with lopsided signal. Tomorrow you create again. This time, focus on your weak dimension. The strength will take care of itself. The weakness needs your attention."
+      },
+      midweek: {
+        morning: "Midweek morning with uneven resonance. Half the week is gone. Did you address your weak spot? Or ignore it? The rest of the week needs to be about balance. Not more of what works. Less of what does not.",
+        afternoon: "Midweek afternoon with lopsided signal. The week is slipping by. Your strength is doing its job. Your weakness is doing its damage. Before Friday, give attention to what is failing.",
+        evening: "Midweek evening with uneven resonance. Tomorrow is another chance. What is dragging down your resonance? Impact? Targeting? Boldness? Intimacy? Focus there tomorrow.",
+        night: "Midweek night with lopsided signal. The week is half over. The imbalance persists. The remaining days are a chance to address it. Not your strength. Your weakness. That is where the leverage is."
+      }
     }
   }
 };

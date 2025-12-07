@@ -392,3 +392,387 @@ console.log('');
 console.log('Total messages: 9 patterns × 5 days × 4 times = 180 unique messages');
 console.log(allAqPass ? '✅ ALL AQ PATTERNS COMPLETE!' : '❌ Some patterns missing');
 console.log('============================================================');
+
+// ============================================================
+// Ri PROPHETIC MESSAGES TEST
+// ============================================================
+
+// Find riPropheticMessages section
+const riStartMarker = 'const riPropheticMessages = {';
+const riEndMarker = '\n// ============================================================\n// Ci PROPHETIC MESSAGES';
+
+const riStartIdx = content.indexOf(riStartMarker);
+const riEndIdx = content.indexOf(riEndMarker);
+
+if (riStartIdx === -1 || riEndIdx === -1) {
+  console.log('Could not find riPropheticMessages boundaries');
+  console.log('riStartIdx:', riStartIdx, 'riEndIdx:', riEndIdx);
+} else {
+  let riSection = content.substring(riStartIdx, riEndIdx).trim();
+  riSection = riSection.replace('const riPropheticMessages = ', '');
+  riSection = riSection.replace(/;\s*$/, '');
+  const riPropheticMessages = eval('(' + riSection + ')');
+
+  console.log('');
+  console.log('============================================================');
+  console.log('Ri PROPHETIC MESSAGES TEST');
+  console.log('============================================================\n');
+
+  // Test impact_bottleneck
+  console.log('=== TEST Ri-1: impact_bottleneck (day-aware) ===');
+  const impactPattern = riPropheticMessages.impact_bottleneck;
+  console.log('Label:', impactPattern.label);
+
+  const impactHasDayAware = impactPattern.messages[time.dayContext] !== undefined;
+  console.log('Has day-aware structure:', impactHasDayAware ? '✅ YES' : '❌ NO');
+
+  if (impactHasDayAware) {
+    const msg = impactPattern.messages[time.dayContext][time.timeOfDay];
+    console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+    if (msg) {
+      console.log('Message preview:', msg.substring(0, 80) + '...');
+    }
+  }
+
+  let impactAllFound = true;
+  for (const day of days) {
+    for (const t of times) {
+      const msg = impactPattern.messages[day]?.[t];
+      if (!msg) {
+        console.log(`  ❌ Missing: ${day}/${t}`);
+        impactAllFound = false;
+      }
+    }
+  }
+  if (impactAllFound) {
+    console.log('  ✅ All 20 day/time combinations present');
+  }
+
+  console.log('');
+
+  // Test identity_bottleneck
+  console.log('=== TEST Ri-2: identity_bottleneck (day-aware) ===');
+  const identityPattern = riPropheticMessages.identity_bottleneck;
+  console.log('Label:', identityPattern.label);
+
+  const identityHasDayAware = identityPattern.messages[time.dayContext] !== undefined;
+  console.log('Has day-aware structure:', identityHasDayAware ? '✅ YES' : '❌ NO');
+
+  if (identityHasDayAware) {
+    const msg = identityPattern.messages[time.dayContext][time.timeOfDay];
+    console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+    if (msg) {
+      console.log('Message preview:', msg.substring(0, 80) + '...');
+    }
+  }
+
+  let identityAllFound = true;
+  for (const day of days) {
+    for (const t of times) {
+      const msg = identityPattern.messages[day]?.[t];
+      if (!msg) {
+        console.log(`  ❌ Missing: ${day}/${t}`);
+        identityAllFound = false;
+      }
+    }
+  }
+  if (identityAllFound) {
+    console.log('  ✅ All 20 day/time combinations present');
+  }
+
+  console.log('');
+
+  // Test boldness_bottleneck
+  console.log('=== TEST Ri-3: boldness_bottleneck (day-aware) ===');
+  const boldnessPattern = riPropheticMessages.boldness_bottleneck;
+  console.log('Label:', boldnessPattern.label);
+
+  const boldnessHasDayAware = boldnessPattern.messages[time.dayContext] !== undefined;
+  console.log('Has day-aware structure:', boldnessHasDayAware ? '✅ YES' : '❌ NO');
+
+  if (boldnessHasDayAware) {
+    const msg = boldnessPattern.messages[time.dayContext][time.timeOfDay];
+    console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+    if (msg) {
+      console.log('Message preview:', msg.substring(0, 80) + '...');
+    }
+  }
+
+  let boldnessAllFound = true;
+  for (const day of days) {
+    for (const t of times) {
+      const msg = boldnessPattern.messages[day]?.[t];
+      if (!msg) {
+        console.log(`  ❌ Missing: ${day}/${t}`);
+        boldnessAllFound = false;
+      }
+    }
+  }
+  if (boldnessAllFound) {
+    console.log('  ✅ All 20 day/time combinations present');
+  }
+
+  console.log('');
+
+  // Test audience_dilution
+  console.log('=== TEST Ri-4: audience_dilution (day-aware) ===');
+  const audiencePattern = riPropheticMessages.audience_dilution;
+  console.log('Label:', audiencePattern.label);
+
+  const audienceHasDayAware = audiencePattern.messages[time.dayContext] !== undefined;
+  console.log('Has day-aware structure:', audienceHasDayAware ? '✅ YES' : '❌ NO');
+
+  if (audienceHasDayAware) {
+    const msg = audiencePattern.messages[time.dayContext][time.timeOfDay];
+    console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+    if (msg) {
+      console.log('Message preview:', msg.substring(0, 80) + '...');
+    }
+  }
+
+  let audienceAllFound = true;
+  for (const day of days) {
+    for (const t of times) {
+      const msg = audiencePattern.messages[day]?.[t];
+      if (!msg) {
+        console.log(`  ❌ Missing: ${day}/${t}`);
+        audienceAllFound = false;
+      }
+    }
+  }
+  if (audienceAllFound) {
+    console.log('  ✅ All 20 day/time combinations present');
+  }
+
+  console.log('');
+
+  // Test small_audience_strength
+  console.log('=== TEST Ri-5: small_audience_strength (day-aware) ===');
+  const smallAudiencePattern = riPropheticMessages.small_audience_strength;
+  console.log('Label:', smallAudiencePattern.label);
+
+  const smallAudienceHasDayAware = smallAudiencePattern.messages[time.dayContext] !== undefined;
+  console.log('Has day-aware structure:', smallAudienceHasDayAware ? '✅ YES' : '❌ NO');
+
+  if (smallAudienceHasDayAware) {
+    const msg = smallAudiencePattern.messages[time.dayContext][time.timeOfDay];
+    console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+    if (msg) {
+      console.log('Message preview:', msg.substring(0, 80) + '...');
+    }
+  }
+
+  let smallAudienceAllFound = true;
+  for (const day of days) {
+    for (const t of times) {
+      const msg = smallAudiencePattern.messages[day]?.[t];
+      if (!msg) {
+        console.log(`  ❌ Missing: ${day}/${t}`);
+        smallAudienceAllFound = false;
+      }
+    }
+  }
+  if (smallAudienceAllFound) {
+    console.log('  ✅ All 20 day/time combinations present');
+  }
+
+  console.log('');
+
+  // Test boldness_strength
+  console.log('=== TEST Ri-6: boldness_strength (day-aware) ===');
+  const boldnessStrengthPattern = riPropheticMessages.boldness_strength;
+  console.log('Label:', boldnessStrengthPattern.label);
+
+  const boldnessStrengthHasDayAware = boldnessStrengthPattern.messages[time.dayContext] !== undefined;
+  console.log('Has day-aware structure:', boldnessStrengthHasDayAware ? '✅ YES' : '❌ NO');
+
+  if (boldnessStrengthHasDayAware) {
+    const msg = boldnessStrengthPattern.messages[time.dayContext][time.timeOfDay];
+    console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+    if (msg) {
+      console.log('Message preview:', msg.substring(0, 80) + '...');
+    }
+  }
+
+  let boldnessStrengthAllFound = true;
+  for (const day of days) {
+    for (const t of times) {
+      const msg = boldnessStrengthPattern.messages[day]?.[t];
+      if (!msg) {
+        console.log(`  ❌ Missing: ${day}/${t}`);
+        boldnessStrengthAllFound = false;
+      }
+    }
+  }
+  if (boldnessStrengthAllFound) {
+    console.log('  ✅ All 20 day/time combinations present');
+  }
+
+  console.log('');
+
+  // Test scale_achievement
+  console.log('=== TEST Ri-7: scale_achievement (day-aware) ===');
+  const scalePattern = riPropheticMessages.scale_achievement;
+  console.log('Label:', scalePattern.label);
+
+  const scaleHasDayAware = scalePattern.messages[time.dayContext] !== undefined;
+  console.log('Has day-aware structure:', scaleHasDayAware ? '✅ YES' : '❌ NO');
+
+  if (scaleHasDayAware) {
+    const msg = scalePattern.messages[time.dayContext][time.timeOfDay];
+    console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+    if (msg) {
+      console.log('Message preview:', msg.substring(0, 80) + '...');
+    }
+  }
+
+  let scaleAllFound = true;
+  for (const day of days) {
+    for (const t of times) {
+      const msg = scalePattern.messages[day]?.[t];
+      if (!msg) {
+        console.log(`  ❌ Missing: ${day}/${t}`);
+        scaleAllFound = false;
+      }
+    }
+  }
+  if (scaleAllFound) {
+    console.log('  ✅ All 20 day/time combinations present');
+  }
+
+  console.log('');
+  console.log('============================================================');
+  console.log('Ri PATTERNS SUMMARY (Parts 1+2: 7 of ??)');
+  console.log('============================================================');
+  console.log('1. impact_bottleneck:', impactHasDayAware && impactAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('2. identity_bottleneck:', identityHasDayAware && identityAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('3. boldness_bottleneck:', boldnessHasDayAware && boldnessAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('4. audience_dilution:', audienceHasDayAware && audienceAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('5. small_audience_strength:', smallAudienceHasDayAware && smallAudienceAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('6. boldness_strength:', boldnessStrengthHasDayAware && boldnessStrengthAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('7. scale_achievement:', scaleHasDayAware && scaleAllFound ? '✅ PASS' : '❌ FAIL');
+
+  // Test all 6 tier patterns
+  const tierPatterns = ['tier_intimate', 'tier_growing', 'tier_established', 'tier_large', 'tier_massive', 'tier_superstar'];
+  const tierLabels = ['💎 INTIMATE CIRCLE', '🌱 BUILDING MOMENTUM', '🏛 ESTABLISHED PRESENCE', '📡 SCALE CHALLENGES', '🌊 TRUE SCALE', '⭐ GLOBAL REACH'];
+  const tierResults = [];
+
+  tierPatterns.forEach((key, idx) => {
+    console.log(`=== TEST Ri-${8 + idx}: ${key} (day-aware) ===`);
+    const pattern = riPropheticMessages[key];
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    tierResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('Ri PATTERNS SUMMARY (Parts 1+2+3: 13 total)');
+  console.log('============================================================');
+  console.log('1. impact_bottleneck:', impactHasDayAware && impactAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('2. identity_bottleneck:', identityHasDayAware && identityAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('3. boldness_bottleneck:', boldnessHasDayAware && boldnessAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('4. audience_dilution:', audienceHasDayAware && audienceAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('5. small_audience_strength:', smallAudienceHasDayAware && smallAudienceAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('6. boldness_strength:', boldnessStrengthHasDayAware && boldnessStrengthAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('7. scale_achievement:', scaleHasDayAware && scaleAllFound ? '✅ PASS' : '❌ FAIL');
+  tierResults.forEach((r, idx) => {
+    console.log(`${8 + idx}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  // Test all 4 shape patterns
+  const shapePatterns = ['soaring', 'crashed', 'plateau', 'lopsided'];
+  const shapeLabels = ['★ RESONANCE ACHIEVED', '⊘ SIGNAL LOST', '📡 SIGNAL STEADY', '📡 UNEVEN SIGNAL'];
+  const shapeResults = [];
+
+  shapePatterns.forEach((key, idx) => {
+    console.log(`=== TEST Ri-${14 + idx}: ${key} (day-aware) ===`);
+    const pattern = riPropheticMessages[key];
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    shapeResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('Ri PATTERNS SUMMARY (ALL 17 COMPLETE)');
+  console.log('============================================================');
+  console.log('1. impact_bottleneck:', impactHasDayAware && impactAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('2. identity_bottleneck:', identityHasDayAware && identityAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('3. boldness_bottleneck:', boldnessHasDayAware && boldnessAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('4. audience_dilution:', audienceHasDayAware && audienceAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('5. small_audience_strength:', smallAudienceHasDayAware && smallAudienceAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('6. boldness_strength:', boldnessStrengthHasDayAware && boldnessStrengthAllFound ? '✅ PASS' : '❌ FAIL');
+  console.log('7. scale_achievement:', scaleHasDayAware && scaleAllFound ? '✅ PASS' : '❌ FAIL');
+  tierResults.forEach((r, idx) => {
+    console.log(`${8 + idx}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+  shapeResults.forEach((r, idx) => {
+    console.log(`${14 + idx}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allRiPass = (impactHasDayAware && impactAllFound) &&
+    (identityHasDayAware && identityAllFound) &&
+    (boldnessHasDayAware && boldnessAllFound) &&
+    (audienceHasDayAware && audienceAllFound) &&
+    (smallAudienceHasDayAware && smallAudienceAllFound) &&
+    (boldnessStrengthHasDayAware && boldnessStrengthAllFound) &&
+    (scaleHasDayAware && scaleAllFound) &&
+    tierResults.every(r => r.hasDayAware && r.allFound) &&
+    shapeResults.every(r => r.hasDayAware && r.allFound);
+
+  console.log('');
+  console.log('Total Ri messages: 17 patterns × 5 days × 4 times = 340 unique messages');
+  console.log(allRiPass ? '✅ ALL Ri PATTERNS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+}
