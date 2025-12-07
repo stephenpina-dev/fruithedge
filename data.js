@@ -1511,111 +1511,345 @@ const actionPlans = {
 // ============================================================
 
 const aqPropheticMessages = {
-  // BOTTLENECK: Energy
+  // BOTTLENECK: Energy (day-aware)
   energy_bottleneck: {
     condition: (p) => p.bottleneck.name === 'energy' && p.raw.energy <= 4,
     label: "⚡ ENERGY CRISIS",
     messages: {
-      morning: "You're running on empty and the day hasn't even started. This isn't about motivation. Your tank is dry. Before anything else, ask yourself: what would restore even 10% of your energy today? A walk? Real food? Canceling one thing? Do that first. Not after email. First. You can't create from depletion.",
-      afternoon: "You're grinding through the afternoon on fumes. This isn't sustainable and you know it. What drained you this morning? Name it specifically. A person? A task? A decision? That thing needs to change or disappear. You're trading your creative capacity for something that isn't worth it.",
-      evening: "You gave more than you had today. The deficit is real. Tomorrow morning, protect your first two hours like they're sacred. No meetings. No requests. No 'quick questions.' Just recovery and your most important work. The world can wait. Your energy can't.",
-      night: "You're checking this late because you couldn't during the day. That's not discipline. That's a system failure. Sleep is not optional. It's not a reward for finishing. It's the foundation everything else rests on. Close this. Rest. Rebuild tomorrow."
+      monday: {
+        morning: "Monday morning with empty reserves is a slow motion disaster. The week ahead requires energy you do not have. Before you plan a single thing, answer one question: what drained you last week? Name it. Now protect against it this week. Block recovery time TODAY. Not Friday. Today. A week built on depletion compounds into collapse by Thursday.",
+        afternoon: "Monday afternoon already running on fumes. The week just started and you are already in debt. Stop. Do not push through. What is the minimum viable Monday? Do only that. Protect tomorrow by not destroying today. One sustainable week beats five burnout cycles.",
+        evening: "Monday evening with nothing left. The week barely started. This is not a work ethic problem. Something is fundamentally wrong with how your weeks begin. Before Tuesday, identify one thing: what drained you before the week even started? That thing needs to die.",
+        night: "Monday night and you are empty. The week is four days away from Friday and you are already cooked. Do not set ambitious goals for tomorrow. Set survival goals. Sleep is the only task that matters right now. Tomorrow, protect your morning like your career depends on it. It does."
+      },
+      friday: {
+        morning: "Friday morning with no energy. You gave the week everything and it took more. Do not try to finish strong. That is ego talking. Finish smart. What can you cut from today? Cut it. Protect the weekend. Recovery is not a reward for completing the week. It is a requirement for surviving the next one.",
+        afternoon: "Friday afternoon on empty. The weekend is close but you might not make it with anything left. Lower the bar for today. Way lower. What is the one thing that absolutely must happen before Monday? Do only that. Everything else is negotiable.",
+        evening: "Friday evening and you are depleted. The week won. This time. But the weekend is yours. Do not fill it with obligations. Do not say yes to anything. Guard the next 48 hours like they are sacred. Because they are. Your next week depends on how you recover this weekend.",
+        night: "Friday night and you are running on nothing. The week is over. Stop thinking about it. Whatever did not get done will wait. Your only job now is recovery. Not Netflix recovery. Real recovery. Sleep. Silence. Space. Monday you will need energy you do not currently have. Build it this weekend."
+      },
+      saturday: {
+        morning: "Saturday morning with low energy. The week took too much. Today is not for productivity. Today is not for catching up. Today is for restoration. What would actually fill your tank? Not distraction. Restoration. Do that thing. Nothing else matters today.",
+        afternoon: "Saturday afternoon still depleted. You are not recovering fast enough. What is still draining you? Work thoughts? Obligations? Guilt about resting? Name the leak and plug it. The weekend is half over. Protect what remains.",
+        evening: "Saturday evening and energy still low. Tomorrow is Sunday. Your last day before the cycle restarts. What would make tomorrow restorative instead of anxious? Plan that now. Not work. Not prep. Actual rest. Your future self needs you to protect tomorrow.",
+        night: "Saturday night running on empty. One more day before Monday. You are not recovered yet. Tomorrow needs to be different. No screens in the morning. No obligations until afternoon. Guard Sunday like it is the most important day of your week. Because right now, it is."
+      },
+      sunday: {
+        morning: "Sunday morning with depleted reserves. This is your last chance to recover before the week begins. Do not waste it on anxiety about Monday. Do not waste it on catching up. What would actually restore you? Not distract you. Restore you. Do only that today.",
+        afternoon: "Sunday afternoon still running low. Monday is coming and you are not ready. But you can not sprint into readiness. You can only rest into it. What would make the next few hours restorative? Not productive. Restorative. The week will demand everything. Give yourself something first.",
+        evening: "Sunday evening with nothing in the tank. Monday is tomorrow and you are not recovered. This is a crisis. Do not prepare for the week. Do not review your calendar. Do one thing: go to bed early. Stupidly early. Sleep is the only intervention that matters now.",
+        night: "Sunday night and you are empty. Monday is hours away. You can not fix this tonight. But you can stop making it worse. No screens. No planning. No anxiety spiraling. Just rest. Tomorrow will be hard. But it will be harder if you do not sleep right now."
+      },
+      midweek: {
+        morning: "Midweek morning with no energy. You started the week okay but something drained you. What changed? What happened Monday or Tuesday that emptied your tank? Name it specifically. That pattern will repeat next week unless you identify it now. Protect today. Find the leak.",
+        afternoon: "Midweek afternoon on empty. You are in the middle of the marathon and you have hit the wall. Do not push through. That makes it worse. What is the minimum viable rest of the day? Do only that. Thursday and Friday you will need reserves you do not have. Start building them now.",
+        evening: "Midweek evening with nothing left. The week is half over but you are fully depleted. Something is wrong with how you are working. Too many meetings? Too little recovery? Too much context switching? Identify it tonight. Tomorrow, change one thing.",
+        night: "Midweek night running on fumes. You will not make it to Friday at this rate. Not sustainably. Tomorrow morning, protect your first two hours like they are sacred. No meetings. No messages. No demands. Just recovery and your single most important task. Everything else can wait."
+      }
     }
   },
 
-  // BOTTLENECK: Mental Space
+  // BOTTLENECK: Mental Space (day-aware)
   space_bottleneck: {
     condition: (p) => p.bottleneck.name === 'space' && p.raw.space <= 4,
     label: "🌫 MENTAL OVERLOAD",
     messages: {
-      morning: "Your mind is already full and the day just started. Thoughts are competing for attention like tabs in a browser. Before you add more inputs, get the current ones out. Write down the three things consuming your mental space. Just writing them creates room. Then pick one to address today. Just one.",
-      afternoon: "Mental clutter is eating your afternoon alive. Your brain is full of open loops and half-processed worries. Step outside for 10 minutes right now. No phone. Let your mind defragment. Sometimes clarity comes from subtraction, not addition.",
-      evening: "Your head is noisy with unfinished thoughts and unnamed anxieties. Before tomorrow, do a complete brain dump. Every open loop. Every worry. Every 'I should.' Write it all down somewhere. Your mind is for having ideas, not holding them. Empty the RAM.",
-      night: "Racing thoughts at night mean unprocessed days. Your brain is trying to solve problems while you're trying to rest. Tomorrow, schedule 15 minutes of deliberate nothing. Stare at a wall. Let yourself be bored. Your brain needs idle time to consolidate and clear."
+      monday: {
+        morning: "Monday morning with a cluttered mind. The week has not started and your head is already full. Before you add a single task, get the current noise out. Write down every open loop. Every worry. Every should. All of it. Your mind is for having ideas, not holding them. Empty it before the week fills it more.",
+        afternoon: "Monday afternoon with mental overload. The week just started and there is no room for new information. Stop consuming. Stop adding. Spend 15 minutes right now writing down what is occupying your mind. Just writing it creates space. You can not think clearly until you clear the queue.",
+        evening: "Monday evening with a full head. The week ahead is invisible because today is blocking the view. Before tomorrow, do a complete brain dump. Every task, worry, idea, obligation. Get it out of your head and onto paper. Tuesday needs a clearer mind than today had.",
+        night: "Monday night with racing thoughts. The week looms and your brain will not stop processing. Do not fight it. Write it. Every thought that surfaces, capture it. The goal is not to solve anything tonight. The goal is to externalize so your brain can rest. Sleep clears the mental cache. Let it."
+      },
+      friday: {
+        morning: "Friday morning with mental clutter. The week piled up and your head is full of unfinished business. Good news: you do not have to solve it all today. Pick the three things that would haunt you all weekend if they stayed open. Do those. Just those. Let the rest wait until Monday.",
+        afternoon: "Friday afternoon with no mental space. The week is ending but the thoughts are not. Before the weekend, close your open loops. Not all of them. The ones that will nag you Saturday morning. Send the message. Make the decision. File the thing. Clear enough space to actually rest.",
+        evening: "Friday evening with a crowded mind. The week is over but your brain did not get the memo. Write down everything still spinning. Then physically close your work. Shut the laptop. Leave the space. Your brain needs environmental cues that the week is done. Give them to it.",
+        night: "Friday night with thoughts still racing. The week is over. Let it go. Whatever is unfinished will be unfinished whether you think about it or not. Write down the top three things for Monday. Then close the document. You have given your brain permission to release the week. Now rest."
+      },
+      saturday: {
+        morning: "Saturday morning with a busy mind. The week should be behind you but it is still taking up space. This is not about discipline. It is about ritual. Take 10 minutes to write down everything work related that is still in your head. Then put that paper somewhere you can not see it. Reclaim your weekend.",
+        afternoon: "Saturday afternoon still mentally cluttered. You are physically free but mentally still at work. What is occupying you? Name it specifically. Is it a task? A worry? A decision? Whatever it is, write it down and tell yourself: Monday. Not today. Monday. Give yourself permission to release it.",
+        evening: "Saturday evening with a full mind. Tomorrow is your last free day and you are spending mental energy on things you can not control right now. What would actually give you peace tonight? Not distraction. Peace. Find that. The mental clutter will wait. It always does.",
+        night: "Saturday night still processing the week. Your brain needs idle time to consolidate and clear. No inputs. No screens. No problems to solve. Just space. Let yourself be bored. Boredom is how your brain defragments. You need that defragmentation more than you need entertainment."
+      },
+      sunday: {
+        morning: "Sunday morning with mental overload. The weekend is almost over and your head is still full. Before the week starts, you need space. Not productivity. Space. Take 30 minutes for a complete brain dump. Everything in your head onto paper. Then take a walk with no phone. Let your mind settle.",
+        afternoon: "Sunday afternoon with a cluttered mind. Monday is coming and there is no room for it. This afternoon is for clearing, not preparing. What thoughts keep intruding? Write them down. Every single one. The act of writing them releases their grip on your attention.",
+        evening: "Sunday evening with racing thoughts. The week is about to start and your mind is still full of last week. You need a clean slate. Write down every open loop. Then write down the one thing that would make Monday successful. Just one. Let everything else fade. Simplicity creates clarity.",
+        night: "Sunday night with a busy brain. Monday is hours away and you are not mentally ready. Do not try to prepare more. Try to release more. Write down the top three priorities for tomorrow. Then let everything else go. Your brain can not process the new week until it releases the old one."
+      },
+      midweek: {
+        morning: "Midweek morning with no mental space. The week is piling up and your head is full. Before you add anything else, subtract something. Write down everything currently occupying your mind. Then pick one thing to decide right now. One thing to delegate. One thing to delete. Make room before you make progress.",
+        afternoon: "Midweek afternoon with mental overload. You are in the thick of the week and your mind is thick with noise. Step outside for 10 minutes. No phone. Let your brain idle. When you return, write down what is actually important versus what is just loud. They are usually different lists.",
+        evening: "Midweek evening with a crowded head. The week is half over but the mental load is not half done. Before tomorrow, identify what is actually urgent versus what is just present. Most of what is in your head can wait. Find the two or three things that cannot. Focus only on those tomorrow.",
+        night: "Midweek night with racing thoughts. The week will not stop spinning in your head. Write it down. All of it. The brain dump is not optional when your mind is this full. You can not sleep well with this much mental clutter. Externalize it. Tomorrow you can organize it. Tonight, just release it."
+      }
     }
   },
 
-  // BOTTLENECK: Optionality
+  // BOTTLENECK: Optionality (day-aware)
   optionality_bottleneck: {
     condition: (p) => p.bottleneck.name === 'optionality' && p.raw.optionality <= 4,
     label: "🔒 TRAPPED",
     messages: {
-      morning: "You feel trapped. Stuck. Locked into a path you didn't fully choose. But are you really? Write down what's actually stopping you from changing direction. Is it real or imagined? Financial? Social? Habitual? Most prisons are made of assumptions, not bars. Question one assumption today.",
-      afternoon: "Low optionality means someone or something else controls your calendar and your choices. That's not sustainable for creative work. What's one boundary you could set this week? One small reclamation of your autonomy? Start there. Options are created, not found.",
-      evening: "Feeling stuck is often feeling obligated to paths that no longer serve you. What commitment are you honoring out of inertia rather than intention? You're allowed to change your mind. You're allowed to want something different. What would you choose if you gave yourself permission?",
-      night: "You're thinking about options you don't have. But options aren't discovered. They're built. What's one door you could construct over the next 30 days? Not a dramatic escape. A small expansion of possibility. Write it down. Start building tomorrow."
+      monday: {
+        morning: "Monday morning feeling trapped. The week ahead looks like last week. And the week before that. Same constraints, same walls, same lack of options. But Monday is also a reset. One small door you could open this week. Not an escape. A crack. What is it? Name it before the week buries you in routine.",
+        afternoon: "Monday afternoon with no options. The week is already taking its predictable shape. But predictability is not destiny. What is one assumption you are making about your constraints? Question it. Really question it. Most prisons are made of beliefs, not bars.",
+        evening: "Monday evening feeling stuck. The week has started and the walls are already visible. Before Tuesday, write down what is actually stopping you from changing direction. Is it real? Financial? Social? Habitual? Be specific. Vague traps are the hardest to escape.",
+        night: "Monday night feeling locked in. The week ahead offers no new paths. Or does it? Options are not found. They are built. What is one small door you could start constructing this week? Not a dramatic escape. A small expansion of possibility. Write it down. Start tomorrow."
+      },
+      friday: {
+        morning: "Friday morning still feeling trapped. The week is ending and nothing changed. But the weekend is different. The weekend is yours. What option could you explore in the next 48 hours? A conversation, a search, a small experiment. The cage has a key. You have to look for it.",
+        afternoon: "Friday afternoon with no options in sight. The week repeated the same patterns. Again. Before the weekend, ask yourself: what would you do if you had permission? You might have more permission than you think. The trap might be internal.",
+        evening: "Friday evening feeling stuck. Another week in the same place. But weekends are for possibilities. Not escape. Exploration. What is one path you have been afraid to even research? This weekend, research it. Just look. Information creates options.",
+        night: "Friday night with low optionality. The week is over but the trap remains. Tomorrow is different. Tomorrow you have time to think. Use it to map your constraints. Which are real? Which are assumed? Which could change if you pushed? The weekend is for seeing clearly what the week obscures."
+      },
+      saturday: {
+        morning: "Saturday morning feeling trapped. Even the weekend feels constrained. But today is yours. No meetings. No obligations you did not choose. What would you do today if the trap did not exist? Do some version of that. Even small freedom is freedom.",
+        afternoon: "Saturday afternoon with no options. The freedom of the weekend should feel expansive but it does not. Why? What is constraining you even now? Is it real or is it a story you keep telling yourself? Today, question the story.",
+        evening: "Saturday evening still feeling stuck. Tomorrow the Sunday anxiety might start. Before it does, write down one option you have been ignoring. Something you could pursue if you decided to. The option exists. You are choosing not to see it. Why?",
+        night: "Saturday night with low optionality. The weekend is half gone and nothing changed. But change does not require weekends. It requires decisions. What decision have you been avoiding? Name it. You do not have to make it tonight. Just name it."
+      },
+      sunday: {
+        morning: "Sunday morning feeling trapped. The week ahead looks like the week behind. But you have today. A full day before the cycle restarts. What would make you feel less stuck? Not a complete escape. A small opening. Find that today. Even planning an escape is a form of freedom.",
+        afternoon: "Sunday afternoon with no options. Monday is coming and it feels inevitable. But inevitability is a feeling, not a fact. What is one thing you could do differently this week? Not everything. One thing. Small options compound into big changes. Start small.",
+        evening: "Sunday evening feeling locked in. The week is about to start and it looks identical to last week. Before you accept that, ask: what would you change if you could change one thing? You probably can change that thing. The trap is usually smaller than it appears.",
+        night: "Sunday night with low optionality. Monday feels like a cage door closing. But what if this week you did one thing different? Took one meeting you would not normally take. Said no to one thing you always say yes to. Small rebellions create options. Plan one rebellion for this week."
+      },
+      midweek: {
+        morning: "Midweek morning feeling trapped. You are in the middle of the routine and the walls are solid. But routines have cracks. What is one small thing you could do differently today? Not a revolution. A crack. Small deviations accumulate into new directions.",
+        afternoon: "Midweek afternoon with no options. The week is half over and nothing has changed. But half the week remains. What is one assumption about your situation that might be wrong? Question it. Options hide behind assumptions we never examine.",
+        evening: "Midweek evening feeling stuck. The week is taking its usual shape. Before Thursday, identify one constraint that is actually a choice. Something you think you have to do that you actually decided to do. What if you decided differently?",
+        night: "Midweek night with low optionality. The week will end like it began. Unless something changes. You can not change everything. But you can change something. What is the smallest change that would create the most space? Identify it tonight. Try it tomorrow."
+      }
     }
   },
 
-  // BOTTLENECK: Freedom (high constraint)
+  // BOTTLENECK: Freedom (high constraint) (day-aware)
   constraint_bottleneck: {
     condition: (p) => p.bottleneck.name === 'freedom' && p.raw.constraint >= 7,
     label: "⛓ OBLIGATION OVERLOAD",
     messages: {
-      morning: "Heavy obligations are pressing on you before the day even begins. Before they consume everything, protect one hour for yourself. Put it on the calendar right now. Label it 'unavailable.' Guard it like your creative life depends on it. Because it does.",
-      afternoon: "Your constraints are real. Not imagined. Real. But are all of them truly non-negotiable? Name one obligation you've never questioned. Why does it still exist? Who benefits from it? Sometimes we carry weights we picked up years ago and forgot to put down.",
-      evening: "You gave the day to your obligations and they took everything. Did you give any of it to yourself? Tomorrow, take something back. Not a lot. Just something. One hour. One boundary. One 'no' to something that doesn't serve you.",
-      night: "Your life belongs to others right now. Contracts, caregiving, debts, dependencies. That's not a character flaw. But it's also not sustainable forever. Something must change. What would you drop if you had permission? You might have more permission than you think."
+      monday: {
+        morning: "Monday morning under heavy obligations. The week is already claimed by others before it began. Before the avalanche starts, protect one hour. Just one. Put it on the calendar right now. Label it unavailable. Guard it like your creative life depends on it. Because it does.",
+        afternoon: "Monday afternoon drowning in obligations. The week just started and you have already given it away. What is one thing you could cancel this week? Not should cancel. Could cancel. The world will not end. Your creativity might begin.",
+        evening: "Monday evening crushed by constraints. The week took everything today. Before Tuesday, look at your calendar. What is one thing that is on there out of habit, not necessity? Question it. Kill it. Make space before the week makes more demands.",
+        night: "Monday night overloaded with obligations. The week is four days from over and you are already exhausted by what you owe. Tomorrow, say no to one thing. Just one. Not a big no. A small no. Small nos create small spaces. Small spaces become room to breathe."
+      },
+      friday: {
+        morning: "Friday morning still carrying heavy obligations. The week demanded everything and you gave it. Today, take something back. Not permission. You do not need permission. Just take it. One hour that belongs to you. Not to anyone else. You.",
+        afternoon: "Friday afternoon under the weight of constraints. The weekend is close but obligations are following you. Before you leave today, cancel one thing for next week. Create future space. Give next week you a gift that this week you could not have.",
+        evening: "Friday evening overloaded. The week took more than it deserved. The weekend is yours. Do not let obligations follow you. What commitment could you drop for the next 48 hours? Drop it. Not delay it. Drop it. Protect the weekend.",
+        night: "Friday night crushed by constraints. The week is over but the obligations are not. Draw a line. Everything on the other side of that line is for Monday. Not Sunday. Monday. The weekend is for recovery. Recovery is not negotiable."
+      },
+      saturday: {
+        morning: "Saturday morning and obligations still pressing. Even the weekend is not free. What is claiming your Saturday? Is it necessary or just expected? Expectations can be disappointed. Your creative energy cannot be endlessly borrowed.",
+        afternoon: "Saturday afternoon with too many constraints. The weekend should be open but it is not. What could you cancel today? What expectation could you disappoint? Sometimes disappointing others is how you stop disappointing yourself.",
+        evening: "Saturday evening still obligated. Tomorrow is Sunday. Your last free day. Protect it. Whatever is trying to claim tomorrow, question whether it has the right. Your time is not infinite. Spend it like it matters.",
+        night: "Saturday night under constraints. Sunday is coming and it needs to be different. Before you sleep, decide: what will Sunday be for? Not for obligations. For you. Make that decision now and defend it tomorrow."
+      },
+      sunday: {
+        morning: "Sunday morning with heavy obligations. Even today is claimed. But by whom? By what? Make a list of everything you think you have to do today. Now cross off everything that is not truly mandatory. How much remains? Probably less than you thought.",
+        afternoon: "Sunday afternoon drowning in constraints. Monday is coming and today was supposed to be recovery. What stole it? Name the thief. Sometimes naming it is enough to stop giving it your time. What can you reclaim for the next few hours?",
+        evening: "Sunday evening overloaded. The week starts tomorrow and you did not get a weekend. This is not sustainable. Before the week begins, identify one obligation for next week that you will not meet. Not can not. Will not. The choice is yours.",
+        night: "Sunday night crushed by constraints. The week is about to add more weight to what you already carry. But weight can be put down. What are you carrying that you could release? Not everything. One thing. What would you set down if you gave yourself permission?"
+      },
+      midweek: {
+        morning: "Midweek morning under heavy obligations. You are in the middle of serving everyone else. When do you serve yourself? Today, protect 30 minutes. Not for work. For you. If you cannot find 30 minutes, that is the problem. That is exactly the problem.",
+        afternoon: "Midweek afternoon drowning in constraints. The week is demanding and you are giving. But giving without replenishing is just draining. What would fill you up? Not complete freedom. Just a small refill. Find that today.",
+        evening: "Midweek evening overloaded. The week has taken half your energy for other people. Before Thursday, identify one obligation that does not deserve your energy. You know which one. The one that drains you more than it should. Question why it still exists.",
+        night: "Midweek night crushed by constraints. The week is half over and you have given it all away. Tomorrow, take something back. Not a lot. Just something. One hour. One no. One boundary. You are allowed to have boundaries. Start with one."
+      }
     }
   },
 
-  // STRENGTH: Energy (but still limited by something else)
+  // STRENGTH: Energy (but still limited by something else) (day-aware)
   energy_strength: {
     condition: (p) => p.strength.name === 'energy' && p.raw.energy >= 7 && p.average < 7,
     label: "⚡ UNTAPPED POWER",
     messages: {
-      morning: "You have energy but something else is blocking you. That energy is a finite resource that refreshes daily. Don't waste it on low-value tasks or other people's priorities. Identify your ONE most important creative task and attack it while the power is there.",
-      afternoon: "Strong energy being consumed by constraints or mental clutter. You have fuel but it's burning on friction. Channel it into your single highest priority before it dissipates into busywork. What's the one thing that would make today count?",
-      evening: "You had energy today. Did you use it on what mattered? Or did it get absorbed by obligations and noise? Tomorrow, direct your energy before others claim it. First hour: your most important work. No negotiation.",
-      night: "Energy without direction is just restlessness. You have the fuel. You need the focus. Before you sleep, decide: what will receive your best energy tomorrow morning? Write it down. Make it specific. Wake up and execute."
+      monday: {
+        morning: "Monday morning with strong energy. This is rare. Most people start the week depleted. You have power. Do not waste it on email. Do not waste it on meetings. Your first two hours belong to your most important creative work. Everything else can wait. Strike while the energy is here.",
+        afternoon: "Monday afternoon and you still have energy. The week has not drained you yet. Use this. What is the one thing that would make this week successful? Do it now while you have the fuel. Do not save energy for later. Deploy it on what matters.",
+        evening: "Monday evening with energy reserves. You made it through day one with power to spare. That is an asset. Before tomorrow, decide what will receive your best energy Tuesday morning. Do not let it be decided by whoever emails first. You decide.",
+        night: "Monday night with untapped power. You have more capacity than you used today. That is good for tomorrow. But it is also a question: why did you not use it? What held you back? Whatever it was, do not let it hold you back Tuesday. Energy unused is energy wasted."
+      },
+      friday: {
+        morning: "Friday morning with energy. You made it through the week with fuel to spare. Most people are running on fumes. You are not. Use this advantage. What could you finish today that would make the weekend feel earned? Do that thing.",
+        afternoon: "Friday afternoon and you still have power. The week did not break you. Before you coast into the weekend, ask: what one thing would be satisfying to complete? You have the energy. Use it to close strong. Then rest.",
+        evening: "Friday evening with energy reserves. The week is over and you are not depleted. That is a win. But do not fill the weekend with more work just because you can. Rest while you have the capacity. Store this energy for next week.",
+        night: "Friday night with untapped power. You made it. The week is done and you still have fuel. Enjoy the weekend without guilt. You did not deplete yourself. That is exactly how it should be. This is what sustainable creativity looks like."
+      },
+      saturday: {
+        morning: "Saturday morning with strong energy. The weekend stretches ahead and you have power to enjoy it. Do not default to productivity. What would you do today purely for the joy of it? You have the energy for joy. Use it.",
+        afternoon: "Saturday afternoon with energy to spare. This is freedom with fuel. Rare combination. What have you been wanting to do but too tired to attempt? Today might be the day. The energy is here. The time is here. What will you do with it?",
+        evening: "Saturday evening and you still have power. Tomorrow is Sunday. You could start the week rested AND energized. That is a superpower. Protect your sleep tonight. Do not burn energy on screens. Let it compound into Sunday.",
+        night: "Saturday night with untapped energy. You have fuel most people would kill for. Do not waste it staying up late for no reason. Channel it into rest. Tomorrow you could wake up powerful. That is a gift. Receive it."
+      },
+      sunday: {
+        morning: "Sunday morning with strong energy. The week ahead will try to take it. Before it does, use some for yourself. What would fill your cup before the demands begin? You have power now. Invest it in yourself before the week claims it.",
+        afternoon: "Sunday afternoon with energy reserves. Monday is coming but you are ready for it. That is rare. Most people dread Monday because they are empty. You are not. Use this afternoon for something restorative. Enter the week from a position of strength.",
+        evening: "Sunday evening with power to spare. You are about to start a week with more energy than most people have at their peak. Do not squander it on worry. Plan how you will deploy your best energy tomorrow. Then rest. The plan will keep.",
+        night: "Sunday night with untapped energy. Monday will demand this power. Make sure it goes to the right things. What is your highest priority tomorrow? Decide now. Give it your first energy, not your leftover energy. Sleep well. Wake up ready to strike."
+      },
+      midweek: {
+        morning: "Midweek morning with strong energy. Most people are dragging by now. You are not. That is an advantage. What could you accomplish today that tired you would never attempt? The energy is here. Use it for something that matters.",
+        afternoon: "Midweek afternoon with energy reserves. You are outpacing the week. Do not coast. What is the most important thing you could do between now and Friday? You have the fuel to do it well. Deploy your power on your priorities.",
+        evening: "Midweek evening and you still have power. The week is half over and you are not half depleted. That is a win. Before tomorrow, decide how to use this advantage. Energy without direction is just restlessness. Aim it.",
+        night: "Midweek night with untapped energy. You have capacity others do not. But capacity for what? Before you sleep, clarify what deserves your energy tomorrow. Do not let the urgent steal from the important. You have the power to choose. Choose well."
+      }
     }
   },
 
-  // SHAPE: Soaring (all high)
+  // SHAPE: Soaring (all high) (day-aware)
   soaring: {
     condition: (p) => p.shape === 'soaring',
     label: "✓ FULL AUTONOMY",
     messages: {
-      morning: "All systems green. Energy, space, options, freedom—all aligned. This is rare. Don't waste it on maintenance. Use today for your most important creative work. The work that requires your best self. The work that moves the needle. Everything else can wait.",
-      afternoon: "You're operating with full autonomy. This is the state everyone's chasing and you have it right now. Protect it fiercely. Say no to anything that would disrupt this. You can be helpful tomorrow. Today, be excellent.",
-      evening: "Strong autonomy day. Everything working together. Before you close out, document what made this possible. What did you protect? What did you eliminate? What did you prioritize? These conditions are your formula. Write them down. Replicate them.",
-      night: "Peak autonomy achieved. This is what freedom feels like. Don't take it for granted—it's fragile and rare. What could threaten this state? Guard against it. What maintains it? Double down. Sleep well. Protect this."
+      monday: {
+        morning: "Monday morning with full autonomy. Energy high, mind clear, options open, constraints light. This is rare. Most people start the week in deficit. You start with surplus. Do not waste this on small tasks. Today is for your most important creative work. Everything else can wait. Strike.",
+        afternoon: "Monday afternoon with all systems green. The week has begun and you are thriving. Protect this state at all costs. Say no to anything that would disrupt it. This is the compound zone. Every hour here builds on the last. Stay in it.",
+        evening: "Monday evening with full autonomy intact. You made it through day one without depletion. That is the model. Before tomorrow, note what you protected. What you said no to. What you prioritized. This is your formula. Repeat it.",
+        night: "Monday night with everything working. The week is young and you are strong. Do not let late night screens steal tomorrow's energy. Sleep is part of the strategy. Tomorrow you could have another day like today. That compounds into a transformed week."
+      },
+      friday: {
+        morning: "Friday morning with full autonomy. You made it through the week in the optimal zone. That is exceptional. Today is not for coasting. Today is for leverage. What could you accomplish with this energy that would compound over the weekend? Do that.",
+        afternoon: "Friday afternoon with everything aligned. The week did not break you. It fed you. Before you enter the weekend, document what worked this week. The conditions, the choices, the boundaries. This is your playbook. You will want it again.",
+        evening: "Friday evening with all systems green. The week is ending and you are ending strong. That is exactly right. The weekend is your reward. But also your opportunity. Full autonomy continues. What will you create with it?",
+        night: "Friday night with full autonomy. You won the week. Not by surviving. By thriving. Enjoy this. Rest well. Let the weekend be spacious. You earned space by not depleting yourself. This is the sustainable path."
+      },
+      saturday: {
+        morning: "Saturday morning with everything working. Energy, space, options, freedom. The weekend stretches ahead with no constraints. This is what you have been building toward. Do not fill it with obligations. Fill it with whatever calls to you.",
+        afternoon: "Saturday afternoon with full autonomy. This is the life you are designing. Not just weekends, but weekdays too. Enjoy it. Notice how it feels. Remember this feeling when you make decisions about what to say yes to. Protect the conditions that created this.",
+        evening: "Saturday evening with all systems green. Tomorrow is Sunday and you will have another day like today. That is abundance. Do not take it for granted. Also do not waste it on anxiety about Monday. Monday you will be ready. Enjoy tonight.",
+        night: "Saturday night with full autonomy. The weekend is half over but you are not half depleted. You are full. Sleep well. Tomorrow is another day of freedom. Let it be whatever it wants to be."
+      },
+      sunday: {
+        morning: "Sunday morning with everything working. Most people spend Sunday anxious about Monday. You do not have to. Your reserves are full. Your mind is clear. Your options are open. Spend today in that abundance. Monday will be fine because you are fine.",
+        afternoon: "Sunday afternoon with full autonomy. The week ahead does not threaten you. You are entering it from strength, not survival. Use this afternoon for something that matters to you. Not preparation. Not anxiety. Something that feeds your soul.",
+        evening: "Sunday evening with all systems green. Monday is tomorrow and you are ready. Not defensively ready. Offensively ready. You have the energy to create, the space to think, the options to choose, the freedom to act. Sleep well. Tomorrow you deploy.",
+        night: "Sunday night with everything aligned. The week is about to begin and you are in the optimal zone. Do not sabotage this with late night scrolling. Protect your sleep. Tomorrow is an opportunity. Full autonomy means you get to use it well. Rest."
+      },
+      midweek: {
+        morning: "Midweek morning with full autonomy. Most people are depleted by now. You are thriving. That is the difference between sustainable systems and willpower. You built the system. Now it is carrying you. Keep doing what you are doing.",
+        afternoon: "Midweek afternoon with everything working. The week is half over and you are not half depleted. You are fully charged. What would you attempt if you knew you could not fail? You have the energy to try. The space to think. The freedom to fail. Try.",
+        evening: "Midweek evening with all systems green. The week curves toward the weekend and you are riding high. Protect this. What threatened your autonomy earlier this week? What almost drained you? Stay vigilant. The optimal zone requires defense.",
+        night: "Midweek night with full autonomy. Half the week is done. Half your capacity remains. That is the goal. Not depletion. Capacity. Tomorrow, use it on something that matters. The energy you have is not normal. Spend it on something important."
+      }
     }
   },
 
-  // SHAPE: Crashed (all low)
+  // SHAPE: Crashed (all low) (day-aware)
   crashed: {
     condition: (p) => p.shape === 'crashed',
     label: "✗ SYSTEM FAILURE",
     messages: {
-      morning: "Everything is low. Energy depleted. Mind cluttered. Options limited. Constraints heavy. This isn't a productivity problem. This is a life problem. Don't try to optimize your way out. Today is about one thing: recovery. What do you need? Give it to yourself.",
-      afternoon: "Multiple systems are failing simultaneously. Pushing through isn't brave. It's counterproductive. What's the minimum you can do today? Do only that. Protect whatever remains. This is about survival now, not thriving. Thriving comes after stability.",
-      evening: "You're depleted on all fronts and the day is ending. Tomorrow is not about output. It's about restoration. Lower every expectation. Focus on one thing: rebuilding your baseline. The work will still be there when you're ready. You won't be ready until you recover.",
-      night: "When everything is low, rest is the only work that matters. Close this. Sleep. Don't set ambitious goals for tomorrow. Set recovery goals. Rebuild the foundation before you build anything else. The creative work can wait. Your health can't."
+      monday: {
+        morning: "Monday morning with all systems failing. Energy depleted, mind cluttered, options limited, constraints heavy. This is not a productivity problem. This is a life problem. Do not try to optimize your way out. Today is about one thing: what do you need? Give it to yourself.",
+        afternoon: "Monday afternoon in system failure. The week just started and everything is already wrong. Stop pushing. Pushing makes this worse. What is the minimum viable Monday? Do only that. Protect whatever remains. The goal is to survive today, not win it.",
+        evening: "Monday evening with everything crashing. The week ahead looks impossible from here. It is not. But you cannot see that yet. Tomorrow will be different if tonight is different. Rest. Real rest. Not distraction. Rest. Everything else waits.",
+        night: "Monday night with full system failure. The week is barely started and you are already broken. Do not set goals for tomorrow. Set boundaries. Minimum work. Maximum rest. Rebuild the foundation before you build anything else."
+      },
+      friday: {
+        morning: "Friday morning with all systems down. You made it to Friday but at what cost. Today is not for catching up. Today is for letting go. What can you drop? What can wait until next week? Your only job is to make it to the weekend intact.",
+        afternoon: "Friday afternoon in system failure. The week won. This time. But the weekend is coming. Do not fill it with recovery tasks. Fill it with nothing. Emptiness is what you need. Space to breathe. Permission to not perform.",
+        evening: "Friday evening with everything crashed. The week is over. Let it be over. Whatever did not get done is now next week's problem. Your problem is recovery. The weekend is not for catching up. It is for healing.",
+        night: "Friday night with full system failure. The week broke you. Acknowledge that. Do not pretend it did not. Tomorrow is Saturday. You have 48 hours to rebuild. Sleep is step one. Everything else comes after. Rest."
+      },
+      saturday: {
+        morning: "Saturday morning with all systems failing. Even the weekend starts in deficit. Today is not for productivity. Today is for survival. What do you need that you have not been getting? Rest? Connection? Silence? Give it to yourself. Today. Now.",
+        afternoon: "Saturday afternoon in system failure. The weekend should be restoring you but you are still crashed. What is blocking recovery? Name it. Is it guilt? Obligation? Anxiety? Name it so you can address it. You cannot heal what you will not acknowledge.",
+        evening: "Saturday evening with everything down. Tomorrow is your last day before the cycle restarts. You are not recovered. Tomorrow needs to be different. No obligations. No shoulds. Just whatever actually restores you. Plan that now.",
+        night: "Saturday night with full system failure. One day until Monday. You are not ready. That is okay. Ready is not the goal right now. Stable is the goal. Tomorrow, protect yourself from anything that drains. Only allow what restores. Sleep now."
+      },
+      sunday: {
+        morning: "Sunday morning with all systems crashed. The week is about to start and you are broken. Do not try to prepare for the week. Try to survive until the week. What would actual rest look like today? Not catching up. Resting. Do that.",
+        afternoon: "Sunday afternoon in system failure. Monday is coming and you have nothing left. Lower every expectation. For today. For tomorrow. For the whole week if needed. You cannot perform your way out of burnout. You can only rest out of it.",
+        evening: "Sunday evening with everything down. Monday is hours away and you are still crashed. This is a crisis. Treat it like one. What is the absolute minimum you must do tomorrow? Only that. Everything else gets cancelled, delegated, or delayed. Survival mode.",
+        night: "Sunday night with full system failure. The week starts tomorrow and you are empty. You cannot fix this tonight. But you can stop making it worse. Sleep. Not screens. Not worry. Sleep. Tomorrow will come either way. Meet it rested."
+      },
+      midweek: {
+        morning: "Midweek morning with all systems failing. You started the week with something and it is gone. What happened? What drained you? Identify it specifically because it will happen again if you do not. Today is damage control. Minimum output. Maximum protection.",
+        afternoon: "Midweek afternoon in system failure. The week has broken you at the halfway point. Do not push to Friday. Push to tonight. Just tonight. What is the bare minimum to survive until evening? Do that. Only that. Then reassess.",
+        evening: "Midweek evening with everything crashed. Tomorrow is another day and you have nothing left for it. The week might be lost. That is okay. Weeks can be lost. You cannot be. Protect yourself tonight. Tomorrow, set the bar as low as it needs to be.",
+        night: "Midweek night with full system failure. The week is half over and you are fully depleted. This is not sustainable. Something fundamental needs to change. But not tonight. Tonight is for rest. Tomorrow is for deciding what has to change. One thing at a time."
+      }
     }
   },
 
-  // SHAPE: Plateau (mid, balanced)
+  // SHAPE: Plateau (mid, balanced) (day-aware)
   plateau: {
     condition: (p) => p.shape === 'plateau',
     label: "⚖ HOLDING STEADY",
     messages: {
-      morning: "Stable but not growing. You have enough autonomy to function, but not enough to flourish. What one lever could you push today to break the pattern? More energy? More space? Fewer constraints? Pick one. Push it. Plateaus don't break themselves.",
-      afternoon: "You're maintaining, which is better than declining. But maintaining isn't growing. Where's your next edge? What would move you from functional to thriving? That thing deserves your attention today. Not the urgent stuff. The important stuff.",
-      evening: "Balanced at the middle is still the middle. You're not in crisis, but you're not in flow either. What would make tomorrow a 7 instead of a 5? Not a massive change. A small lever that compounds. Identify it now. Pull it tomorrow.",
-      night: "Plateaus feel safe because they are. No crisis, no breakthrough. Just... fine. But fine doesn't compound. Fine doesn't build legacy. What bold move are you avoiding because the plateau is comfortable? Name it. Consider it. Maybe it's time."
+      monday: {
+        morning: "Monday morning on the plateau. Stable but not growing. The week ahead will look like last week unless something changes. What one lever could you push today? More energy? More space? Fewer constraints? Pick one. Push it. Plateaus do not break themselves.",
+        afternoon: "Monday afternoon holding steady. The week has started and it feels familiar. Maybe too familiar. What would make this week different from last week? Not a revolution. A small change. Identify it now while Monday is young.",
+        evening: "Monday evening on the plateau. Day one is ending and it felt like every other day one. Before Tuesday, ask yourself: is this where you want to stay? If not, what would you change? You have four days left to make this week different.",
+        night: "Monday night holding steady. The week is predictable from here. That is safe. It is also stagnant. Before you sleep, consider: what risk could you take this week that would break the pattern? Small risks compound. What is yours?"
+      },
+      friday: {
+        morning: "Friday morning on the plateau. The week happened. Nothing broke. Nothing grew. Is that enough? Before the weekend, ask what would have made this week exceptional. That answer is your homework for next week.",
+        afternoon: "Friday afternoon holding steady. Another week in the middle. Not failing. Not thriving. The weekend is coming. Will it be a plateau too? Or will you use it to prepare for something different next week?",
+        evening: "Friday evening on the plateau. The week maintained. You maintained. But maintaining is not building. The weekend is a reset. Use it to think about what you actually want. Not what is safe. What you want.",
+        night: "Friday night holding steady. The week is over and it felt like every other week. That is either comforting or concerning. Only you know which. Before you rest, decide: same thing next week or something different?"
+      },
+      saturday: {
+        morning: "Saturday morning on the plateau. Even the weekend feels stable. Familiar. But the weekend is for breaking patterns, not repeating them. What would shake things up today? Not drastically. Just enough to feel different.",
+        afternoon: "Saturday afternoon holding steady. The weekend is passing like the weeks pass. Steady. Comfortable. Is that what you want? If not, what would you change? You have time to experiment today.",
+        evening: "Saturday evening on the plateau. Tomorrow is Sunday. Another stable day ahead. Unless you decide otherwise. What would make tomorrow memorable instead of forgettable? Something is calling to you. What is it?",
+        night: "Saturday night holding steady. The weekend is half over and nothing has changed. That is fine if you chose it. But did you choose it? Or did you just let it happen? Sunday is still available. Use it intentionally."
+      },
+      sunday: {
+        morning: "Sunday morning on the plateau. The week ahead will look like the week behind unless you intervene. Today is your chance to plan the intervention. Not a big one. A small lever that could shift everything. What is it?",
+        afternoon: "Sunday afternoon holding steady. Monday is coming and it feels predictable. But predictions can be wrong. What would surprise you this week? What would you have to do for that surprise to happen? Consider doing that.",
+        evening: "Sunday evening on the plateau. The week is about to begin and you know exactly how it will go. That certainty might be a prison. What if you did one thing differently tomorrow? Just one. See what happens.",
+        night: "Sunday night holding steady. Monday is hours away and it looks identical to last Monday. But you do not have to accept that. Tomorrow morning, do one thing you did not do last week. Break the plateau. Start small."
+      },
+      midweek: {
+        morning: "Midweek morning on the plateau. The week is unfolding exactly as expected. No crises. No breakthroughs. Just steady. Is steady enough? If not, today is your chance to push. The week is half written. Write the second half differently.",
+        afternoon: "Midweek afternoon holding steady. You are in the middle of another average week. Average is safe. Average is also forgettable. What would make the rest of this week above average? You have time to change trajectory.",
+        evening: "Midweek evening on the plateau. The week will end like it began unless something shifts. What would you regret not trying by Friday? That thing. Consider starting it tomorrow. Plateaus break when you push.",
+        night: "Midweek night holding steady. Half the week is gone. Half remains. Same as always. Unless you choose differently. Before you sleep, pick one thing to do differently tomorrow. Not everything. One thing. See what shifts."
+      }
     }
   },
 
-  // SHAPE: Lopsided (fallback)
+  // SHAPE: Lopsided (fallback) (day-aware)
   lopsided: {
     condition: (p) => p.shape.startsWith('lopsided'),
     label: "⚖ IMBALANCED",
     messages: {
-      morning: "Your autonomy is uneven. Strong in some areas, weak in others. That imbalance creates stress and limits output. Today, focus on your weakest link. Not your strength. Your weakness. That's where the leverage is. Shore it up before it collapses everything else.",
-      afternoon: "Imbalanced systems create friction even when parts are working well. Your strength can't compensate forever for your weakness. What's draining you that your advantages can't offset? That's the thing to fix. Not optimize around. Fix.",
-      evening: "Lopsided days are exhausting because you're constantly compensating. Tomorrow, shore up your weak spot before leveraging your strength. Sustainable autonomy is balanced autonomy. What's the one thing you could do to even out the equation?",
-      night: "You're strong somewhere and weak somewhere else. That's normal. But ignoring the weakness doesn't make it go away. It makes it grow. What's your Achilles heel right now? Energy? Space? Options? Constraints? Name it. Plan to address it. Soon."
+      monday: {
+        morning: "Monday morning with imbalanced autonomy. Strong in some areas, weak in others. The week will expose the weak spots. Before it does, identify them yourself. What is your lowest score? That is where your attention belongs today. Not your strength. Your weakness.",
+        afternoon: "Monday afternoon with uneven autonomy. Your strengths are carrying your weaknesses. That works short term. It fails long term. What is draining you that your advantages cannot offset? That is the thing to address this week.",
+        evening: "Monday evening imbalanced. The week has begun and the cracks are already showing. Before Tuesday, look at where you are weak. Energy? Space? Options? Constraints? Pick the worst one. Tomorrow, focus there.",
+        night: "Monday night with lopsided autonomy. You made it through day one but something is off. The imbalance will get worse before it gets better unless you address it. What is your weakest link? Write it down. Start fixing it tomorrow."
+      },
+      friday: {
+        morning: "Friday morning with imbalanced autonomy. The week is ending and the imbalance is clear. Your strength kept you afloat. Your weakness kept you struggling. Before next week, plan how to address the gap.",
+        afternoon: "Friday afternoon uneven. The week revealed what is working and what is not. The weekend is for recovery, but also for reflection. What needs to change for next week to be more balanced?",
+        evening: "Friday evening imbalanced. The week is over and the pattern is clear. One area is strong. Another is failing. You cannot ignore the failing part forever. Use the weekend to think about how to shore it up.",
+        night: "Friday night with lopsided autonomy. The week exposed the imbalance. Now you know. The question is what you will do about it. Rest tonight. But before next week, make a plan for your weakest area."
+      },
+      saturday: {
+        morning: "Saturday morning with imbalanced autonomy. Even the weekend feels uneven. What is your weak spot? Energy? Mental space? Options? Freedom? Today, give some attention to whichever is lowest. Balance requires intention.",
+        afternoon: "Saturday afternoon uneven. Your strength is obvious. Your weakness is hidden but present. What would address your weakest area today? Not completely fix it. Just address it. Small moves toward balance.",
+        evening: "Saturday evening imbalanced. Tomorrow is Sunday. Another chance to work on balance. What would move your lowest score up even slightly? That is your focus for tomorrow. Not your strength. Your weakness.",
+        night: "Saturday night with lopsided autonomy. The weekend is half over. Have you addressed your weak spot at all? If not, tomorrow is your chance. Balance does not happen by accident. It happens by attention."
+      },
+      sunday: {
+        morning: "Sunday morning with imbalanced autonomy. The week ahead will stress your weak spots. Before it does, strengthen them. What would give you more energy? More space? More options? Less constraint? Pick the one you need most.",
+        afternoon: "Sunday afternoon uneven. Monday is coming and your imbalance is coming with it. This afternoon is for shoring up your weakest area. Not your whole life. Just the weakest part. What would help?",
+        evening: "Sunday evening imbalanced. The week starts tomorrow and your strength will carry you. But your weakness will drag you. Before the week begins, do one thing to address your lowest score. Just one thing.",
+        night: "Sunday night with lopsided autonomy. You know where you are strong. You know where you are weak. The week will test both. Before you sleep, set one intention for addressing your weak spot tomorrow. Balance starts with attention."
+      },
+      midweek: {
+        morning: "Midweek morning with imbalanced autonomy. The week is exposing your weak spots exactly as expected. Your strength is holding. Your weakness is showing. Today, give attention to what is failing. Not just what is working.",
+        afternoon: "Midweek afternoon uneven. You are compensating for your weakness with your strength. That is exhausting. What would actually address the imbalance? Not work around it. Address it. Consider that for the rest of the week.",
+        evening: "Midweek evening imbalanced. The week is half over and the pattern is clear. Strong where you are always strong. Weak where you are always weak. Tomorrow, try something different. Break the pattern. Focus on your weakness.",
+        night: "Midweek night with lopsided autonomy. Half the week is done. The imbalance persists. It will persist next week too unless you address it. Before you sleep, name your weakest area. Tomorrow, give it more attention than your strength."
+      }
     }
   }
 };

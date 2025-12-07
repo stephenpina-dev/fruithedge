@@ -1239,8 +1239,18 @@
       matchedPattern = { key: fallbackKey, ...messages[fallbackKey] };
     }
 
-    // Get time-appropriate message
-    const message = matchedPattern.messages[time.timeOfDay] || matchedPattern.messages.morning;
+    // Get time-appropriate message (supports day-aware and legacy formats)
+    let message;
+    if (matchedPattern.messages[time.dayContext]) {
+      // New day-aware format
+      message = matchedPattern.messages[time.dayContext][time.timeOfDay]
+        || matchedPattern.messages[time.dayContext].morning
+        || matchedPattern.messages.midweek[time.timeOfDay]
+        || matchedPattern.messages.midweek.morning;
+    } else {
+      // Legacy format fallback
+      message = matchedPattern.messages[time.timeOfDay] || matchedPattern.messages.morning;
+    }
 
     return {
       label: matchedPattern.label,
