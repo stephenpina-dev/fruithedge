@@ -1008,3 +1008,246 @@ if (ciStartIdx !== -1 && ciEndIdx !== -1) {
 } else {
   console.log('Could not find ciPropheticMessages boundaries');
 }
+
+// ============================================================
+// ALPHA PROPHETIC MESSAGES TESTS
+// ============================================================
+
+// Extract alphaPropheticMessages
+const alphaStartMarker = 'const alphaPropheticMessages = {';
+
+const alphaStartIdx = content.indexOf(alphaStartMarker);
+// Find the end by looking for the closing }; at the end of the file
+let alphaEndIdx = content.lastIndexOf('};');
+if (alphaEndIdx !== -1) {
+  alphaEndIdx += 2; // Include the };
+}
+
+if (alphaStartIdx !== -1 && alphaEndIdx !== -1) {
+  let alphaSection = content.substring(alphaStartIdx, alphaEndIdx).trim();
+  alphaSection = alphaSection.replace('const alphaPropheticMessages = ', '');
+  alphaSection = alphaSection.replace(/;\s*$/, '');
+  const alphaPropheticMessages = eval('(' + alphaSection + ')');
+
+  console.log('');
+  console.log('============================================================');
+  console.log('ALPHA PROPHETIC MESSAGES TESTS');
+  console.log('============================================================');
+  console.log('');
+
+  // Test bottleneck + compounding patterns (Part 1)
+  const alphaBottleneckPatterns = ['freedom_bottleneck', 'connection_bottleneck', 'output_bottleneck', 'compounding'];
+  const alphaBottleneckLabels = ['🔓 FREEDOM IS THE BOTTLENECK', '📡 CONNECTION IS THE BOTTLENECK', '⚡ OUTPUT IS THE BOTTLENECK', '📈 COMPOUNDING RETURNS'];
+  const alphaBottleneckResults = [];
+
+  alphaBottleneckPatterns.forEach((key, idx) => {
+    console.log(`=== TEST Alpha-${idx + 1}: ${key} (day-aware) ===`);
+    const pattern = alphaPropheticMessages[key];
+    if (!pattern) {
+      console.log('Pattern not found!');
+      alphaBottleneckResults.push({ key, hasDayAware: false, allFound: false });
+      console.log('');
+      return;
+    }
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    alphaBottleneckResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('ALPHA BOTTLENECK + COMPOUNDING SUMMARY (4 patterns)');
+  console.log('============================================================');
+  alphaBottleneckResults.forEach((r, idx) => {
+    console.log(`${idx + 1}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allAlphaBottleneckPass = alphaBottleneckResults.every(r => r.hasDayAware && r.allFound);
+
+  console.log('');
+  console.log('Total Alpha bottleneck+compounding messages: 4 patterns × 5 days × 4 times = 80 unique messages');
+  console.log(allAlphaBottleneckPass ? '✅ ALL ALPHA BOTTLENECK+COMPOUNDING COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // Test state patterns (Part 2)
+  console.log('');
+  const alphaStatePatterns = ['emergency', 'severe_imbalance', 'coasting', 'ascending'];
+  const alphaStateLabels = ['🚨 CREATIVE EMERGENCY', '⚠ SEVERE IMBALANCE', '📉 COASTING', '📈 ASCENDING'];
+  const alphaStateResults = [];
+
+  alphaStatePatterns.forEach((key, idx) => {
+    console.log(`=== TEST Alpha-${idx + 5}: ${key} (day-aware) ===`);
+    const pattern = alphaPropheticMessages[key];
+    if (!pattern) {
+      console.log('Pattern not found!');
+      alphaStateResults.push({ key, hasDayAware: false, allFound: false });
+      console.log('');
+      return;
+    }
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    alphaStateResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('ALPHA STATE SUMMARY (4 patterns)');
+  console.log('============================================================');
+  alphaStateResults.forEach((r, idx) => {
+    console.log(`${idx + 5}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allAlphaStatePass = alphaStateResults.every(r => r.hasDayAware && r.allFound);
+
+  console.log('');
+  console.log('Total Alpha state messages: 4 patterns × 5 days × 4 times = 80 unique messages');
+  console.log(allAlphaStatePass ? '✅ ALL ALPHA STATE PATTERNS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // Alpha Part 3: Final patterns (falling, balanced, all_aligned_high, all_aligned_low)
+  console.log('');
+  const alphaFinalPatterns = ['falling', 'balanced', 'all_aligned_high', 'all_aligned_low'];
+  const alphaFinalLabels = ['📉 DECLINING', '⚖ BALANCED', '✦ ALL SYSTEMS OPTIMAL', '⊗ ALL SYSTEMS CRITICAL'];
+  const alphaFinalResults = [];
+
+  alphaFinalPatterns.forEach((key, idx) => {
+    console.log(`=== TEST Alpha-${idx + 9}: ${key} (day-aware) ===`);
+    const pattern = alphaPropheticMessages[key];
+    if (!pattern) {
+      console.log('Pattern not found!');
+      alphaFinalResults.push({ key, hasDayAware: false, allFound: false });
+      console.log('');
+      return;
+    }
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    alphaFinalResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('ALPHA FINAL PATTERNS SUMMARY (4 patterns)');
+  console.log('============================================================');
+  alphaFinalResults.forEach((r, idx) => {
+    console.log(`${idx + 9}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allAlphaFinalPass = alphaFinalResults.every(r => r.hasDayAware && r.allFound);
+
+  console.log('');
+  console.log('Total Alpha final messages: 4 patterns × 5 days × 4 times = 80 unique messages');
+  console.log(allAlphaFinalPass ? '✅ ALL ALPHA FINAL PATTERNS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // Combined Alpha summary (All 12 patterns)
+  console.log('');
+  console.log('============================================================');
+  console.log('ALPHA COMPLETE SUMMARY (ALL 12 patterns)');
+  console.log('============================================================');
+  alphaBottleneckResults.forEach((r, idx) => {
+    console.log(`${idx + 1}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+  alphaStateResults.forEach((r, idx) => {
+    console.log(`${idx + 5}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+  alphaFinalResults.forEach((r, idx) => {
+    console.log(`${idx + 9}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allAlphaPass = allAlphaBottleneckPass && allAlphaStatePass && allAlphaFinalPass;
+  console.log('');
+  console.log('Total Alpha messages (ALL 12): 12 patterns × 5 days × 4 times = 240 unique messages');
+  console.log(allAlphaPass ? '✅ ALL ALPHA PATTERNS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // GRAND TOTAL
+  console.log('');
+  console.log('============================================================');
+  console.log('🎉 GRAND TOTAL: ALL DAY-AWARE MESSAGES 🎉');
+  console.log('============================================================');
+  console.log('AQ:    9 patterns × 20 = 180 messages');
+  console.log('Ri:   17 patterns × 20 = 340 messages');
+  console.log('Ci:   11 patterns × 20 = 220 messages');
+  console.log('Alpha: 12 patterns × 20 = 240 messages');
+  console.log('─'.repeat(40));
+  console.log('TOTAL: 49 patterns × 20 = 980 unique day-aware messages');
+  console.log('============================================================');
+} else {
+  console.log('Could not find alphaPropheticMessages boundaries');
+  console.log('alphaStartIdx:', alphaStartIdx, 'alphaEndIdx:', alphaEndIdx);
+}
