@@ -1872,29 +1872,9 @@
   function showRecommendedResources() {
     if (!elements.recommendedResources || !elements.resourcesGrid) return;
 
-    // Get top 3 recommendations with variety
-    const matched = matchRecommendations(state.scores, 6);
-
-    // Select 3 with type variety
-    const selected = [];
-    const usedTypes = new Set();
-
-    // First pass: prioritize variety
-    for (const rec of matched) {
-      if (selected.length >= 3) break;
-      if (!usedTypes.has(rec.type)) {
-        selected.push(rec);
-        usedTypes.add(rec.type);
-      }
-    }
-
-    // Second pass: fill remaining if needed
-    for (const rec of matched) {
-      if (selected.length >= 3) break;
-      if (!selected.includes(rec)) {
-        selected.push(rec);
-      }
-    }
+    // Get smart recommendations with bottleneck-based topic matching
+    const result = getSmartRecommendations(state.inputs, state.scores, 3);
+    const selected = result.recommendations;
 
     if (selected.length === 0) {
       elements.recommendedResources.classList.add('hidden');
@@ -2115,9 +2095,10 @@
 
       // Match archetype, recommendation, and protocol
       state.archetype = matchArchetype(state.scores);
-      const recs = matchRecommendations(state.scores, 4);
-      state.recommendation = recs[0];
-      state.protocol = matchProtocol(state.scores);
+      const smartRecs = getSmartRecommendations(state.inputs, state.scores, 4);
+      state.recommendation = smartRecs.recommendations[0];
+      const smartProtocol = getSmartProtocol(state.scores);
+      state.protocol = smartProtocol.protocol;
 
       // Show archetype and recommendations
       showArchetypeCard();
