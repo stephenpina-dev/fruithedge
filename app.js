@@ -1476,6 +1476,42 @@
   }
 
   // ============================================================
+  // BOTTLENECK → TOPIC MAPPING
+  // ============================================================
+
+  const bottleneckTopicMap = {
+    // AQ Bottlenecks
+    energy_bottleneck: ["recovery", "mindset"],
+    space_bottleneck: ["productivity", "mindset"],
+    optionality_bottleneck: ["business", "mindset"],
+    constraint_bottleneck: ["business", "productivity"],
+
+    // Ri Bottlenecks
+    impact_bottleneck: ["connection", "craft"],
+    identity_bottleneck: ["connection", "creativity"],
+    boldness_bottleneck: ["mindset", "creativity"],
+    audience_dilution: ["connection", "mindset"],
+
+    // Ci Bottlenecks
+    flow_bottleneck: ["productivity", "craft"],
+    evolution_bottleneck: ["craft", "creativity"],
+    risk_bottleneck: ["creativity", "mindset"],
+    admin_bottleneck: ["productivity", "business"],
+    distraction_bottleneck: ["productivity", "mindset"],
+    stagnation_bottleneck: ["creativity", "mindset"],
+
+    // Shapes/States
+    burnout: ["recovery", "mindset"],
+    crashed: ["recovery", "mindset"],
+    soaring: ["craft", "business"],
+    plateau: ["creativity", "mindset"],
+
+    // Achievement states
+    scale_achievement: ["business", "connection"],
+    compounding: ["craft", "business"]
+  };
+
+  // ============================================================
   // RECOMMENDATION MATCHING
   // ============================================================
 
@@ -1576,6 +1612,109 @@
     }
 
     return result;
+  }
+
+  function getSmartRecommendations(inputs, scores, count = 3) {
+    // Step 1: Detect patterns from all three laws
+    const aqPattern = detectAQPattern(inputs);
+    const riPattern = detectRiPattern(inputs);
+    const ciPattern = detectCiPattern(inputs);
+
+    // Step 2: Identify the primary bottleneck (most relevant)
+    const bottlenecks = [];
+
+    // Check AQ bottlenecks
+    if (aqPattern.bottleneck && aqPattern.raw[aqPattern.bottleneck.name] <= 4) {
+      bottlenecks.push(aqPattern.bottleneck.name + '_bottleneck');
+    }
+    if (aqPattern.shape === 'crashed') bottlenecks.push('crashed');
+    if (aqPattern.shape === 'soaring') bottlenecks.push('soaring');
+
+    // Check Ri bottlenecks
+    if (riPattern.bottleneck && riPattern.raw[riPattern.bottleneck.name] <= 4) {
+      bottlenecks.push(riPattern.bottleneck.name + '_bottleneck');
+    }
+    // Check for scale achievement (depth at scale)
+    if (scores && scores.ri >= 7 && inputs.audience >= 1000000) {
+      bottlenecks.push('scale_achievement');
+    }
+
+    // Check Ci bottlenecks
+    if (ciPattern.fuelBottleneck) {
+      bottlenecks.push(ciPattern.fuelBottleneck.name + '_bottleneck');
+    }
+    if (ciPattern.worstDrag && ciPattern.worstDrag.value >= 7) {
+      bottlenecks.push(ciPattern.worstDrag.name + '_bottleneck');
+    }
+    if (ciPattern.shape === 'crashed') bottlenecks.push('burnout');
+
+    // Step 3: Get recommended topics from bottlenecks
+    const recommendedTopics = new Set();
+    bottlenecks.forEach(b => {
+      const topics = bottleneckTopicMap[b] || [];
+      topics.forEach(t => recommendedTopics.add(t));
+    });
+
+    // If no specific bottlenecks, use general improvement topics
+    if (recommendedTopics.size === 0) {
+      recommendedTopics.add('mindset');
+      recommendedTopics.add('craft');
+    }
+
+    // Step 4: Score each recommendation
+    const scoredRecs = recommendations.map(rec => {
+      let score = 0;
+
+      // Topic match (highest weight)
+      const topicMatches = rec.topics.filter(t => recommendedTopics.has(t)).length;
+      score += topicMatches * 10;
+
+      // Pattern match (existing logic, lower weight)
+      const patterns = getPatterns(scores);
+      const patternMatches = rec.patterns.filter(p => patterns.includes(p)).length;
+      score += patternMatches * 5;
+
+      // Variety bonus (prefer mixing types)
+      // Will be applied in selection phase
+
+      return { ...rec, matchScore: score, topicMatches, patternMatches };
+    });
+
+    // Step 5: Sort by score and select with variety
+    scoredRecs.sort((a, b) => b.matchScore - a.matchScore);
+
+    // Select top matches with type variety
+    const selected = [];
+    const usedTypes = new Set();
+
+    for (const rec of scoredRecs) {
+      if (selected.length >= count) break;
+
+      // Prefer variety in first 3, allow duplicates after
+      if (selected.length < 3 && usedTypes.has(rec.type)) {
+        // Check if there's a close alternative of different type
+        continue;
+      }
+
+      selected.push(rec);
+      usedTypes.add(rec.type);
+    }
+
+    // If we didn't get enough due to variety constraint, fill with top scores
+    if (selected.length < count) {
+      for (const rec of scoredRecs) {
+        if (selected.length >= count) break;
+        if (!selected.find(s => s.id === rec.id)) {
+          selected.push(rec);
+        }
+      }
+    }
+
+    return {
+      recommendations: selected,
+      detectedBottlenecks: bottlenecks,
+      recommendedTopics: Array.from(recommendedTopics)
+    };
   }
 
   // ============================================================
