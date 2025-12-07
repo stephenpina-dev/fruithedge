@@ -2516,10 +2516,36 @@ const ciPropheticMessages = {
     condition: (p) => p.fuelBottleneck.name === 'flow' && p.raw.flow <= 12,
     label: "🌀 NO DEPTH",
     messages: {
-      morning: "You're skimming the surface. Deep work isn't happening. Before you check anything today, set a timer for 25 minutes and create something. No notifications. No switching. Just depth. This is the most important thing you'll do today.",
-      afternoon: "Half the day gone, no real depth yet. Your craft is starving. Right now, close every tab except one. Work on that one thing for 45 minutes. Everything else can wait. Your future self will thank you.",
-      evening: "Another day without entering the zone. The shallow work is eating your life. Tomorrow morning, block 90 minutes before checking anything. Put your phone in another room. Protect this time like your career depends on it. Because it does.",
-      night: "No flow today means no growth today. That's not neutral. That's falling behind. Before you sleep, decide: what will you create in your first focused hour tomorrow? Write it down. Make it specific. Make it sacred."
+      monday: {
+        morning: "Monday morning with no depth. The week ahead requires flow you are not getting. Before the avalanche of demands begins, block 90 minutes today. No notifications. No switching. Just depth. This is the most important thing you will do all week. Protect it.",
+        afternoon: "Monday afternoon still skimming the surface. Half the day gone and no real depth yet. Your craft is starving. Right now, close every tab except one. Work on that one thing for 45 minutes. Everything else can wait.",
+        evening: "Monday evening without flow. Day one is ending and you never entered the zone. The shallow work is eating your week before it started. Tomorrow morning, block time before checking anything. Put your phone in another room.",
+        night: "Monday night with no depth. No flow today means no growth today. That is not neutral. That is falling behind. Before you sleep, decide what will receive your first focused hour tomorrow. Write it down. Make it sacred."
+      },
+      friday: {
+        morning: "Friday morning with no depth. The week is ending and deep work never happened. Do not try to cram it now. But before the weekend, block 90 minutes. One focused session. Prove to yourself you can still do it.",
+        afternoon: "Friday afternoon still skimming. The week scattered into shallows. Let it go. But this weekend, think about what keeps interrupting your depth. Name the thieves. Plan to stop them next week.",
+        evening: "Friday evening without flow. The week is over. Deep work did not happen. That is data. What prevented it? Interruptions? Lack of protection? Fear of depth? Diagnose it this weekend.",
+        night: "Friday night with no depth. The week took everything and gave nothing deep. Rest now. But this weekend, plan one protected block for Monday morning. The week does not have to repeat."
+      },
+      saturday: {
+        morning: "Saturday morning with no flow. Even the weekend starts shallow. What would deep feel like today? Not more tasks. Depth. One thing, fully engaged. Can you find 60 minutes for that? Try.",
+        afternoon: "Saturday afternoon still on the surface. The weekend is for recovery but also for remembering what depth feels like. What would you work on if you had no interruptions? Consider working on that.",
+        evening: "Saturday evening without flow. Tomorrow is Sunday. What would make it a deep day instead of a scattered one? Plan one protected session. No phone. No notifications. Just you and the work.",
+        night: "Saturday night with no depth. The week ahead will repeat this pattern unless you intervene. Before you sleep, plan when you will protect deep work on Monday. Not hope for it. Plan for it."
+      },
+      sunday: {
+        morning: "Sunday morning with no flow. The week starts tomorrow. It will scatter you unless you protect yourself. Block 90 minutes Monday morning right now. Put it on the calendar. Guard it like your career depends on it.",
+        afternoon: "Sunday afternoon still skimming the surface. Monday is coming. What will be different? Not intentions. Structure. When will you do deep work? Where? What will you turn off? Plan it now.",
+        evening: "Sunday evening without flow. The week ahead needs depth you have not been getting. Tonight, prepare for tomorrow's deep session. Clear your desk. Close your tabs. Set up for focus.",
+        night: "Sunday night with no depth. Tomorrow is Monday. You can start the week differently. First 90 minutes: deep work. No email. No messages. No notifications. The shallow can wait. Depth cannot."
+      },
+      midweek: {
+        morning: "Midweek morning with no flow. Half the week is gone and you have not entered the zone once. You still have time. Today, protect 60 minutes. One thing. Full attention. No switching. Start now.",
+        afternoon: "Midweek afternoon still skimming. The week is slipping into shallows. Before Friday, you need one deep session. What would it take to protect 90 minutes tomorrow morning? Do whatever that takes.",
+        evening: "Midweek evening without flow. Tomorrow is another chance. What keeps preventing depth? Meetings? Messages? Your own resistance? Name it. Then plan around it. Depth requires protection.",
+        night: "Midweek night with no depth. The week is half over. No flow yet. The remaining days do not have to repeat the first half. Tomorrow morning, before anything else, create. Not consume. Create."
+      }
     }
   },
 
@@ -2528,10 +2554,36 @@ const ciPropheticMessages = {
     condition: (p) => p.fuelBottleneck.name === 'evolution' && p.raw.evolution <= 4,
     label: "📉 SKILL STAGNATION",
     messages: {
-      morning: "Your skills are frozen in time while the world moves forward. That's not stability. That's slow irrelevance. Today, spend 30 minutes learning one thing adjacent to your craft. Not consuming content. Practicing something new. Growth requires discomfort.",
-      afternoon: "Stagnation is a choice you make every day you don't stretch. What skill would change everything if you mastered it in 90 days? Name it. Find a tutorial. Start today. Not tomorrow. Today.",
-      evening: "You're repeating what you already know instead of reaching for what you don't. That felt safe. It isn't. Tomorrow, identify one skill gap that's holding you back. Commit to 20 minutes of deliberate practice on it. Daily. For one month.",
-      night: "Your craft is where it was six months ago. The market doesn't care about your comfort. Pick one skill. Just one. Write down how you'll practice it tomorrow. Make it specific: what, when, where. Then sleep. Then do it."
+      monday: {
+        morning: "Monday morning with stagnant skills. The week ahead will use what you already know. But are you learning anything new? Today, spend 30 minutes on a skill adjacent to your craft. Not consuming content. Practicing something new.",
+        afternoon: "Monday afternoon with no evolution. The week is young. You have time to stretch. What skill would change everything if you mastered it in 90 days? Name it. Find a tutorial. Start today.",
+        evening: "Monday evening with skills frozen. Day one is ending. Did you learn anything new? If not, tomorrow is different. Identify one skill gap that is holding you back. Commit to 20 minutes on it tomorrow.",
+        night: "Monday night with skill stagnation. The week has four more days. Each day you could grow or stay the same. Before you sleep, pick one skill to develop this week. Write down how you will practice it."
+      },
+      friday: {
+        morning: "Friday morning with stagnant skills. The week is ending and you did not stretch. That is okay. But before the weekend, ask: what skill would unlock the next level? That question is homework.",
+        afternoon: "Friday afternoon with no evolution. The week repeated what you already knew. The weekend is for asking: what do I need to learn? Not want. Need. What gap is holding you back?",
+        evening: "Friday evening with skills frozen. The week is over. You survived on existing skills. But survival is not growth. This weekend, find one resource for the skill you need. Next week, use it.",
+        night: "Friday night with skill stagnation. The week is done. Your skills are where they were Monday. Is that okay? The weekend is for deciding what growth looks like. Then pursuing it."
+      },
+      saturday: {
+        morning: "Saturday morning with stagnant skills. The weekend is for growth you cannot fit in the week. What skill deserves an hour today? Not entertainment. Skill building. What would you practice?",
+        afternoon: "Saturday afternoon with no evolution. The weekend is open. You could scroll. Or you could learn. What would 90 minutes of deliberate practice feel like? Consider trying it.",
+        evening: "Saturday evening with skills frozen. Tomorrow is Sunday. What skill would you work on if you treated yourself like a student? You are always a student. Act like it tomorrow.",
+        night: "Saturday night with skill stagnation. The week ahead will demand your skills. Will they be better than last week? That depends on what you do this weekend. Plan something."
+      },
+      sunday: {
+        morning: "Sunday morning with stagnant skills. The week starts tomorrow. Your skills will either grow this week or stay the same. What commitment could you make? 20 minutes daily on one skill? Try it.",
+        afternoon: "Sunday afternoon with no evolution. Monday is coming. What skill development will you prioritize this week? Not someday. This week. Be specific. When will you practice?",
+        evening: "Sunday evening with skills frozen. The week ahead is a chance to grow. What would you need to do every day to improve one skill? 15 minutes? 30? Make a plan. Start Monday.",
+        night: "Sunday night with skill stagnation. Tomorrow you work again. Will you be better at your craft by Friday? That depends on whether you practice with intention. Decide now. Commit."
+      },
+      midweek: {
+        morning: "Midweek morning with stagnant skills. Half the week is gone and you have not stretched. You still have time. What skill could you practice for 30 minutes today? Something at the edge of your ability.",
+        afternoon: "Midweek afternoon with no evolution. The week is slipping by without growth. Before Friday, practice one thing deliberately. Not going through the motions. Pushing your edge.",
+        evening: "Midweek evening with skills frozen. Tomorrow is another chance. What would deliberate practice look like for you? Not just doing the work. Doing the work that stretches you. Plan that.",
+        night: "Midweek night with skill stagnation. The week is half over. Your skills are where they were Monday. The remaining days are a chance to change that. What will you practice tomorrow?"
+      }
     }
   },
 
@@ -2540,10 +2592,36 @@ const ciPropheticMessages = {
     condition: (p) => p.fuelBottleneck.name === 'risk' && p.raw.risk <= 4,
     label: "🔄 REPETITION LOOP",
     messages: {
-      morning: "You're playing the greatest hits on repeat. Comfortable. Safe. Dying. Today, start one project where failure is possible. Not reckless. Just uncertain. That's where growth lives. What would you try if you weren't afraid of looking stupid?",
-      afternoon: "Playing safe is playing small. Your best work scared you a little when you made it. What are you avoiding making because it might not work? That's probably the thing. Start it today. Imperfect is fine. Start it.",
-      evening: "Another day of polished mediocrity. The work was fine. Just fine. Tomorrow, break something on purpose. Try a style you've never tried. Say something you've never said. Risk looking foolish. Your audience is bored of safe. So are you.",
-      night: "Repetition feels like productivity but it's actually decay. Before you sleep, write down one creative experiment you'll run this week. Something that might fail. Something that excites you. If it doesn't scare you a little, pick something scarier."
+      monday: {
+        morning: "Monday morning stuck in repetition. The week ahead will look like last week unless you break the pattern. Today, start one project where failure is possible. Not reckless. Just uncertain. That is where growth lives.",
+        afternoon: "Monday afternoon still repeating. The week is young. You have time to try something new. What are you avoiding making because it might not work? That is probably the thing. Start it today.",
+        evening: "Monday evening in the loop. Day one is ending and you played it safe. Tomorrow, break something on purpose. Try a style you have never tried. Say something you have never said. Risk looking foolish.",
+        night: "Monday night stuck in repetition. The week has four more days. Each is a chance to experiment or repeat. Before you sleep, write down one creative risk you will take this week. Something that might fail."
+      },
+      friday: {
+        morning: "Friday morning still in the loop. The week is ending and you took no risks. Understandable. But also why nothing changed. The weekend is for asking: what experiment could I run next week?",
+        afternoon: "Friday afternoon repeating. The week played out safely. Again. Before the weekend, consider: what would you try if you knew no one would judge you? That thing deserves a shot.",
+        evening: "Friday evening in the loop. The week is over. Safe and forgettable. That is the trade you made. This weekend, think about what you would sacrifice for something memorable instead.",
+        night: "Friday night stuck in repetition. The week is done. Nothing surprised you because you tried nothing surprising. The weekend is for deciding: same thing next week or something different?"
+      },
+      saturday: {
+        morning: "Saturday morning in the loop. Even your weekend is predictable. What would shake things up? Not drastically. Just enough to remember you can still surprise yourself.",
+        afternoon: "Saturday afternoon still repeating. The weekend is for risks the week will not allow. What would you experiment with if the experiment could not fail? Consider trying it.",
+        evening: "Saturday evening in the loop. Tomorrow is Sunday. What project have you been talking yourself out of? The one that feels too weird, too risky? That is probably the one.",
+        night: "Saturday night stuck in repetition. The week ahead could be different. Before you sleep, write down one bold thing you could do. Not huge. Just bolder than usual. See if you can do it."
+      },
+      sunday: {
+        morning: "Sunday morning in the loop. The week starts tomorrow. Will it be another week of greatest hits? Or will you try something new? The choice happens today. What will you risk?",
+        afternoon: "Sunday afternoon still repeating. Monday is coming. You have a choice. More of the same. Or something bold. What would you create if you knew you could not be judged for it?",
+        evening: "Sunday evening in the loop. The week ahead is an opportunity. Safe work is forgettable work. What would make you memorable? Not famous. Memorable. That requires risk.",
+        night: "Sunday night stuck in repetition. Tomorrow is Monday. What if you did one thing this week that scared you? Just one. The resistance you feel right now is proportional to its importance."
+      },
+      midweek: {
+        morning: "Midweek morning in the loop. Half the week is gone and you took no risks. You still have time. What is one thing you could try today that might not work? Try it. See what happens.",
+        afternoon: "Midweek afternoon still repeating. The week is slipping by safely. Before Friday, take one creative risk. Small is fine. Something that makes your heart beat slightly faster.",
+        evening: "Midweek evening in the loop. Tomorrow is another chance. What would you post if you were not afraid of judgment? That thing. Consider posting it. The fear is the signal.",
+        night: "Midweek night stuck in repetition. The week is half over. No experiments yet. The remaining days are a chance to change that. What could you create by Friday that would surprise people?"
+      }
     }
   },
 
@@ -2552,10 +2630,36 @@ const ciPropheticMessages = {
     condition: (p) => p.worstDrag.name === 'admin' && p.raw.admin >= 25,
     label: "📋 ADMIN OVERLOAD",
     messages: {
-      morning: "You're drowning in logistics while your craft suffocates. Before you open email, answer this: what's your ONE creative priority today? Do that first. Not after the emails. First. The emails will wait. Your creativity won't.",
-      afternoon: "More managing than making. That's not a creative life. That's a manager's life with creative pretensions. What would it cost to hand off 5 hours of admin per week? $100? $200? Compare that to the cost of your stalled creative output. Hire help or kill tasks.",
-      evening: "You spent today on operations while your real work gathered dust. This is a slow emergency. Make a list: what 3 admin tasks drain you most? For each one: automate, delegate, or delete. Pick one to fix this week.",
-      night: "That many hours of admin is a part-time job of not-creating. Something has to give. Tomorrow, batch all admin into one 2-hour block. Protect the rest. Your creative work is not what happens after the admin. It's the priority. Treat it like one."
+      monday: {
+        morning: "Monday morning drowning in admin. The week ahead is already claimed by logistics. Before you open email, answer this: what is your one creative priority today? Do that first. Not after the emails. First. The emails will wait. Your creativity will not.",
+        afternoon: "Monday afternoon buried in operations. More managing than making. That is not a creative life. What would it cost to hand off five hours of admin this week? Compare that to the cost of your stalled creative output.",
+        evening: "Monday evening lost to logistics. Day one is ending and you made nothing. You managed things. Tomorrow has to be different. Before you sleep, block creative time for tomorrow morning. Protect it from admin.",
+        night: "Monday night after admin overload. The week has four more days. If they all look like today, your creative work dies. Before you sleep, decide: what admin will you delegate, automate, or delete this week?"
+      },
+      friday: {
+        morning: "Friday morning still drowning in admin. The week is ending and logistics won. Again. Before the weekend, make a list: what three admin tasks drain you most? For each: automate, delegate, or delete.",
+        afternoon: "Friday afternoon buried in operations. The week went to logistics. Your creative work gathered dust. The weekend is for asking: is this sustainable? If not, what changes?",
+        evening: "Friday evening lost to admin. The week is over. You managed instead of made. That is a slow emergency. This weekend, plan one admin task to eliminate permanently.",
+        night: "Friday night after admin overload. The week consumed you with logistics. Rest now. But this weekend, seriously consider: what would it cost to buy back five hours? That math might surprise you."
+      },
+      saturday: {
+        morning: "Saturday morning thinking about admin. Even now it follows you. What would life look like with half the admin? Not zero. Half. What would you cut to get there?",
+        afternoon: "Saturday afternoon with admin on your mind. The weekend should be free of it. Is it? If not, that is a boundary problem. What boundary could you set for next week?",
+        evening: "Saturday evening considering your admin load. Tomorrow is Sunday. Can you keep it admin free? Monday will bring the flood. Let Sunday be clear.",
+        night: "Saturday night after a week of admin. The cycle will repeat unless you intervene. Before you sleep, pick one admin task to eliminate. Not reduce. Eliminate. What would you cut?"
+      },
+      sunday: {
+        morning: "Sunday morning with admin ahead. The week starts tomorrow and the logistics will start with it. Today, plan your defense. When will you create before admin takes over? Block that time now.",
+        afternoon: "Sunday afternoon thinking about the week. Admin will try to claim Monday morning. Do not let it. Your first two hours belong to creative work. Non negotiable. Plan that now.",
+        evening: "Sunday evening preparing for admin. The week ahead will demand logistics. Decide now what you will not do. What admin task does not deserve your time? Cut it before the week starts.",
+        night: "Sunday night before admin week. Tomorrow the emails come. The scheduling. The logistics. Before you sleep, commit: creative work before admin. First thing. Every day. That is the only way."
+      },
+      midweek: {
+        morning: "Midweek morning drowning in admin. Half the week is gone to logistics. You still have time to reclaim some of it. What admin could you skip today to make something instead?",
+        afternoon: "Midweek afternoon buried in operations. The week is slipping into admin. Before Friday, create something. Anything. Prove your week was not entirely consumed by logistics.",
+        evening: "Midweek evening lost to admin. Tomorrow is another chance. What if you did creative work first? Before email. Before messages. Before the admin flood. Try it tomorrow.",
+        night: "Midweek night after admin overload. The week is half over. More managing than making. The remaining days are a choice. Same pattern or different? You decide tonight."
+      }
     }
   },
 
@@ -2564,10 +2668,36 @@ const ciPropheticMessages = {
     condition: (p) => p.worstDrag.name === 'distraction' && p.raw.distraction >= 20,
     label: "📱 ATTENTION LEAK",
     messages: {
-      morning: "Your attention is bleeding out through your phone. Check your screen time right now. That number is hours stolen from your craft. Today, put your phone in another room during creative work. Not on silent. In another room. Watch what happens to your focus.",
-      afternoon: "You've already given hours to distraction today. Not breaks. Not rest. Avoidance. Right now, check your screen time. Be honest with yourself. Then set one app limit. Just one. See if you can beat it tomorrow.",
-      evening: "The hours you lost to scrolling aren't coming back. What would you have built with that time? Don't answer defensively. Answer honestly. Tomorrow, delete one app for one week. The resistance you feel is proof you should do it.",
-      night: "Your phone isn't neutral. It's an adversary with a billion-dollar algorithm designed to steal your attention. What would a week without your biggest time-sink app look like? The resistance you feel right now is the answer. Try it."
+      monday: {
+        morning: "Monday morning with attention bleeding out through your phone. Check your screen time right now. That number is hours stolen from your craft. Today, put your phone in another room during creative work. Not on silent. In another room. Watch what happens.",
+        afternoon: "Monday afternoon already lost to distraction. Half the day gone to scrolling. Right now, check your screen time. Be honest with yourself. Then set one app limit. Just one. See if you can beat it.",
+        evening: "Monday evening scattered by distraction. Day one is ending and your attention was everywhere. Tomorrow, try airplane mode for your first creative hour. The world will survive without you for 60 minutes.",
+        night: "Monday night after distraction won. The week has four more days. Each one, your phone will try to steal your attention. Before you sleep, decide: what app will you limit tomorrow? Start there."
+      },
+      friday: {
+        morning: "Friday morning with attention leaking. The week is ending and distraction took too many hours. Before the weekend, check your screen time report. Write down the number. Look at it. That is what you traded your creative work for.",
+        afternoon: "Friday afternoon scattered. The week gave hours to your phone that belonged to your craft. The weekend is for asking: what would you build with those hours back? That question matters.",
+        evening: "Friday evening after distraction. The week is over. Your phone won too many battles. This weekend, delete one app for one week. The resistance you feel is proof you should do it.",
+        night: "Friday night with attention depleted. The week is done. Your phone is not neutral. It is an adversary with a billion dollar algorithm designed to steal your focus. The weekend is for planning your defense."
+      },
+      saturday: {
+        morning: "Saturday morning with your phone nearby. Is it already pulling at you? Notice that pull. That is your attention being stolen. Today, try one hour with your phone in another room. See how it feels.",
+        afternoon: "Saturday afternoon with distraction available. The weekend could go to your phone or to things that matter. Which will it be? The choice is happening right now.",
+        evening: "Saturday evening with screens glowing. Tomorrow is Sunday. What would a low phone Sunday look like? Not zero. Low. Consider trying it. See what you do with the reclaimed attention.",
+        night: "Saturday night with distraction calling. The week ahead will be a battle for your attention. Before you sleep, decide on one boundary. One limit. One app to restrict. Start there."
+      },
+      sunday: {
+        morning: "Sunday morning with your phone waiting. The week starts tomorrow. Your attention is the prize everyone wants. Today, practice protecting it. One hour. Phone in another room. See what emerges.",
+        afternoon: "Sunday afternoon with distraction nearby. Monday is coming. It will bring demands on your attention. What will you protect? When will your phone be off? Plan that now.",
+        evening: "Sunday evening before the week. Tomorrow the battle for your attention begins. Decide now: when will you be unreachable? When will your phone be away? The plan matters.",
+        night: "Sunday night with screens dimming. Tomorrow you need focused attention. Before you sleep, put your phone somewhere you cannot reach from bed. Start the week without the scroll. It changes everything."
+      },
+      midweek: {
+        morning: "Midweek morning with attention scattered. Half the week lost to distraction. You still have time. Today, phone in another room for two hours. See what you can create without the interruption.",
+        afternoon: "Midweek afternoon still leaking attention. The week is slipping through your phone. Before Friday, try one full creative session with no phone access. Not silent. No access.",
+        evening: "Midweek evening after distraction. Tomorrow is another chance. What would change if you left your phone in another room until noon? The answer might surprise you. Try it.",
+        night: "Midweek night with attention depleted. The week is half over. Your phone won too many hours. The remaining days are a chance to win some back. What boundary will you try tomorrow?"
+      }
     }
   },
 
@@ -2576,58 +2706,226 @@ const ciPropheticMessages = {
     condition: (p) => p.worstDrag.name === 'stagnation' && p.raw.stagnation >= 7,
     label: "🧊 FROZEN",
     messages: {
-      morning: "You're frozen. Paralyzed. Stuck. The big project feels impossible. Forget the big project. What's the smallest possible action you could take in 5 minutes? Not 'think about it.' A physical action. Write one sentence. Sketch one shape. Send one message. Do that now.",
-      afternoon: "Something is stuck and you've been avoiding looking at it directly. Name the project. Say it out loud. How long has it waited? What's the real fear underneath? Not 'I'm busy.' The real one. Face it, then take one tiny step toward it.",
-      evening: "Another day of avoidance. Tomorrow, ship something embarrassing. Lower the bar until you can clear it. Publish a draft. Share a work-in-progress. Done is better than perfect. And perfect isn't coming anyway.",
-      night: "Paralysis thrives in darkness and vagueness. Right now, write down the project you're avoiding. Then write the single smallest physical action that would move it forward. Put that paper where you'll see it first thing tomorrow. Do only that action. Then the next one."
+      monday: {
+        morning: "Monday morning frozen. The big project feels impossible. Forget the big project. What is the smallest possible action you could take in five minutes? Not think about it. A physical action. Write one sentence. Sketch one shape. Do that now.",
+        afternoon: "Monday afternoon still stuck. The week is young but paralysis is old. Right now, name the project you are avoiding. Say it out loud. Then take one tiny step toward it. Movement creates momentum.",
+        evening: "Monday evening frozen. Day one is ending and nothing moved. Tomorrow, lower the bar until you can clear it. What is the smallest possible version of progress? Do only that.",
+        night: "Monday night stuck. The week has four more days. Something is blocked and you have been avoiding looking at it. Before you sleep, write down what you are avoiding. Name it. Tomorrow, face it."
+      },
+      friday: {
+        morning: "Friday morning still frozen. The week is ending and the stuck project is still stuck. Do not try to finish it today. But do one tiny thing. Send one email. Write one paragraph. Move it one inch.",
+        afternoon: "Friday afternoon stuck. The week did not unstick the thing. That is okay. The weekend is for asking: what is really blocking this? Not the surface answer. The real one.",
+        evening: "Friday evening frozen. The week is over and paralysis won. This time. The weekend is for understanding why. What fear is underneath the stuckness? Name it honestly.",
+        night: "Friday night still stuck. The week is done. The project is where it was Monday. Rest now. But this weekend, face the real question: do you actually want to finish this? The answer matters."
+      },
+      saturday: {
+        morning: "Saturday morning frozen. Even the weekend starts stuck. What is the tiniest possible movement you could make on the stuck thing? Not finish it. Move it. One tiny push. Try that today.",
+        afternoon: "Saturday afternoon still stuck. The paralysis followed you into the weekend. What would unfreeze you? Not motivation. Action. The smallest action. What is it?",
+        evening: "Saturday evening frozen. Tomorrow is Sunday. What if you gave the stuck project 15 minutes tomorrow? Not to finish it. Just to touch it. Reconnect with it. Would that help?",
+        night: "Saturday night still stuck. The week ahead will include this project or exclude it. Before you sleep, decide: will you face it Monday or keep avoiding it? Decide consciously."
+      },
+      sunday: {
+        morning: "Sunday morning frozen. The week starts tomorrow and the stuck thing is still stuck. Today, ask yourself: what would finishing look like? Not perfect. Done. Can you picture it?",
+        afternoon: "Sunday afternoon still stuck. Monday is coming. What is the single smallest step you could take tomorrow on the frozen project? Make it laughably small. Then do it first thing.",
+        evening: "Sunday evening frozen. The week ahead could include progress or more avoidance. Tonight, prepare for one tiny action tomorrow. Set it up. Clear the path. Make it easy to start.",
+        night: "Sunday night still stuck. Tomorrow is Monday. Write down the project you are avoiding. Then write the smallest possible physical action that would move it forward. Tomorrow, do only that. Then the next thing."
+      },
+      midweek: {
+        morning: "Midweek morning still frozen. Half the week is gone and the stuck thing is still stuck. Today, take one action on it. Any action. Do not think. Act. Thinking got you stuck. Acting gets you out.",
+        afternoon: "Midweek afternoon stuck. The week is slipping by. Before Friday, touch the frozen project once. Not finish it. Touch it. Prove to yourself it will not bite you.",
+        evening: "Midweek evening frozen. Tomorrow is another chance. What if you spent just ten minutes on the stuck thing? Not to make progress. Just to break the seal. Would that help?",
+        night: "Midweek night still stuck. The week is half over. The frozen thing is still frozen. But it does not have to stay frozen. Tomorrow, before anything else, take one tiny action on it. Just one."
+      }
+    }
+  },
+
+  // STRENGTH: Flow (fuel)
+  flow_strength: {
+    condition: (p) => p.fuelStrength.name === 'flow' && p.raw.flow >= 40 && p.average < 7,
+    label: "🔥 DEEP WORK MODE",
+    messages: {
+      monday: {
+        morning: "Monday morning in deep work mode. You are getting serious flow hours. That is rare. That is power. The week ahead should protect this at all costs. What threatens your flow? Name it. Defend against it.",
+        afternoon: "Monday afternoon with strong flow. You have what most people only dream of: deep focus. Use it. The week is young. What will you build with all those focused hours? Aim high. You have the capacity.",
+        evening: "Monday evening with deep work intact. Day one is ending and your flow held. That is the template. Before tomorrow, notice what protected your focus today. Repeat it.",
+        night: "Monday night in flow mode. The week has four more days. Your focus is your superpower. Before you sleep, plan how to protect it. What meetings could you cancel? What distractions could you eliminate?"
+      },
+      friday: {
+        morning: "Friday morning with deep flow. The week is ending and your focus held. That is exceptional. Before the weekend, document what worked. The conditions. The boundaries. This is your formula.",
+        afternoon: "Friday afternoon in deep work mode. The week gave you serious flow. Did you use it well? The weekend is for appreciating what you built with all that focus.",
+        evening: "Friday evening with strong flow intact. The week is over. Your focus was your advantage. Rest now. But remember what protected it. You will want to repeat this next week.",
+        night: "Friday night in flow mode. The week is done. You had what most people lack: consistent deep work. The weekend is for recovery. Then next week, do it again."
+      },
+      saturday: {
+        morning: "Saturday morning with strong flow capacity. Even on the weekend you could go deep. Should you? Or should you rest? Both are valid. What would serve you better today?",
+        afternoon: "Saturday afternoon in deep work mode. You have the ability to focus when others cannot. The weekend is your choice. Deep work or deep rest. Both have value.",
+        evening: "Saturday evening with flow strength. Tomorrow is Sunday. You could go deep or go easy. The week ahead will need your focus. Consider resting now to protect Monday.",
+        night: "Saturday night with deep work capacity. The week ahead will demand your focus. You have it. Protect your sleep tonight. Tomorrow, decide whether to work or rest before Monday."
+      },
+      sunday: {
+        morning: "Sunday morning with strong flow. The week starts tomorrow. Your focus is your weapon. Today, rest it or use it. But do not waste it on shallow distractions. You have a gift. Honor it.",
+        afternoon: "Sunday afternoon in deep work mode. Monday is coming. You will have what others lack: the ability to focus. What will you aim it at? Decide now. Your focus deserves a worthy target.",
+        evening: "Sunday evening with flow strength. The week ahead is an opportunity. Your focus will be your advantage. Before the week begins, set your targets. What will all those deep hours build?",
+        night: "Sunday night with deep work capacity. Tomorrow you create again. Your focus is ready. Before you sleep, clarify your priority. What deserves your first deep hours? Decide now."
+      },
+      midweek: {
+        morning: "Midweek morning in deep work mode. Half the week is gone. Did you use your flow well? You have more deep hours than most people get in a month. Aim them at what matters most.",
+        afternoon: "Midweek afternoon with strong flow. The week is slipping by. Your focus is holding. But focus without aim is just concentration. What is your aim for the rest of this week?",
+        evening: "Midweek evening with deep work intact. Tomorrow is another chance. Your flow is your advantage. Before you sleep, decide what deserves your best focused hours tomorrow.",
+        night: "Midweek night in flow mode. The week is half over. Your focus held. The remaining days are a chance to finish what you started. What will you complete by Friday?"
+      }
     }
   },
 
   // SHAPE: Soaring (high fuel, low drag)
   soaring: {
     condition: (p) => p.shape === 'soaring',
-    label: "◆ DEEP WORK MODE",
+    label: "⚡ CRAFT INTENSITY HIGH",
     messages: {
-      morning: "Everything is aligned. Fuel high, friction low. This is rare. This is the compound zone. Protect this day at all costs. Cancel anything that would interrupt. Say no to everything that isn't your most important work. This is what you've been building toward.",
-      afternoon: "You're in the zone. Deep work is happening. Keep going. Don't check anything. Don't reward yourself with a break yet. Push deeper. The world can wait. You're doing the thing. Stay in it as long as you can.",
-      evening: "Powerful creative day. The kind that compounds into something real. Before you close out, document what enabled it. What did you do differently? What did you protect? These are your success conditions. Write them down. Replicate them.",
-      night: "Deep craft intensity today. This is what flow feels like. This is what mastery is built from. Sleep well. Protect your recovery so you can do it again tomorrow. Remember this feeling when the hard days come. This is proof of what's possible."
+      monday: {
+        morning: "Monday morning with craft intensity soaring. Deep flow, rapid evolution, bold risks, minimal drag. This is the zone. The week ahead is not about working harder. It is about staying here. What threatens this state? Defend against it.",
+        afternoon: "Monday afternoon with everything aligned. Your craft is on fire. Use it. Do not waste this state on small tasks. Aim at your biggest, most important creative challenge. You have the intensity for it.",
+        evening: "Monday evening with craft intensity high. Day one is ending and you stayed in the zone. That is the goal. Before tomorrow, notice what maintained this. Repeat it all week.",
+        night: "Monday night soaring. The week has four more days. You are in rare territory. Before you sleep, protect this state. Cancel unnecessary meetings. Block deep work time. Guard the intensity."
+      },
+      friday: {
+        morning: "Friday morning with craft intensity soaring. The week is ending and you are still in the zone. That is exceptional. Before the weekend, appreciate what you built. You earned this.",
+        afternoon: "Friday afternoon with everything working. Your craft intensity held all week. The weekend is for recovery. Real recovery. You can enter this zone again next week if you rest now.",
+        evening: "Friday evening with intensity high. The week is over. You stayed in the zone. That is rare. Let the weekend be different. Rest deeply. Return Monday ready to do it again.",
+        night: "Friday night soaring. The week is done. Your craft intensity was exceptional. The weekend is for celebrating what you created. And resting so you can create more."
+      },
+      saturday: {
+        morning: "Saturday morning with high intensity. Even on the weekend you have fire. Should you use it or rest it? Both are valid. Listen to what you actually need.",
+        afternoon: "Saturday afternoon with craft intensity strong. You could create or recover. The week ahead will need this intensity. Consider protecting it with rest today.",
+        evening: "Saturday evening still soaring. Tomorrow is Sunday. Your intensity is a gift. Use the weekend to protect it. Not deplete it. What would real rest look like tonight?",
+        night: "Saturday night with high craft intensity. The week ahead will demand what you have. Protect it with sleep. Real sleep. The intensity will be there Monday if you rest now."
+      },
+      sunday: {
+        morning: "Sunday morning with craft intensity soaring. The week starts tomorrow. You have what most people never achieve. Protect it. Do not take it for granted. What will you aim this intensity at?",
+        afternoon: "Sunday afternoon with everything aligned. Monday is coming. Your craft intensity is ready. The question is: what deserves it? Set your target before the week scatters your focus.",
+        evening: "Sunday evening with intensity high. The week ahead is an opportunity. Your craft is on fire. Before the week begins, decide: what is your biggest priority? Give it your best hours.",
+        night: "Sunday night soaring. Tomorrow you create again. Your intensity is rare and precious. Protect your sleep. Tomorrow, aim your focus at what matters most. Nothing less deserves this state."
+      },
+      midweek: {
+        morning: "Midweek morning with craft intensity soaring. Half the week is gone and you are still in the zone. That is exceptional. What will you create with the remaining days? Aim high.",
+        afternoon: "Midweek afternoon with everything working. Your craft intensity held. The week is slipping by. What will you finish by Friday? You have the capacity for something significant.",
+        evening: "Midweek evening with intensity high. Tomorrow is another chance. You are still in the zone. Before you sleep, set tomorrow's target. Something worthy of your capacity.",
+        night: "Midweek night soaring. The week is half over. Your intensity held. The remaining days are a chance to finish strong. What would finishing strong look like? Plan that now."
+      }
     }
   },
 
-  // SHAPE: High fuel, high drag (fighting friction)
-  high_fuel_high_drag: {
-    condition: (p) => p.shape === 'high_fuel_high_drag',
-    label: "🔥 FIGHTING FRICTION",
+  // SHAPE: Lopsided (imbalanced - high fuel, high drag)
+  lopsided: {
+    condition: (p) => p.shape.startsWith('lopsided'),
+    label: "⚖ FIGHTING FRICTION",
     messages: {
-      morning: "You have the fuel but you're burning it on friction. Skills are sharp. Motivation is there. But admin, distraction, or stagnation is eating your output. Identify your biggest drag. Just one. What would it take to cut it in half this week? Do that.",
-      afternoon: "You're driving with the parking brake on. The engine is powerful but something is creating resistance. What's the friction? Admin? Distraction? Paralysis? Name it specifically. Then attack it specifically. You're too capable for this drag.",
-      evening: "High effort, high resistance. That's exhausting and unsustainable. You have what it takes. You're just fighting unnecessary friction. Tomorrow, fix one source of drag before you try to create. Clear the path, then walk it.",
-      night: "You're working hard against forces you could eliminate. That's not noble. That's inefficient. Pick your worst source of drag. Commit to reducing it by half. The goal isn't more effort. It's less resistance. Clear the runway."
+      monday: {
+        morning: "Monday morning fighting friction. Some craft dimensions are strong, others are dragging. The week ahead needs to address the imbalance. What is your worst drag? Admin? Distraction? Stagnation? Start there.",
+        afternoon: "Monday afternoon with craft friction. You have fuel but also drag. They are fighting each other. What is your biggest time thief? Name it. Then make a plan to reduce it.",
+        evening: "Monday evening fighting friction. Day one is ending. Your strengths worked. Your weaknesses dragged. Tomorrow, focus on reducing drag, not increasing fuel. That is where the leverage is.",
+        night: "Monday night with imbalanced craft. The week has four more days. The friction will continue unless you address it. Before you sleep, name your biggest drag. Plan to cut it tomorrow."
+      },
+      friday: {
+        morning: "Friday morning still fighting friction. The week is ending and the drag won again. Before the weekend, identify your worst time thief. Make a real plan to stop it next week.",
+        afternoon: "Friday afternoon with craft friction. The week showed you the pattern. Fuel versus drag. The weekend is for deciding which drag you will eliminate. Not reduce. Eliminate.",
+        evening: "Friday evening fighting friction. The week is over. The imbalance persists. This weekend, think about what you would cut to reduce drag. Not add. Cut.",
+        night: "Friday night with imbalanced craft. The week is done. Fuel and drag fought again. The weekend is for planning how to tip the balance. Less drag, not more fuel."
+      },
+      saturday: {
+        morning: "Saturday morning with craft friction. Even the weekend feels the imbalance. What is your biggest drag? What would eliminating it look like? Think about that today.",
+        afternoon: "Saturday afternoon fighting friction. Your craft has strength and weakness. The weakness is winning. What would happen if you just stopped doing your biggest drag?",
+        evening: "Saturday evening with imbalanced craft. Tomorrow is Sunday. What drag could you eliminate before the week starts? Not reduce. Eliminate. What would that free up?",
+        night: "Saturday night fighting friction. The week ahead will repeat the pattern unless something changes. Before you sleep, decide: which drag will you address? How?"
+      },
+      sunday: {
+        morning: "Sunday morning with craft friction. The week starts tomorrow. Your drag will try to win again. What is your plan to stop it? Not manage it. Stop it.",
+        afternoon: "Sunday afternoon fighting friction. Monday is coming. You know your strengths. You know your drags. This week, focus on eliminating one drag. That is better than adding more fuel.",
+        evening: "Sunday evening with imbalanced craft. The week ahead needs less drag, not more effort. Before the week begins, identify one thing to eliminate. Cut it before Monday.",
+        night: "Sunday night fighting friction. Tomorrow you work again. The friction will return unless you change something. What drag will you address first thing tomorrow? Decide now."
+      },
+      midweek: {
+        morning: "Midweek morning fighting friction. Half the week is gone. The drag is winning. You still have time. What is your biggest time thief today? Can you eliminate it for the rest of the week?",
+        afternoon: "Midweek afternoon with craft friction. The week is slipping by. Your fuel is strong but your drag is stronger. Before Friday, cut one source of drag. Not manage it. Cut it.",
+        evening: "Midweek evening with imbalanced craft. Tomorrow is another chance. What if you focused only on reducing drag tomorrow? Not creating more. Just removing friction. Try that.",
+        night: "Midweek night fighting friction. The week is half over. The imbalance persists. The remaining days are a choice. Same friction or less? You decide by what you cut."
+      }
     }
   },
 
   // SHAPE: Crashed (low fuel, high drag)
   crashed: {
     condition: (p) => p.shape === 'crashed',
-    label: "○ CREATIVE DROUGHT",
+    label: "💨 CREATIVE DROUGHT",
     messages: {
-      morning: "Craft intensity has crashed. Low fuel, high drag. This isn't laziness. This is a signal. Don't force it today. Go for a walk. Change the inputs. Read something inspiring. Sometimes away is forward. Listen to what the crash is telling you.",
-      afternoon: "All creative systems are down. Pushing harder won't help. Something deeper is wrong. What do you need that you're not getting? Rest? Clarity? Permission? Give it to yourself today. The work will still be there when you're ready.",
-      evening: "Creative drought. You didn't make what you wanted to make. That's okay. But too many days like this and the skill atrophies. Tomorrow isn't about output. It's about showing up. Even 15 minutes. Just show up.",
-      night: "When everything is low, ambition is the enemy. Don't set big goals for tomorrow. Set tiny ones. One small creative act. That's it. Rebuild the habit before you rebuild the output. Rest now. Show up tomorrow. Start small."
+      monday: {
+        morning: "Monday morning in creative drought. No flow, no growth, no risk taking, maximum drag. The week ahead cannot repeat last week. Before you do anything, ask: what is one small creative act you could complete today? Not big. Small. Start there.",
+        afternoon: "Monday afternoon in drought. The week is young but the well is dry. Do not force it. What would fill your creative tank? Not drain it. Fill it. Consider doing that instead of pushing.",
+        evening: "Monday evening with creativity crashed. Day one is ending. Nothing flowed. That is okay. Tomorrow is different. Before you sleep, lower every expectation. What is the minimum viable creative act?",
+        night: "Monday night in creative drought. The week has four more days. Do not try to fix everything. Fix one thing. What is the smallest improvement you could make tomorrow? Start there."
+      },
+      friday: {
+        morning: "Friday morning still in drought. The week is ending and creativity did not flow. That happens. Before the weekend, ask: what drained me this week? What would have filled me? Learn from it.",
+        afternoon: "Friday afternoon with creativity crashed. The week was dry. The weekend is for recovery. Not catching up. Recovery. What would actually restore your creative energy?",
+        evening: "Friday evening in drought. The week is over. Nothing flowed. Let it go. The weekend is for figuring out what went wrong. Not judging yourself. Understanding.",
+        night: "Friday night with creativity empty. The week is done. Rest now. This weekend, do things that fill you up. Not content consumption. Things that restore creative energy. Find those."
+      },
+      saturday: {
+        morning: "Saturday morning in creative drought. Even the weekend starts empty. Today is not for forcing creativity. It is for restoring the conditions that create it. What would restore you?",
+        afternoon: "Saturday afternoon with creativity crashed. The weekend should be different from the week. Not more output. More input. More rest. More of what fills you up.",
+        evening: "Saturday evening in drought. Tomorrow is Sunday. What would make it restorative instead of empty? Not productive. Restorative. What fills your creative well?",
+        night: "Saturday night with creativity empty. The week ahead does not have to repeat this one. But it might unless you understand what went wrong. What drained you? Name it."
+      },
+      sunday: {
+        morning: "Sunday morning in creative drought. The week starts tomorrow. Before it does, ask: what would be different? Not intentions. Conditions. What conditions would help creativity flow?",
+        afternoon: "Sunday afternoon with creativity crashed. Monday is coming. The drought could continue or end. What would ending it require? Less of something. More of something else. What?",
+        evening: "Sunday evening in drought. The week ahead is a chance to restart. Not repeat. Restart. What would you do differently? Be specific. Intentions are not enough. Plans are.",
+        night: "Sunday night with creativity empty. Tomorrow is Monday. Lower the bar until you can clear it. What is the smallest creative act you could complete tomorrow? Make that your only goal."
+      },
+      midweek: {
+        morning: "Midweek morning in creative drought. Half the week is gone. Nothing flowed. You still have time. What is the smallest creative act you could complete today? Do only that.",
+        afternoon: "Midweek afternoon with creativity crashed. The week is slipping by empty. Before Friday, complete one small creative thing. Not big. Small. Prove to yourself you still can.",
+        evening: "Midweek evening in drought. Tomorrow is another chance. What would help creativity flow? Less distraction? More rest? A different environment? Try something different tomorrow.",
+        night: "Midweek night with creativity empty. The week is half over. The drought continues. But it does not have to continue. What is one thing you could change tomorrow? Try that."
+      }
     }
   },
 
   // SHAPE: Plateau
   plateau: {
     condition: (p) => p.shape === 'plateau' || p.shape === 'functional_high',
-    label: "△ STEADY CRAFT",
+    label: "⚖ STEADY CRAFT",
     messages: {
-      morning: "Steady craft intensity. You're working, but not at your edge. That's sustainable but it's not growth. Where could you push harder today? What would make this session memorable instead of routine? Find that edge. Touch it.",
-      afternoon: "Functional but not exceptional. The work is happening. But is it the work that matters? What would you need to do to make today count? Not just check boxes. Actually count. Push for that in your next session.",
-      evening: "Solid work day. Not exceptional, not bad. Consistent. The question is: consistent at what level? Are you satisfied here? If not, identify one lever to push tomorrow. Small improvements compound. But you have to make them.",
-      night: "Steady state. The craft is alive but not thriving. You're maintaining, not growing. Before you sleep, ask: what would I need to change to level up? Write one answer. Try it tomorrow. Plateaus are comfortable. They're also where careers go to coast."
+      monday: {
+        morning: "Monday morning with steady craft. Not soaring. Not crashing. Just consistent. The week ahead is an opportunity. What would exceptional look like? Not steady. Exceptional. Could you push there?",
+        afternoon: "Monday afternoon on the plateau. Functional but not thriving. The week is young. What would it take to elevate your craft this week? More depth? More risk? More learning?",
+        evening: "Monday evening with steady craft. Day one is ending. Nothing broke. Nothing leapt. Is that enough? If not, what would you change tomorrow? Consider that now.",
+        night: "Monday night on the plateau. The week has four more days. Steady is sustainable. Steady is also forgettable. Before you sleep, decide: same thing tomorrow or something different?"
+      },
+      friday: {
+        morning: "Friday morning with steady craft. The week is ending. Nothing exceptional happened. But nothing broke either. The weekend is for asking: do you want more? What would more require?",
+        afternoon: "Friday afternoon on the plateau. The week was consistent. Is consistent enough? Before the weekend, consider what would push you out of the comfortable zone.",
+        evening: "Friday evening with steady craft. The week is over. You maintained. But maintaining is not growing. The weekend is for deciding whether you want growth. And what it would cost.",
+        night: "Friday night on the plateau. The week is done. Steady and forgettable. The weekend is for deciding if that is acceptable. Or if next week should be different."
+      },
+      saturday: {
+        morning: "Saturday morning with steady craft. Even the weekend is consistent. What would inconsistent look like? Not chaotic. Ambitious. What would you attempt if you pushed?",
+        afternoon: "Saturday afternoon on the plateau. The weekend is for perspective. You are good at consistent. Are you capable of exceptional? What would it take to find out?",
+        evening: "Saturday evening with steady craft. Tomorrow is Sunday. What would make next week different from this one? Not a small tweak. A real difference. Consider that.",
+        night: "Saturday night on the plateau. The week ahead could be another steady week. Or it could be a breakthrough week. The difference is what you decide to risk."
+      },
+      sunday: {
+        morning: "Sunday morning with steady craft. The week starts tomorrow. Will it be another plateau week? Or will you push? What would pushing look like for your craft?",
+        afternoon: "Sunday afternoon on the plateau. Monday is coming. You know how to be steady. Do you know how to leap? That requires doing something you have not done before.",
+        evening: "Sunday evening with steady craft. The week ahead is familiar territory. But familiar is not exceptional. Before the week begins, identify one way to push past steady.",
+        night: "Sunday night on the plateau. Tomorrow is Monday. Another chance for steady. Or for something more. The craft does not improve by doing what you already know. Push tomorrow."
+      },
+      midweek: {
+        morning: "Midweek morning with steady craft. Half the week is gone. Consistent as always. You still have time to push. What would exceptional look like for the rest of this week?",
+        afternoon: "Midweek afternoon on the plateau. The week is slipping by steadily. Before Friday, try one thing at the edge of your ability. Not comfortable. Challenging.",
+        evening: "Midweek evening with steady craft. Tomorrow is another chance. Steady got you here. Steady will not get you further. What would pushing look like tomorrow?",
+        night: "Midweek night on the plateau. The week is half over. You are where you were Monday. Is that enough? The remaining days are a chance to find out what more looks like."
+      }
     }
   },
 

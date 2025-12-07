@@ -776,3 +776,235 @@ if (riStartIdx === -1 || riEndIdx === -1) {
   console.log(allRiPass ? '✅ ALL Ri PATTERNS COMPLETE!' : '❌ Some patterns missing');
   console.log('============================================================');
 }
+
+// ============================================================
+// Ci PROPHETIC MESSAGES TESTS
+// ============================================================
+
+// Extract ciPropheticMessages
+const ciStartMarker = 'const ciPropheticMessages = {';
+const ciEndMarker = '\n// ============================================================\n// ALPHA PROPHETIC MESSAGES';
+
+const ciStartIdx = content.indexOf(ciStartMarker);
+const ciEndIdx = content.indexOf(ciEndMarker);
+
+if (ciStartIdx !== -1 && ciEndIdx !== -1) {
+  let ciSection = content.substring(ciStartIdx, ciEndIdx).trim();
+  ciSection = ciSection.replace('const ciPropheticMessages = ', '');
+  ciSection = ciSection.replace(/;\s*$/, '');
+  const ciPropheticMessages = eval('(' + ciSection + ')');
+
+  console.log('');
+  console.log('============================================================');
+  console.log('Ci PROPHETIC MESSAGES TESTS');
+  console.log('============================================================');
+  console.log('');
+
+  // Test fuel bottleneck patterns
+  const fuelBottlenecks = ['flow_bottleneck', 'evolution_bottleneck', 'risk_bottleneck'];
+  const fuelLabels = ['🌀 NO DEPTH', '📉 SKILL STAGNATION', '🔄 REPETITION LOOP'];
+  const fuelResults = [];
+
+  fuelBottlenecks.forEach((key, idx) => {
+    console.log(`=== TEST Ci-${idx + 1}: ${key} (day-aware) ===`);
+    const pattern = ciPropheticMessages[key];
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    fuelResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('Ci FUEL BOTTLENECKS SUMMARY (3 patterns)');
+  console.log('============================================================');
+  fuelResults.forEach((r, idx) => {
+    console.log(`${idx + 1}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allCiFuelPass = fuelResults.every(r => r.hasDayAware && r.allFound);
+
+  console.log('');
+  console.log('Total Ci fuel bottleneck messages: 3 patterns × 5 days × 4 times = 60 unique messages');
+  console.log(allCiFuelPass ? '✅ ALL Ci FUEL BOTTLENECKS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // Test drag bottleneck patterns
+  console.log('');
+  const dragBottlenecks = ['admin_bottleneck', 'distraction_bottleneck', 'stagnation_bottleneck'];
+  const dragLabels = ['📋 ADMIN OVERLOAD', '📱 ATTENTION LEAK', '🧊 FROZEN'];
+  const dragResults = [];
+
+  dragBottlenecks.forEach((key, idx) => {
+    console.log(`=== TEST Ci-${idx + 4}: ${key} (day-aware) ===`);
+    const pattern = ciPropheticMessages[key];
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    dragResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('Ci DRAG BOTTLENECKS SUMMARY (3 patterns)');
+  console.log('============================================================');
+  dragResults.forEach((r, idx) => {
+    console.log(`${idx + 4}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allCiDragPass = dragResults.every(r => r.hasDayAware && r.allFound);
+
+  console.log('');
+  console.log('Total Ci drag bottleneck messages: 3 patterns × 5 days × 4 times = 60 unique messages');
+  console.log(allCiDragPass ? '✅ ALL Ci DRAG BOTTLENECKS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // Combined Ci summary
+  console.log('');
+  console.log('============================================================');
+  console.log('Ci BOTTLENECKS COMBINED SUMMARY (6 patterns)');
+  console.log('============================================================');
+  fuelResults.forEach((r, idx) => {
+    console.log(`${idx + 1}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+  dragResults.forEach((r, idx) => {
+    console.log(`${idx + 4}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allCiBottlenecksPass = allCiFuelPass && allCiDragPass;
+  console.log('');
+  console.log('Total Ci bottleneck messages: 6 patterns × 5 days × 4 times = 120 unique messages');
+  console.log(allCiBottlenecksPass ? '✅ ALL Ci BOTTLENECKS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // Test strength + shape patterns (Part 3)
+  console.log('');
+  const strengthShapePatterns = ['flow_strength', 'soaring', 'crashed', 'plateau', 'lopsided'];
+  const strengthShapeLabels = ['🔥 DEEP WORK MODE', '⚡ CRAFT INTENSITY HIGH', '💨 CREATIVE DROUGHT', '⚖ STEADY CRAFT', '⚖ FIGHTING FRICTION'];
+  const strengthShapeResults = [];
+
+  strengthShapePatterns.forEach((key, idx) => {
+    console.log(`=== TEST Ci-${idx + 7}: ${key} (day-aware) ===`);
+    const pattern = ciPropheticMessages[key];
+    if (!pattern) {
+      console.log('Pattern not found!');
+      strengthShapeResults.push({ key, hasDayAware: false, allFound: false });
+      console.log('');
+      return;
+    }
+    console.log('Label:', pattern.label);
+
+    const hasDayAware = pattern.messages[time.dayContext] !== undefined;
+    console.log('Has day-aware structure:', hasDayAware ? '✅ YES' : '❌ NO');
+
+    if (hasDayAware) {
+      const msg = pattern.messages[time.dayContext][time.timeOfDay];
+      console.log('Message found:', msg ? '✅ YES' : '❌ NO');
+      if (msg) {
+        console.log('Message preview:', msg.substring(0, 80) + '...');
+      }
+    }
+
+    let allFound = true;
+    for (const day of days) {
+      for (const t of times) {
+        const msg = pattern.messages[day]?.[t];
+        if (!msg) {
+          console.log(`  ❌ Missing: ${day}/${t}`);
+          allFound = false;
+        }
+      }
+    }
+    if (allFound) {
+      console.log('  ✅ All 20 day/time combinations present');
+    }
+
+    strengthShapeResults.push({ key, hasDayAware, allFound });
+    console.log('');
+  });
+
+  console.log('============================================================');
+  console.log('Ci STRENGTH + SHAPE SUMMARY (5 patterns)');
+  console.log('============================================================');
+  strengthShapeResults.forEach((r, idx) => {
+    console.log(`${idx + 7}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allCiStrengthShapePass = strengthShapeResults.every(r => r.hasDayAware && r.allFound);
+
+  console.log('');
+  console.log('Total Ci strength+shape messages: 5 patterns × 5 days × 4 times = 100 unique messages');
+  console.log(allCiStrengthShapePass ? '✅ ALL Ci STRENGTH+SHAPE COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+
+  // Final Ci summary
+  console.log('');
+  console.log('============================================================');
+  console.log('Ci ALL PATTERNS SUMMARY (11 patterns)');
+  console.log('============================================================');
+  fuelResults.forEach((r, idx) => {
+    console.log(`${idx + 1}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+  dragResults.forEach((r, idx) => {
+    console.log(`${idx + 4}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+  strengthShapeResults.forEach((r, idx) => {
+    console.log(`${idx + 7}. ${r.key}:`, r.hasDayAware && r.allFound ? '✅ PASS' : '❌ FAIL');
+  });
+
+  const allCiPass = allCiBottlenecksPass && allCiStrengthShapePass;
+  console.log('');
+  console.log('Total Ci messages: 11 patterns × 5 days × 4 times = 220 unique messages');
+  console.log(allCiPass ? '✅ ALL Ci PATTERNS COMPLETE!' : '❌ Some patterns missing');
+  console.log('============================================================');
+} else {
+  console.log('Could not find ciPropheticMessages boundaries');
+}
