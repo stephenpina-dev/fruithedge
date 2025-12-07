@@ -651,7 +651,9 @@ const protocols = [
     category: "physical",
     prescription: "15-minute walk within 1 hour of waking. No phone.",
     why: "Movement clears mental fog and builds energy before demands hit.",
-    patterns: ["low_aq", "low_energy", "burnout"]
+    patterns: ["low_aq", "low_energy", "burnout"],
+    validTimes: ["morning"],
+    validSeasons: ["spring", "summer", "fall"]
   },
   {
     id: 2,
@@ -659,7 +661,9 @@ const protocols = [
     category: "physical",
     prescription: "Aim for 7,000 steps daily. Track it.",
     why: "What gets measured gets managed. Movement compounds into energy.",
-    patterns: ["low_aq", "low_ci", "plateau"]
+    patterns: ["low_aq", "low_ci", "plateau"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 3,
@@ -667,7 +671,9 @@ const protocols = [
     category: "physical",
     prescription: "Warm water with half a lemon, first thing.",
     why: "Hydration + vitamin C before caffeine. Your liver will thank you.",
-    patterns: ["low_aq", "burnout"]
+    patterns: ["low_aq", "burnout"],
+    validTimes: ["morning"],
+    validSeasons: ["all"]
   },
   {
     id: 4,
@@ -675,7 +681,9 @@ const protocols = [
     category: "physical",
     prescription: "Non-negotiable lights-out by 11pm.",
     why: "Every hour before midnight is worth two after. Protect your sleep.",
-    patterns: ["low_aq", "low_ci", "burnout"]
+    patterns: ["low_aq", "low_ci", "burnout"],
+    validTimes: ["evening", "night"],
+    validSeasons: ["all"]
   },
   {
     id: 5,
@@ -683,7 +691,9 @@ const protocols = [
     category: "physical",
     prescription: "All screens off by 9pm. Read, stretch, or talk.",
     why: "Blue light kills melatonin. Your sleep quality affects tomorrow's creativity.",
-    patterns: ["low_aq", "low_ci"]
+    patterns: ["low_aq", "low_ci"],
+    validTimes: ["evening", "night"],
+    validSeasons: ["all"]
   },
   {
     id: 6,
@@ -691,7 +701,9 @@ const protocols = [
     category: "physical",
     prescription: "Last 30 seconds of shower on cold.",
     why: "Builds stress tolerance. If you can handle this, you can handle creative discomfort.",
-    patterns: ["low_ci", "paralyzed"]
+    patterns: ["low_ci", "paralyzed"],
+    validTimes: ["morning", "afternoon", "evening"],
+    validSeasons: ["all"]
   },
   {
     id: 7,
@@ -699,7 +711,9 @@ const protocols = [
     category: "physical",
     prescription: "5 minutes of stretching before deep work.",
     why: "Body tension becomes mental tension. Release it first.",
-    patterns: ["low_ci", "low_aq"]
+    patterns: ["low_ci", "low_aq"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 8,
@@ -707,7 +721,9 @@ const protocols = [
     category: "physical",
     prescription: "8 glasses of water minimum. Track it.",
     why: "Dehydration causes brain fog. Most creatives are chronically dehydrated.",
-    patterns: ["low_ci", "low_aq", "plateau"]
+    patterns: ["low_ci", "low_aq", "plateau"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 9,
@@ -715,7 +731,9 @@ const protocols = [
     category: "physical",
     prescription: "10 minutes of outdoor light within 1 hour of waking.",
     why: "Sets your circadian rhythm. Energy begets energy.",
-    patterns: ["low_aq", "burnout"]
+    patterns: ["low_aq", "burnout"],
+    validTimes: ["morning"],
+    validSeasons: ["all"]
   },
   {
     id: 10,
@@ -723,7 +741,9 @@ const protocols = [
     category: "physical",
     prescription: "2 minutes of movement every hour. Set a timer.",
     why: "Sitting is the new smoking. Brief movement resets focus.",
-    patterns: ["low_ci", "plateau"]
+    patterns: ["low_ci", "plateau"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
 
   // === MENTAL SPACE (10) ===
@@ -733,7 +753,9 @@ const protocols = [
     category: "mental",
     prescription: "Write everything in your head onto paper. Empty the RAM.",
     why: "Your mind is for having ideas, not holding them. Get them out.",
-    patterns: ["low_aq", "low_space"]
+    patterns: ["low_aq", "low_space"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 12,
@@ -741,7 +763,9 @@ const protocols = [
     category: "mental",
     prescription: "Before bed, write the ONE thing for tomorrow.",
     why: "Decision fatigue kills mornings. Decide tonight.",
-    patterns: ["low_ci", "low_aq"]
+    patterns: ["low_ci", "low_aq"],
+    validTimes: ["evening", "night"],
+    validSeasons: ["all"]
   },
   {
     id: 13,
@@ -749,7 +773,9 @@ const protocols = [
     category: "mental",
     prescription: "Not 20 minutes. Just 2. Breathe.",
     why: "The best meditation is the one you'll actually do.",
-    patterns: ["low_aq", "low_space", "burnout"]
+    patterns: ["low_aq", "low_space", "burnout"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 14,
@@ -757,7 +783,9 @@ const protocols = [
     category: "mental",
     prescription: "Wake up, don't check anything for 60 minutes.",
     why: "Your morning sets your day. Don't give it to other people's priorities.",
-    patterns: ["low_aq", "low_ci"]
+    patterns: ["low_aq", "low_ci"],
+    validTimes: ["morning"],
+    validSeasons: ["all"]
   },
   {
     id: 15,
@@ -765,7 +793,9 @@ const protocols = [
     category: "mental",
     prescription: "30 minutes Sunday to review the week and plan the next.",
     why: "Reflection is how you compound learning. Don't skip it.",
-    patterns: ["plateau", "low_ci"]
+    patterns: ["plateau", "low_ci"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 16,
@@ -773,7 +803,9 @@ const protocols = [
     category: "mental",
     prescription: "Write one thing you're grateful for. Daily.",
     why: "Gratitude shifts focus from scarcity to abundance. Creativity follows.",
-    patterns: ["low_aq", "burnout", "low_ri"]
+    patterns: ["low_aq", "burnout", "low_ri"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 17,
@@ -781,7 +813,9 @@ const protocols = [
     category: "mental",
     prescription: "30 minutes to clear email completely. Then close it.",
     why: "Email is other people's to-do list. Process it, then protect your time.",
-    patterns: ["low_aq", "low_ci"]
+    patterns: ["low_aq", "low_ci"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 18,
@@ -789,7 +823,9 @@ const protocols = [
     category: "mental",
     prescription: "Unsubscribe from 10 emails today.",
     why: "Every unnecessary input is a decision drain. Reduce the noise.",
-    patterns: ["low_aq", "low_space"]
+    patterns: ["low_aq", "low_space"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 19,
@@ -797,7 +833,9 @@ const protocols = [
     category: "mental",
     prescription: "Remove one time-wasting app from your phone.",
     why: "The app will survive without you. Will your creativity survive with it?",
-    patterns: ["low_ci", "plateau"]
+    patterns: ["low_ci", "plateau"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 20,
@@ -805,7 +843,9 @@ const protocols = [
     category: "mental",
     prescription: "Turn off all non-essential notifications.",
     why: "Every buzz is a broken thought. Protect your attention.",
-    patterns: ["low_ci", "low_aq"]
+    patterns: ["low_ci", "low_aq"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
 
   // === CREATIVE PRACTICE (10) ===
@@ -815,7 +855,9 @@ const protocols = [
     category: "creative",
     prescription: "Create something with zero stakes. No publishing.",
     why: "Play is where creativity lives. No pressure, no performance.",
-    patterns: ["low_ri", "low_ci", "paralyzed"]
+    patterns: ["low_ri", "low_ci", "paralyzed"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 22,
@@ -823,7 +865,9 @@ const protocols = [
     category: "creative",
     prescription: "Watch/read ONE thing fully. No multitasking.",
     why: "Fragmented consumption creates fragmented output. Go deep.",
-    patterns: ["low_ri", "plateau"]
+    patterns: ["low_ri", "plateau"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 23,
@@ -831,7 +875,9 @@ const protocols = [
     category: "creative",
     prescription: "Hand-copy a piece of writing or art you admire.",
     why: "Copying teaches what reading can't. Feel how the masters work.",
-    patterns: ["low_ci", "plateau", "low_ri"]
+    patterns: ["low_ci", "plateau", "low_ri"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 24,
@@ -839,7 +885,9 @@ const protocols = [
     category: "creative",
     prescription: "One hour of creative work with no digital tools.",
     why: "Screens enable, but they also distract. Try creating without them.",
-    patterns: ["low_ci", "paralyzed"]
+    patterns: ["low_ci", "paralyzed"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 25,
@@ -847,7 +895,9 @@ const protocols = [
     category: "creative",
     prescription: "Publish one tiny thing this week. Imperfect is fine.",
     why: "Shipping is a muscle. Train it with small reps.",
-    patterns: ["low_ci", "paralyzed", "low_ri"]
+    patterns: ["low_ci", "paralyzed", "low_ri"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 26,
@@ -855,7 +905,9 @@ const protocols = [
     category: "creative",
     prescription: "15-minute voice call with another creative. Not text.",
     why: "Isolation breeds stagnation. Connection breeds ideas.",
-    patterns: ["low_ri", "burnout", "plateau"]
+    patterns: ["low_ri", "burnout", "plateau"],
+    validTimes: ["morning", "afternoon", "evening"],
+    validSeasons: ["all"]
   },
   {
     id: 27,
@@ -863,7 +915,9 @@ const protocols = [
     category: "creative",
     prescription: "Change your visual input. Go somewhere that feeds you.",
     why: "You can't pour from an empty cup. Fill it with beauty.",
-    patterns: ["low_ri", "burnout", "plateau"]
+    patterns: ["low_ri", "burnout", "plateau"],
+    validTimes: ["morning", "afternoon", "evening"],
+    validSeasons: ["spring", "summer", "fall"]
   },
   {
     id: 28,
@@ -871,7 +925,9 @@ const protocols = [
     category: "creative",
     prescription: "Physical book. No Kindle. 20 pages minimum.",
     why: "Books are concentrated thought. Absorb someone else's perspective.",
-    patterns: ["low_ri", "plateau", "low_ci"]
+    patterns: ["low_ri", "plateau", "low_ci"],
+    validTimes: ["morning", "afternoon", "evening"],
+    validSeasons: ["all"]
   },
   {
     id: 29,
@@ -879,7 +935,9 @@ const protocols = [
     category: "creative",
     prescription: "Watch a tutorial on a skill adjacent to yours.",
     why: "Cross-pollination is where innovation lives.",
-    patterns: ["plateau", "low_ci"]
+    patterns: ["plateau", "low_ci"],
+    validTimes: ["morning", "afternoon", "evening"],
+    validSeasons: ["all"]
   },
   {
     id: 30,
@@ -887,7 +945,9 @@ const protocols = [
     category: "creative",
     prescription: "Take photos or notes of your work-in-progress.",
     why: "Documentation forces reflection. Share it or keep it, but capture it.",
-    patterns: ["low_ri", "plateau"]
+    patterns: ["low_ri", "plateau"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
 
   // === CONSTRAINT REDUCTION (10) ===
@@ -897,7 +957,9 @@ const protocols = [
     category: "constraint",
     prescription: "Decline one request this week.",
     why: "Every yes is a no to something else. Protect your creative time.",
-    patterns: ["low_aq", "high_constraint"]
+    patterns: ["low_aq", "high_constraint"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 32,
@@ -905,7 +967,9 @@ const protocols = [
     category: "constraint",
     prescription: "Remove one commitment from your calendar.",
     why: "Subtraction creates space. What can you eliminate?",
-    patterns: ["low_aq", "burnout"]
+    patterns: ["low_aq", "burnout"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 33,
@@ -913,7 +977,9 @@ const protocols = [
     category: "constraint",
     prescription: "Bill pay, email filter, recurring order. Anything.",
     why: "Every automated task is a freed decision. Compound the savings.",
-    patterns: ["low_aq", "low_ci"]
+    patterns: ["low_aq", "low_ci"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 34,
@@ -921,7 +987,9 @@ const protocols = [
     category: "constraint",
     prescription: "Pay someone to do something you hate.",
     why: "Your time has value. Spend it on what only you can do.",
-    patterns: ["low_aq", "hustler"]
+    patterns: ["low_aq", "hustler"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 35,
@@ -929,7 +997,9 @@ const protocols = [
     category: "constraint",
     prescription: "All emails/calls in one 2-hour block. Not scattered.",
     why: "Context switching kills creativity. Batch the boring stuff.",
-    patterns: ["low_ci", "low_aq"]
+    patterns: ["low_ci", "low_aq"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 36,
@@ -937,7 +1007,9 @@ const protocols = [
     category: "constraint",
     prescription: "Tell people when you're available. Stick to it.",
     why: "Availability on demand kills deep work. Set boundaries.",
-    patterns: ["low_aq", "low_ci"]
+    patterns: ["low_aq", "low_ci"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 37,
@@ -945,7 +1017,9 @@ const protocols = [
     category: "constraint",
     prescription: "15 minutes reviewing your money situation.",
     why: "Financial anxiety drains creative energy. Face it to free yourself.",
-    patterns: ["low_aq", "underground_gem"]
+    patterns: ["low_aq", "underground_gem"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 38,
@@ -953,7 +1027,9 @@ const protocols = [
     category: "constraint",
     prescription: "Cancel something you don't use.",
     why: "Subscriptions are tiny energy leaks. Plug them.",
-    patterns: ["low_aq", "plateau"]
+    patterns: ["low_aq", "plateau"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 39,
@@ -961,7 +1037,9 @@ const protocols = [
     category: "constraint",
     prescription: "Desk, room, or digital folder. Just one.",
     why: "External order creates internal clarity.",
-    patterns: ["low_aq", "low_space", "low_ci"]
+    patterns: ["low_aq", "low_space", "low_ci"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 40,
@@ -969,7 +1047,9 @@ const protocols = [
     category: "constraint",
     prescription: "Tell someone what you need from them.",
     why: "Unspoken needs become resentment. Speak up.",
-    patterns: ["low_aq", "burnout"]
+    patterns: ["low_aq", "burnout"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
 
   // === FRUIT PROTOCOLS (5) ===
@@ -979,7 +1059,9 @@ const protocols = [
     category: "fruit",
     prescription: "Eat an apple. Sometimes the answer is simple.",
     why: "Before optimizing, try the basics. Nutrition affects cognition.",
-    patterns: ["all"]
+    patterns: ["all"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 42,
@@ -987,7 +1069,9 @@ const protocols = [
     category: "fruit",
     prescription: "Eat a banana before deep work session.",
     why: "Potassium for focus. Quick energy without the crash.",
-    patterns: ["low_ci"]
+    patterns: ["low_ci"],
+    validTimes: ["anytime"],
+    validSeasons: ["all"]
   },
   {
     id: 43,
@@ -995,7 +1079,9 @@ const protocols = [
     category: "fruit",
     prescription: "Orange or grapefruit with breakfast.",
     why: "Vitamin C, hydration, and a sensory wake-up call.",
-    patterns: ["low_aq", "burnout"]
+    patterns: ["low_aq", "burnout"],
+    validTimes: ["morning"],
+    validSeasons: ["winter", "spring"]
   },
   {
     id: 44,
@@ -1003,7 +1089,9 @@ const protocols = [
     category: "fruit",
     prescription: "Handful of blueberries in the afternoon.",
     why: "Brain food. Antioxidants for cognitive function.",
-    patterns: ["low_ci", "plateau"]
+    patterns: ["low_ci", "plateau"],
+    validTimes: ["morning", "afternoon", "evening"],
+    validSeasons: ["summer"]
   },
   {
     id: 45,
@@ -1011,7 +1099,9 @@ const protocols = [
     category: "fruit",
     prescription: "Watermelon when you've been grinding.",
     why: "92% water. When you're too busy to drink, eat your hydration.",
-    patterns: ["hustler", "burnout"]
+    patterns: ["hustler", "burnout"],
+    validTimes: ["anytime"],
+    validSeasons: ["summer"]
   }
 ];
 

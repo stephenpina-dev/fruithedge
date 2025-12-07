@@ -1718,7 +1718,104 @@
   }
 
   // ============================================================
-  // PROTOCOL MATCHING
+  // TIME/SEASON DETECTION
+  // ============================================================
+
+  function getCurrentTimeAndSeason() {
+    const now = new Date();
+    const hour = now.getHours();
+    const month = now.getMonth(); // 0-11
+
+    // Time of day (HARD BOUNDARIES)
+    let timeOfDay;
+    if (hour >= 5 && hour < 12) {
+      timeOfDay = 'morning';
+    } else if (hour >= 12 && hour < 17) {
+      timeOfDay = 'afternoon';
+    } else if (hour >= 17 && hour < 21) {
+      timeOfDay = 'evening';
+    } else {
+      timeOfDay = 'night';
+    }
+
+    // Season (by month)
+    let season;
+    if (month >= 2 && month <= 4) {
+      season = 'spring'; // Mar, Apr, May
+    } else if (month >= 5 && month <= 7) {
+      season = 'summer'; // Jun, Jul, Aug
+    } else if (month >= 8 && month <= 10) {
+      season = 'fall';   // Sep, Oct, Nov
+    } else {
+      season = 'winter'; // Dec, Jan, Feb
+    }
+
+    return { hour, timeOfDay, season, month };
+  }
+
+  // ============================================================
+  // SMART PROTOCOL MATCHING (Time/Season Aware)
+  // ============================================================
+
+  function getSmartProtocol(scores, patterns = null) {
+    const { timeOfDay, season } = getCurrentTimeAndSeason();
+
+    // HARD GATE 1: Filter by valid time
+    const timeFiltered = protocols.filter(p => {
+      if (p.validTimes.includes('anytime')) return true;
+      if (p.validTimes.includes(timeOfDay)) return true;
+      // Check for daytime (morning + afternoon + evening)
+      if (timeOfDay !== 'night' && p.validTimes.includes('daytime')) return true;
+      return false;
+    });
+
+    // HARD GATE 2: Filter by valid season
+    const seasonFiltered = timeFiltered.filter(p => {
+      if (p.validSeasons.includes('all')) return true;
+      if (p.validSeasons.includes(season)) return true;
+      return false;
+    });
+
+    // If no protocols pass filters, return null with explanation
+    if (seasonFiltered.length === 0) {
+      console.warn('[Protocol] No protocols available for', timeOfDay, season);
+      return null;
+    }
+
+    // Get patterns from scores if not provided
+    if (!patterns && scores) {
+      patterns = getPatterns(scores);
+    }
+
+    // Score remaining protocols by pattern match
+    const scored = seasonFiltered.map(p => {
+      let score = 0;
+      if (patterns && p.patterns) {
+        const matches = p.patterns.filter(pat => patterns.includes(pat)).length;
+        score = matches;
+      }
+      return { ...p, matchScore: score };
+    });
+
+    // Sort by score
+    scored.sort((a, b) => b.matchScore - a.matchScore);
+
+    // If top matches are tied, pick randomly among them
+    const topScore = scored[0].matchScore;
+    const topMatches = scored.filter(p => p.matchScore === topScore);
+    const selected = topMatches[Math.floor(Math.random() * topMatches.length)];
+
+    return {
+      protocol: selected,
+      timeOfDay,
+      season,
+      filteredCount: seasonFiltered.length,
+      totalCount: protocols.length
+    };
+  }
+
+  // ============================================================
+  // PROTOCOL MATCHING (Legacy)
   // ============================================================
 
   function matchProtocol(scores) {
