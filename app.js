@@ -653,19 +653,21 @@
 
   /**
    * Calculate Autonomy Quotient
-   * Geometric mean of positives divided by constraint factor
+   * Geometric mean of positives with gentle constraint penalty
    *
    * Expected results:
-   * - E=10, S=10, O=10, C=1 → AQ = 10
-   * - E=10, S=10, O=10, C=10 → AQ = 5
-   * - E=5, S=5, O=5, C=5 → AQ = ~3.5
+   * - E=10, S=10, O=10, C=1 → AQ = 10.0
+   * - E=10, S=10, O=10, C=10 → AQ = ~8.7 (15% penalty)
+   * - E=5, S=5, O=5, C=5 → AQ = ~4.7
+   * - E=8, S=8, O=8, C=5 → AQ = ~7.5
    * - E=1, S=1, O=1, C=10 → AQ = 1 (floored)
    */
   function calculateAQ(e, s, o, c) {
     // Geometric mean of positives (1-10 scale)
     const positiveGeo = Math.pow(e * s * o, 1/3);
-    // Constraint factor: C=1 → 1.0, C=10 → 2.0
-    const constraintFactor = 1 + (c - 1) / 9;
+    // Constraint penalty: gentle, only significant at high constraint
+    // c=1 → 1.0 (no penalty), c=5 → 1.068 (6.8%), c=10 → 1.153 (15.3%)
+    const constraintFactor = 1 + (c - 1) * 0.017;
     const aq = positiveGeo / constraintFactor;
     return Math.round(Math.min(10, Math.max(1, aq)) * 10) / 10;
   }
