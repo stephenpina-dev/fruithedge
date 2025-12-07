@@ -9,7 +9,9 @@
       "Bash(node test-recommendations.js:*)",
       "Bash(node /Users/fruithedge/fruithedge/test-journals.js:*)",
       "Bash(node test-recommendation-links.js:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

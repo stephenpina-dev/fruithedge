@@ -17,6 +17,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1936891026",
     duration: "190 pages",
     patterns: ["low_aq", "low_ci", "paralyzed", "paralyzed_dreamer", "ember"],
+    topics: ["mindset"],
+    style: "philosophical",
     why: "\"Resistance\" is Pressfield's name for the force that keeps you from doing your work. If you're feeling burned out or blocked every time you sit down to create, this short kick-in-the-pants book will help you conquer procrastination and self-doubt."
   },
   {
@@ -27,6 +29,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1455586692",
     duration: "304 pages",
     patterns: ["low_ci", "plateau", "grinder"],
+    topics: ["productivity"],
+    style: "tactical",
     why: "You're grinding hard but scatter your energy on emails and social media. Newport shows you how to reclaim your focus and build periods of intense, undistracted creation into your routine."
   },
   {
@@ -37,6 +41,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1455509124",
     duration: "304 pages",
     patterns: ["underground_gem", "low_aq"],
+    topics: ["craft", "business"],
+    style: "scientific",
     why: "If your work deeply touches people but you're struggling with freedom or finances, Newport's research-backed approach will guide you to focus on building rare skills that grant you more options and autonomy."
   },
   {
@@ -47,6 +53,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0718086260",
     duration: "240 pages",
     patterns: ["underground_gem", "low_aq"],
+    topics: ["business"],
+    style: "tactical",
     why: "You've created something special and resonant, but the \"starving artist\" myth haunts you. Goins debunks that myth and offers practical strategies to turn your creative passions into a sustainable living."
   },
   {
@@ -57,6 +65,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0525537832",
     duration: "224 pages",
     patterns: ["burnout", "protect_magic", "plateau"],
+    topics: ["mindset", "creativity"],
+    style: "inspirational",
     why: "Whether you're burned out, starting out, or wildly successful, this illustrated guide dishes out 10 simple, playful practices to help you maintain your creative spark."
   },
   {
@@ -67,6 +77,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0593328972",
     duration: "272 pages",
     patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "untapped", "ember", "grinder"],
+    topics: ["mindset", "craft"],
+    style: "philosophical",
     why: "If you have trouble finishing and sharing your work, whether from fear or perfectionism, The Practice will nudge you to start shipping your art regularly."
   },
   {
@@ -77,6 +89,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0804137382",
     duration: "272 pages",
     patterns: ["low_aq", "low_ci", "plateau"],
+    topics: ["productivity"],
+    style: "tactical",
     why: "If your Autonomy score is low because you say \"yes\" to everything and feel stretched in a million directions, this book will teach you to set boundaries and simplify your commitments."
   },
   {
@@ -87,6 +101,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0465074871",
     duration: "352 pages",
     patterns: ["low_aq", "burnout", "low_ci"],
+    topics: ["recovery"],
+    style: "scientific",
     why: "Counterintuitive but true: working ever harder isn't the answer when you're depleted. This book shows that deliberate rest is part of doing great work, not the opposite of it."
   },
   {
@@ -97,6 +113,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1984818324",
     duration: "304 pages",
     patterns: ["burnout", "low_aq", "low_ri"],
+    topics: ["recovery"],
+    style: "scientific",
     why: "If you've felt overwhelmed and exhausted by everything you have to do, yet still worried you weren't doing enough, this book will help you complete the stress cycle and regain energy."
   },
   {
@@ -107,6 +125,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0061339202",
     duration: "336 pages",
     patterns: ["low_ci", "plateau", "low_ri"],
+    topics: ["craft", "productivity"],
+    style: "scientific",
     why: "If you've been feeling disengaged or distracted, this classic can help you redesign your work process to invite more flow. That magical state where time flies and you do your best work."
   },
   {
@@ -117,6 +137,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0961454733",
     duration: "122 pages",
     patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "low_ri"],
+    topics: ["mindset", "creativity"],
+    style: "philosophical",
     why: "This slim, compassionate book explores the difficulties that cause so many artists to give up along the way. If you have plenty of freedom but find yourself not using it because you're scared, this is the gentle kick you need."
   },
   {
@@ -127,6 +149,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1591841666",
     duration: "80 pages",
     patterns: ["plateau", "comeback", "plateau_walker"],
+    topics: ["mindset"],
+    style: "tactical",
     why: "Ever hit that monotonous middle of a project where progress stalls? This ultra-short read helps you identify whether you're in a Dip worth pushing through, or a cul-de-sac you should quit."
   },
   {
@@ -137,6 +161,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1591847818",
     duration: "256 pages",
     patterns: ["protect_magic", "high_aq", "high_ci"],
+    topics: ["mindset"],
+    style: "philosophical",
     why: "Sometimes the biggest threat to a creative career is your own ego. If you've been doing great and want to ensure you don't sabotage it, this book will inspire humility and continuous learning."
   },
   {
@@ -147,6 +173,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/076117897X",
     duration: "224 pages",
     patterns: ["low_ri", "craftsperson_no_message", "low_aq", "monk", "connector"],
+    topics: ["connection"],
+    style: "tactical",
     why: "If you're putting out work that no one seems to notice, or holding back because you're shy, this book will nudge you into the light and show you how to build an audience by sharing your process."
   },
   {
@@ -157,6 +185,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1594634718",
     duration: "288 pages",
     patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "low_ri"],
+    topics: ["mindset", "creativity"],
+    style: "inspirational",
     why: "Gilbert tackles the fear that often accompanies creativity (fear of rejection, of not being original) and gently dismantles it. You'll come away ready to live a creative life on your own terms."
   },
   {
@@ -167,6 +197,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0385480016",
     duration: "272 pages",
     patterns: ["paralyzed", "paralyzed_dreamer", "low_ci", "low_ri"],
+    topics: ["craft", "creativity"],
+    style: "memoir",
     why: "Lamott hilariously eviscerates perfectionism and gives you permission to create something imperfect and honest. Which is better than nothing at all."
   },
   {
@@ -177,6 +209,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0061735361",
     duration: "224 pages",
     patterns: ["protect_magic", "high_aq", "plateau_walker"],
+    topics: ["mindset"],
+    style: "tactical",
     why: "When you're thriving, often you unconsciously pull back or create drama. Hendricks calls this the 'Upper Limit Problem' and shows you how to break through self-imposed limits."
   },
   {
@@ -187,6 +221,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0143129252",
     duration: "222 pages",
     patterns: ["burnout", "low_ci", "low_aq", "paralyzed_dreamer"],
+    topics: ["creativity", "recovery"],
+    style: "tactical",
     why: "This legendary 12-week course in book form has unblocked millions of creatives. If you aren't creating at all due to perfectionism or fear, this is a nurturing, structured way to get moving again."
   },
   {
@@ -197,6 +233,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0761169253",
     duration: "160 pages",
     patterns: ["plateau", "untapped", "low_ri"],
+    topics: ["creativity"],
+    style: "inspirational",
     why: "This modern classic will free you from the myth of originality. By following your interests and learning from others, you'll inject more YOU into your art."
   },
   {
@@ -207,6 +245,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/038534936X",
     duration: "304 pages",
     patterns: ["low_ri", "low_ci", "burnout"],
+    topics: ["creativity", "mindset"],
+    style: "tactical",
     why: "Written by the founders of IDEO, this book helps you rebuild your creative self-esteem and recover the fearless creativity you had as a child."
   },
   {
@@ -217,6 +257,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0544456238",
     duration: "336 pages",
     patterns: ["craftsperson_no_message", "low_ri", "low_ci"],
+    topics: ["craft"],
+    style: "scientific",
     why: "Ever feel like you're putting in hours but not getting better? This book reveals how deliberate practice can break you out of plateaus. It's not about practicing more, but practicing better."
   },
   {
@@ -227,6 +269,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0735211299",
     duration: "320 pages",
     patterns: ["low_ci", "plateau", "plateau_walker", "grinder", "comeback"],
+    topics: ["productivity"],
+    style: "tactical",
     why: "If your craft intensity is low because you can't build consistent creative habits, this book provides the most actionable system for making small improvements stick. Clear's framework for habit stacking and identity-based change is essential for any creator who knows what to do but struggles to do it consistently."
   },
   {
@@ -237,6 +281,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1591846994",
     duration: "240 pages",
     patterns: ["protect_magic", "high_aq", "high_ci"],
+    topics: ["mindset"],
+    style: "inspirational",
     why: "Don't go to your grave with your best ideas still in you. If you have a nagging feeling you're capable of more, this book is the shove you need to make today the day."
   },
   {
@@ -247,6 +293,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0593652886",
     duration: "432 pages",
     patterns: ["protect_magic", "high_aq", "high_ri"],
+    topics: ["creativity", "mindset"],
+    style: "philosophical",
     why: "Like sitting around a cosmic campfire with Rick Rubin. This spiritual guide to cultivating a creative state of mind will help you sustain your Creative Alpha by grounding it in something deeper than metrics."
   },
   {
@@ -257,6 +305,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1544514212",
     duration: "244 pages",
     patterns: ["low_aq", "underground_gem"],
+    topics: ["business", "mindset"],
+    style: "philosophical",
     why: "Naval's philosophy on building wealth without selling your time is essential for any creative feeling financially trapped. His concept of 'specific knowledge' reframes how to monetize creativity without burnout."
   },
   {
@@ -267,6 +317,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0374201234",
     duration: "208 pages",
     patterns: ["craftsperson_no_message", "low_ri", "hustler"],
+    topics: ["craft", "mindset"],
+    style: "memoir",
     why: "Kobe's obsessive approach to mastery is both inspiring and cautionary. If your Craft Intensity is low because you lack structure or discipline, this is a blueprint for relentless improvement."
   },
   {
@@ -277,6 +329,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0812993012",
     duration: "368 pages",
     patterns: ["protect_magic", "high_ci"],
+    topics: ["creativity", "business"],
+    style: "memoir",
     why: "Ed Catmull built Pixar into the most consistently excellent creative studio in history. Essential reading for anyone who wants to sustain creative excellence over decades."
   },
   {
@@ -287,6 +341,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1936891034",
     duration: "146 pages",
     patterns: ["low_ci", "paralyzed", "comeback"],
+    topics: ["mindset"],
+    style: "philosophical",
     why: "The sequel to The War of Art focuses on what happens after you beat Resistance: you turn pro. If you're talented but inconsistent, this book will call you out and show you the path."
   },
   {
@@ -297,6 +353,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1476714207",
     duration: "256 pages",
     patterns: ["craftsperson_no_message", "low_ri", "hustler"],
+    topics: ["mindset", "craft"],
+    style: "inspirational",
     why: "Tim Grover trained Michael Jordan and Kobe Bryant. If your Craft Intensity is low because you're soft on yourself, this book will either wake you up or piss you off."
   },
   {
@@ -307,6 +365,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/1544512287",
     duration: "364 pages",
     patterns: ["low_ci", "paralyzed", "paralyzed_dreamer", "plateau_walker", "grinder"],
+    topics: ["mindset"],
+    style: "memoir",
     why: "Goggins' message is brutal: you're probably operating at 40% of your capacity. If you've been coddling yourself and you know it, this will shatter your comfort zone."
   },
 
@@ -319,6 +379,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=ikAb-NYkseI",
     duration: "19 min",
     patterns: ["burnout", "low_aq"],
+    topics: ["mindset", "creativity"],
+    style: "inspirational",
     why: "The ultimate creative pep talk for hard times. Gaiman's refrain, 'Make good art,' lands like a gentle command from the universe: no matter what happens, use it as fuel."
   },
   {
@@ -329,6 +391,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=91FQKciKfHI",
     duration: "2 min",
     patterns: ["low_ri", "low_ci", "comeback"],
+    topics: ["craft", "mindset"],
+    style: "inspirational",
     why: "Only a couple minutes long, but life-changing. Ira Glass explains why your output doesn't yet live up to your taste. The only way to close the gap is to keep creating."
   },
   {
@@ -339,6 +403,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=XatVNXwLrXo",
     duration: "2 hr 11 min",
     patterns: ["low_aq", "underground_gem", "plateau", "grinder"],
+    topics: ["business"],
+    style: "tactical",
     why: "Hormozi built $100M+ businesses and shares the tactical mindset shifts that create leverage. If you're grinding without progress or have talent without freedom, his framework for value creation and pricing will reshape how you think about converting creative skill into autonomy."
   },
   {
@@ -349,6 +415,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=yNTmFORn3xQ",
     duration: "1 hr 30 min",
     patterns: ["craftsperson_no_message", "low_ri", "low_ci"],
+    topics: ["craft"],
+    style: "tactical",
     why: "Seinfeld's approach to comedy writing is surgical. If your work feels sloppy or you lack a consistent creative process, Jerry's discipline is a masterclass."
   },
   {
@@ -359,6 +427,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=hzlvDV3mpZw",
     duration: "45 min",
     patterns: ["protect_magic", "high_ri"],
+    topics: ["mindset", "business"],
+    style: "memoir",
     why: "Chappelle walked away from the biggest deal in comedy history because it was toxic to his creativity. A masterclass in protecting your artistic soul when the industry wants to own it."
   },
   {
@@ -369,6 +439,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=Pb5oIIPO62g",
     duration: "36 min",
     patterns: ["burnout", "low_aq"],
+    topics: ["creativity", "productivity"],
+    style: "scientific",
     why: "Cleese explains 'open mode' (playful, creative) vs 'closed mode' (anxious, executive). If you can't seem to access flow, this framework gives you practical methods."
   },
   {
@@ -379,6 +451,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0062670573",
     duration: "304 pages",
     patterns: ["low_ri", "craftsperson_no_message", "plateau", "connector"],
+    topics: ["creativity", "connection"],
+    style: "memoir",
     why: "Questlove has collaborated with everyone from D'Angelo to Hamilton. His meditation on creativity explores how to stay curious, embrace collaboration, and keep resonance alive across decades. Essential for craftspeople who need more soul in their work and connectors who want to understand creative chemistry."
   },
   {
@@ -389,6 +463,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=DVuYSWp5ISO",
     duration: "15 min",
     patterns: ["underground_gem", "low_aq", "low_ri"],
+    topics: ["creativity", "connection"],
+    style: "inspirational",
     why: "Tyler went from banned provocateur to Grammy winner without compromising his weirdness. Proof that radical authenticity finds its audience."
   },
   {
@@ -399,6 +475,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=KVwVR_0F5eg",
     duration: "20 min",
     patterns: ["burnout", "low_aq"],
+    topics: ["mindset", "creativity"],
+    style: "philosophical",
     why: "Lynch credits Transcendental Meditation with everything in his creative life. If your mental space is cluttered or you can't access deep creative states, his calm conviction might inspire you."
   },
   {
@@ -409,6 +487,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=bh8R9bRz50c",
     duration: "45 min",
     patterns: ["protect_magic", "high_ci"],
+    topics: ["craft", "connection"],
+    style: "memoir",
     why: "70 years of wisdom from someone who worked with Sinatra to Michael Jackson. If you want perspective on building a career that lasts decades, Quincy's insights are irreplaceable."
   },
   {
@@ -419,6 +499,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=kpxBGJBOQSE",
     duration: "15 min",
     patterns: ["low_ri", "low_aq"],
+    topics: ["craft", "creativity"],
+    style: "inspirational",
     why: "They made a Grammy-winning album in a bedroom. If your Autonomy is low because you think you need more resources, watch this. Constraints breed creativity."
   },
   {
@@ -429,6 +511,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=tqVqU3RGBqg",
     duration: "20 min",
     patterns: ["burnout", "low_aq"],
+    topics: ["recovery", "craft"],
+    style: "memoir",
     why: "Miyazaki pours his entire soul into every frame, then collapses from exhaustion. Beautiful and terrifying. A powerful mirror for anyone who takes their craft seriously."
   },
   {
@@ -439,6 +523,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=biFlrzTJets",
     duration: "1 hr 30 min",
     patterns: ["untapped", "low_ri"],
+    topics: ["creativity", "craft"],
+    style: "inspirational",
     why: "Virgil's '3% rule' and frameworks for sampling and remixing are essential for any creative feeling stuck or derivative. How to honor influences while creating something undeniably yours."
   },
   {
@@ -449,6 +535,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=5pFI9UuC_fc",
     duration: "20 min",
     patterns: ["low_ri", "low_ci"],
+    topics: ["craft", "connection"],
+    style: "tactical",
     why: "The two building blocks of storytelling: the anecdote and the moment of reflection. Simple framework, profound impact. Required viewing for anyone who communicates through narrative."
   },
   {
@@ -459,6 +547,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=7_7Rd9urT0Y",
     duration: "25 min",
     patterns: ["low_aq", "underground_gem", "hustler"],
+    topics: ["mindset", "business"],
+    style: "inspirational",
     why: "Nipsey spent a decade grinding independently before mainstream success. If you're impatient, his philosophy, 'the marathon continues,' is a reminder that sustainable success is built brick by brick."
   },
   {
@@ -469,6 +559,8 @@ const recommendations = [
     link: "https://www.youtube.com/watch?v=sE1teB5bN-w",
     duration: "13 min",
     patterns: ["protect_magic", "high_aq", "high_ri"],
+    topics: ["creativity", "mindset"],
+    style: "philosophical",
     why: "Rubin emphasizes intuition, listening, and getting out of the way of the art. If you're doing great but fear overthinking might ruin it, this will remind you to trust the process."
   },
 
@@ -481,6 +573,8 @@ const recommendations = [
     link: "https://www.amazon.com/Exit-Through-Gift-Shop-Banksy/dp/B004C04P9E",
     duration: "1 hr 27 min",
     patterns: ["untapped", "low_ri"],
+    topics: ["connection"],
+    style: "inspirational",
     why: "A wild cautionary tale about art and authenticity. If your Resonance is low because you've been focusing on style over substance, this film will hit you in the gut."
   },
   {
@@ -491,6 +585,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0143109014",
     duration: "256 pages",
     patterns: ["high_ri", "protect_magic", "plateau", "craftsperson_no_message"],
+    topics: ["business", "craft"],
+    style: "tactical",
     why: "You've built resonance. Now how do you make it last? Holiday studied works that endured for decades and extracted the principles. If you're protecting what's working or trying to create something timeless rather than viral, this book reframes success as longevity rather than spikes."
   },
   {
@@ -501,6 +597,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0143124986",
     duration: "320 pages",
     patterns: ["connector", "low_ri", "underground_gem", "plateau"],
+    topics: ["connection", "business"],
+    style: "scientific",
     why: "Grant's research proves that givers—not takers or matchers—end up most successful. For connectors who build through relationships or underground gems struggling to convert resonance into opportunity, this reframes generosity as strategy and shows how to give without burning out."
   },
   {
@@ -511,6 +609,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/0525536515",
     duration: "304 pages",
     patterns: ["monk", "low_aq", "low_ci", "high_distraction"],
+    topics: ["productivity", "mindset"],
+    style: "tactical",
     why: "Newport makes the case for intentional technology use. If you're a monk-type who craves deep focus but battles digital noise, or anyone whose autonomy and craft intensity suffer from attention leaks, this provides a philosophy and practical framework for reclaiming your mind."
   },
   {
@@ -521,6 +621,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/162336793X",
     duration: "240 pages",
     patterns: ["grinder", "hustler", "burnout", "high_ci"],
+    topics: ["recovery", "productivity"],
+    style: "scientific",
     why: "The science of sustainable excellence. If you're a grinder who pushes hard but risks collapse, or a hustler who needs to maintain intensity without burning out, this book balances the growth equation: stress + rest = growth. The missing manual for high performers."
   },
   {
@@ -531,6 +633,8 @@ const recommendations = [
     link: "https://www.amazon.com/dp/014312417X",
     duration: "352 pages",
     patterns: ["monk", "grinder", "plateau", "craftsperson_no_message", "low_ci"],
+    topics: ["craft", "mindset"],
+    style: "philosophical",
     why: "Greene studied history's greatest masters—Darwin, Mozart, da Vinci—to extract the path to mastery. For monks pursuing depth, grinders seeking purpose in their intensity, or anyone plateaued in their craft, this book reveals the apprenticeship mindset and the 10,000 hour journey ahead."
   },
 ];
