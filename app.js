@@ -1206,7 +1206,11 @@
         messages = riPropheticMessages;
 
         // Check for scale achievement (depth at scale)
-        if (scores && scores.ri >= 7 && inputs.audience >= 1000000) {
+        // Use raw inputs for "depth" check since Ri score is diluted by intimacy penalty
+        // Depth = impact, identity, boldness all >= 7 (strong resonance factors)
+        // Scale = audience >= 1M
+        const hasDepth = inputs.impact >= 7 && inputs.identity >= 7 && inputs.boldness >= 7;
+        if (hasDepth && inputs.audience >= 1000000) {
           pattern.hasScaleAchievement = true;
         }
         break;
