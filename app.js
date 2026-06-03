@@ -5000,7 +5000,7 @@
   // ============================================================
 
   const TAB_STORAGE_KEY = 'fruithedge_active_tab';
-  const VALID_SECTIONS = ['calculator', 'dashboard', 'playbooks'];
+  const VALID_SECTIONS = ['calculator', 'dashboard', 'playbooks', 'collection'];
 
   // Intersection Observer for active tab highlighting
   let sectionObserver = null;
@@ -5040,7 +5040,8 @@
     const sectionMap = {
       'calculator': 'calculator-section',
       'dashboard': 'dashboard-section',
-      'playbooks': 'playbooks-section'
+      'playbooks': 'playbooks-section',
+      'collection': 'collection-section'
     };
 
     const targetId = sectionMap[sectionId] || sectionId + '-section';

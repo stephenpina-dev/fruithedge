@@ -3385,6 +3385,106 @@ details[open] .theory-toggle-icon {
   color: var(--danger);
 }
 
+/* ============================================================
+   COLLECTION
+   White papers, playbooks & field notes (placeholder cards)
+   ============================================================ */
+
+.collection-header {
+  margin-bottom: var(--space-xl);
+}
+
+.collection-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: calc(-1 * var(--space-sm));
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Collection Card (placeholder treatment: dashed border, muted) */
+.collection-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-elevated);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.collection-card:hover {
+  border-color: var(--accent-lime);
+  border-style: solid;
+}
+
+.collection-card-type {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--accent-lime);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(196, 255, 97, 0.3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+}
+
+.collection-card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.collection-card-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  flex: 1;
+}
+
+.collection-card-btn {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+[data-theme="light"] .collection-card-type {
+  border-color: rgba(45, 80, 22, 0.3);
+}
+
+/* 4-tab nav: prevent overflow on small screens */
+@media (max-width: 360px) {
+  .tab-bar-inner {
+    flex-wrap: nowrap;
+  }
+  .tab-btn {
+    padding: var(--space-sm) var(--space-sm);
+  }
+}
+
 /* Playbook Modal */
 .playbook-modal-overlay {
   display: none;
