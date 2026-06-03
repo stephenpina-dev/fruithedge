@@ -2961,6 +2961,75 @@ details[open] .theory-toggle-icon {
 }
 
 /* ============================================================
+   INCONSISTENCY WARNINGS
+   Display contradictions in slider inputs
+   ============================================================ */
+
+#inconsistency-warnings {
+  margin: 1.5rem 0;
+  display: none;
+}
+
+.inconsistency-card {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid;
+}
+
+.inconsistency-critical {
+  background: rgba(255, 107, 107, 0.1);
+  border-left-color: var(--red);
+}
+
+.inconsistency-warning {
+  background: rgba(255, 217, 61, 0.1);
+  border-left-color: var(--yellow);
+}
+
+.inconsistency-info {
+  background: rgba(97, 218, 251, 0.1);
+  border-left-color: var(--accent-cyan);
+}
+
+.inconsistency-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.inconsistency-icon {
+  font-size: 1.25rem;
+}
+
+.inconsistency-name {
+  font-family: var(--font-header);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.inconsistency-message {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Light mode adjustments for inconsistency cards */
+[data-theme="light"] .inconsistency-critical {
+  background: rgba(207, 34, 46, 0.1);
+}
+
+[data-theme="light"] .inconsistency-warning {
+  background: rgba(154, 103, 0, 0.1);
+}
+
+[data-theme="light"] .inconsistency-info {
+  background: rgba(9, 105, 218, 0.1);
+}
+
+/* ============================================================
    2. FRUITHEDGE PROTOCOL SECTION
    Daily habit prescription (simple, practical)
    ============================================================ */

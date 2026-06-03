@@ -1266,6 +1266,69 @@
   }
 
   // ============================================================
+  // INCONSISTENCY DETECTION - Catch contradictions in slider inputs
+  // ============================================================
+
+  function detectInconsistencies(inputs) {
+    const found = [];
+
+    for (const pattern of inconsistencyPatterns) {
+      try {
+        if (pattern.condition(inputs)) {
+          found.push({
+            id: pattern.id,
+            name: pattern.name,
+            severity: pattern.severity,
+            message: pattern.message,
+            affected: pattern.affected
+          });
+        }
+      } catch (e) {
+        console.warn('[Inconsistency] Error checking pattern:', pattern.id, e);
+      }
+    }
+
+    // Sort by severity: critical first, then warning, then info
+    const severityOrder = { critical: 0, warning: 1, info: 2 };
+    found.sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
+
+    console.log('[Inconsistency] Detected:', found.length, 'issues');
+    return found;
+  }
+
+  function displayInconsistencies(inconsistencies) {
+    const container = document.getElementById('inconsistency-warnings');
+    if (!container) {
+      console.warn('[Inconsistency] Container not found');
+      return;
+    }
+
+    if (inconsistencies.length === 0) {
+      container.innerHTML = '';
+      container.style.display = 'none';
+      return;
+    }
+
+    container.style.display = 'block';
+    container.innerHTML = inconsistencies.map(inc => `
+      <div class="inconsistency-card inconsistency-${inc.severity}">
+        <div class="inconsistency-header">
+          <span class="inconsistency-icon">${inc.severity === 'critical' ? '🚨' : inc.severity === 'warning' ? '⚠️' : 'ℹ️'}</span>
+          <span class="inconsistency-name">${inc.name}</span>
+        </div>
+        <div class="inconsistency-message">${inc.message}</div>
+      </div>
+    `).join('');
+  }
+
+  function checkAndDisplayInconsistencies() {
+    const inputs = state.inputs;
+    const inconsistencies = detectInconsistencies(inputs);
+    displayInconsistencies(inconsistencies);
+    return inconsistencies;
+  }
+
+  // ============================================================
   // LABS TIPS - Science-backed micro-interventions
   // ============================================================
 
@@ -1969,6 +2032,9 @@
       Portal.animateScore('aq', aq);
     }
 
+    // Check for inconsistencies
+    checkAndDisplayInconsistencies();
+
     // Update alpha if all calculated
     updateAlphaIfReady();
   }
@@ -2023,6 +2089,9 @@
     if (typeof Portal !== 'undefined') {
       Portal.animateScore('ri', ri);
     }
+
+    // Check for inconsistencies
+    checkAndDisplayInconsistencies();
 
     // Update alpha if all calculated
     updateAlphaIfReady();
@@ -2080,6 +2149,9 @@
     if (typeof Portal !== 'undefined') {
       Portal.animateScore('ci', ci);
     }
+
+    // Check for inconsistencies
+    checkAndDisplayInconsistencies();
 
     // Update alpha if all calculated
     updateAlphaIfReady();

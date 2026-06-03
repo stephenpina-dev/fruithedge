@@ -3403,3 +3403,137 @@ const alphaPropheticMessages = {
     }
   }
 };
+
+// ============================================================
+// INCONSISTENCY PATTERNS - Detect contradictions in slider inputs
+// ============================================================
+
+const inconsistencyPatterns = [
+  // AUTONOMY CONTRADICTIONS
+  {
+    id: "constraint_optionality_conflict",
+    name: "Freedom Paradox",
+    condition: (inputs) => inputs.constraint >= 8 && inputs.optionality >= 8,
+    severity: "warning",
+    message: "You report maximum obligations AND maximum freedom. That's contradictory. Heavy constraints (8+) limit optionality by definition. One of these numbers isn't accurate. Which feels more true right now?",
+    affected: ["constraint", "optionality"]
+  },
+  {
+    id: "energy_flow_conflict",
+    name: "Empty Tank Marathon",
+    condition: (inputs) => inputs.energy <= 3 && inputs.flow >= 40,
+    severity: "warning",
+    message: "You claim 40+ hours of flow on empty energy reserves. That's not flow — that's desperation masked as productivity. Real flow requires energy. Either your energy is higher than you think, or those hours aren't actually deep work.",
+    affected: ["energy", "flow"]
+  },
+  {
+    id: "hours_overflow",
+    name: "Time Violation",
+    condition: (inputs) => (inputs.flow + inputs.admin + inputs.distraction) > 100,
+    severity: "critical",
+    message: "Your flow, admin, and distraction hours add up to over 100 per week. There are only 168 hours in a week, and you need to sleep. These numbers don't reflect reality. Recalculate honestly.",
+    affected: ["flow", "admin", "distraction"]
+  },
+  {
+    id: "stagnation_flow_conflict",
+    name: "Frozen Flow",
+    condition: (inputs) => inputs.stagnation >= 7 && inputs.flow >= 35,
+    severity: "warning",
+    message: "High stagnation means you're stuck, not shipping, paralyzed. But you report 35+ hours of flow? Flow produces output. If you're truly flowing, stagnation should be low. Which is the lie you're telling yourself?",
+    affected: ["stagnation", "flow"]
+  },
+
+  // RESONANCE CONTRADICTIONS
+  {
+    id: "boldness_identity_conflict",
+    name: "Bold for Nobody",
+    condition: (inputs) => inputs.boldness >= 8 && inputs.identity <= 3,
+    severity: "warning",
+    message: "You're taking big creative risks but have no idea who they're for. That's not boldness — that's randomness. Courage needs a target. Who specifically are you being bold for?",
+    affected: ["boldness", "identity"]
+  },
+  {
+    id: "impact_tiny_audience",
+    name: "Invisible Depth",
+    condition: (inputs) => inputs.impact >= 8 && inputs.audience <= 500,
+    severity: "info",
+    message: "Profound impact on fewer than 500 people. That's real and valuable — but is it the goal or the bottleneck? If you're building a movement, distribution is your problem. If you're building a craft, carry on.",
+    affected: ["impact", "audience"]
+  },
+  {
+    id: "identity_no_boldness",
+    name: "Perfect Aim, No Arrow",
+    condition: (inputs) => inputs.identity >= 8 && inputs.boldness <= 3,
+    severity: "warning",
+    message: "You know exactly who you're creating for but you're not taking any risks. Your audience wants you to push. They chose you for a reason. Playing safe betrays the connection you've built.",
+    affected: ["identity", "boldness"]
+  },
+
+  // CRAFT CONTRADICTIONS
+  {
+    id: "evolution_stagnation_conflict",
+    name: "Growing While Frozen",
+    condition: (inputs) => inputs.evolution >= 7 && inputs.stagnation >= 7,
+    severity: "warning",
+    message: "You report rapid skill growth AND complete paralysis. Skills grow through action. If you're truly stagnant, evolution should be low. Something here isn't honest.",
+    affected: ["evolution", "stagnation"]
+  },
+  {
+    id: "risk_admin_conflict",
+    name: "Bold Bureaucrat",
+    condition: (inputs) => inputs.risk >= 8 && inputs.admin >= 40,
+    severity: "warning",
+    message: "High creative risk-taking with 40+ hours of admin? When do you actually take the risks? Admin is where bold ideas go to die. Something doesn't add up.",
+    affected: ["risk", "admin"]
+  },
+  {
+    id: "flow_distraction_conflict",
+    name: "Focused Scatter",
+    condition: (inputs) => inputs.flow >= 40 && inputs.distraction >= 30,
+    severity: "warning",
+    message: "40+ hours of flow AND 30+ hours of distraction? That's 70 hours of opposites. Either your flow sessions are shorter than you think, or your distraction estimate is off. Track it for a day.",
+    affected: ["flow", "distraction"]
+  },
+
+  // CROSS-LAW CONTRADICTIONS
+  {
+    id: "space_distraction_conflict",
+    name: "Clear Mind, Constant Noise",
+    condition: (inputs) => inputs.space >= 8 && inputs.distraction >= 30,
+    severity: "warning",
+    message: "Maximum mental clarity with 30+ hours of distraction per week? Distraction IS mental clutter. If you're truly clear-headed, your distraction hours should be low. Which is true?",
+    affected: ["space", "distraction"]
+  },
+  {
+    id: "energy_admin_flow_conflict",
+    name: "Superhuman Schedule",
+    condition: (inputs) => inputs.energy <= 3 && inputs.admin >= 30 && inputs.flow >= 25,
+    severity: "critical",
+    message: "Empty energy, 30+ admin hours, 25+ flow hours. You're describing burnout math. This isn't sustainable — it's collapse in slow motion. Something has to give. What?",
+    affected: ["energy", "admin", "flow"]
+  },
+  {
+    id: "optionality_constraint_moderate",
+    name: "Partial Freedom Paradox",
+    condition: (inputs) => inputs.optionality >= 7 && inputs.constraint >= 7,
+    severity: "info",
+    message: "High optionality AND high constraints is possible — but rare. It usually means you have options you're not using because obligations consume your capacity. Are you aware of doors you're not walking through?",
+    affected: ["optionality", "constraint"]
+  },
+  {
+    id: "all_perfect",
+    name: "Suspicious Perfection",
+    condition: (inputs) => inputs.energy >= 9 && inputs.space >= 9 && inputs.optionality >= 9 && inputs.constraint <= 2 && inputs.impact >= 9 && inputs.identity >= 9 && inputs.boldness >= 9 && inputs.evolution >= 9 && inputs.risk >= 9 && inputs.stagnation <= 2,
+    severity: "info",
+    message: "Everything is nearly perfect? That's either genuinely exceptional or a sign you're not being honest with yourself. The tool only works if you are. Are these real numbers or aspirational ones?",
+    affected: []
+  },
+  {
+    id: "all_terrible",
+    name: "Total Collapse",
+    condition: (inputs) => inputs.energy <= 2 && inputs.space <= 2 && inputs.optionality <= 2 && inputs.impact <= 2 && inputs.flow <= 10 && inputs.evolution <= 2,
+    severity: "critical",
+    message: "Everything is failing. This isn't a productivity problem — it's a crisis. The calculator can wait. Do you have support? A friend, a professional, someone to talk to? The numbers suggest you need a human, not a tool.",
+    affected: []
+  }
+];
