@@ -3216,6 +3216,287 @@
   }
 
   /**
+   * Build the print-ready HTML for a playbook.
+   * Premium "keepsake booklet" print design — cream stock, charcoal ink,
+   * Playfair Display headings, IBM Plex Sans body, accents used sparingly.
+   * Fonts are embedded via <link>; the document self-prints once fonts load.
+   */
+  function playbookFooterHtml() {
+    return `
+      <footer class="doc-footer">
+        <div class="footer-mark">FruitHedge · Series One</div>
+        <div class="footer-note">A private instrument for personal reflection. Your answers reveal your creative patterns.</div>
+        <div class="footer-contact">fruithedgeops@gmail.com</div>
+      </footer>`;
+  }
+
+  function buildPlaybookHtml(playbook) {
+    const date = new Date(playbook.date);
+    const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    const a = playbook.archetype;
+
+    return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <title>FruitHedge — Creative Journal</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+        <style>
+          :root {
+            --cream:    #F2EAD9;  /* warm sand — tactile paper, not stark cream */
+            --ink:      #1F1B16;
+            --ink-soft: #4A453D;
+            --muted:    #8A8578;
+            --hair:     #D9CFB9;  /* hairlines warmed to match the sand */
+            --aq:       #2D5016;  /* autonomy  — deep olive  */
+            --ri:       #C0552B;  /* resonance — terracotta  */
+            --ci:       #8E2F5D;  /* intensity — berry       */
+          }
+
+          @page { margin: 0; }
+
+          * { box-sizing: border-box; }
+
+          /* White paper. Sand is used only as a feature material on specific blocks
+             (cover, triad, archetype) — not as a page fill. print-color-adjust keeps
+             those sand fills + accent inks printing without "background graphics". */
+          html { background: #fff; }
+
+          body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: var(--ink);
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+
+          /* Page-2+ content inset (cover is full-bleed, so insets live here, not on @page) */
+          .content { padding: 14mm 20mm 18mm; }
+
+          /* ---- Cover page (full-sand hero, stands alone on sheet 1) ---- */
+          .cover-page {
+            min-height: 100vh;
+            background: var(--cream);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            padding: 0 20mm;
+            break-after: page; page-break-after: always;
+          }
+          .cover-mark {
+            font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 22px;
+          }
+          .cover-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500; font-size: 56px; line-height: 1.05;
+            margin: 0 0 20px; color: var(--ink);
+          }
+          .cover-title em { font-style: italic; }
+          .cover-rule {
+            width: 48px; height: 1px; background: var(--ink);
+            margin: 0 auto 20px; opacity: 0.55;
+          }
+          .cover-date {
+            font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--muted);
+          }
+          .cover-alpha { margin-top: 20mm; }
+          .kicker {
+            font-size: 9.5px; letter-spacing: 0.34em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 10px;
+          }
+          .alpha-figure {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 400; font-size: 96px; line-height: 0.95; color: var(--ink);
+            font-variant-numeric: lining-nums;
+          }
+
+          /* ---- Score triad (sand band, sized to content) ---- */
+          .triad {
+            display: flex; margin: 0 0 12mm;
+            background: var(--cream);
+            padding: 6mm 0;
+          }
+          .triad-col { flex: 1; text-align: center; padding: 16px 8px; }
+          .triad-col + .triad-col { border-left: 1px solid var(--hair); }
+          .triad-numeral {
+            font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+            font-size: 13px; color: var(--muted); margin-bottom: 6px;
+          }
+          .triad-score {
+            font-family: 'Playfair Display', Georgia, serif; font-weight: 500;
+            font-size: 42px; line-height: 1; margin-bottom: 8px;
+          }
+          .triad-score.aq { color: var(--aq); }
+          .triad-score.ri { color: var(--ri); }
+          .triad-score.ci { color: var(--ci); }
+          .triad-label {
+            font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--ink-soft);
+          }
+
+          /* ---- Generic section heading ---- */
+          .section-heading {
+            font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+            font-weight: 500; font-size: 22px; color: var(--ink); margin: 0 0 14px;
+            break-after: avoid; page-break-after: avoid;
+          }
+          .heading-rule {
+            width: 28px; height: 2px; background: var(--aq); margin-bottom: 18px; opacity: 0.8;
+            break-after: avoid; page-break-after: avoid;
+          }
+
+          /* ---- Archetype (sand band, sized to content) ---- */
+          .archetype {
+            text-align: center;
+            background: var(--cream);
+            padding: 8mm 8mm;
+            margin: 0 0 12mm;
+            break-inside: avoid; page-break-inside: avoid;
+          }
+          .archetype-name {
+            font-family: 'Playfair Display', Georgia, serif; font-weight: 600;
+            font-size: 30px; color: var(--ink); margin-bottom: 6px;
+            break-after: avoid; page-break-after: avoid;
+          }
+          .archetype-subtitle {
+            font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+            font-size: 15px; color: var(--muted); margin-bottom: 18px;
+          }
+          .archetype-profile {
+            max-width: 32em; margin: 0 auto; font-size: 13px;
+            line-height: 1.85; color: var(--ink-soft);
+          }
+
+          /* ---- Insight ---- */
+          .insight {
+            padding: 4mm 0 8mm;
+            break-inside: avoid; page-break-inside: avoid;
+          }
+          .insight-body { font-size: 14.5px; line-height: 1.9; color: var(--ink-soft); max-width: 36em; }
+
+          /* ---- Reflections ---- */
+          .reflections { padding-top: 4mm; }
+          .reflection { padding: 0; }
+          .reflection-label {
+            font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 8px;
+          }
+          .reflection-question {
+            font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+            font-size: 15px; color: var(--ink); margin: 0 0 6px;
+          }
+          .reflection-score { font-size: 10px; letter-spacing: 0.08em; color: var(--aq); margin-bottom: 10px; }
+          .reflection-answer {
+            margin: 0; font-size: 13px; line-height: 1.7; color: var(--ink-soft); white-space: pre-wrap;
+          }
+          .reflection-lines { margin-top: 32px; }
+          .reflection-line { height: 32px; margin: 0; padding: 0; box-sizing: border-box; border-bottom: 1px solid var(--hair); } /* --hair = #D9CFB9 */
+
+          /* ---- Reflection pages (deterministic: one reflection per sheet) ---- */
+          .reflection-page {
+            min-height: 100vh;
+            padding: 18mm 20mm;
+            display: flex; flex-direction: column;
+            break-before: page; page-break-before: always;
+          }
+          .reflection-page .doc-footer { margin-top: auto; }
+
+          /* ---- Footer ---- */
+          .doc-footer {
+            margin-top: 12mm; padding-top: 14px; text-align: center; border-top: 1px solid var(--hair);
+          }
+          .footer-mark {
+            font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--ink-soft); margin-bottom: 8px;
+          }
+          .footer-note {
+            font-size: 10.5px; font-style: italic; color: var(--muted);
+            max-width: 30em; margin: 0 auto 6px; line-height: 1.6;
+          }
+          .footer-contact { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+        </style>
+      </head>
+      <body>
+
+        <div class="cover-page">
+          <header class="cover">
+            <div class="cover-mark">FruitHedge · Series One</div>
+            <h1 class="cover-title">Creative <em>Journal</em></h1>
+            <div class="cover-rule"></div>
+            <div class="cover-date">Calibrated ${formattedDate}</div>
+          </header>
+          <section class="cover-alpha">
+            <div class="kicker">Creative Alpha Index</div>
+            <div class="alpha-figure">${playbook.scores.alpha.toFixed(1)}</div>
+          </section>
+        </div>
+
+        <main class="content">
+
+        <section class="triad">
+          <div class="triad-col">
+            <div class="triad-numeral">I</div>
+            <div class="triad-score aq">${playbook.scores.aq.toFixed(1)}</div>
+            <div class="triad-label">Autonomy</div>
+          </div>
+          <div class="triad-col">
+            <div class="triad-numeral">II</div>
+            <div class="triad-score ri">${playbook.scores.ri.toFixed(1)}</div>
+            <div class="triad-label">Resonance</div>
+          </div>
+          <div class="triad-col">
+            <div class="triad-numeral">III</div>
+            <div class="triad-score ci">${playbook.scores.ci.toFixed(1)}</div>
+            <div class="triad-label">Intensity</div>
+          </div>
+        </section>
+
+        ${a ? `
+        <section class="archetype">
+          <div class="archetype-name">${a.name}</div>
+          ${a.subtitle ? `<div class="archetype-subtitle">${a.subtitle}</div>` : ''}
+          ${a.profile ? `<p class="archetype-profile">${a.profile}</p>` : ''}
+        </section>` : ''}
+
+        ${a && a.insight ? `
+        <section class="insight">
+          <h2 class="section-heading">Key Insight</h2>
+          <div class="heading-rule"></div>
+          <p class="insight-body">${a.insight}</p>
+        </section>` : ''}
+
+        </main>
+
+        ${playbook.reflections ? generateReflectionsPdfHtml(playbook) : playbookFooterHtml()}
+
+        <script>
+          (function () {
+            var done = false;
+            function go() { if (done) return; done = true; try { window.focus(); } catch (e) {} window.print(); }
+            if (document.fonts && document.fonts.ready) {
+              document.fonts.ready.then(function () { setTimeout(go, 200); });
+              setTimeout(go, 2000); /* fallback if fonts never resolve */
+            } else {
+              window.addEventListener('load', function () { setTimeout(go, 400); });
+            }
+          })();
+        <\/script>
+
+      </body>
+      </html>
+    `;
+  }
+
+  /**
    * Download PDF from viewed playbook - ONLY triggered by explicit button click
    */
   function downloadPlaybookPdf() {
@@ -3248,180 +3529,10 @@
 
     console.log('[FruitHedge] Generating PDF for playbook:', playbook.id);
 
-    // Generate HTML content similar to generatePDFJournal but from stored data
-    const date = new Date(playbook.date);
-    const formattedDate = date.toLocaleDateString();
-    const formattedTime = date.toLocaleTimeString();
-
-    const content = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>FruitHedge Creative Journal</title>
-        <style>
-          @page { margin: 1in; }
-          body {
-            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
-            padding: 0;
-            max-width: 100%;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #1a1a1a;
-          }
-          h1 {
-            color: #2d5016;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 28px;
-            margin-bottom: 5px;
-          }
-          h2 {
-            color: #333;
-            margin-top: 30px;
-            font-size: 18px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-          }
-          .header-meta {
-            color: #666;
-            font-size: 12px;
-            margin-bottom: 30px;
-          }
-          .scores-header {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin: 30px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-          }
-          .score {
-            flex: 1;
-            text-align: center;
-          }
-          .score-value {
-            font-size: 36px;
-            font-weight: bold;
-            font-family: 'JetBrains Mono', monospace;
-          }
-          .score-label {
-            color: #666;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-          }
-          .alpha {
-            text-align: center;
-            font-size: 72px;
-            font-weight: bold;
-            margin: 20px 0;
-            background: linear-gradient(135deg, #2d5016, #c45a2c, #8b2d5c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-          }
-          .alpha-label {
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-          }
-          .section {
-            margin: 25px 0;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            background: #fff;
-          }
-          .archetype-section {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #f8f9fa, #fff);
-            border-radius: 8px;
-            margin: 30px 0;
-          }
-          .archetype-name {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 24px;
-            color: #1a1a1a;
-            margin-bottom: 5px;
-          }
-          .archetype-subtitle {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 15px;
-          }
-          .archetype-profile {
-            max-width: 500px;
-            margin: 0 auto;
-            color: #444;
-          }
-          .footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #999;
-            font-size: 11px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-          }
-          @media print {
-            .section { page-break-inside: avoid; }
-          }
-        </style>
-      </head>
-      <body>
-        <h1>FruitHedge Creative Journal</h1>
-        <div class="header-meta">Generated on ${formattedDate} at ${formattedTime}</div>
-
-        <div class="alpha">${playbook.scores.alpha.toFixed(1)}</div>
-        <div class="alpha-label">Creative Alpha Index</div>
-
-        <div class="scores-header">
-          <div class="score">
-            <div class="score-value" style="color: #2d5016;">${playbook.scores.aq.toFixed(1)}</div>
-            <div class="score-label">Autonomy</div>
-          </div>
-          <div class="score">
-            <div class="score-value" style="color: #c45a2c;">${playbook.scores.ri.toFixed(1)}</div>
-            <div class="score-label">Resonance</div>
-          </div>
-          <div class="score">
-            <div class="score-value" style="color: #8b2d5c;">${playbook.scores.ci.toFixed(1)}</div>
-            <div class="score-label">Intensity</div>
-          </div>
-        </div>
-
-        ${playbook.archetype ? `
-        <div class="archetype-section">
-          <div class="archetype-name">${playbook.archetype.name}</div>
-          <div class="archetype-subtitle">${playbook.archetype.subtitle}</div>
-          <p class="archetype-profile">${playbook.archetype.profile}</p>
-        </div>
-        ` : ''}
-
-        ${playbook.archetype && playbook.archetype.insight ? `
-        <h2>Key Insight</h2>
-        <div class="section">
-          <p style="font-size: 16px; line-height: 1.8;">${playbook.archetype.insight}</p>
-        </div>
-        ` : ''}
-
-        ${playbook.reflections ? generateReflectionsPdfHtml(playbook) : ''}
-
-        <div class="footer">
-          <p>FruitHedge Research Team • v3.0 • fruithedge.com</p>
-          <p>This journal is for personal reflection. Your answers help you understand your creative patterns.</p>
-        </div>
-      </body>
-      </html>
-    `;
-
     const printWindow = window.open('', '_blank');
-    printWindow.document.write(content);
+    printWindow.document.write(buildPlaybookHtml(playbook));
     printWindow.document.close();
-    printWindow.print();
+    // The document self-prints once web fonts are ready (see inline script in buildPlaybookHtml).
   }
 
   /**
@@ -3460,31 +3571,29 @@
     const answers = playbook.reflection_answers || {};
     const inputs = playbook.inputs || {};
 
-    return `
-      <h2>Reflections</h2>
-      ${Object.entries(playbook.reflections).map(([key, question]) => `
-        <div class="section" style="border-left: 3px solid #2d5016;">
-          <p style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
-            ${reflectionLabels[key] || key}
-          </p>
-          <p style="font-style: italic; color: #444; margin-bottom: 8px;">${question}</p>
-          ${inputs[key] !== undefined ? `
-            <p style="font-size: 12px; color: #2d5016; font-family: monospace; margin-bottom: 10px;">
-              ${formatInputScore(key, inputs[key])}
-            </p>
-          ` : ''}
-          ${answers[key] ? `
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 10px;">
-              <p style="margin: 0; white-space: pre-wrap;">${answers[key]}</p>
-            </div>
-          ` : `
-            <div style="border: 1px dashed #ccc; padding: 20px; border-radius: 4px; min-height: 60px; margin-top: 10px;">
-              <span style="color: #999; font-size: 11px;">Your thoughts:</span>
-            </div>
-          `}
-        </div>
-      `).join('')}
-    `;
+    const entries = Object.entries(playbook.reflections);
+
+    return entries.map(([key, question], idx) => {
+      const isFirst = idx === 0;
+      const isLast  = idx === entries.length - 1;
+      const scoreHtml = inputs[key] !== undefined
+        ? `<div class="reflection-score">${formatInputScore(key, inputs[key])}</div>` : '';
+      const answerHtml = answers[key]
+        ? `<p class="reflection-answer">${answers[key]}</p>`
+        : `<div class="reflection-lines">${Array.from({ length: 10 }, () => '<div class="reflection-line"></div>').join('')}</div>`;
+
+      return `
+        <section class="reflection-page">
+          ${isFirst ? '<h2 class="section-heading">Reflections</h2><div class="heading-rule"></div>' : ''}
+          <div class="reflection">
+            <div class="reflection-label">${reflectionLabels[key] || key}</div>
+            <p class="reflection-question">${question}</p>
+            ${scoreHtml}
+            ${answerHtml}
+          </div>
+          ${isLast ? playbookFooterHtml() : ''}
+        </section>`;
+    }).join('');
   }
 
   // ============================================================
